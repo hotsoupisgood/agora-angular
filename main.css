@@ -14,7 +14,6 @@
   color: white !important;
 }
 .loginContainer {
-  position: absolute;
   padding: 20px;
   margin-left: 50vw;
   margin-top: 15vh;
@@ -32,14 +31,18 @@
   box-shadow: 0px 0px 8px #888888;
   overflow: hidden;
 }
-.accountBackFrame{
+#inAbout{
+  font-size: 15px;
+  /*top: 0;
+  right: 0;*/
+  margin: 40px;
+  margin-left: 57%;
   position: absolute;
-  margin: 10vw;
-  margin-top: 5vh;
-  height: 90%;
-  width: 80%;
-  border-radius: 10px;
+  padding: 2%;
+  width: 20%;
+  border-radius: 6px;
   box-shadow: 0px 0px 8px #888888;
+  background: white;
   overflow: hidden;
 }
 #mainSearch{
