@@ -1,0 +1,85 @@
+<div div="top30">
+      <table class="table table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr>
+            <td>
+              Order By:
+              <button ng-click="order = 'id'" class="btn btn-default" type="button" name="button">ID</button>
+              <button ng-click="order = 'question'" class="btn btn-default" type="button" name="button">Question</button>
+              <button ng-click="order = 'date'" class="btn btn-default" type="button" name="button">Date</button>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <input id="mainSearch" type="text" ng-model="search" class="form-control" placeholder="Search Loaded Questions">
+          <div>
+        </tbody>
+      </table>
+      <uib-accordion close-others="oneAtATime">
+            <uib-accordion-group heading="Static Header, initially expanded" ng-init="areResponsesOpen = true"  ng-repeat="q in questions | orderBy: order | filter: search" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+              <uib-accordion-heading>
+                <table class="table  table-hover tableMod">
+                  <thead>
+                    <tr>
+                      <td>
+                        {{q.creator}}
+                      </td>
+                      <td style="width: 75% !important">
+                        {{q.question}}
+                      </td>
+                      <td>
+                        {{q.date}}
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+              <!-- <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isCustomHeaderOpen, 'glyphicon-chevron-right': !status.isCustomHeaderOpen}"></i> -->
+            </uib-accordion-heading>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <td>
+                      <button ng-click="orderR = 'id'" class="btn btn-default" type="button" name="button">ID</button>
+                    </td>
+                    <td>
+                      <button ng-click="orderR = 'response'" class="btn btn-default" type="button" name="button">Responses</button>
+                    </td>
+                    <td>
+                      <button ng-click="orderR = 'date'" class="btn btn-default" type="button" name="button">Date</button>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="r in q.responses | orderBy: orderR | filter: search">
+                    <td>
+                      {{r.creator}}
+                    </td>
+                    <td>
+                      {{r.response}}
+                    </td>
+                    <td>
+                      {{r.date}}
+                    </td>
+                  </tr>
+                  <form class="" action="index.html" method="post">
+                    <tr>
+                      <td>
+                        Account Name
+                      </td>
+                      <td>
+                        <input type="text" style="margin-bottom: 10px" class="form-control" id="" placeholder="content of response">
+                        <button type="button" class="btn btn-primary" name="button">submit</button>
+                      </td>
+                      <td>
+                        Current Time
+                      </td>
+                    </tr>
+                  </form>
+                </tbody>
+              </table>
+            </uib-accordion-group>
+      </uib-accordion>
+      <div id="pageChanger">
+        <uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+      </div>
+</div>

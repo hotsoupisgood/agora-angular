@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="agoraApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="node_modules/angular/angular.js" charset="utf-8"></script>
+    <script src="node_modules/angular-route.min.js"></script>
+    <script src="node_modules/angular-animate.min.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" charset="utf-8"></script>
+
+
+    <!-- <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" media="screen" title="no title" charset="utf-8"> -->
+    <link rel="stylesheet" href="main.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+
+    <title>thisAgora</title>
+
+  </head>
+  <body>
+    <!-- header -->
+    <header ng-include = "'header.html'"></header>
+    <!-- page content -->
+    <main ng-view></main>
+    <!-- footer -->
+    <div id="foot-cont">
+    </div>
+  </body>
+</html>
