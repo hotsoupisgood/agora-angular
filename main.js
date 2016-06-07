@@ -1,7 +1,7 @@
 //misc global vars
 var top30, numIteratedPerPage = 30,
 accountInfo,
-// isLoggedIn = false,
+isLoggedIn,
 questionsAPage = 30, totalQueriedQuestions;
 //default usr account
 var usr = 'h', pass = 'fuck';
@@ -42,16 +42,19 @@ agoraApp.controller('accountController', function ($scope, $route, $routeParams)
 });
 agoraApp.controller('accountInfoController', function ($scope, $route, $routeParams) {
   $scope.name = 'accountInfoController';
+  //routing goodies
   $scope.$params = $routeParams;
   $scope.accountInfoTemp;
-  $scope.$on('loginEvent', function(event) {
-    refresh();
-    console.log(event);
-  });
+  //rechecks for change in account info
   $scope.refresh = function () {
       $scope.accountInfoTemp = accountInfo;
-      console.log(accountInfo.id);
+      console.log(accountInfo);
     }
+    //event listener
+    $scope.$on('loginEvent', function(event) {
+      $scope.refresh();
+      console.log(event);
+    });
 });
 agoraApp.controller('loginController', function ($scope, $route,
                                 $routeParams, $location){
@@ -68,6 +71,15 @@ agoraApp.controller('loginForm', function ($scope, $http){
   $scope.username = '';
   $scope.password = '';
   $scope.accountInfoTemp = [];
+
+  $scope.loginList = function () {
+    //shoot event to accountInfo controller
+    $scope.$parent.$broadcast('loginEvent');
+    //make log in var to true to hide login and display account info
+    $scope.loginInfo.isLoggedIn = true;
+    //set global var
+    isLoggedIn =  $scope.loginInfo.isLoggedIn;
+  }
   $scope.submit = function() {
     accountInfo = '';
     $http({
@@ -88,9 +100,9 @@ agoraApp.controller('loginForm', function ($scope, $http){
        //coping response in local var to global var,,,
        //try to eliminate ^this^ step with events
        accountInfo = $scope.accountInfoTemp;
-       //make log in var to true to hide login and display account info
-       $scope.loginInfo.isLoggedIn = true;
-
+       $scope.loginList();
+      //  //shoot event to accountInfo controller
+      //  $scope.$emit('loginEvent');
        //debug response callback logs
        console.log('successCallback, unparsed: ' + response);
        console.log('successCallback, parsed: ' + $scope.accountInfoTemp);
@@ -141,8 +153,11 @@ agoraApp.controller('top30', function ($scope, $http, $route,
        // this callback will be called asynchronously
        // when the response is available
        top30 = JSON.parse(JSON.stringify(response.data.questions));
+       //hold global top30
        $scope.questions = top30;
+       //set local total q/s in query
        $scope.totalQuestions = response.data.length;
+       //set global total q/s in query
        totalQueriedQuestions = $scope.totalQuestions;
        $scope.totalPages = $scope.totalQuestions / questionsAPage;
        console.log(response);
@@ -158,12 +173,14 @@ agoraApp.controller('top30', function ($scope, $http, $route,
   $scope.nextPage = function() {
     $scope.pageNum++;
     getTopQuestions($scope.pageNum);
+    scroll(0,0);
   };
   //go back a page
   $scope.backPage = function() {
     if($scope.pageNum>0)
       $scope.pageNum--;
     getTopQuestions($scope.pageNum);
+    scroll(0,0);
   };
   //get current page num
   $scope.getPageNum = function() {
