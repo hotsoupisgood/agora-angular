@@ -1,4 +1,23 @@
-<table class="table  table-hover tableMod">
+<button ng-click="refresh()" id="refresh" class="btn btn-primary"> refresh</button>94941
+<div class="container" onload="refresh()">
+  <div class="row">
+    <div class="col-lg-1-12">
+      <h3> number of questions</h3>
+    </div>
+    <div class="col-lg-1-12">
+      <h4>{{accountInfoTemp.MyQuestions}}</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1-12">
+      <h3>number of responses</h3>
+    </div>
+    <div class="col-lg-1-12">
+      <h4> <small>{{accountInfoTemp.MyResponses}}</small></h4>
+    </div>
+  </div>
+</div>
+<!-- <table class="table  table-hover tableMod">
   <thead>
     <tr>
       <td>
@@ -43,4 +62,4 @@
     </td>
     </tr>
   </tbody>
-</table>
+</table> -->

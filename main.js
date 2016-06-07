@@ -1,9 +1,13 @@
+//misc global vars
 var top30, numIteratedPerPage = 30,
-accountInfo, isLoggedIn = false,
+accountInfo,
+// isLoggedIn = false,
 questionsAPage = 30, totalQueriedQuestions;
+//default usr account
 var usr = 'h', pass = 'fuck';
+//app decrelation
 var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
-
+//app routing(url minipulation)
 agoraApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
    .when('/questions', {
@@ -33,14 +37,31 @@ agoraApp.controller('accountController', function ($scope, $route, $routeParams)
   $scope.accountInfoTemp;
   $scope.refresh = function() {
       $scope.accountInfoTemp = accountInfo;
-      console.log($scope.accountInfoTemp.id);
+      console.log(accountInfo.id);
+    }
+});
+agoraApp.controller('accountInfoController', function ($scope, $route, $routeParams) {
+  $scope.name = 'accountInfoController';
+  $scope.$params = $routeParams;
+  $scope.accountInfoTemp;
+  $scope.$on('loginEvent', function(event) {
+    refresh();
+    console.log(event);
+  });
+  $scope.refresh = function () {
+      $scope.accountInfoTemp = accountInfo;
+      console.log(accountInfo.id);
     }
 });
 agoraApp.controller('loginController', function ($scope, $route,
                                 $routeParams, $location){
   $scope.name = 'loginController';
   $scope.$params = $routeParams;
-
+  $scope.loginInfo = {};
+  $scope.loginInfo.isLoggedIn = false;
+  $scope.printLogged = function () {
+    console.log('islogged?   ' + $scope.loginInfo.isLoggedIn);
+  }
 });
 agoraApp.controller('loginForm', function ($scope, $http){
   $scope.name = 'loginForm';
@@ -52,6 +73,7 @@ agoraApp.controller('loginForm', function ($scope, $http){
     $http({
      method: 'GET',
      url: 'https://startandselect.com/scripts/Login.php',
+     //production params
     //  params: {username: $scope.username,
     //           password: $scope.password}
     //debug default account
@@ -60,18 +82,23 @@ agoraApp.controller('loginForm', function ($scope, $http){
    }).then(function successCallback(response) {
        // this callback will be called asynchronously
        // when the response is available
-      //  console.log(response);
-       $scope.accountInfoTemp = angular.toJson(response.data);
+
+       //parsing response to local var
+       $scope.accountInfoTemp = JSON.parse(angular.toJson(response.data));
+       //coping response in local var to global var,,,
+       //try to eliminate ^this^ step with events
        accountInfo = $scope.accountInfoTemp;
-       isLoggedIn = true;
-       console.log(accountInfo);
+       //make log in var to true to hide login and display account info
+       $scope.loginInfo.isLoggedIn = true;
+
+       //debug response callback logs
+       console.log('successCallback, unparsed: ' + response);
+       console.log('successCallback, parsed: ' + $scope.accountInfoTemp);
      }, function errorCallback(response) {
        // called asynchronously if an error occurs
        // or server returns response with an error status.
-
-       $scope.tempResponse = JSON.parse(JSON.stringify(response.data));
-       accountInfo = $scope.tempResponse;
-       console.log('response');
+       $scope.accountInfoTemp = JSON.parse(angular.toJson(response.data));
+       console.log('errorCallback, response: ' + $scope.accountInfoTemp);
      });
   }
 
