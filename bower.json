@@ -1,0 +1,20 @@
+{
+  "name": "agora-angular",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Luc"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/hotsoupisgood/agora-angular",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-toArrayFilter": "^1.0.1"
+  }
+}

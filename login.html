@@ -2,21 +2,20 @@
 <div class="loginContainer">
   <div class="" ng-show="!loginInfo.isLoggedIn">
     <h1> <small>login</small></h1>
-    <form class="" ng-controller="loginForm" ng-submit="submit()">
+    <form ng-controller="loginForm" ng-submit="submit()">
       <div class="form-group">
         <label for=""></label>
-        <input ng-model="username" type="text" class="form-control" id="" placeholder="Username">
+        <input ng-model="username" type="text" class="form-control" placeholder="Username">
         <label for=""></label>
-        <input ng-model="password" type="password" class="form-control" id="" placeholder="Passcode">
+        <input ng-model="password" type="password" class="form-control" placeholder="Passcode">
         <br>
-        <button type="submit" id="submit" value="Submit" class="btn btn-primary" name="button" ng-href="#account" >login</button>
+        <button type="submit" id="submit" value="Submit" class="btn btn-primary" name="button">login</button>
       </div>
     </form>
   </div>
   <div ng-show="loginInfo.isLoggedIn">
     <div class="" ng-controller="accountInfoController"
           ng-click="refresh()">
-      <!-- <button ng-click="refresh" id="refresh" class="btn btn-primary"> refresh</button> -->
       <div class="container" onload="refresh()">
         <div class="row">
           <div class="col-lg-1-12">

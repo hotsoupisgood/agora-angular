@@ -1,12 +1,14 @@
 <img id="agoraDudeAccount" src="fad.png" alt=""/>
 <div class="loginContainer">
   <h1> <small>Create Account</small></h1>
-  <form class="" ng-controller="loginForm" ng-submit="submit()">
+  <form ng-controller="loginForm" ng-submit="createAccount(username, password)">
     <div class="form-group">
       <label for=""></label>
       <input ng-model="username" type="text" class="form-control" id="" placeholder="Username">
       <label for=""></label>
       <input ng-model="password" type="password" class="form-control" id="" placeholder="Passcode">
+      <!-- <br> -->
+      <!-- <div class="g-recaptcha" data-sitekey="6LdsCSITAAAAAFqVJrl7xZ2mpGhWal2KU0nPvgJq"></div> -->
       <br>
       <button type="submit" id="submit" value="Submit" class="btn btn-primary" name="button" ng-href="#account" >submit</button>
     </div>

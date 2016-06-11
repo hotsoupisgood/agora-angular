@@ -3,7 +3,7 @@
         <thead>
           <tr>
             <td>
-              Order By:
+              Order Page By:
               <button ng-click="order = 'id'" class="btn btn-default" type="button" name="button">ID</button>
               <button ng-click="order = 'question'" class="btn btn-default" type="button" name="button">Question</button>
               <button ng-click="order = 'date'" class="btn btn-default" type="button" name="button">Date</button>
@@ -11,18 +11,94 @@
           </tr>
         </thead>
         <tbody>
-          <form>
+          <form ng-submit="submit(pageNum, currentSearchTerm)">
             <div class="input-group">
-              <input id="mainSearch" type="text" ng-model="search" class="form-control" placeholder="Search Loaded Questions">
+              <input ng-model="currentSearchTerm" type="text" name="text" class="form-control" placeholder="Search Loaded Questions">
               <span class="input-group-btn">
-                <button type="submit" id="submit" value="Submit" class="btn btn-primary" name="button">search</button>
+                <button ng-click="getSearchedQuestions(pageNum, currentSearchTerm)" type="submit"id="submit" value="Submit" class="btn btn-primary">submit</button>
               </span>
             </div>
           </form>
+          <!-- <uib-accordion close-others="oneAtATime">
+            <uib-accordion-group>
+                <uib-accordion-heading>
+                  create question
+                </uib-accordion-heading> -->
+                <div ng-controller="submitQuestionFormController" style="margin-top: 10px"  class="input-group">
+                  <input ng-model="question" type="text" class="form-control" placeholder="ask a question">
+                  <span class="input-group-btn">
+                    <button ng-click="submitTheFuckingQuestion(question)" type="submit" class="btn btn-primary">submit</button>
+                  </span>
+                </div>
+            <!-- </uib-accordion-group>
+          </uib-accordion> -->
         </tbody>
       </table>
       <uib-accordion close-others="oneAtATime">
-            <uib-accordion-group heading="" ng-init="areResponsesOpen = true"  ng-repeat="q in questions | orderBy: order | filter: search">
+          <uib-accordion-group ng-show="showSearch" class="searchQuestionContainer" heading="" ng-init="areResponsesOpen = true"
+          ng-repeat="q in searchResultQuestions | toArray | orderBy: order | filter: currentSearchTerm track by $index">
+            <uib-accordion-heading>
+              <table class="table  table-hover tableMod">
+                <thead>
+                  <tr>
+                    <td>
+                      {{q.creator}}
+                    </td>
+                    <td style="width: 75% !important">
+                      {{q.question}}
+                    </td>
+                    <td>
+                      {{q.date}}
+                    </td>
+                  </tr>
+                </thead>
+              </table>
+          </uib-accordion-heading>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <td>
+                    <button ng-click="orderR = 'id'" class="btn btn-default" type="button" name="button">ID</button>
+                  </td>
+                  <td>
+                    <button ng-click="orderR = 'response'" class="btn btn-default" type="button" name="button">Responses</button>
+                  </td>
+                  <td>
+                    <button ng-click="orderR = 'date'" class="btn btn-default" type="button" name="button">Date</button>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="r in q.responses | orderBy: orderR | filter: search">
+                  <td>
+                    {{r.creator}}
+                  </td>
+                  <td>
+                    {{r.response}}
+                  </td>
+                  <td>
+                    {{r.date}}
+                  </td>
+                </tr>
+                <form class="" action="index.html" method="post">
+                  <tr>
+                    <td>
+                      Account Name
+                    </td>
+                    <td>
+                      <input type="text" style="margin-bottom: 10px" class="form-control" id="" placeholder="content of response">
+                      <button type="button" class="btn btn-primary" name="button">submit</button>
+                    </td>
+                    <td>
+                      Current Time
+                    </td>
+                  </tr>
+                </form>
+              </tbody>
+            </table>
+          </uib-accordion-group>
+            <uib-accordion-group  ng-show="!showSearch" id="questionContainer"heading="" ng-init="areResponsesOpen = true"
+            ng-repeat="q in questions | toArray | orderBy: order | filter: currentSearchTerm track by $index">
               <uib-accordion-heading>
                 <table class="table  table-hover tableMod">
                   <thead>
@@ -39,7 +115,6 @@
                     </tr>
                   </thead>
                 </table>
-              <!-- <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isCustomHeaderOpen, 'glyphicon-chevron-right': !status.isCustomHeaderOpen}"></i> -->
             </uib-accordion-heading>
               <table class="table table-hover">
                 <thead>
@@ -67,20 +142,33 @@
                       {{r.date}}
                     </td>
                   </tr>
-                  <form class="" action="index.html" method="post">
+                  <tr>
+                    <td>
+                      Account Name
+                    </td>
+                    <td>
+                      <input ng-model="response" type="text" style="margin-bottom: 10px" class="form-control" placeholder="content of response">
+                      <button ng-click="submitResponse(q.id, q.creator, response)" type="button" class="btn btn-primary">submit</button>
+                    </td>
+                    <td>
+                      Current Time
+                    </td>
+                  </tr>
+                  <!-- shits broke yo -->
+                  <!-- <form ng-controller="submitResponseFormController" ng-submit="submitF(q.id, q.creator, response)">
                     <tr>
                       <td>
                         Account Name
                       </td>
                       <td>
-                        <input type="text" style="margin-bottom: 10px" class="form-control" id="" placeholder="content of response">
-                        <button type="button" class="btn btn-primary" name="button">submit</button>
+                        <input ng-model="response" type="text" style="margin-bottom: 10px" class="form-control" placeholder="content of response">
+                        <button type="submit" class="btn btn-primary">submit</button>
                       </td>
                       <td>
                         Current Time
                       </td>
                     </tr>
-                  </form>
+                  </form> -->
                 </tbody>
               </table>
             </uib-accordion-group>
