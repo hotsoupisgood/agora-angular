@@ -1,71 +1,82 @@
 <img id="agoraDudeAccount" src="fad.png" ng-click="printLogged()"/>
 <div class="loginContainer">
-  <div class="" ng-show="!loginInfo.isLoggedIn">
-    <h1> <small>login</small></h1>
-    <form ng-controller="loginForm" ng-submit="submit()">
-      <div class="form-group">
-        <label for=""></label>
-        <input ng-model="username" type="text" class="form-control" placeholder="Username">
-        <label for=""></label>
-        <input ng-model="password" type="password" class="form-control" placeholder="Passcode">
-        <br>
-        <button type="submit" id="submit" value="Submit" class="btn btn-primary" name="button">login</button>
-      </div>
-    </form>
-  </div>
-  <div ng-show="loginInfo.isLoggedIn">
-    <div class="" ng-controller="accountInfoController"
-          ng-click="refresh()">
-      <div class="container" onload="refresh()">
-        <div class="row">
-          <div class="col-lg-1-12">
-            <h3> user name</h3>
-          </div>
-          <div class="col-lg-1-12">
-            <h4>{{accountInfoTemp.username}}</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-1-12">
-            <h3>password</h3>
-          </div>
-          <div class="col-lg-1-12">
-            <h4>{{accountInfoTemp.password}}</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-1-12">
-            <h3>email</h3>
-          </div>
-          <div class="col-lg-1-12">
-            <h4>{{accountInfoTemp.email}}</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-1-12">
-            <h3>last ip</h3>
-          </div>
-          <div class="col-lg-1-12">
-            <h4>{{accountInfoTemp.last_ip}}</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-1-12">
-            <h3> number of asked questions</h3>
-          </div>
-          <div class="col-lg-1-12">
-            <h4>{{accountInfoTemp.MyQuestions}}</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-1-12">
-            <h3>number of responses</h3>
-          </div>
-          <div class="col-lg-1-12">
-            <h4>{{accountInfoTemp.MyResponses}}</h4>
-          </div>
-        </div>
-      </div>
+    <div class="" ng-show="!isLoggedIn">
+        <h1>
+            <small>login</small>
+        </h1>
+        <form ng-controller="loginForm" ng-submit="submit()">
+            <div class="form-group">
+                <label for=""></label>
+                <input ng-model="username" type="text" class="form-control" placeholder="Username">
+                <label for=""></label>
+                <input ng-model="password" type="password" class="form-control" placeholder="Passcode">
+                <br>
+                <button type="submit" id="submit" value="Submit" class="btn btn-primary" name="button">login</button>
+            </div>
+        </form>
     </div>
-  </div>
+    <div ng-show="isLoggedIn">
+        <div class="" ng-controller="accountInfoController">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1-12">
+                        <h5>
+                            user name</h5>
+                    </div>
+                    <div class="col-lg-1-12">
+                        <p>{{accountInfo.username}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1-12">
+                        <h5>password</h5>
+                    </div>
+                    <div class="col-lg-1-12">
+                        <p>{{accountInfo.password}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1-12">
+                        <h5>email</h5>
+                    </div>
+                    <div class="col-lg-1-12">
+                        <p>{{accountInfo.email}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1-12">
+                        <h5>id</h5>
+                    </div>
+                    <div class="col-lg-1-12">
+                        <p>{{accountInfo.id}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1-12">
+                        <h5>last ip</h5>
+                    </div>
+                    <div class="col-lg-1-12">
+                        <p>{{accountInfo.last_ip}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1-12">
+                        <h5>
+                            number of asked questions</h5>
+                    </div>
+                    <div class="col-lg-1-12">
+                        <p>{{accountInfo.MyQuestions}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1-12">
+                        <h5>number of responses</h5>
+                    </div>
+                    <div class="col-lg-1-12">
+                        <p>{{accountInfo.MyResponses}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
