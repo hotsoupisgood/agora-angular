@@ -1,0 +1,19 @@
+<img id="agoraDudeAccount" src="media/fad.png" alt=""/>
+<div class="loginContainer">
+  <h1> <small>Create Account</small></h1>
+  <form ng-controller="loginFormController" ng-submit="createAccount(username, password)">
+    <div class="form-group">
+      <label for=""></label>
+      <input ng-focus="liveNameTakenCheck()" pattern=".{4,}" title="minimum of 4 characters" ng-model="username" type="text" class="form-control" placeholder="Username" required>
+      <label for=""></label>
+      <input pattern=".{4,}" title="minimum of 4 characters" ng-model="password" type="password" class="form-control" placeholder="Passcode" required>
+      <!-- <br> -->
+      <!-- <div class="g-recaptcha" data-sitekey="6LdsCSITAAAAAFqVJrl7xZ2mpGhWal2KU0nPvgJq"></div> -->
+      <br>
+      <button type="submit" class="btn btn-primary">create account</button>
+    </div>
+    <div ng-controller="checkUsernameController" class="">
+      <h2 ng-hide="hiddenInfo.usernameTaken"><small>taken</small></h2>
+    </div>
+  </form>
+</div>

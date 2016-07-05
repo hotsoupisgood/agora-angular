@@ -1,0 +1,179 @@
+<div id="questionPage">
+    <table class="table table-hover" style="margin-top: 20px;">
+        <thead>
+            <tr>
+                <td>
+                    <div class="btn-group-xs">
+                        Order By:
+                        <!-- <button ng-click="order = 'id'" class="btn btn-default" type="button" name="button">ID</button> -->
+                        <button ng-click="order = 'question'" class="btn btn-default" type="button" name="button">Question</button>
+                        <button ng-click="order = 'date'" class="btn btn-default" type="button" name="button">Date</button>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <uib-accordion>
+                <uib-accordion-group is-open="false" panel-class="panel-info" class="text-center">
+                    <uib-accordion-heading>
+                        ask a question
+                    </uib-accordion-heading>
+                    <div ng-controller="submitQuestionFormController" class="input-group">
+                        <textarea ng-model="question" type="text" class="form-control question-enter-box" placeholder="ask a question; eg. (Can kowalas survive biscuts and gravy?)" required></textarea>
+                        <input ng-model="tags" type="text" class="form-control tag-box" placeholder="tag your question; eg. (anal, cute cats, derivitives)">
+                        <span ng-click="submitTheFuckingQuestion(question)" type="submit" class="btn btn-primary input-group-addon">
+                            submit
+                        </span>
+                    </div>
+                </uib-accordion-group>
+            </uib-accordion>
+        </tbody>
+    </table>
+    <uib-accordion close-others="oneAtATime">
+        <uib-accordion-group ng-show="showSearch" class="searchQuestionContainer" ng-init="areResponsesOpen = true" ng-repeat="q in searchResultQuestions | toArray | orderBy: order track by $index">
+            <uib-accordion-heading>
+                <table class="table  table-hover tableMod">
+                    <thead>
+                        <tr>
+                            <!-- <td>
+                                {{q.username}}
+                            </td> -->
+                            <td class="pull-left">
+                                {{q.question}}
+                            </td>
+                            <td class="pull-right">
+                                {{q.date}}
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </uib-accordion-heading>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>
+                            <button ng-click="orderR = 'username'" class="btn btn-default" type="button" name="button">Username</button>
+                        </td>
+                        <td>
+                            <button ng-click="orderR = 'response'" class="btn btn-default" type="button" name="button">Responses</button>
+                        </td>
+                        <td>
+                            <button ng-click="orderR = 'date'" class="btn btn-default" type="button" name="button">Date</button>
+                        </td>
+                        <td>
+                            <label>Do You Agree?</label>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="r in q.responses | orderBy: orderR">
+                        <td>
+                            {{r.username}}
+                        </td>
+                        <td>
+                            {{r.response}}
+                        </td>
+                        <td>
+                            {{r.date}}
+                        </td>
+                        <td>
+                            <button ng-show="isLoggedIn" ng-click="agree(r.id)" class="btn btn-success" type="button" name="button">Agree</button>
+                            <button ng-show="!isLoggedIn" class="btn btn-info">
+                                <a ng-href="#login" style="color: white">log in to agree</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <form class="" action="index.html" method="post">
+                        <tr>
+                            <td>
+                                Account Name
+                            </td>
+                            <td>
+                                <div ng-controller="submitResponseFormController" class="input-group">
+                                    <input ng-model="response" type="text" class="form-control" placeholder="content of response">
+                                    <span class="input-group-btn">
+                                        <button ng-click="submit(q.id, response)" type="button" class="btn btn-primary">submit</button>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                Current Time
+                            </td>
+                        </tr>
+                    </form>
+                </tbody>
+            </table>
+        </uib-accordion-group>
+        <uib-accordion-group ng-show="!showSearch" id="questionContainer" heading="" ng-init="areResponsesOpen = true" ng-repeat="q in questions | toArray | orderBy: order track by $index">
+            <uib-accordion-heading>
+                <table class="table tableMod">
+                    <thead>
+                        <tr>
+                            <!-- <td class="pull-left">
+                                {{q.username}}
+                            </td> -->
+                            <td class="pull-left">
+                                {{q.question}}
+                            </td>
+                            <td class="float-right">
+                                {{q.date}}
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </uib-accordion-heading>
+            <table class="table table-hover">
+                <thead>
+                    <div class="btn-group-xs m-b-2" style="margin-bottom: 10px">
+                        order by:
+                        <button ng-click="orderR = 'username'" class="btn btn-default" type="button" name="button">Username</button>
+                        <button ng-click="orderR = 'response'" class="btn btn-default" type="button" name="button">Responses</button>
+                        <button ng-click="orderR = 'date'" class="btn btn-default" type="button" name="button">Date</button>
+                        <div class="float-right">
+                            <label class=" ">Do You Agree?</label>
+                        </div>
+                    </div>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="r in q.responses | orderBy: orderR">
+                        <td>
+                            {{r.username}}
+                        </td>
+                        <td style="width: 50% !important">
+                            {{r.response}}
+                        </td>
+                        <td >
+                            {{r.date}}
+                        </td>
+                        <td class="float-right">
+                            <button ng-show="isLoggedIn" ng-click="agree(r.id)" class="btn btn-success btn-sm" type="button" name="button">Agree</button>
+                            <button ng-show="!isLoggedIn" class="btn btn-info btn-sm">
+                                <a ng-href="#login" style="color: white">log in to agree</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Account Name
+                        </td>
+                        <td>
+                            <div ng-controller="submitResponseFormController" class="input-group">
+                                <input ng-model="response" type="text" class="form-control" placeholder="content of response">
+                                <span class="input-group-btn">
+                                    <button ng-click="submit(q.id, response)" tooltip-placement="left" uib-tooltip="what did the acorn say to the rabbit...... SUBMIT THE FUCKING RESPONSE!" type="button" class="btn btn-primary">submit</button>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            Current Time
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </uib-accordion-group>
+    </uib-accordion>
+    <div id="pageChanger" class="btn-group-xs">
+        <button ng-click="backPage()" class="btn btn-default" type="button">previous</button>
+        <button ng-click="nextPage()" class="btn btn-default" type="button">next</button>
+    </div>
+</div>

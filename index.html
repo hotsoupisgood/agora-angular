@@ -2,27 +2,29 @@
 <html ng-app="agoraApp">
   <head>
     <meta charset="utf-8">
-    <script src="node_modules/angular/angular.js" charset="utf-8"></script>
+    <!--  angular -->
+    <script src="bundle.js" charset="utf-8"></script>
+    <!-- <script src="node_modules/angular/angular.js" charset="utf-8"></script> -->
     <script src="node_modules/angular-route.min.js"></script>
     <script src="node_modules/angular-animate.min.js" charset="utf-8"></script>
     <script src="bower_components/angular-cookies/angular-cookies.min.js" charset="utf-8"></script>
-    <script src="main.js" charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" charset="utf-8"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" charset="utf-8"></script>
     <script src="bower_components/angular-toArrayFilter/toArrayFilter.js"></script>
-    <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
+    <!-- bootstrap -->
+    <!-- <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" charset="utf-8"></script> -->
 
-    <link rel="stylesheet" href="main.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="bootstrap-dark.css" media="screen" title="no title" charset="utf-8">
-    <link disabled="true" rel="stylesheet alternate" href="bootstrap-light.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-dark.css" media="screen" title="no title" charset="utf-8">
+    <link disabled rel="stylesheet alternate" href="node_modules/bootstrap/dist/css/bootstrap-light.css" media="screen" title="no title" charset="utf-8">
+    <!-- google -->
+    <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
+    <!-- my js and css -->
+    <link rel="stylesheet" href="css/main.css" media="screen" title="no title" charset="utf-8">
 
     <title>thisAgora</title>
-
   </head>
   <body>
+  <!-- <body> -->
     <!-- header -->
-    <header ng-include = "'header.html'"></header>
+    <header ng-include = "'html-components/header.html'"></header>
     <!-- page content -->
     <main ng-view></main>
     <!-- footer -->

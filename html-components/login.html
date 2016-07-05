@@ -1,0 +1,22 @@
+<img id="agoraDudeAccount" src="media/fad.png" ng-click="printLogged()"/>
+<div class="loginContainer">
+    <div class="" ng-show="!isLoggedIn">
+        <h1>
+            <small>login</small>
+        </h1>
+        <form ng-controller="loginFormController" ng-submit="submit()">
+            <div class="form-group">
+                <!-- <label for=""></label>
+                <input ng-model="username" type="text" class="form-control" placeholder="Username" required>
+                <label for=""></label>
+                <input ng-model="password" type="password" class="form-control" placeholder="Passcode" required> -->
+                <label for=""></label>
+                <input ng-model="username" type="text" class="form-control" placeholder="Username" >
+                <label for=""></label>
+                <input ng-model="password" type="password" class="form-control" placeholder="Passcode">
+                <br>
+                <button ng-href="#account" type="submit" id="submit" value="Submit" class="btn btn-primary" name="button">login</button>
+            </div>
+        </form>
+    </div>
+</div>
