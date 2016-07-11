@@ -1,8 +1,6 @@
-module.exports = function($scope, $rootScope, $timeout) {
+module.exports = function($scope, logoutService) {
     $scope.name = 'headerController';
-    $scope.logout = function() {
-        $timeout(function () {
-          $rootScope.$broadcast('logoutEvent');
-        }, 10);
+    $scope.logout = function () {
+        logoutService.submit();
     };
 };

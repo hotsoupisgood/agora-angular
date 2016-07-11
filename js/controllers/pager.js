@@ -1,6 +1,6 @@
-module.exports =  function($scope) {
+module.exports =  function($scope, accountService) {
     $scope.name = 'pagerController';
     $scope.totalItems = totalQueriedQuestions;
-    $scope.currentPage = questionsAPage;
+    $scope.currentPage = accountService.questionsAPage;
 
 };

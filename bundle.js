@@ -1,9 +1,12 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = function($routeProvider) {
     $routeProvider
-        .when('/questions', {
+        .when('/top', {
             templateUrl: 'html-components/top30.html',
             controller: 'top30'
+        }).when('/search', {
+            templateUrl: 'html-components/questionsSearch.html',
+            controller: 'questionSearchController'
         }).when('/account', {
             templateUrl: 'html-components/account.html',
             controller: 'accountController'
@@ -19,7 +22,7 @@ module.exports = function($routeProvider) {
             templateUrl: 'html-components/login.html',
             controller: 'loginController'
         }).otherwise({
-            redirectTo: '/questions'
+            redirectTo: '/top'
         });
 };
 
@@ -33,33 +36,13 @@ module.exports =  function($scope) {
 module.exports = function($scope, $route, $routeParams) {
     $scope.name = 'accountController';
     $scope.$params = $routeParams;
-    $scope.accountInfoTemp;
-    $scope.refresh = function() {
+    this.refresh = function() {
         $scope.accountInfoTemp = accountInfo;
         console.log(accountInfo.id);
     }
 };
 
 },{}],4:[function(require,module,exports){
-module.exports = function($scope, $rootScope, $route, $routeParams, $cookies, $location) {
-    $scope.name = 'accountInfoController';
-    //routing goodies
-    $scope.$params = $routeParams;
-    //rechecks for change in account info
-    $scope.refresh = function() {
-        console.log($scope.accountInfo);
-    };
-    $scope.logout = function() {
-        $rootScope.isLoggedIn = false;
-        $rootScope.accountInfo = null;
-        $cookies.remove('username');
-        $cookies.remove('password');
-        // $location.path('/login');
-        console.log('logged out');
-    };
-};
-
-},{}],5:[function(require,module,exports){
 module.exports =  function($scope) {
     $scope.name = 'checkUsernameController';
     $scope.hiddenInfo = {};
@@ -94,52 +77,28 @@ module.exports =  function($scope) {
     }
 };
 
-},{}],6:[function(require,module,exports){
-module.exports =  function($scope, $routeParams, $location) {
+},{}],5:[function(require,module,exports){
+module.exports =  function($scope, $routeParams, createAccountService) {
     $scope.name = 'createAccountController';
     $scope.$params = $routeParams;
     $scope.username;
     $scope.password;
     $scope.createdAccount;
 
-    $scope.createAccount = function(usr, pass) {
-        //request
-        $http({
-            method: 'POST',
-            url: 'https://startandselect.com/scripts/MakeUser.php',
-            params: {
-                username: usr,
-                password: pass
-            }
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            $scope.createdAccount = response.data;
-            $rootScope.accountInfo = $scope.createdAccount;
-            $rootScope.isLoggedIn = true;
-            $location.path('/questions');
-            //show response for debug
-            console.log('usr: ' + usr + ' pass: ' + pass + ' successCallback unparsed response: ' + response.data);
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            //show response for debug
-            console.log('errorCallback unparsed response: ' + response.data);
-        });
+    $scope.createAccount = function(inputUsername, inputPassword) {
+      createAccountService.submit($scope.username, $scope.password);
+    };
+};
+
+},{}],6:[function(require,module,exports){
+module.exports = function($scope, logoutService) {
+    $scope.name = 'headerController';
+    $scope.logout = function () {
+        logoutService.submit();
     };
 };
 
 },{}],7:[function(require,module,exports){
-module.exports = function($scope, $rootScope, $timeout) {
-    $scope.name = 'headerController';
-    $scope.logout = function() {
-        $timeout(function () {
-          $rootScope.$broadcast('logoutEvent');
-        }, 10);
-    };
-};
-
-},{}],8:[function(require,module,exports){
 module.exports =  function($scope, $rootScope, $route,
     $routeParams, $location) {
     $scope.name = 'loginController';
@@ -151,97 +110,101 @@ module.exports =  function($scope, $rootScope, $route,
     }
 };
 
-},{}],9:[function(require,module,exports){
-module.exports =  function($scope, $rootScope, $http, $cookies, $location) {
+},{}],8:[function(require,module,exports){
+module.exports =  function($scope, loginService) {
     $scope.name = 'loginFormController';
-    //0 out username and password
     $scope.username = '';
     $scope.password = '';
-    $scope.cookieLogin = function() {
-      if ($cookies.get('username') == null || $cookies.get('password') == null) {
-        console.log('cookie login failed');
-      } else {
-        $scope.username = $cookies.get('username');
-        $scope.password = $cookies.get('password');
-          $http({
-              method: 'GET',
-              url: 'https://startandselect.com/scripts/Login.php',
-              params: {
-                  username: $scope.username,
-                  password: $scope.password
-              }
-          }).then(function successCallback(response) {
-              // this callback will be called asynchronously
-              // when the response is available
-              $rootScope.accountInfo = JSON.parse(angular.toJson(response.data));
-              //make log in var to true to hide login and display account info
-              $rootScope.isLoggedIn = true;
-              //debug response callback logs
-              console.log('successCallback, parsed: ' + $scope.accountInfo);
-          }, function errorCallback(response) {
-              // called asynchronously if an error occurs
-              // or server returns response with an error status.
-              console.log('errorCallback, response: ' + $scope.accountInfoTemp);
-          });
-      }
-    }
     $scope.login = function() {
-        accountInfo = '';
-        $http({
-            method: 'GET',
-            url: 'https://startandselect.com/scripts/Login.php',
-            //production params
-            //  params: {username: $scope.username,
-            //           password: $scope.password}
-            //debug default account
-            params: {
-                username: usr,
-                password: pass
-            }
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            $location.path('/account');
-            $rootScope.accountInfo = JSON.parse(angular.toJson(response.data));
-            $rootScope.isLoggedIn = true;
-            // set cookie
-            $cookies.put('username', $rootScope.accountInfo.username);
-            $cookies.put('password', $rootScope.accountInfo.password);
-            //debug response callback logs
-            console.log('successCallback, parsed: ' + $scope.accountInfo);
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            $scope.accountInfoTemp = JSON.parse(angular.toJson(response.data));
-            console.log('errorCallback, response: ' + $scope.accountInfoTemp);
-        });
+      loginService.login($scope.username, $scope.password);
+    };
+    $scope.cookieLogin = function() {
+      loginService.cookieLogin();
     }
+};
+
+},{}],9:[function(require,module,exports){
+module.exports =  function($scope, accountService) {
+    $scope.name = 'pagerController';
+    $scope.totalItems = totalQueriedQuestions;
+    $scope.currentPage = accountService.questionsAPage;
+
 };
 
 },{}],10:[function(require,module,exports){
-module.exports =  function($scope) {
-    $scope.name = 'pagerController';
-    $scope.totalItems = totalQueriedQuestions;
-    $scope.currentPage = questionsAPage;
 
-};
-
-},{}],11:[function(require,module,exports){
-
-module.exports =  function($scope, $rootScope, $http, $route, $routeParams, $location, $cookies) {
+module.exports =  function($scope, $routeParams, upVoteService,
+                            accountService, questionsTopService, questionsSearchService) {
     // routing goodies
     $scope.name = 'top30';
     $scope.$params = $routeParams;
     //manage questions
-    $scope.pageNum = 0;
+    $scope.currentPage = 0;
     $scope.questions = {};
-    $scope.searchResultQuestions = {};
-    $scope.totalQuestions;
-    $scope.totalPages;
-    $scope.showSearch = false;
     $scope.startQuestion;
     $scope.currentSearchTerm = '';
-    $rootScope.numIteratedPerPage = 15;
+    $scope.isQueryEmpty = false;
+    //manage event listeners
+    $scope.$on('$viewContentLoaded', function() {
+      $scope.getTopQuestions();
+    });
+    $scope.agree = function(responseId) {
+      upVoteService.submit(responseId);
+    };
+    // get request questions
+    $scope.getTopQuestions = function() {
+      questionsTopService.get($scope.currentPage)
+      .then(function (response) {
+        $scope.questions = response;
+        $scope.isQueryEmpty = false;
+      });
+    };
+    //util
+    $scope.refresh = function() {
+        console.log($scope.isLoggedIn);
+        $scope.getTopQuestions();
+        $scope.isQueryEmpty = false;
+        scroll(0, 0);
+    };
+    //go back to first page
+    $scope.resetFirstPage = function() {
+        $scope.currentPage = 0;
+        $scope.startQuestion = 0;
+        $scope.isQueryEmpty = false;
+        scroll(0, 0);
+    };
+    //go forward a page
+    $scope.nextPage = function() {
+        $scope.currentPage++;
+        $scope.getTopQuestions();
+        scroll(0, 0);
+    };
+    //go back a page
+    $scope.backPage = function() {
+        if ($scope.currentPage > 0)
+            $scope.currentPage--;
+        $scope.getTopQuestions();
+        scroll(0, 0);
+    };
+    //get current page num
+    $scope.getcurrentPage = function() {
+        return $scope.currentPage;
+    };
+  };
+
+},{}],11:[function(require,module,exports){
+
+module.exports =  function($scope, $routeParams, upVoteService,
+                            accountService, questionsTopService, questionsSearchService) {
+    // routing goodies
+    $scope.name = 'questionSearchController';
+    $scope.$params = $routeParams;
+    //manage questions
+    $scope.currentPage = 0;
+    $scope.questions = {};
+    $scope.startQuestion;
+    $scope.currentSearchTerm = '';
+    $scope.isQueryEmpty = false;
     //manage event listeners
     $scope.$on('searchQuestionEvent', function (e, query) {
       $scope.currentSearchTerm = query;
@@ -250,149 +213,58 @@ module.exports =  function($scope, $rootScope, $http, $route, $routeParams, $loc
     $scope.$on('searchTagsEvent', function (e, query) {
       // $scope.currentSearchTerm = query;
       // $scope.getSearchedQuestions(1, query);
-      console.log('fuck off');
+      console.log('unfinished');
     });
-
     $scope.agree = function(responseId) {
-            if ($rootScope.isLoggedIn) {
-                //request
-                $http({
-                    method: 'GET',
-                    url: 'https://startandselect.com/scripts/UpVote.php',
-                    params: {
-                        response_id: responseId,
-                        user_id: $rootScope.startQuestion
-                    }
-                }).then(function successCallback(response) {
-                    // this callback will be called asynchronously
-                    // when the response is available
-
-                    //show response for debug
-                    console.log('successCallback unparsed response: ' + JSON.stringify(response.data));
-                }, function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                    //show response for debug
-                    console.log('errorCallback unparsed response: ' + response);
-                });
-            } else {
-
-            };
-        };
+      upVoteService.submit(responseId);
+    };
     // get request questions
     $scope.getSearchedQuestions = function() {
         //multiply page number for first question desired
-        $scope.startQuestion = $scope.pageNum * $rootScope.numIteratedPerPage;
-        if ($scope.currentSearchTerm == '') {
-            console.log('no query, returning all questions');
-            $scope.getTopQuestions($scope.pageNum);
-            $scope.showSearch = false;
-        } else {
-            $scope.resetFirstPage();
-
-            //request
-            $http({
-                method: 'GET',
-                url: 'https://startandselect.com/scripts/Search.php',
-                params: {
-                    query: $scope.currentSearchTerm,
-                    offset: $scope.startQuestion
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                top30 = response.data;
-                console.log(top30);
-                $scope.showSearch = true;
-                $scope.searchResultQuestions = top30;
-                //set local total q/s in query
-                $scope.totalQuestions = response.data.length;
-                //set global total q/s in query
-                totalQueriedQuestions = $scope.totalQuestions;
-                //get num of pages
-                $scope.totalPages = $scope.totalQuestions / questionsAPage;
-                //show response for debug
-                //  console.log('successCallback parsed response: ' + $scope.questions);
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                //show response for debug
-                console.log('errorCallback unparsed response: ' + response);
-            });
-        };
-    };
-    $scope.getTopQuestions = function(pgN) {
-        //multiply page number for first question desired
-        var startQuestion = pgN * $rootScope.numIteratedPerPage;
-        //request
-        $http({
-            method: 'POST',
-
-            url: 'https://startandselect.com/scripts/GetPopularQuestion.php',
-
-            params: {
-                limit: $rootScope.numIteratedPerPage,
-                offset: startQuestion
-            }
-
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            top30 = response.data.questions;
-            //hold global top30
-            $scope.questions = top30;
-            //set local total q/s in query
-            $scope.totalQuestions = response.data.length;
-            //set global total q/s in query
-            totalQueriedQuestions = $scope.totalQuestions;
-            //get num of pages
-            $scope.totalPages = $scope.totalQuestions / questionsAPage;
-            //show response for debug
-            //  console.log('successCallback unparsed response: ' + JSON.stringify(response.data.questions));
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            //show response for debug
-            console.log('errorCallback unparsed response: ' + response);
+        $scope.startQuestion = $scope.currentPage * accountService.numIteratedPerPage;
+        questionsSearchService.get($scope.currentSearchTerm, $scope.startQuestion)
+        .then(function (response) {
+          $scope.questions = response;
+          console.log($scope.questions);
+          if ($scope.questions == undefined || $scope.questions.length == 0) {
+            $scope.isQueryEmpty = true;
+          } else {
+            $scope.isQueryEmpty = false;
+          }
         });
     };
-    //inital event call
-    $scope.getTopQuestions($scope.pageNum);
-    // $rootScope.$broadcast('cookieLoginEvent');
-    //util
+      //util
     $scope.refresh = function() {
         console.log($scope.isLoggedIn);
-        if ($scope.showSearch) {
-            $scope.getSearchedQuestions();
-        } else {
-            $scope.getTopQuestions($scope.pageNum);
-        }
+        $scope.getTopQuestions();
+        $scope.isQueryEmpty = false;
         scroll(0, 0);
     };
     //go back to first page
     $scope.resetFirstPage = function() {
-        $scope.pageNum = 0;
+        $scope.currentPage = 0;
         $scope.startQuestion = 0;
+        $scope.isQueryEmpty = false;
         scroll(0, 0);
     };
     //go forward a page
     $scope.nextPage = function() {
-        $scope.pageNum++;
-        $scope.getTopQuestions($scope.pageNum);
+        $scope.currentPage++;
+        $scope.getTopQuestions();
         scroll(0, 0);
     };
     //go back a page
     $scope.backPage = function() {
-        if ($scope.pageNum > 0)
-            $scope.pageNum--;
-        $scope.getTopQuestions($scope.pageNum);
+        if ($scope.currentPage > 0)
+            $scope.currentPage--;
+        $scope.getTopQuestions();
         scroll(0, 0);
     };
     //get current page num
-    $scope.getPageNum = function() {
-        return $scope.pageNum;
+    $scope.getcurrentPage = function() {
+        return $scope.currentPage;
     };
-};
+  };
 
 },{}],12:[function(require,module,exports){
 module.exports = function($scope, $rootScope, $timeout, $location) {
@@ -400,8 +272,7 @@ module.exports = function($scope, $rootScope, $timeout, $location) {
     $scope.searchQuery = {};
 
     $scope.searchQuestions = function () {
-      console.log($scope.searchQuery.question);
-      $location.path( '#questions');
+      $location.path( '/search');
       $timeout(function () {
         $rootScope.$broadcast('searchQuestionEvent', $scope.searchQuery.question);
       }, 10);
@@ -415,98 +286,22 @@ module.exports = function($scope, $rootScope, $timeout, $location) {
 };
 
 },{}],13:[function(require,module,exports){
-module.exports = function($scope, $http) {
+module.exports = function($scope, submitQuestionService) {
     $scope.name = 'submitQuestionFormController';
     $scope.question = '';
-    $scope.submitTheFuckingQuestion = function() {
-        //logged/not
-        if ($scope.isLoggedIn) {
-            $http({
-                method: 'GET',
-                url: 'https://startandselect.com/scripts/UploadQuestion.php',
-                //production params
-                params: {
-                    user_id: $scope.accountInfo.id,
-                    question: $scope.question,
-                    tags: 'fucking question'
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                $scope.$parent.refresh();
-                console.log('question successCallback, unparsed: ' + JSON.stringify(response.data));
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
-            });
-        } else {
-            $http({
-                method: 'GET',
-                url: 'https://startandselect.com/scripts/UploadQuestion.php',
-                //production params
-                params: {
-                    question: $scope.question,
-                    tags: 'fucking question'
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                $scope.$parent.refresh();
-                console.log('question successCallback, unparsed: ' + JSON.stringify(response.data));
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
-            });
-        }
+    $scope.questionTags = '';
+    $scope.submit = function() {
+      submitQuestionService.submit($scope.question, $scope.questionTags);
     };
 };
 
 },{}],14:[function(require,module,exports){
 
-module.exports = function($scope, $http) {
+module.exports = function($scope, submitResponseService) {
     $scope.name = 'submitResponseFormController';
     $scope.response = '';
-    $scope.submit = function(questionId, res) {
-        if ($scope.isLoggedIn) {
-            $http({
-                method: 'GET',
-                url: 'https://startandselect.com/scripts/UploadResponse.php',
-                //production params
-                params: {
-                    user_id: $scope.accountInfo.id,
-                    question_id: questionId,
-                    response: res
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                $scope.$parent.refresh();
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
-            });
-        } else {
-            $http({
-                method: 'GET',
-                url: 'https://startandselect.com/scripts/UploadResponse.php',
-                //production params
-                params: {
-                    question_id: questionId,
-                    response: res
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                $scope.$parent.refresh();
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
-            });
-        }
+    $scope.submit = function(questionId, response) {
+        submitResponseService.submit(questionId, response);
     };
 };
 
@@ -518,17 +313,6 @@ require('angular-ui-bootstrap')
 //every app that needs user data has acess to $rootscope
 //timeout required becuase we need to wait for ng-href
 //in the header.html to trigger before we trigger the logout funtion
-//misc global vars
-// var numIteratedPerPage = 15,
-//     // account info
-//     accountInfo = null,
-//     isLoggedIn = false,
-//     questionsAPage = 15,
-//     totalQueriedQuestions = null,
-//     minLengthOfUsernames = 4,
-//     //debug usr account
-//     usr = 'henry',
-//     pass = 'fuck';
 //app decrelation
 var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'angular-toArrayFilter', 'ngCookies']);
 //util
@@ -536,10 +320,18 @@ var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap
 agoraApp.config(['$routeProvider',                  require('./config/routing.js')]);
 //services
 agoraApp.service('submitResponseService',           require('./services/submitResponse.js'));
+agoraApp.service('submitQuestionService',           require('./services/submitQuestion.js'));
+agoraApp.service('questionsTopService',             require('./services/questionsTop.js'));
+agoraApp.service('questionsSearchService',          require('./services/questionsSearch.js'));
+agoraApp.service('accountService',                  require('./services/account.js'));
+agoraApp.service('upVoteService',                   require('./services/upVote.js'));
+agoraApp.service('loginService',                    require('./services/login.js'));
+agoraApp.service('logoutService',                   require('./services/logout.js'));
+agoraApp.service('createAccountService',            require('./services/createAccount.js'));
+
 //controllers
 agoraApp.controller('aboutController',              require('./controllers/about.js'));
 agoraApp.controller('accountController',            require('./controllers/account.js'));
-agoraApp.controller('accountInfoController',        require('./controllers/accountInfo.js'));
 agoraApp.controller('createAccountController',      require('./controllers/createAccount.js'));
 agoraApp.controller('checkUsernameController',      require('./controllers/checkUsername.js'));
 agoraApp.controller('loginController',              require('./controllers/login.js'));
@@ -549,44 +341,115 @@ agoraApp.controller('pagerController',              require('./controllers/pager
 agoraApp.controller('searchController',             require('./controllers/search.js'));
 agoraApp.controller('submitQuestionFormController', require('./controllers/submit-question.js'));
 agoraApp.controller('submitResponseFormController', require('./controllers/submit-response.js'));
+agoraApp.controller('questionSearchController',     require('./controllers/questionsSearch.js'));
 agoraApp.controller('headerController',             require('./controllers/header.js'));
 
-},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/account.js":3,"./controllers/accountInfo.js":4,"./controllers/checkUsername.js":5,"./controllers/createAccount.js":6,"./controllers/header.js":7,"./controllers/login.js":8,"./controllers/loginForm.js":9,"./controllers/pager.js":10,"./controllers/questions.js":11,"./controllers/search.js":12,"./controllers/submit-question.js":13,"./controllers/submit-response.js":14,"./services/submitResponse.js":16,"angular":20,"angular-ui-bootstrap":18}],16:[function(require,module,exports){
-module.exports =  function () {
-  $scope.name = 'submitResponseService';
-  function submit(questionId, res) {
-    if ($scope.isLoggedIn) {
-        $http({
-            method: 'GET',
-            url: 'https://startandselect.com/scripts/UploadResponse.php',
-            //production params
-            params: {
-                user_id: $scope.accountInfo.id,
-                question_id: questionId,
-                response: res
-            }
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            $scope.$parent.refresh();
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log('errorCallback, response: ' + response.data);
-        });
+},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/account.js":3,"./controllers/checkUsername.js":4,"./controllers/createAccount.js":5,"./controllers/header.js":6,"./controllers/login.js":7,"./controllers/loginForm.js":8,"./controllers/pager.js":9,"./controllers/questions.js":10,"./controllers/questionsSearch.js":11,"./controllers/search.js":12,"./controllers/submit-question.js":13,"./controllers/submit-response.js":14,"./services/account.js":16,"./services/createAccount.js":17,"./services/login.js":18,"./services/logout.js":19,"./services/questionsSearch.js":20,"./services/questionsTop.js":21,"./services/submitQuestion.js":22,"./services/submitResponse.js":23,"./services/upVote.js":24,"angular":28,"angular-ui-bootstrap":26}],16:[function(require,module,exports){
+module.exports = function($cookies) {
+      // account info
+      this.accountInfo = null;
+      this.isLoggedIn = false;
+      this.questionsAPage = 15;
+      this.totalQueriedQuestions = null;
+      this.minLengthOfUsernames = 4;
+      //debug usr account
+      this.usr = 'henry';
+      this.pass = 'fuck';
+      this.getAccountInfo = function () {
+        return accountInfo;
+      };
+      this.setAccountInfo = function (infoToSet) {
+        this.accountInfo = infoToSet;
+      };
+      this.getIsLoggedIn = function () {
+        return this.isLoggedIn;
+      };
+      this.setIsLoggedIn = function (infoToSet) {
+        this.isLoggedIn = this.infoToSet;
+      };
+};
+
+},{}],17:[function(require,module,exports){
+module.exports = function ($http, $location, accountService) {
+  this.submit = function(inputUsername, inputPassword) {
+      $http({
+          method: 'POST',
+          url: 'https://startandselect.com/scripts/MakeUser.php',
+          params: {
+              username: inputUsername,
+              password: inputPassword
+          }
+      }).then(function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+          accountService.setAccountInfo(response.data);
+          $location.path('/questions');
+          //show response for debug
+          console.log('successCallback unparsed response: ' + response.data);
+      }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          //show response for debug
+          console.log('errorCallback unparsed response: ' + response.data);
+      });
+  };
+}
+
+},{}],18:[function(require,module,exports){
+module.exports = function ($cookies, $rootScope, $location, $http, accountService) {
+  this.login = function(inputUsername, inputPassword) {
+      $http({
+          method: 'GET',
+          url: 'https://startandselect.com/scripts/Login.php',
+          //production params
+          //  params: {username: inputUsername,
+          //           password: inputPassword}
+          //debug default account
+          params: {
+              username: accountService.usr,
+              password: accountService.pass
+          }
+      }).then(function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+          $location.path('/account');
+          accountService.setAccountInfo(response.data);
+          accountService.setIsLoggedIn(true);
+          $rootScope.accountInfo = response.data;
+          $rootScope.isLoggedIn = true;
+          // set cookie
+          $cookies.put('username', accountService.getAccountInfo.username);
+          $cookies.put('password', accountService.getAccountInfo.password);
+          //debug response callback logs
+          console.log('successCallback, parsed: ' + this.accountInfo);
+      }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          console.log('errorCallback, response: ' + response.data);
+      });
+  }
+  this.cookieLogin = function() {
+    if ($cookies.get('username') == null || $cookies.get('password') == null) {
+      console.log('cookie login failed');
     } else {
+      this.username = $cookies.get('username');
+      this.password = $cookies.get('password');
         $http({
             method: 'GET',
-            url: 'https://startandselect.com/scripts/UploadResponse.php',
-            //production params
+            url: 'https://startandselect.com/scripts/Login.php',
             params: {
-                question_id: questionId,
-                response: res
+                username: this.username,
+                password: this.password
             }
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            $scope.$parent.refresh();
+            accountService.setAccountInfo(response.data);
+            accountService.setIsLoggedIn(true);
+            $rootScope.accountInfo = response.data;
+            $rootScope.isLoggedIn = true;
+            //debug response callback logs
+            console.log('successCallback, response: ' + response.data);
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -594,9 +457,212 @@ module.exports =  function () {
         });
     }
   }
+}
+
+},{}],19:[function(require,module,exports){
+module.exports = function ($rootScope, $cookies, accountService) {
+  this.submit = function () {
+      accountService.setIsLoggedIn(false);
+      accountService.setAccountInfo(null);
+      $rootScope.accountInfo = null;
+      $rootScope.isLoggedIn = false;
+      $cookies.remove('username');
+      $cookies.remove('password');
+      // $location.path('/login');
+      console.log('logged out');
+  };
+}
+
+},{}],20:[function(require,module,exports){
+module.exports = function ($http) {
+    this.get = function (currentSearchTerm, startQuestion) {
+      var returnData = $http({
+          method: 'GET',
+          url: 'https://startandselect.com/scripts/Search.php',
+          params: {
+              query: currentSearchTerm,
+              offset: startQuestion
+          }
+      }).then(function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+          //show response for debug
+           console.log('successCallback response: ' + response.data.questions);
+          return response.data.questions;
+      }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          //show response for debug
+          console.log('errorCallback unparsed response: ' + response);
+      });
+      return returnData;
+    };
+}
+
+},{}],21:[function(require,module,exports){
+module.exports = function (accountService, $http) {
+  this.get = function (currentPage) {
+    //multiply page number for first question desired
+    var startQuestion = currentPage * accountService.questionsAPage;
+
+    //request
+    var returnData = $http({
+        method: 'POST',
+
+        url: 'https://startandselect.com/scripts/GetPopularQuestion.php',
+
+        params: {
+            limit: accountService.numIteratedPerPage,
+            offset: startQuestion
+        }
+
+    }).then(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+        //  console.log('successCallback unparsed response: ' + JSON.stringify(response.data.questions));
+        return response.data.questions;
+    }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        //show response for debug
+        console.log('errorCallback unparsed response: ' + response);
+    });
+    return returnData;
+  };
+}
+
+},{}],22:[function(require,module,exports){
+module.exports = function($http, accountService) {
+
+    this.submit = function (askedQuestion, questionsTags) {
+        //logged/not
+        if (accountService.isLoggedIn) {
+            $http({
+                method: 'GET',
+                url: 'https://startandselect.com/scripts/UploadQuestion.php',
+                //production params
+                params: {
+                    user_id: accountService.accountInfo.id,
+                    question: askedQuestion,
+                    tags: questionsTags
+                }
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                // accountService.$parent.refresh();
+                console.log('question successCallback, unparsed: ' + JSON.stringify(response.data));
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('errorCallback, response: ' + response.data);
+            });
+        } else {
+            $http({
+                method: 'GET',
+                url: 'https://startandselect.com/scripts/UploadQuestion.php',
+                //production params
+                params: {
+                    question: askedQuestion,
+                    tags: questionsTags
+                }
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                console.log(askedQuestion);
+                console.log(questionsTags);
+                // accountService.$parent.refresh();
+                console.log('question successCallback, unparsed: ' + JSON.stringify(response.data));
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('errorCallback, response: ' + response.data);
+            });
+        }
+    }
 };
 
-},{}],17:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
+module.exports = function($http, accountService) {
+
+    this.submit = function (questionId, inputResponse) {
+      var returnData;
+        if (accountService.isLoggedIn) {
+            returnData = $http({
+                method: 'GET',
+                url: 'https://startandselect.com/scripts/UploadResponse.php',
+                //production params
+                params: {
+                    user_id: accountService.accountInfo.id,
+                    question_id: questionId,
+                    response: inputResponse
+                }
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                // accountService.$parent.refresh();
+                return response.data;
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('errorCallback, response: ' + response.data);
+            });
+        } else {
+          console.log(inputResponse);
+            returnData = $http({
+                method: 'GET',
+                url: 'https://startandselect.com/scripts/UploadResponse.php',
+                //production params
+                params: {
+                    question_id: questionId,
+                    response: inputResponse
+                }
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                // accountService.$parent.refresh();
+                console.log('successCallback, response: ' + response.data);
+                return response.data;
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('errorCallback, response: ' + response.data);
+            });
+        };
+        return returnData;
+    };
+};
+
+},{}],24:[function(require,module,exports){
+module.exports = function (accountService) {
+  this.submit = function () {
+    if (accountService.isLoggedIn) {
+        //request
+        $http({
+            method: 'GET',
+            url: 'https://startandselect.com/scripts/UpVote.php',
+            params: {
+                response_id: responseId,
+                user_id: accountService.startQuestion
+            }
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+
+            //show response for debug
+            console.log('successCallback unparsed response: ' + JSON.stringify(response.data));
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            //show response for debug
+            console.log('errorCallback unparsed response: ' + response);
+        });
+    } else {
+      
+    };
+  }
+};
+
+},{}],25:[function(require,module,exports){
 /*
  * angular-ui-bootstrap
  * http://angular-ui.github.io/bootstrap/
@@ -7944,12 +8010,12 @@ angular.module('ui.bootstrap.datepickerPopup').run(function() {!angular.$$csp().
 angular.module('ui.bootstrap.tooltip').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTooltipCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style>'); angular.$$uibTooltipCss = true; });
 angular.module('ui.bootstrap.timepicker').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTimepickerCss && angular.element(document).find('head').prepend('<style type="text/css">.uib-time input{width:50px;}</style>'); angular.$$uibTimepickerCss = true; });
 angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTypeaheadCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style>'); angular.$$uibTypeaheadCss = true; });
-},{}],18:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 require('./dist/ui-bootstrap-tpls');
 
 module.exports = 'ui.bootstrap';
 
-},{"./dist/ui-bootstrap-tpls":17}],19:[function(require,module,exports){
+},{"./dist/ui-bootstrap-tpls":25}],27:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.6
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -38973,8 +39039,8 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],20:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":19}]},{},[15]);
+},{"./angular":27}]},{},[15]);

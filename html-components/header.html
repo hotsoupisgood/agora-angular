@@ -1,14 +1,9 @@
-<nav ng-controller="headerController" id="header" class="navbar navbar-default purp navbar-fixed-top" role="navigation">
+<nav ng-controller="headerController" id="header" class="navbar navbar-default purp" role="navigation">
     <div class="container-fluid">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="#questions">The Agora</a>
+            <a class="navbar-brand" href="#top">The Agora</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="">
-                <a ng-href="#about">about</a>
-            </li>
-        </ul>
 
         <div class="navbar-form navbar-left" role="search">
             <form ng-controller="searchController" ng-submit="searchQuestions()">
@@ -24,8 +19,11 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
+          <li class="">
+              <a ng-href="#about">about</a>
+          </li>
             <li class="">
-                <a ng-href="#login" ng-show="!isLoggedIn" >login</a>
+                <a ng-href="#login" ng-show="!isLoggedIn">login</a>
             </li>
             <li class="">
                 <a ng-href="#createAccount" ng-show="!isLoggedIn">new account</a>
@@ -33,7 +31,7 @@
             <li class="">
                 <a ng-href="#account" ng-show="isLoggedIn">account</a>
             </li>
-            <li ng-controller="accountInfoController">
+            <li>
                 <a ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>
             </li>
         </ul>

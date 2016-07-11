@@ -4,18 +4,18 @@
         <h1>
             <small>login</small>
         </h1>
-        <form ng-controller="loginFormController" ng-submit="submit()">
+        <form ng-controller="loginFormController" ng-submit="login()">
             <div class="form-group">
                 <!-- <label for=""></label>
-                <input ng-model="username" type="text" class="form-control" placeholder="Username" required>
+                <input ng-model="username" type="text" class="form-control" placeholder="username" required>
                 <label for=""></label>
-                <input ng-model="password" type="password" class="form-control" placeholder="Passcode" required> -->
+                <input ng-model="password" type="password" class="form-control" placeholder="password" required> -->
                 <label for=""></label>
-                <input ng-model="username" type="text" class="form-control" placeholder="Username" >
+                <input ng-model="username" type="text" class="form-control" placeholder="username" >
                 <label for=""></label>
-                <input ng-model="password" type="password" class="form-control" placeholder="Passcode">
+                <input ng-model="password" type="password" class="form-control" placeholder="password">
                 <br>
-                <button ng-href="#account" type="submit" id="submit" value="Submit" class="btn btn-primary" name="button">login</button>
+                <button type="submit" id="submit" value="Submit" class="btn btn-primary" name="button">login</button>
             </div>
         </form>
     </div>

@@ -2,7 +2,7 @@
 module.exports =  function($scope, $routeParams, upVoteService,
                             accountService, questionsTopService, questionsSearchService) {
     // routing goodies
-    $scope.name = 'top30';
+    $scope.name = 'questionSearchController';
     $scope.$params = $routeParams;
     //manage questions
     $scope.currentPage = 0;
@@ -11,21 +11,34 @@ module.exports =  function($scope, $routeParams, upVoteService,
     $scope.currentSearchTerm = '';
     $scope.isQueryEmpty = false;
     //manage event listeners
-    $scope.$on('$viewContentLoaded', function() {
-      $scope.getTopQuestions();
+    $scope.$on('searchQuestionEvent', function (e, query) {
+      $scope.currentSearchTerm = query;
+      $scope.getSearchedQuestions();
+    });
+    $scope.$on('searchTagsEvent', function (e, query) {
+      // $scope.currentSearchTerm = query;
+      // $scope.getSearchedQuestions(1, query);
+      console.log('unfinished');
     });
     $scope.agree = function(responseId) {
       upVoteService.submit(responseId);
     };
     // get request questions
-    $scope.getTopQuestions = function() {
-      questionsTopService.get($scope.currentPage)
-      .then(function (response) {
-        $scope.questions = response;
-        $scope.isQueryEmpty = false;
-      });
+    $scope.getSearchedQuestions = function() {
+        //multiply page number for first question desired
+        $scope.startQuestion = $scope.currentPage * accountService.numIteratedPerPage;
+        questionsSearchService.get($scope.currentSearchTerm, $scope.startQuestion)
+        .then(function (response) {
+          $scope.questions = response;
+          console.log($scope.questions);
+          if ($scope.questions == undefined || $scope.questions.length == 0) {
+            $scope.isQueryEmpty = true;
+          } else {
+            $scope.isQueryEmpty = false;
+          }
+        });
     };
-    //util
+      //util
     $scope.refresh = function() {
         console.log($scope.isLoggedIn);
         $scope.getTopQuestions();
