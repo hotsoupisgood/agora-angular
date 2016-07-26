@@ -1,7 +1,7 @@
 module.exports = function ($cookies, $rootScope, $location, $http, accountService) {
   this.login = function(inputUsername, inputPassword) {
       $http({
-          method: 'GET',
+          method: 'POST',
           url: 'https://startandselect.com/scripts/Login.php',
           //production params
           //  params: {username: inputUsername,
@@ -37,7 +37,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
       this.username = $cookies.get('username');
       this.password = $cookies.get('password');
         $http({
-            method: 'GET',
+            method: 'POST',
             url: 'https://startandselect.com/scripts/Login.php',
             params: {
                 username: this.username,

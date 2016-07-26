@@ -21,6 +21,8 @@ module.exports = function($routeProvider) {
         }).when('/login', {
             templateUrl: 'html-components/login.html',
             controller: 'loginController'
+        }).when('/ask', {
+            templateUrl: 'html-components/ask-question-page.html' 
         }).otherwise({
             redirectTo: '/top'
         });
@@ -93,8 +95,17 @@ module.exports =  function($scope, $routeParams, createAccountService) {
 },{}],6:[function(require,module,exports){
 module.exports = function($scope, logoutService) {
     $scope.name = 'headerController';
+    $scope.radioStyle = 'light';
     $scope.logout = function () {
         logoutService.submit();
+    };
+    $scope.switchStyle = function () {
+      if ($scope.radioStyle == 'light') {
+        document.getElementById('bootstrapStylesheet').href ='node_modules/bootstrap/dist/css/bootstrap-light.css';
+      }
+      else {
+        document.getElementById('bootstrapStylesheet').href = 'node_modules/bootstrap/dist/css/bootstrap-dark.css';
+      }
     };
 };
 
@@ -275,7 +286,7 @@ module.exports = function($scope, $rootScope, $timeout, $location) {
       $location.path( '/search');
       $timeout(function () {
         $rootScope.$broadcast('searchQuestionEvent', $scope.searchQuery.question);
-      }, 10);
+      }, 500);
     }
     $scope.searchTags = function () {
       $timeout(function () {
@@ -374,23 +385,28 @@ module.exports = function ($http, $location, accountService) {
   this.submit = function(inputUsername, inputPassword) {
       $http({
           method: 'POST',
-          url: 'https://startandselect.com/scripts/MakeUser.php',
-          params: {
+          url: 'https://startandselect.com/api/full/register/',
+          data: {
               username: inputUsername,
               password: inputPassword
+          },
+          headers: {
+            'Content-type': 'application/json'
           }
       }).then(function successCallback(response) {
           // this callback will be called asynchronously
           // when the response is available
           accountService.setAccountInfo(response.data);
-          $location.path('/questions');
           //show response for debug
           console.log('successCallback unparsed response: ' + response.data);
+          $location.path('/questions');
       }, function errorCallback(response) {
+
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           //show response for debug
           console.log('errorCallback unparsed response: ' + response.data);
+          console.log('errorCallback parsed response: ' + JSON.stringify(response.data));
       });
   };
 }
@@ -399,7 +415,7 @@ module.exports = function ($http, $location, accountService) {
 module.exports = function ($cookies, $rootScope, $location, $http, accountService) {
   this.login = function(inputUsername, inputPassword) {
       $http({
-          method: 'GET',
+          method: 'POST',
           url: 'https://startandselect.com/scripts/Login.php',
           //production params
           //  params: {username: inputUsername,
@@ -435,7 +451,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
       this.username = $cookies.get('username');
       this.password = $cookies.get('password');
         $http({
-            method: 'GET',
+            method: 'POST',
             url: 'https://startandselect.com/scripts/Login.php',
             params: {
                 username: this.username,
@@ -477,7 +493,7 @@ module.exports = function ($rootScope, $cookies, accountService) {
 module.exports = function ($http) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
-          method: 'GET',
+          method: 'POST',
           url: 'https://startandselect.com/scripts/Search.php',
           params: {
               query: currentSearchTerm,
@@ -511,7 +527,7 @@ module.exports = function (accountService, $http) {
 
         url: 'https://startandselect.com/scripts/GetPopularQuestion.php',
 
-        params: {
+        data: {
             limit: accountService.numIteratedPerPage,
             offset: startQuestion
         }
@@ -538,7 +554,7 @@ module.exports = function($http, accountService) {
         //logged/not
         if (accountService.isLoggedIn) {
             $http({
-                method: 'GET',
+                method: 'POST',
                 url: 'https://startandselect.com/scripts/UploadQuestion.php',
                 //production params
                 params: {
@@ -558,7 +574,7 @@ module.exports = function($http, accountService) {
             });
         } else {
             $http({
-                method: 'GET',
+                method: 'POST',
                 url: 'https://startandselect.com/scripts/UploadQuestion.php',
                 //production params
                 params: {
@@ -588,7 +604,7 @@ module.exports = function($http, accountService) {
       var returnData;
         if (accountService.isLoggedIn) {
             returnData = $http({
-                method: 'GET',
+                method: 'POST',
                 url: 'https://startandselect.com/scripts/UploadResponse.php',
                 //production params
                 params: {
@@ -609,7 +625,7 @@ module.exports = function($http, accountService) {
         } else {
           console.log(inputResponse);
             returnData = $http({
-                method: 'GET',
+                method: 'POST',
                 url: 'https://startandselect.com/scripts/UploadResponse.php',
                 //production params
                 params: {
@@ -638,7 +654,7 @@ module.exports = function (accountService) {
     if (accountService.isLoggedIn) {
         //request
         $http({
-            method: 'GET',
+            method: 'POST',
             url: 'https://startandselect.com/scripts/UpVote.php',
             params: {
                 response_id: responseId,
@@ -657,7 +673,7 @@ module.exports = function (accountService) {
             console.log('errorCallback unparsed response: ' + response);
         });
     } else {
-      
+
     };
   }
 };

@@ -9,7 +9,7 @@ module.exports = function (accountService, $http) {
 
         url: 'https://startandselect.com/scripts/GetPopularQuestion.php',
 
-        params: {
+        data: {
             limit: accountService.numIteratedPerPage,
             offset: startQuestion
         }

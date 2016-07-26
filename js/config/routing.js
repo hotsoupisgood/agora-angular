@@ -20,6 +20,8 @@ module.exports = function($routeProvider) {
         }).when('/login', {
             templateUrl: 'html-components/login.html',
             controller: 'loginController'
+        }).when('/ask', {
+            templateUrl: 'html-components/ask-question-page.html' 
         }).otherwise({
             redirectTo: '/top'
         });

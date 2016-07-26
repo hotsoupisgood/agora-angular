@@ -4,7 +4,7 @@ module.exports = function($http, accountService) {
         //logged/not
         if (accountService.isLoggedIn) {
             $http({
-                method: 'GET',
+                method: 'POST',
                 url: 'https://startandselect.com/scripts/UploadQuestion.php',
                 //production params
                 params: {
@@ -24,7 +24,7 @@ module.exports = function($http, accountService) {
             });
         } else {
             $http({
-                method: 'GET',
+                method: 'POST',
                 url: 'https://startandselect.com/scripts/UploadQuestion.php',
                 //production params
                 params: {

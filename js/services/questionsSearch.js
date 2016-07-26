@@ -1,7 +1,7 @@
 module.exports = function ($http) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
-          method: 'GET',
+          method: 'POST',
           url: 'https://startandselect.com/scripts/Search.php',
           params: {
               query: currentSearchTerm,

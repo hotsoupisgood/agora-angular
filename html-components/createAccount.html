@@ -1,7 +1,7 @@
 <img id="agoraDudeAccount" src="media/fad.png" alt=""/>
 <div class="loginContainer">
   <h1> <small>Create Account</small></h1>
-  <form ng-controller="loginFormController" ng-submit="createAccount(username, password)">
+  <form ng-submit="createAccount(username, password)">
     <div class="form-group">
       <label for=""></label>
       <input ng-focus="liveNameTakenCheck()" pattern=".{4,}" title="minimum of 4 characters" ng-model="username" type="text" class="form-control" placeholder="Username" required>

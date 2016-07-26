@@ -1,12 +1,12 @@
 <nav ng-controller="headerController" id="header" class="navbar navbar-default purp" role="navigation">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-init="selectedTab = 'theAgora'">
 
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#top">The Agora</a>
+        <div ng-class="{'active':selectedTab === 'theAgora'}" class="navbar-header">
+            <a ng-click="selectedTab = 'theAgora'" class="navbar-brand" href="#top">The Agora</a>
         </div>
 
         <div class="navbar-form navbar-left" role="search">
-            <form ng-controller="searchController" ng-submit="searchQuestions()">
+            <form class="navbar-header"ng-controller="searchController" ng-submit="searchQuestions()">
                 <div class="input-group">
                     <input ng-model="searchQuery.question" type="text" class="form-control input-sm" placeholder="Search Questions">
                     <span class="input-group-btn">
@@ -19,17 +19,27 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-          <li class="">
-              <a ng-href="#about">about</a>
+          <li style="margin-right: 20px; margin-top: 5px">
+            <label><h5>Themes: </h5></label>
+            <div class="btn-group-xs btn-group">
+                <label class="btn btn-primary" ng-click="switchStyle()" ng-model="radioStyle" uib-btn-radio="'dark'">Dark</label>
+                <label class="btn btn-primary" ng-click="switchStyle()" ng-model="radioStyle" uib-btn-radio="'light'">Light</label>
+            </div>
           </li>
-            <li class="">
-                <a ng-href="#login" ng-show="!isLoggedIn">login</a>
+          <!-- <li ng-class="{'active':selectedTab === 'askQuestion'}" class="">
+              <a ng-href="#ask" ng-click="selectedTab = 'askQuestion'">ask question</a>
+          </li> -->
+          <li ng-class="{'active':selectedTab === 'about'}" class="">
+              <a ng-href="#about" ng-click="selectedTab = 'about'">about</a>
+          </li>
+            <li ng-class="{'active':selectedTab === 'login'}" class="">
+                <a ng-href="#login" ng-show="!isLoggedIn" ng-click="selectedTab = 'login'">login</a>
             </li>
-            <li class="">
-                <a ng-href="#createAccount" ng-show="!isLoggedIn">new account</a>
+            <li ng-class="{'active':selectedTab === 'createAccount'}" class="">
+                <a ng-href="#createAccount" ng-show="!isLoggedIn" ng-click="selectedTab = 'createAccount'">new account</a>
             </li>
-            <li class="">
-                <a ng-href="#account" ng-show="isLoggedIn">account</a>
+            <li ng-class="{'active':selectedTab === 'account'}" class="">
+                <a ng-href="#account" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">account</a>
             </li>
             <li>
                 <a ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>

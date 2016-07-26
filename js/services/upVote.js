@@ -3,7 +3,7 @@ module.exports = function (accountService) {
     if (accountService.isLoggedIn) {
         //request
         $http({
-            method: 'GET',
+            method: 'POST',
             url: 'https://startandselect.com/scripts/UpVote.php',
             params: {
                 response_id: responseId,
@@ -22,7 +22,7 @@ module.exports = function (accountService) {
             console.log('errorCallback unparsed response: ' + response);
         });
     } else {
-      
+
     };
   }
 };
