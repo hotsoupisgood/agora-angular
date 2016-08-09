@@ -1,19 +1,37 @@
 /*defaults*/
-
-textarea {
-    margin-bottom: 10px !important;
-}
-table {
-    table-layout: fixed;
-}
-td {
-    word-wrap: break-word;
-}
-/*li {
-  display: inline !important;
-}*/
-
 /*classes*/
+.activeTab{
+  background-color: white !important;
+  color: black !important;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+.responseTableContainer {
+  padding: 5px;
+}
+.minResponseTable {
+  /*margin: 5px;*/
+  border-radius: 2px;
+  border: 1px solid lightgrey;
+}
+.responsesContainer {
+  border-top: 1px solid lightgrey;
+  background-color: rgba(255, 255, 255, 1);
+}
+.responsesContainer.ng-enter, .responsesContainer.ng-leave {
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.15s;
+}
+
+.responsesContainer.ng-enter,
+.responsesContainer.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.responsesContainer.ng-leave,
+.responsesContainer.ng-enter.ng-enter-active {
+  opacity:1;
+}
 .col-centered{
     float: none;
     margin: 0 auto;
@@ -21,64 +39,6 @@ td {
 .response-box {
   margin-bottom: 20px;
 }
-.float-right {
-    float: right;
-}
-.purp {
-    background-color: rgba(184, 122, 217, 0.7) !important;
-}
-.zMarg {
-    padding: 0vw !important;
-    margin: 0vw !important;
-}
-.tableMod {
-    padding: 0vw !important;
-    margin: 0vw !important;
-}
-.activeTab {
-    background-color: white !important;
-    color: white !important;
-}
-.tag-box {
-    border-top-left-radius: 4px !important;
-    border-bottom-left-radius: 4px !important;
-}
-.loginContainer {
-    padding: 20px;
-    margin-left: 50vw;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    width: 45vw;
-    border-radius: 10px;
-}
-.navbar-header {
-    /*margin-top: 5px;*/
-}
-.top-buffer { margin-top:20px; }
-.panel-header-clear {
-  background: rgba(255, 255, 255, 0) !important;
-  background-color: rgba(255, 255, 255, 0) !important;}
-/*overide boot nav collapse*/
-
-.navbar-default .navbar-nav > .active{
-  color: #000;
-  background: #242120;
-  background: rgba(#000000, 0.35);
-}
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-     color: #ffffff;
-}
-.navbar-nav > li > a, .navbar-brand {
-    padding-top: 14px !important;
-    padding-bottom: 36px !important;
-    height: 25px !important;
-}
-.navbar {
-  min-height: 20px !important;
-}
-
 /*ids*/
 #aboutFrame {
     margin: 10vw;
@@ -113,4 +73,7 @@ td {
     margin-right: 150px;
     margin-left: 150px;
     width: 20%;
+}
+#search {
+  margin: 0px !important;
 }

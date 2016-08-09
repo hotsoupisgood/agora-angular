@@ -1,21 +1,20 @@
-<img id="agoraDudeAccount" src="media/fad.png" ng-click="printLogged()"/>
-<div class="loginContainer">
-    <div class="" ng-show="!isLoggedIn">
+<div class="loginPage">
+    <img class="agoraDude" src="media/fad.png"/>
+    <div class="loginContainer">
         <h1>
             <small>login</small>
         </h1>
         <form ng-controller="loginFormController" ng-submit="login()">
-            <div class="form-group">
-                <!-- <label for=""></label>
-                <input ng-model="username" type="text" class="form-control" placeholder="username" required>
-                <label for=""></label>
-                <input ng-model="password" type="password" class="form-control" placeholder="password" required> -->
-                <label for=""></label>
-                <input ng-model="username" type="text" class="form-control" placeholder="username" >
-                <label for=""></label>
-                <input ng-model="password" type="password" class="form-control" placeholder="password">
-                <br>
-                <button type="submit" id="submit" value="Submit" class="btn btn-primary" name="button">login</button>
+            <div class="container-col">
+                <input ng-model="username" type="text" class="container" placeholder="username">
+                <input ng-model="password" type="password" class="container" placeholder="password">
+                <div class="container-row">
+                    <button class="flex-left" type="submit">login</button>
+                    <label>
+                        remember me:
+                        <input type="checkbox" value="">
+                    </label>
+                </div>
             </div>
         </form>
     </div>

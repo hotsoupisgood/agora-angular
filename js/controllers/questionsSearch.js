@@ -11,15 +11,21 @@ module.exports =  function($scope, $routeParams, upVoteService,
     $scope.currentSearchTerm = '';
     $scope.isQueryEmpty = false;
     //manage event listeners
-    $scope.$on('searchQuestionEvent', function (e, query) {
-      $scope.currentSearchTerm = query;
-      $scope.getSearchedQuestions();
+    // $scope.$on('searchQuestionEvent', function (e, query) {
+    //   $scope.currentSearchTerm = query;
+    //   $scope.getSearchedQuestions();
+    // });
+    $scope.$on('$routeUpdate', function(){
+      $scope.query = $location.search().query;
+      $scope.sort = $location.search().sort;
+      $scope.order = $location.search().order;
+      $scope.offset = $location.search().offset;
     });
-    $scope.$on('searchTagsEvent', function (e, query) {
-      // $scope.currentSearchTerm = query;
-      // $scope.getSearchedQuestions(1, query);
-      console.log('unfinished');
-    });
+    // $scope.$on('searchTagsEvent', function (e, query) {
+    //   // $scope.currentSearchTerm = query;
+    //   // $scope.getSearchedQuestions(1, query);
+    //   console.log('unfinished');
+    // });
     $scope.agree = function(responseId) {
       upVoteService.submit(responseId);
     };

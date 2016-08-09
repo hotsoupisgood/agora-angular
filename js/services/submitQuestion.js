@@ -1,22 +1,29 @@
-module.exports = function($http, accountService) {
+module.exports = function($http, $rootScope, accountService) {
 
     this.submit = function (askedQuestion, questionsTags) {
         //logged/not
-        if (accountService.isLoggedIn) {
+        console.log($rootScope.isLoggedIn);
+        if ($rootScope.isLoggedIn) {
             $http({
                 method: 'POST',
-                url: 'https://startandselect.com/scripts/UploadQuestion.php',
+                url: 'https://startandselect.com/api/full/question/',
                 //production params
-                params: {
-                    user_id: accountService.accountInfo.id,
-                    question: askedQuestion,
-                    tags: questionsTags
+                data: {
+                    // username: accountService.accountInfo.username,
+                    // key: accountService.accountInfo.key,
+                    question_text: askedQuestion
+                    // , tags: questionsTags
+                },
+                headers: {
+                  'Content-type': 'application/json',
+                  'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':'
+                                             + $rootScope.accountInfo.key
                 }
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
                 // accountService.$parent.refresh();
-                console.log('question successCallback, unparsed: ' + JSON.stringify(response.data));
+                console.log('successCallback, response: ' + response.data);
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.

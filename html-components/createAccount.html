@@ -1,19 +1,22 @@
-<img id="agoraDudeAccount" src="media/fad.png" alt=""/>
-<div class="loginContainer">
-  <h1> <small>Create Account</small></h1>
-  <form ng-submit="createAccount(username, password)">
-    <div class="form-group">
-      <label for=""></label>
-      <input ng-focus="liveNameTakenCheck()" pattern=".{4,}" title="minimum of 4 characters" ng-model="username" type="text" class="form-control" placeholder="Username" required>
-      <label for=""></label>
-      <input pattern=".{4,}" title="minimum of 4 characters" ng-model="password" type="password" class="form-control" placeholder="Passcode" required>
-      <!-- <br> -->
-      <!-- <div class="g-recaptcha" data-sitekey="6LdsCSITAAAAAFqVJrl7xZ2mpGhWal2KU0nPvgJq"></div> -->
-      <br>
-      <button type="submit" class="btn btn-primary">create account</button>
+
+<div class="loginPage">
+    <img class="agoraDude" src="media/fad.png"/>
+    <div class="loginContainer">
+        <h1>
+            <small>create account</small>
+        </h1>
+        <form ng-submit="createAccount(username, password)">
+            <div class="container-col">
+                <input ng-model="username" type="text" class="container" placeholder="username">
+                <input ng-model="password" type="password" class="container" placeholder="password">
+                <div class="container-row">
+                    <button class="flex-left" type="submit">login</button>
+                    <label>
+                        remember me:
+                        <input type="checkbox" value="">
+                    </label>
+                </div>
+            </div>
+        </form>
     </div>
-    <div ng-controller="checkUsernameController" class="">
-      <h2 ng-hide="hiddenInfo.usernameTaken"><small>taken</small></h2>
-    </div>
-  </form>
 </div>

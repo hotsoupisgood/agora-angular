@@ -1,8 +1,8 @@
 module.exports = function($routeProvider) {
     $routeProvider
-        .when('/top', {
+        .when('/questions', {
             templateUrl: 'html-components/top30.html',
-            controller: 'top30'
+            controller: 'questions'
         }).when('/search', {
             templateUrl: 'html-components/questionsSearch.html',
             controller: 'questionSearchController'
@@ -20,9 +20,7 @@ module.exports = function($routeProvider) {
         }).when('/login', {
             templateUrl: 'html-components/login.html',
             controller: 'loginController'
-        }).when('/ask', {
-            templateUrl: 'html-components/ask-question-page.html' 
         }).otherwise({
-            redirectTo: '/top'
+            redirectTo: '/questions'
         });
 };

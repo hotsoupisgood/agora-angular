@@ -8,15 +8,16 @@ module.exports = function ($http, $location, accountService) {
               password: inputPassword
           },
           headers: {
-            'Content-type': 'application/json'
+            'Content-Type': 'application/json'
           }
       }).then(function successCallback(response) {
           // this callback will be called asynchronously
           // when the response is available
-          accountService.setAccountInfo(response.data);
+          // accountService.setAccountInfo(response.data);
           //show response for debug
           console.log('successCallback unparsed response: ' + response.data);
-          $location.path('/questions');
+          console.log('successCallback parsed response: ' + JSON.stringify(response.data));
+          // $location.path('/questions');
       }, function errorCallback(response) {
 
           // called asynchronously if an error occurs

@@ -1,20 +1,12 @@
-<div class="jumbotron container" ng-controller="submitQuestionFormController">
-  <h2>ask a question!</h2>
-  <div>
-    <form ng-submit="submit()" role="form">
-      <div class="form-group">
-        <textarea ng-model="question" type="text" class="form-control" placeholder="ask a question; eg. (Can kowalas survive biscuts and gravy?)" required></textarea>
-      </div>
-        <div class="form-group">
-          <div class="">
+<div class="" ng-controller="submitQuestionFormController">
+    <div>
+        <form class="askQuestionContainer" ng-submit="submit()" role="form">
+            <h2>ask a question!</h2>
+            <textarea type="text" class="" placeholder="ask a question; eg. (Can kowalas survive biscuts and gravy?)" required ng-model="question"></textarea>
             <input ng-model="questionTags" type="text" class="form-control" placeholder="tag your question; eg. (cute cats, derivitives)">
-          </div>
-          <span class="pull-right top-buffer">
-              <button type="submit" class="btn btn-sm btn-primary">
-                submit question
-              </button>
-          </span>
-        </div>
-    </form>
-  </div>
+            <button type="submit" class="btn btn-sm btn-primary">
+                submit
+            </button>
+        </form>
+    </div>
 </div>

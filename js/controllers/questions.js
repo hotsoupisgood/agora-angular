@@ -21,7 +21,8 @@ module.exports =  function($scope, $routeParams, upVoteService,
     $scope.getTopQuestions = function() {
       questionsTopService.get($scope.currentPage)
       .then(function (response) {
-        $scope.questions = response;
+        console.log(response);
+        $scope.questions = response.objects;
         $scope.isQueryEmpty = false;
       });
     };

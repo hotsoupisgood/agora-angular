@@ -1,0 +1,307 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+@media (max-width: 600px) {
+  .site-header {
+    flex-wrap: wrap;
+  }
+}
+header {
+  font-size: 13px;
+}
+header form {
+  display: inline-flex;
+  width: auto;
+  padding: 3px;
+  height: 20px;
+}
+header form input {
+  border-radius: 3px 0px 0px 3px;
+}
+header form button {
+  border-radius: 0px 3px 3px 0px;
+  height: 100%;
+}
+
+.site-header {
+  background: #494d48;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-right: 50px;
+}
+
+.askQuestion {
+  background: #626761;
+}
+.askQuestion .ng-enter, .askQuestion .ng-leave {
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
+.askQuestion .ng-enter,
+.askQuestion .ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.askQuestion .ng-leave,
+.askQuestion .ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.askQuestion h2 {
+  color: white;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  padding: 10px;
+}
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.site-nav a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  height: 100%;
+  display: inline;
+}
+.site-nav .active a {
+  background: white;
+  color: black;
+}
+
+.account-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.account-dropdown ul {
+  display: none;
+  position: absolute;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  width: 100px;
+  border: .5px solid lightgrey;
+  border-radius: 0px 0px 3px 3px;
+}
+.account-dropdown ul li {
+  display: flex;
+  flex-direction: row;
+}
+.account-dropdown ul li a {
+  border-top: 1px solid lightgrey;
+  padding-top: 0px;
+  padding: 2px 5px;
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  font-size: 12px;
+  flex-grow: 1;
+}
+.account-dropdown ul li a:hover {
+  background-color: rgba(71, 71, 71, 0.51);
+  color: white;
+}
+
+.account-dropdown:hover ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.askQuestionContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  text-align: center;
+  align-items: center;
+}
+.askQuestionContainer h2 {
+  flex-grow: 1;
+}
+.askQuestionContainer button {
+  flex-grow: 1;
+  margin: 10px;
+  min-width: 10%;
+}
+.askQuestionContainer input {
+  flex-grow: 2;
+  min-width: 30%;
+}
+.askQuestionContainer textarea {
+  flex-grow: 6;
+  min-width: 50%;
+}
+
+.orderContainer {
+  display: flex;
+  flex-direction: row;
+}
+.orderContainer button {
+  margin-left: 5px;
+}
+
+.questionStream {
+  border-radius: 10px;
+}
+.questionStream .questionContainer {
+  border-top: 1px solid lightgrey;
+}
+.questionStream .questionContainer .ng-enter, .questionStream .questionContainer .ng-leave {
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
+.questionStream .questionContainer .ng-enter,
+.questionStream .questionContainer .ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.questionStream .questionContainer .ng-leave,
+.questionStream .questionContainer .ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.questionStream ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.questionStream ul li {
+  display: flex;
+  flex-direction: column;
+}
+.questionStream ul li .questionTitle {
+  border: none;
+  margin: none;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+  display: block;
+  text-align: center;
+  border-radius: 0;
+  padding: 1;
+  box-shadow: none;
+  font-size: 1rem;
+  flex-grow: 1;
+}
+
+.loginPage {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 600px) {
+  .loginPage img {
+    display: none;
+  }
+}
+.loginPage img {
+  margin: 30px;
+  width: 20%;
+  height: 20%;
+}
+.loginPage .loginContainer {
+  padding: 20px;
+  margin-left: 50vw;
+  margin: 30px;
+  width: 45%;
+  border-radius: 10px;
+  flex-grow: 4;
+}
+
+body {
+  font-family: 'font-awesome', sans-serif;
+  background: white;
+  margin: 0;
+}
+
+input {
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  box-shadow: 0px 2px 0px #111;
+  border: .5px solid black;
+}
+
+button {
+  border: none;
+  margin: auto;
+  text-decoration: none;
+  background-color: #00897b;
+  display: block;
+  color: #FFF;
+  text-align: center;
+  border-radius: 3px;
+  padding: 3px;
+  box-shadow: 0px 2px 0px #111;
+}
+
+textarea {
+  border: 1px;
+  margin: 20px;
+  border-radius: 3px;
+  padding: 10px;
+  resize: vertical;
+  border: .5px solid black;
+}
+
+form {
+  border-radius: 3px;
+  width: auto;
+  padding: 3px;
+}
+
+.pagerContainer {
+  display: inline-flex;
+  flex-direction: row;
+  width: 90%;
+}
+.pagerContainer button {
+  min-width: 10%;
+}
+
+.container {
+  padding: 10px;
+  margin: 10px;
+}
+
+.container-row {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container-col {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-left {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.stylessButton {
+  border: none;
+  margin: none;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0);
+  display: block;
+  text-align: center;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.questionStream {
+  margin: 10px;
+  padding: 10px;
+}
+
+/*# sourceMappingURL=mainScss.css.map */

@@ -1,0 +1,70 @@
+<div class="" ng-init="revealedAskQuestion = false" ng-controller="headerController">
+  <header class="site-header" >
+
+      <a ng-click="selectedTab = 'theAgora'" class="logo" href="#top">The Agora</a>
+      <form class="" ng-controller="searchController" ng-submit="searchQuestions()">
+          <input class="" ng-model="searchQuery.question" type="text" placeholder="Search Questions">
+          <button class="">
+              <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+      </form>
+      <!-- <label>Themes:</label>
+      <div class="btn-group-xs btn-group">
+          <label class="btn btn-primary" ng-click="switchStyle()" ng-model="radioStyle" uib-btn-radio="'dark'">Dark</label>
+          <label class="btn btn-primary" ng-click="switchStyle()" ng-model="radioStyle" uib-btn-radio="'light'">Light</label>
+      </div> -->
+      <nav class="site-nav" ng-init="selectedTab = 'theAgora'">
+          <ul>
+              <li ng-class="{'active':selectedTab === 'about'}">
+                  <a ng-href="#about" ng-click="selectedTab = 'about'">about</a>
+              </li>
+              <li ng-class="{'active':selectedTab === 'login'}">
+                  <a ng-href="#login" ng-show="!isLoggedIn" ng-click="selectedTab = 'login'">login</a>
+              </li>
+              <li ng-class="{'active':selectedTab === 'createAccount'}">
+                  <a ng-href="#createAccount" ng-show="!isLoggedIn" ng-click="selectedTab = 'createAccount'">new account</a>
+              </li>
+              <li ng-class="{'active':selectedTab === 'account'}">
+                  <a ng-href="#account" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">account</a>
+              </li>
+              <li >
+                  <a ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>
+              </li>
+          </ul>
+      </nav>
+      <div class="askDropdown" >
+          <button class="stylessButton" ng-click="revealedAskQuestion = !revealedAskQuestion">
+              propose question
+              <i class="fa fa-caret-square-o-down" aria-hidden="true" ng-hide="revealedAskQuestion"></i>
+              <i class="fa fa-caret-square-o-up" aria-hidden="true" ng-hide="!revealedAskQuestion"></i>
+          </button>
+      </div>
+      <!-- <div class="account-actions">
+          <div class="account-dropdown">
+              <span>
+                  account
+                  <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+              </span>
+              <ul>
+                  <li ng-class="{'active':selectedTab === 'login'}">
+                      <a ng-href="#login" ng-show="!isLoggedIn" ng-click="selectedTab = 'login'">login</a>
+                  </li>
+                  <li ng-class="{'active':selectedTab === 'createAccount'}">
+                      <a ng-href="#createAccount" ng-show="!isLoggedIn" ng-click="selectedTab = 'createAccount'">new account</a>
+                  </li>
+                  <li ng-class="{'active':selectedTab === 'account'}">
+                      <a ng-href="#account" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">account</a>
+                  </li>
+                  <li >
+                      <a ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>
+                  </li>
+              </ul>
+          </div> -->
+      <!-- </div> -->
+  </header>
+
+  <div class="askQuestion" ng-if="revealedAskQuestion">
+      <ng-include src="'html-components/ask-question.html'"></ng-include>
+  </div>
+
+</div>

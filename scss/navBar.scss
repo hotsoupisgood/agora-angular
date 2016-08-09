@@ -1,0 +1,124 @@
+$navbarHeight: 30px;
+@media (max-width: 600px) {
+    .site-header {
+        flex-wrap: wrap;
+    }
+    .site-nav {
+        // order: 3 ;
+        // background: #333;
+        // width: 100%;
+    }
+}
+header {
+  font-size: 13px;
+  form {
+    display: inline-flex;
+    width: auto;
+    padding: 3px;
+    height: 20px;
+    input{
+      border-radius: $standardBorderRadius 0px 0px $standardBorderRadius;
+    }
+    button {
+      border-radius: 0px $standardBorderRadius $standardBorderRadius 0px;
+      height: 100%;
+    }
+  }
+}
+.site-header {
+    // height: $navbarHeight;
+    background: $navbarColor;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-right: 50px;
+}
+.askQuestion {
+  background: lighten($navbarColor, 10%);
+  .ng-enter, .ng-leave {
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  }
+  .ng-enter,
+  .ng-leave.ng-leave-active {
+    opacity:0;
+  }
+  .ng-leave,
+  .ng-enter.ng-enter-active {
+    opacity:1;
+  }
+  h2 {
+    color: white;
+  }
+}
+.logo {
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 10px;
+}
+.site-nav {
+    ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        margin: 10px;
+        height: 100%;
+        display: inline;
+    }
+    .active {
+        a {
+          background: $background;
+          color: black;
+        }
+    }
+}
+.account-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.account-dropdown {
+    ul {
+      display: none;
+      position: absolute;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      width: 100px;
+      border: .5px solid lightgrey;
+      border-radius: 0px 0px 3px 3px;
+      li {
+        display: flex;
+        flex-direction: row;
+        a {
+          border-top: 1px solid lightgrey;
+          padding-top: 0px;
+          padding: 2px 5px;
+          display: inline-block;;
+          color: black;
+          text-decoration: none;
+          font-size: 12px;
+          flex-grow: 1;
+        }
+        a:hover {
+            background-color: rgba(#474747, 0.51);
+            color: white;
+        }
+      }
+    }
+}
+.account-dropdown:hover {
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
+}

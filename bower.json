@@ -15,6 +15,10 @@
     "tests"
   ],
   "dependencies": {
-    "angular-toArrayFilter": "^1.0.1"
+    "angular-toArrayFilter": "^1.0.1",
+    "oauth-ng": "^0.4.10"
+  },
+  "resolutions": {
+    "angular": ">=1.2.0"
   }
 }

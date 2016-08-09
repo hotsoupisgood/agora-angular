@@ -1,0 +1,22 @@
+.loginPage {
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 600px) {
+      img {
+        display: none;
+      }
+  }
+  img {
+    margin: 30px;
+    width: 20%;
+    height: 20%;
+  }
+  .loginContainer {
+      padding: 20px;
+      margin-left: 50vw;
+      margin: 30px;
+      width: 45%;
+      border-radius: 10px;
+      flex-grow: 4;
+  }
+}

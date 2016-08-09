@@ -5,8 +5,11 @@ module.exports = function($scope, $rootScope, $timeout, $location) {
     $scope.searchQuestions = function () {
       $location.path( '/search');
       $timeout(function () {
-        $rootScope.$broadcast('searchQuestionEvent', $scope.searchQuery.question);
-      }, 500);
+        $location.search({query: $scope.searchQuery});
+      }), 500;
+      // $timeout(function () {
+      //   $rootScope.$broadcast('searchQuestionEvent', $scope.searchQuery.question);
+      // }, 500);
     }
     $scope.searchTags = function () {
       $timeout(function () {

@@ -2,10 +2,13 @@ module.exports = function ($http) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
           method: 'POST',
-          url: 'https://startandselect.com/scripts/Search.php',
+          url: 'https://startandselect.com/api/full/question/',
           params: {
               query: currentSearchTerm,
               offset: startQuestion
+          },
+          headers: {
+            'Content-type': 'application/json'
           }
       }).then(function successCallback(response) {
           // this callback will be called asynchronously

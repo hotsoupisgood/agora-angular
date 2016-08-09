@@ -1,0 +1,23 @@
+.askQuestionContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  text-align: center;
+  align-items: center;
+  h2 {
+    flex-grow: 1;
+  }
+  button {
+    flex-grow: 1;
+    margin: 10px;
+    min-width: 10%;
+  }
+  input {
+    flex-grow: 2;
+    min-width: 30%;
+  }
+  textarea {
+    flex-grow: 6;
+    min-width: 50%;
+  }
+}

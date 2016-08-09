@@ -8,6 +8,9 @@ module.exports = function (accountService) {
             params: {
                 response_id: responseId,
                 user_id: accountService.startQuestion
+            },
+            headers: {
+              'Content-type': 'application/json'
             }
         }).then(function successCallback(response) {
             // this callback will be called asynchronously

@@ -11,6 +11,9 @@ module.exports = function($http, accountService) {
                     user_id: accountService.accountInfo.id,
                     question_id: questionId,
                     response: inputResponse
+                },
+                headers: {
+                  'Content-type': 'application/json'
                 }
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
