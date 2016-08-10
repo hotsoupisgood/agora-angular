@@ -1,51 +1,61 @@
+$listBackgroundColor: rgb(255, 255, 255);
 .orderContainer {
-  display: flex;
-  flex-direction: row;
-  button {
-    margin-left: 5px;
-  }
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    button {
+        margin-left: 5px;
+    }
+}
+.responsesContainer {
+    border-top: 1px solid lightgrey;
+    background-color: rgba(255, 255, 255, 1);
+}
+.responsesContainer.ng-enter,
+.responsesContainer.ng-leave {
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.15s;
+}
+.responsesContainer.ng-enter,
+.responsesContainer.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+.responsesContainer.ng-enter.ng-enter-active,
+.responsesContainer.ng-leave {
+    opacity: 1;
 }
 .questionStream {
-  border-radius: 10px;
-  .questionContainer {
-    border-top: 1px solid lightgrey;
-    .ng-enter, .ng-leave {
-      transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    .questionContainer {
+        border-top: 1px solid lightgrey;
     }
-    .ng-enter,
-    .ng-leave.ng-leave-active {
-      opacity:0;
-    }
-    .ng-leave,
-    .ng-enter.ng-enter-active {
-      opacity:1;
-    }
-
-  }
-  ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      margin-left: 100px;
-      margin-right: 100px;
-
-      li {
+    ul {
+        //kill random padding
+        padding-left: 0;
+        //contiue
+        list-style: none;
         display: flex;
         flex-direction: column;
-        .questionTitle {
-            border: none;
-            margin: none;
-            text-decoration: none;
-            background-color: rgba(255, 255, 255, 0);
-            color: black;
-            display: block;
-            text-align: center;
-            border-radius: 0;
-            padding: 1;
-            box-shadow: none;
-            font-size: 1rem;
-            flex-grow: 1;
+        li {
+            display: flex;
+            flex-direction: column;
+            .questionTitle {
+                border: none;
+                padding: 15px;
+                text-decoration: none;
+                background: rgba(255, 255, 255, 0);
+                color: black;
+                display: block;
+                text-align: center;
+                border-radius: 0;
+                padding: 1;
+                box-shadow: none;
+                font-size: 1rem;
+                flex-grow: 1;
+            }
         }
-      }
-  }
+    }
+    .pagerContainer {
+        button {
+            margin-left: 10px;
+        }
+    }
 }

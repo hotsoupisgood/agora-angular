@@ -6,11 +6,12 @@
             <small>create account</small>
         </h1>
         <form ng-submit="createAccount(username, password)">
-            <div class="container-col">
+            <div class="container-col ">
                 <input ng-model="username" type="text" class="container" placeholder="username">
                 <input ng-model="password" type="password" class="container" placeholder="password">
                 <div class="container-row">
-                    <button class="flex-left" type="submit">login</button>
+                    <button class="button-wide" type="submit">login</button>
+                    <div class="fill-space"></div>
                     <label>
                         remember me:
                         <input type="checkbox" value="">

@@ -2,12 +2,12 @@ module.exports = function (accountService, $http) {
   this.get = function (currentPage) {
     //multiply page number for first question desired
     var startQuestion = currentPage * accountService.questionsAPage;
-
+    // console.log(startQuestion);
     //request
     var returnData = $http({
         method: 'GET',
         url: 'https://startandselect.com/api/full/question/',
-        data: {
+        params: {
             limit: accountService.numIteratedPerPage,
             offset: startQuestion
         },

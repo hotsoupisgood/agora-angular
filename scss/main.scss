@@ -4,13 +4,13 @@ $secondaryColor: #00897b;
 $navbarColor: rgb(73, 77, 72);
 $standardBorderRadius: 3px;
 $singleInputFormHeight: 20px;
-
+// asfd/
 @import "util";
 @import "navBar";
 @import "ask";
 @import "questionStream";
 @import "login";
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+@import "advancedSearch";
 body {
     font-family: 'font-awesome', sans-serif;
     background: $background;
@@ -18,22 +18,24 @@ body {
 }
 input {
   border: none;
+  margin: none;
   border-radius: $standardBorderRadius;
-  padding: 5px;
+  text-align: center;
   box-shadow: 0px 2px 0px #111;
   border: .5px solid black;
 }
 button {
   border: none;
-  margin: auto;
+  margin: none;
   text-decoration: none;
   background-color: $secondaryColor;
   display: block;
   color: #FFF;
   text-align: center;
   border-radius: $standardBorderRadius;
-  padding:  3px;
+  // padding:  3px;
   box-shadow: 0px 2px 0px #111;
+  border: .5px solid black;
 }
 textarea {
   border: 1px ;
@@ -47,43 +49,6 @@ form {
     border-radius: $standardBorderRadius;
     width: auto;
     padding: 3px;
-}
-.pagerContainer {
-  display: inline-flex;
-  flex-direction: row;
-  width: 90%;
-  button {
-    min-width: 10%;
-  }
-}
-.container {
-  padding: 10px;
-  margin: 10px;
-}
-.container-row {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-}
-.container-col {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-.flex-left {
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.stylessButton {
-  border: none;
-  margin: none;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0);
-  display: block;
-  text-align: center;
-  border-radius: 0;
-  padding:  0;
-  box-shadow: none;
 }
 .questionStream {
   margin: 10px;

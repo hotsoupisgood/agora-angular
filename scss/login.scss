@@ -19,4 +19,16 @@
       border-radius: 10px;
       flex-grow: 4;
   }
+  form {
+    input {
+      margin: 10px;
+      padding: 5px;
+    }
+    button {
+      margin: 10px;
+    }
+    label {
+      margin: 10px;
+    }
+  }
 }

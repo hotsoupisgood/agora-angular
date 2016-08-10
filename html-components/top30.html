@@ -1,24 +1,23 @@
-<div class="container">
-    <table class="">
-        <thead>
-            <tr>
-                <td>
-                  <div class="orderContainer">
-                      Order By:
-                      <button ng-click="order = 'question'" class="btn btn-default" type="button" name="button">Question</button>
-                      <button ng-click="order = 'date'" class="btn btn-default" type="button" name="button">Date</button>
-                  </div>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- <ng-include src="'html-components/ask-question.html'"></ng-include> -->
-        </tbody>
-    </table>
-    <!-- <ng-include src="'html-components/questionStream.html'"></ng-include> -->
-    <ng-include src="'html-components/questionStreamTest.html'"></ng-include>
-    <div class="container pagerContainer">
-        <button ng-click="backPage()" type="button">previous</button>
-        <button ng-click="nextPage()" type="button">next</button>
+<div class="container-row questionStream">
+    <ng-include src="'html-components/advancedSearch.html'"></ng-include>
+    <!-- <div class="fill-space"></div> -->
+    <div class="container-col fill-space">
+      <div class="container-row center-self">
+        <h1 class="center-self" ng-if="!questions.length">loading...</h1>
+      </div>
+        <div ng-if="questions.length">
+          <div class="orderContainer">
+              Order By:
+              <button ng-click="order = 'question'" type="button" name="button">Question</button>
+              <button ng-click="order = 'date'" type="button" name="button">Date</button>
+          </div>
+          <ng-include src="'html-components/questionStreamTest.html'"></ng-include>
+          <div class="pagerContainer container-row">
+              <button class="" ng-click="backPage()" type="button">previous</button>
+              <div class="fill-space">
+              </div>
+              <button class="" ng-click="nextPage()" type="button">next</button>
+          </div>
+        </div>
     </div>
 </div>

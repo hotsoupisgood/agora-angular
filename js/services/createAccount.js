@@ -16,7 +16,6 @@ module.exports = function ($http, $location, accountService) {
           // accountService.setAccountInfo(response.data);
           //show response for debug
           console.log('successCallback unparsed response: ' + response.data);
-          console.log('successCallback parsed response: ' + JSON.stringify(response.data));
           // $location.path('/questions');
       }, function errorCallback(response) {
 
@@ -24,7 +23,6 @@ module.exports = function ($http, $location, accountService) {
           // or server returns response with an error status.
           //show response for debug
           console.log('errorCallback unparsed response: ' + response.data);
-          console.log('errorCallback parsed response: ' + JSON.stringify(response.data));
       });
   };
 }

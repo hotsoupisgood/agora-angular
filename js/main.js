@@ -1,4 +1,9 @@
 const angular = require('angular');
+require('angular-route');
+require('angular-cookies');
+require('angular-toArrayFilter');
+
+//
 // require('./node_modules/angular-route')
 // require('angular-toArrayFilter')
 //every app that needs user data has acess to $rootscope
@@ -28,7 +33,7 @@ agoraApp.controller('createAccountController',      require('./controllers/creat
 agoraApp.controller('checkUsernameController',      require('./controllers/checkUsername.js'));
 agoraApp.controller('loginController',              require('./controllers/login.js'));
 agoraApp.controller('loginFormController',          require('./controllers/loginForm.js'));
-agoraApp.controller('questions',                        require('./controllers/questions.js'));
+agoraApp.controller('questions',                    require('./controllers/questions.js'));
 agoraApp.controller('pagerController',              require('./controllers/pager.js'));
 agoraApp.controller('searchController',             require('./controllers/search.js'));
 agoraApp.controller('submitQuestionFormController', require('./controllers/submit-question.js'));

@@ -1,0 +1,25 @@
+.advancedSearch {
+  // font-size: 12px;
+  margin-right: 30px;
+  flex-grow: 6;
+  form {
+    font-size: 13px;
+    display: inline-flex;
+    width: auto;
+    .inputStrength {
+      // flex-grow: 2;
+    }
+    input{
+      border-radius: $standardBorderRadius 0px 0px $standardBorderRadius;
+      height: 20px;
+    }
+    button {
+      border-radius: 0px $standardBorderRadius $standardBorderRadius 0px;
+      height: 20px;
+    }
+    label {
+      margin: 0;
+    }
+  }
+
+}

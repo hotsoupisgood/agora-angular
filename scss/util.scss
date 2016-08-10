@@ -1,0 +1,66 @@
+.fill-space {
+  flex-grow: 10;
+}
+.min-space {
+  flex-grow: 1;
+}
+.container-p {
+  padding: 10px;
+}
+.container-m {
+  margin: 10px;
+}
+.padding-l-r {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.padding-b {
+  padding-bottom: 10px;
+}
+.margin-t {
+  margin-top: 10px;
+}
+.margin-r {
+  margin-right: 10px;
+}
+.container-row {
+  display: flex;
+  flex-direction: row;
+}
+.container-col {
+  display: flex;
+  flex-direction: column;
+}
+.container-row-inline {
+  display: inline-flex;
+  flex-direction: row;
+}
+.center-self {
+  justify-content: center;
+  align-items: center;
+}
+.flex-left {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.border-thin-black {
+  border: .5px solid black;
+}
+.button-wide {
+  width: 100px;
+}
+.highlight-hover:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+.stylessButton {
+  border: none;
+  margin: none;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0);
+  display: block;
+  text-align: center;
+  border-radius: 0;
+  padding:  0;
+  box-shadow: none;
+}
