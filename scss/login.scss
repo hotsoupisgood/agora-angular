@@ -1,9 +1,21 @@
 .loginPage {
   display: flex;
   flex-direction: row;
-  @media (max-width: 600px) {
+  @media (pointer:coarse) {
+
       img {
         display: none;
+      }
+      form {
+        input {
+          font-size: 5vw;
+        }
+        button {
+          font-size: 3vw;
+        }
+        label {
+          font-size: 3vw;
+        }
       }
   }
   img {

@@ -1,0 +1,35 @@
+<div class="siteBanner container-col" ng-class="{'smallHead': minBanner}">
+    <div class="centeredPouch container-col center-horizontal">
+        <div class="container-row">
+          <div class="container-col">
+            <a href="#" ng-show="isLoggedIn">hello {{accountInfo.username}}</a>
+            <div class="fill-space">
+            </div>
+          </div>
+            <div class="fill-space"></div>
+            <img class="agoraDude" src="media/fadMin.png"/>
+
+            <a class="title" ng-click="selectecdTab = 'Questions'" href="#top">This Agora</a>
+            <!-- <a class="title" ng-show="isLoggedIn" ng-click="selectecdTab = 'Questions'" href="#top">This {{accountInfo.username}}</a> -->
+            <div class="fill-space"></div>
+            <div class="container-col">
+                <!-- <div class="fill-space"></div> -->
+                <a class="about vertical-center" ng-hide="isLoggedIn" ng-href="#about" ng-click="selectedTab = 'about'">About Us</a>
+                <div class="fill-space"></div>
+            </div>
+            <div class="container-col">
+              <a ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>
+              <div class="fill-space">
+              </div>
+            </div>
+        </div>
+        <div class="container-row">
+          <div class="fill-space"></div>
+          <div class="about">
+            A platform to create complex philosophical arguments about absolutly anything.
+          </div>
+          <div class="fill-space"></div>
+        </div>
+
+    </div>
+</div>

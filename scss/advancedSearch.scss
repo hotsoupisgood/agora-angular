@@ -9,9 +9,9 @@
     .inputStrength {
       // flex-grow: 2;
     }
-    input{
-      border-radius: $standardBorderRadius 0px 0px $standardBorderRadius;
-      height: 20px;
+    .combinedInput{
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
     }
     button {
       border-radius: 0px $standardBorderRadius $standardBorderRadius 0px;

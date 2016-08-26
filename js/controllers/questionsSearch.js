@@ -45,6 +45,7 @@ module.exports =  function($scope, $routeParams, upVoteService,
         });
     };
       //util
+
     $scope.refresh = function() {
         console.log($scope.isLoggedIn);
         $scope.getTopQuestions();
@@ -60,12 +61,16 @@ module.exports =  function($scope, $routeParams, upVoteService,
     };
     //go forward a page
     $scope.nextPage = function() {
+      $scope.questions = null;
+      $scope.questions = {};
+      console.log($scope.questions);
         $scope.currentPage++;
         $scope.getTopQuestions();
         scroll(0, 0);
     };
     //go back a page
     $scope.backPage = function() {
+      $scope.questions = null;
         if ($scope.currentPage > 0)
             $scope.currentPage--;
         $scope.getTopQuestions();

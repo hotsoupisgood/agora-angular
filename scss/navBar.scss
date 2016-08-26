@@ -1,15 +1,114 @@
 $navbarHeight: 30px;
-@media (max-width: 600px) {
+$navbarHeightMobile: 20vh;
+@import 'https://fonts.googleapis.com/css?family=Amatic+SC:700';
+@media(pointer:coarse) {
     .site-header {
-        flex-wrap: wrap;
+
+        display: flex;
+        flex-direction: column;
+        min-height: 20vh;
+        nav {
+          margin: 1vw;
+        }
+        form {
+          margin: 1vw;
+        }
+        div {
+          margin: 1vw;
+        }
+        .mobile-Hidden {
+          display: none;
+        }
+        form {
+          height: 5vh !important;
+          font-size: 2vw !important;
+
+          input{
+            font-size: 3vw !important;
+            padding-left: 2vw !important;
+            width: 70vw !important;
+          }
+          button {
+            font-size: 3vw !important;
+            width: 10vw !important;
+          }
+        }
     }
-    .site-nav {
-        // order: 3 ;
-        // background: #333;
-        // width: 100%;
+    header {
+      font-size: 13px;
+      ul {
+        li {
+
+        }
+      }
+      a {
+        font-size: 3vw;
+        margin: 5px;
+        padding: 5px;
+      }
+      form {
+        input{
+        }
+        button {
+        }
+      }
+      button {
+        font-size: 2vw;
+      }
     }
 }
+.siteBanner {
+  z-index: -999;
+  // position: absolute;
+  color: black !important;
+  background: lighten($secondaryColor, 20%);
+  // transition: height .5s;
+  // transition: max-height 1s;
+  // transition: 1s linear;
+  transition: max-height 1s ;
+  overflow: hidden;
+  max-height: 12em;
+  .agoraDude {
+    width: 70px;
+    height: 110px;
+  }
+  .centeredPouch {
+    padding: 20px;
+    font-family: 'Amatic SC', cursive;
+  }
+  .title {
+    font-size: 100px;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  .about {
+    font-size: 20px;
+  }
+}
+.smallHead {
+  max-height: 3em;
+  // transition: max-height 1s;
+  // opacity: 0;
+  .centeredPouch {
+    padding: 2px !important;
+    .about {
+      opacity: 0;
+      display: none;
+    }
+    .title {
+      font-size: 2.75em;
+    }
+  }
+}
+.management {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
 header {
+  transition: height 0.3s;
   font-size: 13px;
   form {
     display: inline-flex;
@@ -21,7 +120,7 @@ header {
     }
     button {
       border-radius: 0px $standardBorderRadius $standardBorderRadius 0px;
-      height: 100%;
+      font-size: 11px;
     }
   }
   button {
@@ -29,7 +128,7 @@ header {
   }
 }
 .site-header {
-    // height: $navbarHeight;
+    min-height: $navbarHeight;
     background: $navbarColor;
     color: white;
     display: flex;
@@ -39,25 +138,11 @@ header {
 .askQuestion {
   background: lighten($navbarColor, 10%);
   .ng-enter, .ng-leave {
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-  }
-  .ng-enter,
-  .ng-leave.ng-leave-active {
-    opacity:0;
-  }
-  .ng-leave,
-  .ng-enter.ng-enter-active {
-    opacity:1;
+    transition:all 0.5s;
   }
   h2 {
     color: white;
   }
-}
-.logo {
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
-    padding: 10px;
 }
 .site-nav {
     ul {
@@ -69,15 +154,17 @@ header {
     a {
         text-decoration: none;
         color: white;
-        padding: 10px;
-        margin: 10px;
-        height: 100%;
+        padding: 7px;
+        padding-top: 8px;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: calc($navbarHeight - 20px);
         display: inline;
     }
     .active {
         a {
-          background: $background;
-          color: black;
+          background: darken($secondaryColor, 10%);;
+          color: white;
         }
     }
 }
@@ -86,36 +173,6 @@ header {
     display: flex;
     align-items: center;
     margin-right: 10px;
-}
-.account-dropdown {
-    ul {
-      display: none;
-      position: absolute;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      background-color: white;
-      width: 100px;
-      border: .5px solid lightgrey;
-      border-radius: 0px 0px 3px 3px;
-      li {
-        display: flex;
-        flex-direction: row;
-        a {
-          border-top: 1px solid lightgrey;
-          padding-top: 0px;
-          padding: 2px 5px;
-          display: inline-block;;
-          color: black;
-          text-decoration: none;
-          flex-grow: 1;
-        }
-        a:hover {
-            background-color: rgba(#474747, 0.51);
-            color: white;
-        }
-      }
-    }
 }
 .account-dropdown:hover {
   ul {

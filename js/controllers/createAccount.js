@@ -3,9 +3,13 @@ module.exports =  function($scope, $routeParams, createAccountService) {
     $scope.$params = $routeParams;
     $scope.username;
     $scope.password;
+    $scope.remember = true;
     $scope.createdAccount;
-
+    $scope.success = false;
     $scope.createAccount = function(inputUsername, inputPassword) {
-      createAccountService.submit($scope.username, $scope.password);
+      createAccountService.submit($scope.username, $scope.password, $scope.remember)
+      .then(function (response) {
+        $scope.success = response;
+      });
     };
 };

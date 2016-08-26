@@ -1,0 +1,28 @@
+<form class="container-col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
+  <div class="container-row border-thin-black-b margin-b padding-b">
+    <input class="fill-space margin-r" type="text" placeholder="title" ng-model="response">
+    <button type="button" ng-click="addModule()">Add Module</button>
+  </div>
+  <div class="" ng-repeat="m in modules">
+    <div class="container-row">
+      <input type="text" placeholder="section title" ng-model="m.title">
+    </div>
+    <div class="container-row ">
+      <textarea class="fill-space" rows="8" cols="50" placeholder="section body" ng-model="m.text"></textarea>
+      <!-- <div class="container-col">
+        <h4><b>Guidelines:</b></h4>
+        <ol>
+          <li>A response is composed of section.</li>
+          <li>Use section to orginize your argument/answer into digestable pieces.</li>
+          <li>A section is composed of a title and a section body. The title should briefly describe what is in its body.</li>
+        </ol>
+      </div> -->
+    </div>
+  </div>
+  <button ng-hide="success"type="submit">Submit Response</button>
+  <div class="container-row" ng-show="success">
+    <div class="fill-space" style="color:green"></div>
+    <h4>SUCCESS!</h4>
+    <div class="fill-space"></div>
+  </div>
+</form>

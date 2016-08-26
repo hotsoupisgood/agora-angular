@@ -32,7 +32,6 @@ module.exports =  function($scope) {
 };
 
 },{}],3:[function(require,module,exports){
-
 module.exports = function($scope, $route, $routeParams) {
     $scope.name = 'accountController';
     $scope.$params = $routeParams;
@@ -83,28 +82,34 @@ module.exports =  function($scope, $routeParams, createAccountService) {
     $scope.$params = $routeParams;
     $scope.username;
     $scope.password;
+    $scope.remember = true;
     $scope.createdAccount;
-
+    $scope.success = false;
     $scope.createAccount = function(inputUsername, inputPassword) {
-      createAccountService.submit($scope.username, $scope.password);
+      createAccountService.submit($scope.username, $scope.password, $scope.remember)
+      .then(function (response) {
+        $scope.success = response;
+      });
     };
 };
 
 },{}],6:[function(require,module,exports){
-module.exports = function($scope, logoutService) {
+module.exports = function($scope, $cookies, $route, $location, logoutService, loginService) {
     $scope.name = 'headerController';
-    $scope.radioStyle = 'light';
+    // $scope.radioStyle = 'light';
     $scope.logout = function () {
         logoutService.submit();
     };
-    $scope.switchStyle = function () {
-      if ($scope.radioStyle == 'light') {
-        document.getElementById('bootstrapStylesheet').href ='node_modules/bootstrap/dist/css/bootstrap-light.css';
-      }
-      else {
-        document.getElementById('bootstrapStylesheet').href = 'node_modules/bootstrap/dist/css/bootstrap-dark.css';
-      }
-    };
+    $location.path('/questions')
+    // $scope.switchStyle = function () {
+    //   if ($scope.radioStyle == 'light') {
+    //     document.getElementById('bootstrapStylesheet').href ='node_modules/bootstrap/dist/css/bootstrap-light.css';
+    //   }
+    //   else {
+    //     document.getElementById('bootstrapStylesheet').href = 'node_modules/bootstrap/dist/css/bootstrap-dark.css';
+    //   }
+    // };
+    loginService.cookieLogin();
 };
 
 },{}],7:[function(require,module,exports){
@@ -114,9 +119,6 @@ module.exports =  function($scope, $rootScope, $route,
     $scope.$params = $routeParams;
     $scope.loginInfo = {};
     $scope.loginInfo.isLoggedIn = false;
-    $scope.printLogged = function() {
-        console.log('islogged?   ' + $scope.loginInfo.isLoggedIn);
-    }
 };
 
 },{}],8:[function(require,module,exports){
@@ -124,8 +126,9 @@ module.exports =  function($scope, loginService) {
     $scope.name = 'loginFormController';
     $scope.username = '';
     $scope.password = '';
+    $scope.remember = true;
     $scope.login = function() {
-      loginService.login($scope.username, $scope.password);
+      loginService.login($scope.username, $scope.password, $scope.remember);
     };
     $scope.cookieLogin = function() {
       loginService.cookieLogin();
@@ -133,6 +136,49 @@ module.exports =  function($scope, loginService) {
 };
 
 },{}],9:[function(require,module,exports){
+module.exports =  function($scope, $rootScope, $route,
+    $routeParams, $location, $anchorScroll, $cookies, $timeout, scrollService) {
+    $scope.name = 'mainController';
+    $scope.minBanner = false;
+    $scope.questions = {};
+    $cookies.put('lastScrollLocation', 0);
+    $scope.minimiseHeader = function (isMin) {
+      $scope.minBanner = isMin;
+      $scope.$apply()
+    };
+    // $scope.$on('$routeChangeSuccess', function(e) {
+    //     $cookies.put
+    // });
+    window.addEventListener('scroll', function(e){
+        var distanceY = window.pageYOffset,
+            shrinkOn = 20,
+            absOn = 70,
+            banner = document.getElementById ('banner');
+            // console.log($cookies.get('lastScrollLocation'));
+        // $cookies.put('lastScrollLocation', distanceY);
+        // scrollService.scrollToLastOpen();
+        if (distanceY > shrinkOn) {
+            $scope.minimiseHeader(true);
+        } else {
+            $scope.smallHead = false;
+        }
+        if (distanceY > absOn) {
+            $scope.minimiseHeader(true);
+        } else {
+            $scope.smallHead = false;
+        }
+    });
+
+    // $timeout (function () {
+    //   $location.hash('fucker');
+    //
+    //   // call $anchorScroll()
+    //   $anchorScroll();
+    // }, 4000);
+
+};
+
+},{}],10:[function(require,module,exports){
 module.exports =  function($scope, accountService) {
     $scope.name = 'pagerController';
     $scope.totalItems = totalQueriedQuestions;
@@ -140,41 +186,106 @@ module.exports =  function($scope, accountService) {
 
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
+module.exports = function($scope, scrollService) {
+    $scope.name = 'questionController';
+    //init
+    $scope.isBodyHidden = false;
+    $scope.isAddResponseHidden = false;
+    $scope.onClickOfQuestion = function (id) {
+      $scope.isBodyHidden=!$scope.isBodyHidden;
+      if ($scope.isBodyHidden) {
+        scrollService.storeLastOpen(id);
+      }else {
+        scrollService.storeLastOpen('')
+      }
+    };
+    $scope.shouldOpen = function (id) {
+      console.log('id: ' + scrollService.getLastOpen());
+      if (scrollService.getLastOpen() == id) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+};
 
-module.exports =  function($scope, $routeParams, upVoteService,
-                            accountService, questionsTopService, questionsSearchService) {
+},{}],12:[function(require,module,exports){
+module.exports = function($scope, $routeParams, $route, $cookies, upVoteService, $location, $anchorScroll, $timeout,
+    accountService, questionsTopService, questionsSearchService, scrollService) {
     // routing goodies
     $scope.name = 'top30';
     $scope.$params = $routeParams;
     //manage questions
     $scope.currentPage = 0;
-    $scope.questions = {};
     $scope.startQuestion;
     $scope.currentSearchTerm = '';
+    $scope.isCurrentSearchTermEmpty = true;
     $scope.isQueryEmpty = false;
+    $scope.order = 'date';
     //manage event listeners
-    $scope.$on('$viewContentLoaded', function() {
-      $scope.getTopQuestions();
+    $scope.$on('$routeChangeSuccess', function(e) {
+        // if ($routeParams.query) {
+        //     $scope.currentSearchTerm = $routeParams.query;
+        //     $scope.isCurrentSearchTermEmpty = true;
+        //     $scope.getSearchQuery();
+        // } else {
+        //     // $location.path('/questions');
+        //     $scope.getTopQuestions();
+        // }
     });
     $scope.agree = function(responseId) {
-      upVoteService.submit(responseId);
+        upVoteService.submit(responseId);
     };
     // get request questions
+    $scope.getSearchQuery = function() {
+        questionsSearchService.get($scope.currentSearchTerm, $scope.currentPage)
+            .then(function(response) {
+                // console.log(response);
+                $scope.questions = response.objects;
+                $scope.isQueryEmpty = false;
+            });
+    };
     $scope.getTopQuestions = function() {
-      questionsTopService.get($scope.currentPage)
-      .then(function (response) {
-        console.log(response);
-        $scope.questions = response.objects;
-        $scope.isQueryEmpty = false;
-      });
+        questionsTopService.get($scope.currentPage, $scope.order, 'min')
+            .then(function(response) {
+                $scope.questions = response.objects;
+                $scope.isQueryEmpty = false;
+                // scrollService.scrollToLastOpen();
+                // $timeout(function () {
+                //   $location.hash('4');
+                //   $anchorScroll();
+                // });
+                // window.scrollTo(0, $cookies.get('lastScrollLocation'));
+            });
+            questionsTopService.get($scope.currentPage, $scope.order, 'full')
+                .then(function(response) {
+                    $scope.questions = response.objects;
+                    $scope.isQueryEmpty = false;
+                    // $location.hash('4');
+                    // scrollService.scrollToLastOpen();
+                    // window.scrollTo(0, $cookies.get('lastScrollLocation'));
+                });
+    };
+    $scope.orderDate = function() {
+        $scope.order = 'date';
+        $scope.refresh();
+    };
+    $scope.orderAlphabet = function() {
+        $scope.order = 'text';
+        $scope.refresh();
     };
     //util
     $scope.refresh = function() {
-        console.log($scope.isLoggedIn);
-        $scope.getTopQuestions();
+        if ($scope.isCurrentSearchTermEmpty) {
+            $scope.questions = {};
+            $scope.getTopQuestions();
+            //
+        } else {
+            $scope.questions = {};
+            $scope.getSearchQuery();
+        }
         $scope.isQueryEmpty = false;
-        scroll(0, 0);
     };
     //go back to first page
     $scope.resetFirstPage = function() {
@@ -185,12 +296,14 @@ module.exports =  function($scope, $routeParams, upVoteService,
     };
     //go forward a page
     $scope.nextPage = function() {
+        $scope.questions = {};
         $scope.currentPage++;
         $scope.getTopQuestions();
         scroll(0, 0);
     };
     //go back a page
     $scope.backPage = function() {
+        $scope.questions = {};
         if ($scope.currentPage > 0)
             $scope.currentPage--;
         $scope.getTopQuestions();
@@ -200,9 +313,9 @@ module.exports =  function($scope, $routeParams, upVoteService,
     $scope.getcurrentPage = function() {
         return $scope.currentPage;
     };
-  };
+};
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 
 module.exports =  function($scope, $routeParams, upVoteService,
                             accountService, questionsTopService, questionsSearchService) {
@@ -250,6 +363,7 @@ module.exports =  function($scope, $routeParams, upVoteService,
         });
     };
       //util
+
     $scope.refresh = function() {
         console.log($scope.isLoggedIn);
         $scope.getTopQuestions();
@@ -265,12 +379,16 @@ module.exports =  function($scope, $routeParams, upVoteService,
     };
     //go forward a page
     $scope.nextPage = function() {
+      $scope.questions = null;
+      $scope.questions = {};
+      console.log($scope.questions);
         $scope.currentPage++;
         $scope.getTopQuestions();
         scroll(0, 0);
     };
     //go back a page
     $scope.backPage = function() {
+      $scope.questions = null;
         if ($scope.currentPage > 0)
             $scope.currentPage--;
         $scope.getTopQuestions();
@@ -282,15 +400,16 @@ module.exports =  function($scope, $routeParams, upVoteService,
     };
   };
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = function($scope, $rootScope, $timeout, $location) {
     $scope.name = 'searchController';
-    $scope.searchQuery = {};
+    $scope.searchQuery;
 
     $scope.searchQuestions = function () {
-      $location.path( '/search');
+      // console.log($scope.searchQuery.question);
+      $location.path( '/questions');
       $timeout(function () {
-        $location.search({query: $scope.searchQuery});
+        $location.search({query: $scope.searchQuery.question});
       }), 500;
       // $timeout(function () {
       //   $rootScope.$broadcast('searchQuestionEvent', $scope.searchQuery.question);
@@ -304,27 +423,48 @@ module.exports = function($scope, $rootScope, $timeout, $location) {
     }
 };
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = function($scope, submitQuestionService) {
     $scope.name = 'submitQuestionFormController';
     $scope.question = '';
     $scope.questionTags = '';
+    $scope.response = '';
+    $scope.success = false;
     $scope.submit = function() {
-      submitQuestionService.submit($scope.question, $scope.questionTags);
+      submitQuestionService.submit($scope.question, $scope.questionTags)
+      .then(function (response) {
+        $scope.success = response;
+      });
     };
 };
 
-},{}],14:[function(require,module,exports){
-
+},{}],16:[function(require,module,exports){
 module.exports = function($scope, submitResponseService) {
     $scope.name = 'submitResponseFormController';
     $scope.response = '';
-    $scope.submit = function(questionId, response) {
-        submitResponseService.submit(questionId, response);
+    $scope.moduleTitle = [];
+    $scope.moduleBody = [];
+    $scope.moduleIterator = 0;
+    $scope.modules = [];
+    $scope.success = false;
+    $scope.addModule = function() {
+      if ($scope.moduleIterator < 8) {
+        ++$scope.moduleIterator;
+        $scope.modules.push({
+            title: '',
+            text: ''
+        });
+      };
+    };
+    $scope.submit = function(id) {
+        submitResponseService.submit(id, $scope.response, $scope.modules)
+        .then(function(response) {
+          $scope.success = true;
+        });
     };
 };
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 const angular = require('angular');
 require('angular-route');
 require('angular-cookies');
@@ -343,6 +483,7 @@ var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'angular-toAr
 //config
 agoraApp.config(['$routeProvider',                  require('./config/routing.js')]);
 //services
+agoraApp.service('scrollService',                   require('./services/scroll.js'));
 agoraApp.service('submitResponseService',           require('./services/submitResponse.js'));
 agoraApp.service('submitQuestionService',           require('./services/submitQuestion.js'));
 agoraApp.service('questionsTopService',             require('./services/questionsTop.js'));
@@ -354,6 +495,8 @@ agoraApp.service('logoutService',                   require('./services/logout.j
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));
 
 //controllers
+agoraApp.controller('questionController',               require('./controllers/question.js'));
+agoraApp.controller('mainController',               require('./controllers/main.js'));
 agoraApp.controller('aboutController',              require('./controllers/about.js'));
 agoraApp.controller('accountController',            require('./controllers/account.js'));
 agoraApp.controller('createAccountController',      require('./controllers/createAccount.js'));
@@ -368,7 +511,7 @@ agoraApp.controller('submitResponseFormController', require('./controllers/submi
 agoraApp.controller('questionSearchController',     require('./controllers/questionsSearch.js'));
 agoraApp.controller('headerController',             require('./controllers/header.js'));
 
-},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/account.js":3,"./controllers/checkUsername.js":4,"./controllers/createAccount.js":5,"./controllers/header.js":6,"./controllers/login.js":7,"./controllers/loginForm.js":8,"./controllers/pager.js":9,"./controllers/questions.js":10,"./controllers/questionsSearch.js":11,"./controllers/search.js":12,"./controllers/submit-question.js":13,"./controllers/submit-response.js":14,"./services/account.js":16,"./services/createAccount.js":17,"./services/login.js":18,"./services/logout.js":19,"./services/questionsSearch.js":20,"./services/questionsTop.js":21,"./services/submitQuestion.js":22,"./services/submitResponse.js":23,"./services/upVote.js":24,"angular":31,"angular-cookies":26,"angular-route":28,"angular-toArrayFilter":29}],16:[function(require,module,exports){
+},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/account.js":3,"./controllers/checkUsername.js":4,"./controllers/createAccount.js":5,"./controllers/header.js":6,"./controllers/login.js":7,"./controllers/loginForm.js":8,"./controllers/main.js":9,"./controllers/pager.js":10,"./controllers/question.js":11,"./controllers/questions.js":12,"./controllers/questionsSearch.js":13,"./controllers/search.js":14,"./controllers/submit-question.js":15,"./controllers/submit-response.js":16,"./services/account.js":18,"./services/createAccount.js":19,"./services/login.js":20,"./services/logout.js":21,"./services/questionsSearch.js":22,"./services/questionsTop.js":23,"./services/scroll.js":24,"./services/submitQuestion.js":25,"./services/submitResponse.js":26,"./services/upVote.js":27,"angular":34,"angular-cookies":29,"angular-route":31,"angular-toArrayFilter":32}],18:[function(require,module,exports){
 module.exports = function($cookies) {
       // account info
       this.accountInfo = null;
@@ -393,9 +536,9 @@ module.exports = function($cookies) {
       };
 };
 
-},{}],17:[function(require,module,exports){
-module.exports = function ($http, $location, accountService) {
-  this.submit = function(inputUsername, inputPassword) {
+},{}],19:[function(require,module,exports){
+module.exports = function ($http, $location, $rootScope, $cookies, accountService) {
+  this.submit = function(inputUsername, inputPassword, remember) {
       $http({
           method: 'POST',
           url: 'https://startandselect.com/api/full/register/',
@@ -411,31 +554,41 @@ module.exports = function ($http, $location, accountService) {
           // when the response is available
           // accountService.setAccountInfo(response.data);
           //show response for debug
-          console.log('successCallback unparsed response: ' + response.data);
-          // $location.path('/questions');
+          if (remember) {
+            accountService.setAccountInfo(response.data);
+            accountService.setIsLoggedIn(true);
+            $rootScope.accountInfo = response.data;
+            $rootScope.isLoggedIn = true;
+            // set cookie
+            $cookies.put('username', inputUsername);
+            $cookies.put('password', inputPassword);
+            $cookies.put('key', $rootScope.accountInfo.key);
+            $location.url('/questions');
+          }
+          // console.log('successCallback unparsed response: ');
+          // console.log(response.data);
       }, function errorCallback(response) {
 
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           //show response for debug
-          console.log('errorCallback unparsed response: ' + response.data);
+          console.log('errorCallback unparsed response: ');
+          console.log(response.data);
       });
   };
 }
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports = function ($cookies, $rootScope, $location, $http, accountService) {
-  this.login = function(inputUsername, inputPassword) {
+  this.login = function(inputUsername, inputPassword, remember) {
+    $cookies.put('password', inputPassword);
       $http({
           method: 'POST',
           url: 'https://startandselect.com/api/full/user/login/',
-          //production params
-          //  data: {username: inputUsername,
-          //           password: inputPassword},
-          //debug default account
-          data: {
-              username: 'hairy',
-              password: 'water'
+          // production params
+           data: {
+             username: inputUsername,
+             password: inputPassword
           },
           headers: {
             'Content-type': 'application/json'
@@ -443,55 +596,69 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
       }).then(function successCallback(response) {
           // this callback will be called asynchronously
           // when the response is available
-          $location.path('/account');
-          accountService.setAccountInfo(response.data);
-          
-          accountService.setIsLoggedIn(true);
-          $rootScope.accountInfo = response.data;
-          $rootScope.isLoggedIn = true;
-          // set cookie
-          $cookies.put('username', accountService.getAccountInfo.username);
-          $cookies.put('key', accountService.getAccountInfo.key);
+          // $location.path('/account');
+          if (remember) {
+            accountService.setAccountInfo(response.data);
+            accountService.setIsLoggedIn(true);
+            $rootScope.accountInfo = response.data;
+            $rootScope.isLoggedIn = true;
+            // set cookie
+            $cookies.put('username', inputUsername);
+            $cookies.put('password', inputPassword);
+            $cookies.put('key', $rootScope.accountInfo.key);
+            $location.url('/questions');
+          }
           //debug response callback logs
-          console.log('successCallback, parsed: ' + JSON.stringify(response.data));
+          // console.log('successCallback, parsed: ' + JSON.stringify(response.data));
       }, function errorCallback(response) {
+        $cookies.put('password', null);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           console.log('errorCallback, response: ' + JSON.stringify(response.data));
       });
   }
-  // this.cookieLogin = function() {
-  //   if ($cookies.get('username') == null || $cookies.get('password') == null) {
-  //     console.log('cookie login failed');
-  //   } else {
-  //     this.username = $cookies.get('username');
-  //     this.password = $cookies.get('password');
-  //       $http({
-  //           method: 'POST',
-  //           url: 'https://startandselect.com/scripts/Login.php',
-  //           params: {
-  //               username: this.username,
-  //               password: this.password
-  //           }
-  //       }).then(function successCallback(response) {
-  //           // this callback will be called asynchronously
-  //           // when the response is available
-  //           accountService.setAccountInfo(response.data);
-  //           accountService.setIsLoggedIn(true);
-  //           $rootScope.accountInfo = response.data;
-  //           $rootScope.isLoggedIn = true;
-  //           //debug response callback logs
-  //           console.log('successCallback, response: ' + response.data);
-  //       }, function errorCallback(response) {
-  //           // called asynchronously if an error occurs
-  //           // or server returns response with an error status.
-  //           console.log('errorCallback, response: ' + response.data);
-  //       });
-  //   }
-  // }
+  this.cookieLogin = function() {
+    if ($cookies.get('username') == null || $cookies.get('password') == null) {
+      console.log('cookie login failed');
+    } else {
+      this.username = $cookies.get('username');
+      this.password = $cookies.get('password');
+        $http({
+            method: 'POST',
+            url: 'https://startandselect.com/api/full/user/login/',
+            data: {
+                username: this.username,
+                password: this.password
+            },
+            headers: {
+              'Content-type': 'application/json'
+            }
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+            // accountService.setAccountInfo(response.data);
+
+            // accountService.setIsLoggedIn(true);
+            $rootScope.accountInfo = response.data;
+            $rootScope.isLoggedIn = true;
+            // set cookie
+            // $cookies.put('username', inputUsername);
+            // $cookies.put('password', inputPassword);
+            $cookies.put('key', $rootScope.accountInfo.key);
+            //debug response callback logs
+            // console.log('successCallback, response: ');
+            // console.log(response.data);
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('errorCallback, response: ');
+            console.log(response.data);
+        });
+    }
+  }
 }
 
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = function ($rootScope, $cookies, accountService) {
   this.submit = function () {
       accountService.setIsLoggedIn(false);
@@ -505,13 +672,14 @@ module.exports = function ($rootScope, $cookies, accountService) {
   };
 }
 
-},{}],20:[function(require,module,exports){
-module.exports = function ($http) {
+},{}],22:[function(require,module,exports){
+module.exports = function ($http, accountService) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
-          method: 'POST',
-          url: 'https://startandselect.com/api/full/question/',
+          method: 'GET',
+          url: 'https://startandselect.com/api/full/question/search/',
           params: {
+              limit: accountService.numIteratedPerPage,
               query: currentSearchTerm,
               offset: startQuestion
           },
@@ -519,11 +687,13 @@ module.exports = function ($http) {
             'Content-type': 'application/json'
           }
       }).then(function successCallback(response) {
+        console.log(currentSearchTerm);
           // this callback will be called asynchronously
           // when the response is available
           //show response for debug
-           console.log('successCallback response: ' + response.data.questions);
-          return response.data.questions;
+           console.log('successCallback response: ');
+           console.log(response.data.objects);
+          return response.data;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
@@ -534,31 +704,28 @@ module.exports = function ($http) {
     };
 }
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports = function (accountService, $http) {
-  this.get = function (currentPage) {
+  this.get = function (currentPage, order, size) {
     //multiply page number for first question desired
     var startQuestion = currentPage * accountService.questionsAPage;
-    // console.log(startQuestion);
     //request
     var returnData = $http({
         method: 'GET',
-        url: 'https://startandselect.com/api/full/question/',
+        url: 'https://startandselect.com/api/'+ size +'/question/',
         params: {
             limit: accountService.numIteratedPerPage,
-            offset: startQuestion
+            offset: startQuestion,
+            order_by: order
         },
         headers: {
-          // 'headers': 'ApiKey',
-          // 'username': 'apikey23452345en23ghqhnnhsren',
           'Content-type': 'application/json'
         }
-
     }).then(function successCallback(response) {
         // this callback will be called asynchronously
         // when the response is available
         //  console.log('successCallback unparsed response: ' + JSON.stringify(response.data.questions));
-        console.log('successCallback unparsed response: ' + response.data);
+        // console.log('successCallback unparsed response: ' + response.data);
         return response.data;
     }, function errorCallback(response) {
         // called asynchronously if an error occurs
@@ -570,118 +737,96 @@ module.exports = function (accountService, $http) {
   };
 }
 
-},{}],22:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
+module.exports = function($location, $anchorScroll, $cookies, $timeout) {
+      this.scrollToId = function (id) {
+        $location.hash(id);
+        $anchorScroll();
+      };
+      this.scrollToLastOpen = function () {
+        // $timeout(function () {
+        //   var old = $location.hash();
+        //   // $location.hash('#' + old);
+        //   $anchorScroll();
+        //   // console.log($location.hash());
+        //   // $anchorScroll();
+        // });
+      };
+      this.storeLastOpen = function (id) {
+        $location.hash(id);
+      };
+      this.getLastOpen = function () {
+        return $location.hash();
+      };
+      this.clearLastOpen = function () {
+        $location.hash(null);
+      };
+};
+
+},{}],25:[function(require,module,exports){
 module.exports = function($http, $rootScope, accountService) {
 
-    this.submit = function (askedQuestion, questionsTags) {
+    this.submit = function(askedQuestion, questionsTags) {
         //logged/not
-        console.log($rootScope.isLoggedIn);
-        if ($rootScope.isLoggedIn) {
-            $http({
-                method: 'POST',
-                url: 'https://startandselect.com/api/full/question/',
-                //production params
-                data: {
-                    // username: accountService.accountInfo.username,
-                    // key: accountService.accountInfo.key,
-                    question_text: askedQuestion
-                    // , tags: questionsTags
-                },
-                headers: {
-                  'Content-type': 'application/json',
-                  'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':'
-                                             + $rootScope.accountInfo.key
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                // accountService.$parent.refresh();
-                console.log('successCallback, response: ' + response.data);
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
-            });
-        } else {
-            $http({
-                method: 'POST',
-                url: 'https://startandselect.com/scripts/UploadQuestion.php',
-                //production params
-                params: {
-                    question: askedQuestion,
-                    tags: questionsTags
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                console.log(askedQuestion);
-                console.log(questionsTags);
-                // accountService.$parent.refresh();
-                console.log('question successCallback, unparsed: ' + JSON.stringify(response.data));
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
-            });
-        }
+        return $http({
+            method: 'POST',
+            url: 'https://startandselect.com/api/full/question/',
+            //production params
+            data: {
+                text: askedQuestion,
+                tags: questionsTags
+            },
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
+            }
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+            console.log('successCallback, response: ');
+            console.log(response.data);
+            return true;
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('errorCallback, response: ' + response.data);
+        });
     }
 };
 
-},{}],23:[function(require,module,exports){
-module.exports = function($http, accountService) {
-
-    this.submit = function (questionId, inputResponse) {
-      var returnData;
-        if (accountService.isLoggedIn) {
-            returnData = $http({
+},{}],26:[function(require,module,exports){
+module.exports = function($http, $cookies, $rootScope, accountService) {
+    this.submit = function (questionId, inputResponse, modules) {
+            return $http({
                 method: 'POST',
-                url: 'https://startandselect.com/scripts/UploadResponse.php',
+                url: 'https://startandselect.com/api/full/response/',
                 //production params
-                params: {
-                    user_id: accountService.accountInfo.id,
+                data: {
                     question_id: questionId,
-                    response: inputResponse
+                    text: inputResponse,
+                    modules: modules
                 },
                 headers: {
-                  'Content-type': 'application/json'
+                  'Content-type': 'application/json',
+                  'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
                 }
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
-                // accountService.$parent.refresh();
-                return response.data;
+                // console.log('successCallback, response: ');
+                // console.log(response.data);
+                return true;
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
+                console.log('errorCallback, response: ');
+                console.log(response.data);
+                return false;
             });
-        } else {
-          console.log(inputResponse);
-            returnData = $http({
-                method: 'POST',
-                url: 'https://startandselect.com/scripts/UploadResponse.php',
-                //production params
-                params: {
-                    question_id: questionId,
-                    response: inputResponse
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                // accountService.$parent.refresh();
-                console.log('successCallback, response: ' + response.data);
-                return response.data;
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
-            });
-        };
-        return returnData;
     };
 };
 
-},{}],24:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 module.exports = function (accountService) {
   this.submit = function () {
     if (accountService.isLoggedIn) {
@@ -714,7 +859,7 @@ module.exports = function (accountService) {
   }
 };
 
-},{}],25:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.7
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -1038,11 +1183,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],26:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":25}],27:[function(require,module,exports){
+},{"./angular-cookies":28}],30:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.7
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -2109,11 +2254,11 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],28:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 require('./angular-route');
 module.exports = 'ngRoute';
 
-},{"./angular-route":27}],29:[function(require,module,exports){
+},{"./angular-route":30}],32:[function(require,module,exports){
 angular.module('angular-toArrayFilter', [])
 
 .filter('toArray', function () {
@@ -2133,7 +2278,7 @@ angular.module('angular-toArrayFilter', [])
     }
   };
 });
-},{}],30:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.6
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -33157,8 +33302,8 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],31:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":30}]},{},[15]);
+},{"./angular":33}]},{},[17]);

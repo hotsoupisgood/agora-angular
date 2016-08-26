@@ -1,29 +1,24 @@
-<img id="agoraDudeAccount" src="media/fad.png"/>
 <div ng-show="isLoggedIn" class="loginContainer">
-    <div class="" ng-controller="accountController">
-        <div class="container">
-            <h2>account info</h2>
-            <div class="row">
-                <h4>
-                    user name:
-                </h4>
+    <div class="account container-row" ng-controller="accountController">
+        <div class="container-row fill-space accountStats">
+            <!-- <div class="container-row">
                 <p>{{accountInfo.username}}</p>
+            </div> -->
+            <div class="container-row margin-r">
+                <p>Total Questions: </p>
+                <p>{{accountInfo.total_questions}}</p>
             </div>
-            <div class="row">
-                <h4>email:
-                </h4>
-                <p>{{accountInfo.email}}</p>
-            </div>
-            <div class="row">
-                <h4>
-                    number of asked questions:
-                </h4>
-                <p>{{accountInfo.MyQuestions}}</p>
-            </div>
-            <div class="row">
-                <h4>number of responses</h4>
-                <p>{{accountInfo.MyResponses}}</p>
+            <div class="container-row margin-r">
+                <p>Total Responses: </p>
+                <p>{{accountInfo.total_responses}}</p>
             </div>
         </div>
+        <table>
+          <th>
+            <td>
+
+            </td>
+          </th>
+        </table>
     </div>
 </div>

@@ -1,4 +1,3 @@
-
 module.exports = function($scope, $route, $routeParams) {
     $scope.name = 'accountController';
     $scope.$params = $routeParams;

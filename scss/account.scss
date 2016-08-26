@@ -1,0 +1,13 @@
+.account {
+  margin: 20px;
+  .accountStats {
+    background: lighten($secondaryColor, 49%);
+    border: 1px solid lightgrey;
+    padding: 10px;
+    .container-row {
+      p {
+        margin-right: 5px;
+      }
+    }
+  }
+}

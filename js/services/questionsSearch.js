@@ -1,9 +1,10 @@
-module.exports = function ($http) {
+module.exports = function ($http, accountService) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
-          method: 'POST',
-          url: 'https://startandselect.com/api/full/question/',
+          method: 'GET',
+          url: 'https://startandselect.com/api/full/question/search/',
           params: {
+              limit: accountService.numIteratedPerPage,
               query: currentSearchTerm,
               offset: startQuestion
           },
@@ -11,11 +12,13 @@ module.exports = function ($http) {
             'Content-type': 'application/json'
           }
       }).then(function successCallback(response) {
+        console.log(currentSearchTerm);
           // this callback will be called asynchronously
           // when the response is available
           //show response for debug
-           console.log('successCallback response: ' + response.data.questions);
-          return response.data.questions;
+           console.log('successCallback response: ');
+           console.log(response.data.objects);
+          return response.data;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.

@@ -1,4 +1,29 @@
 $listBackgroundColor: rgb(255, 255, 255);
+$phoneButtonSize: 20vw;
+$phoneButtonHeight: 15vw;
+@media(pointer:coarse) {
+    .questionStream {
+        ul {
+            li {
+                .questionTitle {
+
+                }
+            }
+        }
+        .pagerContainer {
+            button {
+                margin-left: 10px;
+                width: 20vw;
+                height: 5vw;
+                font-size: 3vw;
+            }
+        }
+    }
+}
+.questionSubHeader {
+  width: 100%;
+  background: lighten($secondaryColor, 20%);
+}
 .orderContainer {
     display: flex;
     flex-direction: row;
@@ -7,9 +32,16 @@ $listBackgroundColor: rgb(255, 255, 255);
         margin-left: 5px;
     }
 }
+.activeQuestion {
+    // padding-top: 15px;
+    background: lighten($secondaryColor, 45%);
+    border-top-right-radius: $standardBorderRadius;
+    border-top-left-radius: $standardBorderRadius;
+}
 .responsesContainer {
     border-top: 1px solid lightgrey;
     background-color: rgba(255, 255, 255, 1);
+    margin: 15px;
 }
 .responsesContainer.ng-enter,
 .responsesContainer.ng-leave {
@@ -25,7 +57,11 @@ $listBackgroundColor: rgb(255, 255, 255);
 }
 .questionStream {
     .questionContainer {
-        border-top: 1px solid lightgrey;
+
+    }
+    .questionContainerActive {
+      border: 1px solid black;
+      border-radius: $standardBorderRadius;
     }
     ul {
         //kill random padding
@@ -39,6 +75,7 @@ $listBackgroundColor: rgb(255, 255, 255);
             flex-direction: column;
             .questionTitle {
                 border: none;
+                border-top: 1px solid lightgrey;
                 padding: 15px;
                 text-decoration: none;
                 background: rgba(255, 255, 255, 0);

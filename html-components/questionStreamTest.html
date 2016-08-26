@@ -1,40 +1,38 @@
 <div class="container-col">
     <ul>
-        <li class="" ng-class='{questionContainer:!$first}' ng-repeat="q in questions" ng-init="isBodyHidden">
-            <div class="container-row highlight-hover">
-              <button class="questionTitle" ng-click="isBodyHidden=!isBodyHidden">
-                  {{q.text}}
-              </button>
+        <li class="questionContainer" ng-controller="questionController" ng-repeat="q in questions" ng-init="isBodyHidden = shouldOpen(q.id)" ng-class="{'questionContainerActive':isBodyHidden === true}" >
+            <div class="container-row highlight-hover" ng-class="{'activeQuestion':isBodyHidden == true}">
+                <button class="questionTitle" id="q.id" ng-click="onClickOfQuestion(q.id)">
+                    {{q.text}}
+                    <div class="fill-space"></div>
+                    <p>
+                      {{q.date}}
+                    </p>
+                </button>
             </div>
-            <div class="responsesContainer" ng-if="isBodyHidden">
-                <div class="container-m"></div>
-                <div ng-if="!q.responses.length">
-                    <h4 class="centerText">no responses...</h4>
+
+            <div class="" ng-if="isBodyHidden">
+              <div class="container-row questionSubHeader">
+                <button class="addResponseButton" ng-show="isLoggedIn" ng-click="isAddResponseHidden=!isAddResponseHidden">
+                  Answer
+                </button>
+                <p>
+                  Please <a ng-href="#login"> login </a> or <a ng-href="#createAccount"> create an account </a> to answer the question!
+                </p>
+              </div>
+              <div class="margin-b">
+                <div class="addResponseBody" ng-if="isAddResponseHidden">
+                  <ng-include src="'html-components/add-response.html'"></ng-include>
                 </div>
-                <div class="responseTableContainer">
-                    <div class="" ng-if="!!q.responses.length">
-                      <div class="container-col">
-                        <div class="container-row">
-                          <p>
-                            responses
-                          </p>
-                          <div class="fill-space"></div>
-                          <label class=" ">Do You Agree?</label>
-                        </div>
-                        <div class="container-row highlight-hover padding-l-r" ng-repeat="r in q.responses | orderBy: orderR">
-                          <p>
-                            {{r.text}}
-                          </p>
-                          <div class="fill-space"></div>
-                          <div class="float-right container-col">
-                              <button class="center-self" ng-show="isLoggedIn" ng-click="agree(r.id)" type="button" name="button">Agree</button>
-                              <button class="center-self" ng-show="!isLoggedIn">
-                                  <a ng-href="#login" style="color: white">log in to agree</a>
-                              </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+              </div>
+                <div class="responsesContainer">
+                  <ng-include src="'html-components/responses.html'"></ng-include>
+
+                  <div class="container-row" ng-if="!q.responses.length">
+                    <div class="fill-space"></div>
+                      <h4 class="centerText">no responses...</h4>
+                      <div class="fill-space"></div>
+                  </div>
                 </div>
             </div>
         </li>

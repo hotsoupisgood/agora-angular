@@ -1,11 +1,12 @@
 module.exports = function($scope, $rootScope, $timeout, $location) {
     $scope.name = 'searchController';
-    $scope.searchQuery = {};
+    $scope.searchQuery;
 
     $scope.searchQuestions = function () {
-      $location.path( '/search');
+      // console.log($scope.searchQuery.question);
+      $location.path( '/questions');
       $timeout(function () {
-        $location.search({query: $scope.searchQuery});
+        $location.search({query: $scope.searchQuery.question});
       }), 500;
       // $timeout(function () {
       //   $rootScope.$broadcast('searchQuestionEvent', $scope.searchQuery.question);

@@ -1,5 +1,53 @@
+@import "https://fonts.googleapis.com/css?family=Amatic+SC:700";
+.addResponse ol li {
+  display: list-item;
+  font-size: 12px;
+  list-style-type: disc;
+}
+
+.responsesContainer {
+  background-color: white;
+}
+
+.responsesContainer.ng-enter, .responsesContainer.ng-leave {
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s;
+}
+
+.responsesContainer.ng-enter,
+.responsesContainer.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+.responsesContainer.ng-leave,
+.responsesContainer.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.addResponseButton {
+  color: black;
+  width: 100%;
+  height: 35px;
+  border: none;
+  border-radius: 2px;
+  font-size: 15px;
+  background: #aee8e2;
+}
+
+.responseButtonActive {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.addResponseBody {
+  background-color: #caf0ec !important;
+  padding: 10px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
 .fill-space {
   flex-grow: 10;
+  flex-basis: fill;
 }
 
 .min-space {
@@ -23,12 +71,28 @@
   padding-bottom: 10px;
 }
 
+.padding-a {
+  padding: 10px;
+}
+
 .margin-t {
   margin-top: 10px;
 }
 
+.margin-b {
+  margin-bottom: 10px;
+}
+
 .margin-r {
   margin-right: 10px;
+}
+
+.margin-l {
+  margin-left: 10px;
+}
+
+.margin-a {
+  margin: 10px;
 }
 
 .container-row {
@@ -46,8 +110,11 @@
   flex-direction: row;
 }
 
-.center-self {
+.center-horizontal {
   justify-content: center;
+}
+
+.center-vertical {
   align-items: center;
 }
 
@@ -56,16 +123,46 @@
   align-items: flex-start;
 }
 
+.border-l-n {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.border-r-n {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.border-thin-black-b {
+  border-bottom: .5px solid black;
+}
+
 .border-thin-black {
-  border: .5px solid black;
+  border: .5px solid grey;
 }
 
 .button-wide {
   width: 100px;
 }
 
+.button-darken {
+  background: #941b1b;
+}
+
 .highlight-hover:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(110, 210, 180, 0.08);
+}
+
+.activeQuestion {
+  background: rgba(110, 210, 180, 0.08);
+  border: 0.1px solid #6ed2b4;
+}
+
+.verticalLine {
+  width: 1px;
+  background: grey;
+  margin-top: .5em;
+  margin-bottom: .5em;
 }
 
 .stylessButton {
@@ -80,12 +177,120 @@
   box-shadow: none;
 }
 
-@media (max-width: 600px) {
+.account {
+  margin: 20px;
+}
+.account .accountStats {
+  background: #e5f8f6;
+  border: 1px solid lightgrey;
+  padding: 10px;
+}
+.account .accountStats .container-row p {
+  margin-right: 5px;
+}
+
+.sidebar {
+  transition: 100ms;
+  border-right: .5px solid lightgrey;
+  margin: 25px;
+  margin-left: 5px;
+  flex-grow: 10;
+  height: 100%;
+}
+
+@media (pointer: coarse) {
   .site-header {
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    min-height: 20vh;
+  }
+  .site-header nav {
+    margin: 1vw;
+  }
+  .site-header form {
+    margin: 1vw;
+  }
+  .site-header div {
+    margin: 1vw;
+  }
+  .site-header .mobile-Hidden {
+    display: none;
+  }
+  .site-header form {
+    height: 5vh !important;
+    font-size: 2vw !important;
+  }
+  .site-header form input {
+    font-size: 3vw !important;
+    padding-left: 2vw !important;
+    width: 70vw !important;
+  }
+  .site-header form button {
+    font-size: 3vw !important;
+    width: 10vw !important;
+  }
+
+  header {
+    font-size: 13px;
+  }
+  header a {
+    font-size: 3vw;
+    margin: 5px;
+    padding: 5px;
+  }
+  header button {
+    font-size: 2vw;
   }
 }
+.siteBanner {
+  z-index: -999;
+  color: black !important;
+  background: #73d6cc;
+  transition: max-height 1s;
+  overflow: hidden;
+  max-height: 12em;
+}
+.siteBanner .agoraDude {
+  width: 70px;
+  height: 110px;
+}
+.siteBanner .centeredPouch {
+  padding: 20px;
+  font-family: 'Amatic SC', cursive;
+}
+.siteBanner .title {
+  font-size: 100px;
+}
+.siteBanner a {
+  color: black;
+  text-decoration: none;
+}
+.siteBanner .about {
+  font-size: 20px;
+}
+
+.smallHead {
+  max-height: 3em;
+}
+.smallHead .centeredPouch {
+  padding: 2px !important;
+}
+.smallHead .centeredPouch .about {
+  opacity: 0;
+  display: none;
+}
+.smallHead .centeredPouch .title {
+  font-size: 2.75em;
+}
+
+.management {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
 header {
+  transition: height 0.3s;
   font-size: 13px;
 }
 header form {
@@ -95,18 +300,19 @@ header form {
   height: 20px;
 }
 header form input {
-  border-radius: 3px 0px 0px 3px;
+  border-radius: 2px 0px 0px 2px;
 }
 header form button {
-  border-radius: 0px 3px 3px 0px;
-  height: 100%;
+  border-radius: 0px 2px 2px 0px;
+  font-size: 11px;
 }
 header button {
   font-size: 13px;
 }
 
 .site-header {
-  background: #494d48;
+  min-height: 30px;
+  background: #33b0a3;
   color: white;
   display: flex;
   align-items: center;
@@ -114,28 +320,13 @@ header button {
 }
 
 .askQuestion {
-  background: #626761;
+  background: #4bcbbe;
 }
 .askQuestion .ng-enter, .askQuestion .ng-leave {
-  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-}
-.askQuestion .ng-enter,
-.askQuestion .ng-leave.ng-leave-active {
-  opacity: 0;
-}
-.askQuestion .ng-leave,
-.askQuestion .ng-enter.ng-enter-active {
-  opacity: 1;
+  transition: all 0.5s;
 }
 .askQuestion h2 {
   color: white;
-}
-
-.logo {
-  text-decoration: none;
-  color: white;
-  text-transform: uppercase;
-  padding: 10px;
 }
 
 .site-nav ul {
@@ -147,14 +338,16 @@ header button {
 .site-nav a {
   text-decoration: none;
   color: white;
-  padding: 10px;
-  margin: 10px;
-  height: 100%;
+  padding: 7px;
+  padding-top: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: calc($navbarHeight - 20px);
   display: inline;
 }
 .site-nav .active a {
-  background: white;
-  color: black;
+  background: #28887e;
+  color: white;
 }
 
 .account-actions {
@@ -164,35 +357,6 @@ header button {
   margin-right: 10px;
 }
 
-.account-dropdown ul {
-  display: none;
-  position: absolute;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  width: 100px;
-  border: .5px solid lightgrey;
-  border-radius: 0px 0px 3px 3px;
-}
-.account-dropdown ul li {
-  display: flex;
-  flex-direction: row;
-}
-.account-dropdown ul li a {
-  border-top: 1px solid lightgrey;
-  padding-top: 0px;
-  padding: 2px 5px;
-  display: inline-block;
-  color: black;
-  text-decoration: none;
-  flex-grow: 1;
-}
-.account-dropdown ul li a:hover {
-  background-color: rgba(71, 71, 71, 0.51);
-  color: white;
-}
-
 .account-dropdown:hover ul {
   display: flex;
   flex-direction: column;
@@ -200,6 +364,9 @@ header button {
 
 .askQuestionContainer {
   display: flex;
+  position: fixed;
+  background: #73d6cc;
+  width: 100%;
   flex-direction: column;
   margin: 0;
   text-align: center;
@@ -215,11 +382,25 @@ header button {
 }
 .askQuestionContainer input {
   flex-grow: 2;
+  padding: 3px;
   min-width: 30%;
 }
 .askQuestionContainer textarea {
   flex-grow: 6;
   min-width: 50%;
+}
+
+@media (pointer: coarse) {
+  .questionStream .pagerContainer button {
+    margin-left: 10px;
+    width: 20vw;
+    height: 5vw;
+    font-size: 3vw;
+  }
+}
+.questionSubHeader {
+  width: 100%;
+  background: #73d6cc;
 }
 
 .orderContainer {
@@ -231,9 +412,16 @@ header button {
   margin-left: 5px;
 }
 
+.activeQuestion {
+  background: #d6f3f0;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
 .responsesContainer {
   border-top: 1px solid lightgrey;
   background-color: white;
+  margin: 15px;
 }
 
 .responsesContainer.ng-enter,
@@ -251,8 +439,9 @@ header button {
   opacity: 1;
 }
 
-.questionStream .questionContainer {
-  border-top: 1px solid lightgrey;
+.questionStream .questionContainerActive {
+  border: 1px solid black;
+  border-radius: 2px;
 }
 .questionStream ul {
   padding-left: 0;
@@ -266,6 +455,7 @@ header button {
 }
 .questionStream ul li .questionTitle {
   border: none;
+  border-top: 1px solid lightgrey;
   padding: 15px;
   text-decoration: none;
   background: rgba(255, 255, 255, 0);
@@ -286,9 +476,18 @@ header button {
   display: flex;
   flex-direction: row;
 }
-@media (max-width: 600px) {
+@media (pointer: coarse) {
   .loginPage img {
     display: none;
+  }
+  .loginPage form input {
+    font-size: 5vw;
+  }
+  .loginPage form button {
+    font-size: 3vw;
+  }
+  .loginPage form label {
+    font-size: 3vw;
   }
 }
 .loginPage img {
@@ -324,16 +523,50 @@ header button {
   display: inline-flex;
   width: auto;
 }
-.advancedSearch form input {
-  border-radius: 3px 0px 0px 3px;
-  height: 20px;
+.advancedSearch form .combinedInput {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 .advancedSearch form button {
-  border-radius: 0px 3px 3px 0px;
+  border-radius: 0px 2px 2px 0px;
   height: 20px;
 }
 .advancedSearch form label {
   margin: 0;
+}
+
+.sidebar {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .sidebar {
+    display: none;
+  }
+
+  body {
+    font-size: 3vw;
+  }
+
+  .questionStream ul li .questionTitle {
+    font-size: 4vw;
+  }
+}
+@media (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+}
+.content {
+  margin-top: 6em;
+}
+
+.contentBigHead {
+  margin-top: 15em;
+}
+
+p {
+  font-size: .8em;
 }
 
 body {
@@ -345,36 +578,39 @@ body {
 input {
   border: none;
   margin: none;
-  border-radius: 3px;
-  text-align: center;
-  box-shadow: 0px 2px 0px #111;
+  min-height: 2vh;
+  padding-left: 5px;
+  border-radius: 2px;
   border: .5px solid black;
 }
 
 button {
   border: none;
   margin: none;
+  min-height: 3vh;
   text-decoration: none;
-  background-color: #00897b;
+  background-color: #db3a3a;
   display: block;
   color: #FFF;
   text-align: center;
-  border-radius: 3px;
-  box-shadow: 0px 2px 0px #111;
-  border: .5px solid black;
+  border-radius: 2px;
+}
+
+button:focus {
+  outline: none;
 }
 
 textarea {
   border: 1px;
   margin: 20px;
-  border-radius: 3px;
+  border-radius: 2px;
   padding: 10px;
   resize: vertical;
   border: .5px solid black;
 }
 
 form {
-  border-radius: 3px;
+  border-radius: 2px;
   width: auto;
   padding: 3px;
 }

@@ -4,7 +4,4 @@ module.exports =  function($scope, $rootScope, $route,
     $scope.$params = $routeParams;
     $scope.loginInfo = {};
     $scope.loginInfo.isLoggedIn = false;
-    $scope.printLogged = function() {
-        console.log('islogged?   ' + $scope.loginInfo.isLoggedIn);
-    }
 };

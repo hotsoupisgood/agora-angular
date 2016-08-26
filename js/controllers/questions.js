@@ -1,37 +1,78 @@
-
-module.exports =  function($scope, $routeParams, upVoteService,
-                            accountService, questionsTopService, questionsSearchService) {
+module.exports = function($scope, $routeParams, $route, $cookies, upVoteService, $location, $anchorScroll, $timeout,
+    accountService, questionsTopService, questionsSearchService, scrollService) {
     // routing goodies
     $scope.name = 'top30';
     $scope.$params = $routeParams;
     //manage questions
     $scope.currentPage = 0;
-    $scope.questions = {};
     $scope.startQuestion;
     $scope.currentSearchTerm = '';
+    $scope.isCurrentSearchTermEmpty = true;
     $scope.isQueryEmpty = false;
+    $scope.order = 'date';
     //manage event listeners
-    $scope.$on('$viewContentLoaded', function() {
-      $scope.getTopQuestions();
+    $scope.$on('$routeChangeSuccess', function(e) {
+        // if ($routeParams.query) {
+        //     $scope.currentSearchTerm = $routeParams.query;
+        //     $scope.isCurrentSearchTermEmpty = true;
+        //     $scope.getSearchQuery();
+        // } else {
+        //     // $location.path('/questions');
+        //     $scope.getTopQuestions();
+        // }
     });
     $scope.agree = function(responseId) {
-      upVoteService.submit(responseId);
+        upVoteService.submit(responseId);
     };
     // get request questions
+    $scope.getSearchQuery = function() {
+        questionsSearchService.get($scope.currentSearchTerm, $scope.currentPage)
+            .then(function(response) {
+                // console.log(response);
+                $scope.questions = response.objects;
+                $scope.isQueryEmpty = false;
+            });
+    };
     $scope.getTopQuestions = function() {
-      questionsTopService.get($scope.currentPage)
-      .then(function (response) {
-        console.log(response);
-        $scope.questions = response.objects;
-        $scope.isQueryEmpty = false;
-      });
+        questionsTopService.get($scope.currentPage, $scope.order, 'min')
+            .then(function(response) {
+                $scope.questions = response.objects;
+                $scope.isQueryEmpty = false;
+                // scrollService.scrollToLastOpen();
+                // $timeout(function () {
+                //   $location.hash('4');
+                //   $anchorScroll();
+                // });
+                // window.scrollTo(0, $cookies.get('lastScrollLocation'));
+            });
+            questionsTopService.get($scope.currentPage, $scope.order, 'full')
+                .then(function(response) {
+                    $scope.questions = response.objects;
+                    $scope.isQueryEmpty = false;
+                    // $location.hash('4');
+                    // scrollService.scrollToLastOpen();
+                    // window.scrollTo(0, $cookies.get('lastScrollLocation'));
+                });
+    };
+    $scope.orderDate = function() {
+        $scope.order = 'date';
+        $scope.refresh();
+    };
+    $scope.orderAlphabet = function() {
+        $scope.order = 'text';
+        $scope.refresh();
     };
     //util
     $scope.refresh = function() {
-        console.log($scope.isLoggedIn);
-        $scope.getTopQuestions();
+        if ($scope.isCurrentSearchTermEmpty) {
+            $scope.questions = {};
+            $scope.getTopQuestions();
+            //
+        } else {
+            $scope.questions = {};
+            $scope.getSearchQuery();
+        }
         $scope.isQueryEmpty = false;
-        scroll(0, 0);
     };
     //go back to first page
     $scope.resetFirstPage = function() {
@@ -42,12 +83,14 @@ module.exports =  function($scope, $routeParams, upVoteService,
     };
     //go forward a page
     $scope.nextPage = function() {
+        $scope.questions = {};
         $scope.currentPage++;
         $scope.getTopQuestions();
         scroll(0, 0);
     };
     //go back a page
     $scope.backPage = function() {
+        $scope.questions = {};
         if ($scope.currentPage > 0)
             $scope.currentPage--;
         $scope.getTopQuestions();
@@ -57,4 +100,4 @@ module.exports =  function($scope, $routeParams, upVoteService,
     $scope.getcurrentPage = function() {
         return $scope.currentPage;
     };
-  };
+};

@@ -1,0 +1,45 @@
+<div class="responseTableContainer">
+    <div class="" ng-if="!!q.responses.length">
+        <div class="container-col">
+            <div class="margin-b"></div>
+            <div class="container-col padding-l-r" ng-init="isResponseBodyOpen=false" ng-repeat="r in q.responses" ng-click="isResponseBodyOpen=!isResponseBodyOpen">
+                <div class="container-row highlight-hover padding-l-r" ng-class="{'activeQuestion':isResponseBodyOpen === true}">
+                    <p>
+                        {{r.text}}
+                        <div class="fill-space"></div>
+                        <div class="container-col">
+                          <div class="fill-space"></div>
+                          <i class="fa fa-chevron-down" aria-hidden="true" ng-hide="isResponseBodyOpen"></i>
+                          <i class="fa fa-chevron-up" aria-hidden="true" ng-hide="!isResponseBodyOpen"></i>
+                          <div class="fill-space"></div>
+                        </div>
+                    </p>
+                    <!-- <div class="fill-space"></div> -->
+                    <!-- <div class="container-col">
+                        <div class="fill-space"></div>
+                        <button class="vertical-center" ng-show="isLoggedIn" ng-click="agree(r.id)" type="button" name="button">Agree</button>
+                        <button class="vertical-center" ng-show="!isLoggedIn">
+                            <a ng-href="#login" style="color: white">log in to agree</a>
+                        </button>
+                        <div class="fill-space"></div>
+                    </div> -->
+                </div>
+                <div class="container-col border-thin-black padding-a" ng-if="isResponseBodyOpen">
+                    <div ng-if="!r.modules.length">
+                        <h4 class="centerText">no modules...</h4>
+                    </div>
+                    <div class="container-row" ng-repeat="m in r.modules">
+                        <div class="container-col">
+                            <h4>{{m.title}}</h4>
+                            <p>
+                                {{m.text}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin-b"></div>
+            </div>
+
+        </div>
+    </div>
+</div>

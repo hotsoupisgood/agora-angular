@@ -1,52 +1,30 @@
-module.exports = function($http, accountService) {
-
-    this.submit = function (questionId, inputResponse) {
-      var returnData;
-        if (accountService.isLoggedIn) {
-            returnData = $http({
+module.exports = function($http, $cookies, $rootScope, accountService) {
+    this.submit = function (questionId, inputResponse, modules) {
+            return $http({
                 method: 'POST',
-                url: 'https://startandselect.com/scripts/UploadResponse.php',
+                url: 'https://startandselect.com/api/full/response/',
                 //production params
-                params: {
-                    user_id: accountService.accountInfo.id,
+                data: {
                     question_id: questionId,
-                    response: inputResponse
+                    text: inputResponse,
+                    modules: modules
                 },
                 headers: {
-                  'Content-type': 'application/json'
+                  'Content-type': 'application/json',
+                  'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
                 }
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
-                // accountService.$parent.refresh();
-                return response.data;
+                // console.log('successCallback, response: ');
+                // console.log(response.data);
+                return true;
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
+                console.log('errorCallback, response: ');
+                console.log(response.data);
+                return false;
             });
-        } else {
-          console.log(inputResponse);
-            returnData = $http({
-                method: 'POST',
-                url: 'https://startandselect.com/scripts/UploadResponse.php',
-                //production params
-                params: {
-                    question_id: questionId,
-                    response: inputResponse
-                }
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                // accountService.$parent.refresh();
-                console.log('successCallback, response: ' + response.data);
-                return response.data;
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('errorCallback, response: ' + response.data);
-            });
-        };
-        return returnData;
     };
 };

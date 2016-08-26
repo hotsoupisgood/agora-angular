@@ -1,6 +1,5 @@
-
 <div class="loginPage">
-    <img class="agoraDude" src="media/fad.png"/>
+    <!-- <img class="agoraDude" src="media/fad.png"/> -->
     <div class="loginContainer">
         <h1>
             <small>create account</small>
@@ -10,11 +9,16 @@
                 <input ng-model="username" type="text" class="container" placeholder="username">
                 <input ng-model="password" type="password" class="container" placeholder="password">
                 <div class="container-row">
-                    <button class="button-wide" type="submit">login</button>
+                    <button class="button-wide" type="submit" ng-hide="success">create</button>
+                    <div class="container-row" ng-show="success">
+                      <div class="fill-space" style="color:green"></div>
+                      <h4>SUCCESS!</h4>
+                      <div class="fill-space"></div>
+                    </div>
                     <div class="fill-space"></div>
                     <label>
                         remember me:
-                        <input type="checkbox" value="">
+                        <input type="checkbox" value="" ng-model="remember">
                     </label>
                 </div>
             </div>
