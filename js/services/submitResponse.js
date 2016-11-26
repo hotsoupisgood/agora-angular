@@ -2,9 +2,9 @@ module.exports = function($http, $cookies, $rootScope, accountService) {
     this.submit = function (questionId, inputResponse, modules) {
             return $http({
                 method: 'POST',
-                url: 'https://startandselect.com/api/full/response/',
+                url: 'http://api.iex.ist/full/response/',
                 //production params
-                data: {
+                params: {
                     question_id: questionId,
                     text: inputResponse,
                     modules: modules

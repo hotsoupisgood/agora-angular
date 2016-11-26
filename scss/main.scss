@@ -1,11 +1,12 @@
 $background: white;
 $primaryColor: #db3a3a;
-$secondaryColor: #33b0a3;
+$secondaryColor: rgba(#16b7f2, 1);
 // $navbarColor: rgb(73, 77, 72);
 $navbarColor: $secondaryColor;
 $standardBorderRadius: 2px;
 $singleInputFormHeight: 20px;
 
+@import "error_code";
 @import "addResponse";
 @import "responses";
 @import "util";
@@ -16,6 +17,7 @@ $singleInputFormHeight: 20px;
 @import "questionStream";
 @import "login";
 @import "advancedSearch";
+@import "about";
 //until functional
 .sidebar {
   display: none;

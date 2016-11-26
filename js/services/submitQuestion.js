@@ -4,9 +4,9 @@ module.exports = function($http, $rootScope, accountService) {
         //logged/not
         return $http({
             method: 'POST',
-            url: 'https://startandselect.com/api/full/question/',
+            url: 'http://api.iex.ist/full/question/',
             //production params
-            data: {
+            params: {
                 text: askedQuestion,
                 tags: questionsTags
             },

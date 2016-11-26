@@ -1,4 +1,8 @@
 @import "https://fonts.googleapis.com/css?family=Amatic+SC:700";
+.error_code .desat {
+  filter: grayscale(100%);
+}
+
 .addResponse ol li {
   display: list-item;
   font-size: 12px;
@@ -30,7 +34,7 @@
   border: none;
   border-radius: 2px;
   font-size: 15px;
-  background: #aee8e2;
+  background: #bfebfb;
 }
 
 .responseButtonActive {
@@ -39,7 +43,7 @@
 }
 
 .addResponseBody {
-  background-color: #caf0ec !important;
+  background-color: #e1f6fd !important;
   padding: 10px;
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -181,7 +185,7 @@
   margin: 20px;
 }
 .account .accountStats {
-  background: #e5f8f6;
+  background: white;
   border: 1px solid lightgrey;
   padding: 10px;
 }
@@ -245,7 +249,7 @@
 .siteBanner {
   z-index: -999;
   color: black !important;
-  background: #73d6cc;
+  background: #77d5f7;
   transition: max-height 1s;
   overflow: hidden;
   max-height: 12em;
@@ -292,6 +296,8 @@
 header {
   transition: height 0.3s;
   font-size: 13px;
+  display: flex;
+  flex-direction: row;
 }
 header form {
   display: inline-flex;
@@ -301,10 +307,12 @@ header form {
 }
 header form input {
   border-radius: 2px 0px 0px 2px;
+  flex-grow: 10;
 }
 header form button {
   border-radius: 0px 2px 2px 0px;
   font-size: 11px;
+  flex-grow: 1;
 }
 header button {
   font-size: 13px;
@@ -312,15 +320,14 @@ header button {
 
 .site-header {
   min-height: 30px;
-  background: #33b0a3;
+  background: #16b7f2;
   color: white;
   display: flex;
   align-items: center;
-  padding-right: 50px;
 }
 
 .askQuestion {
-  background: #4bcbbe;
+  background: #46c6f5;
 }
 .askQuestion .ng-enter, .askQuestion .ng-leave {
   transition: all 0.5s;
@@ -336,17 +343,19 @@ header button {
   padding: 0;
 }
 .site-nav a {
+  flex-grow: 5;
   text-decoration: none;
   color: white;
-  padding: 7px;
-  padding-top: 8px;
-  margin-left: 10px;
-  margin-right: 10px;
+  padding: .5em;
+  padding-top: .5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  border-right: thin solid rgba(0, 0, 0, 0.2);
   height: calc($navbarHeight - 20px);
   display: inline;
 }
 .site-nav .active a {
-  background: #28887e;
+  background: #0b97ca;
   color: white;
 }
 
@@ -364,8 +373,6 @@ header button {
 
 .askQuestionContainer {
   display: flex;
-  position: fixed;
-  background: #73d6cc;
   width: 100%;
   flex-direction: column;
   margin: 0;
@@ -381,12 +388,13 @@ header button {
   min-width: 10%;
 }
 .askQuestionContainer input {
-  flex-grow: 2;
-  padding: 3px;
-  min-width: 30%;
+  flex-grow: 6;
+  padding: 10px;
+  min-width: 50%;
 }
 .askQuestionContainer textarea {
   flex-grow: 6;
+  padding: 10px;
   min-width: 50%;
 }
 
@@ -400,7 +408,7 @@ header button {
 }
 .questionSubHeader {
   width: 100%;
-  background: #73d6cc;
+  background: #77d5f7;
 }
 
 .orderContainer {
@@ -413,7 +421,7 @@ header button {
 }
 
 .activeQuestion {
-  background: #d6f3f0;
+  background: #effafe;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
 }
@@ -533,6 +541,16 @@ header button {
 }
 .advancedSearch form label {
   margin: 0;
+}
+
+#aboutFrame {
+  margin: 50px;
+}
+#aboutFrame #inAbout {
+  margin: 5px;
+}
+#aboutFrame img {
+  border-radius: 5px;
 }
 
 .sidebar {

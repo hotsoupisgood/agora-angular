@@ -10,16 +10,17 @@ module.exports = function($scope, $routeParams, $route, $cookies, upVoteService,
     $scope.isCurrentSearchTermEmpty = true;
     $scope.isQueryEmpty = false;
     $scope.order = 'date';
+    $scope.gotQuestions = true;
     //manage event listeners
     $scope.$on('$routeChangeSuccess', function(e) {
-        // if ($routeParams.query) {
-        //     $scope.currentSearchTerm = $routeParams.query;
-        //     $scope.isCurrentSearchTermEmpty = true;
-        //     $scope.getSearchQuery();
-        // } else {
-        //     // $location.path('/questions');
-        //     $scope.getTopQuestions();
-        // }
+        if ($routeParams.query) {
+            $scope.currentSearchTerm = $routeParams.query;
+            $scope.isCurrentSearchTermEmpty = true;
+            $scope.getSearchQuery();
+        } else {
+            // $location.path('/questions');
+            $scope.getTopQuestions();
+        }
     });
     $scope.agree = function(responseId) {
         upVoteService.submit(responseId);
@@ -36,23 +37,19 @@ module.exports = function($scope, $routeParams, $route, $cookies, upVoteService,
     $scope.getTopQuestions = function() {
         questionsTopService.get($scope.currentPage, $scope.order, 'min')
             .then(function(response) {
-                $scope.questions = response.objects;
-                $scope.isQueryEmpty = false;
-                // scrollService.scrollToLastOpen();
-                // $timeout(function () {
-                //   $location.hash('4');
-                //   $anchorScroll();
-                // });
-                // window.scrollTo(0, $cookies.get('lastScrollLocation'));
-            });
-            questionsTopService.get($scope.currentPage, $scope.order, 'full')
-                .then(function(response) {
+                if (response) {
                     $scope.questions = response.objects;
                     $scope.isQueryEmpty = false;
-                    // $location.hash('4');
-                    // scrollService.scrollToLastOpen();
-                    // window.scrollTo(0, $cookies.get('lastScrollLocation'));
-                });
+                    $scope.gotQuestions = true;
+                    questionsTopService.get($scope.currentPage, $scope.order, 'full')
+                        .then(function(response) {
+                            $scope.questions = response.objects;
+                            $scope.isQueryEmpty = false;
+                        });
+                } else {
+                    $scope.gotQuestions = false;
+                }
+            });
     };
     $scope.orderDate = function() {
         $scope.order = 'date';

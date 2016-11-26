@@ -18,20 +18,31 @@
                 </li>
             </ul>
         </nav>
+        <nav class="site-nav">
+            <ul>
+              <li ng-class="{'active':selectedTab === 'about'}">
+                  <a ng-href="#about" ng-click="selectedTab = 'about'">about</a>
+              </li>
+                <li ng-class="{'active':selectedTab === 'ask'}">
+                    <a ng-href="#ask" ng-click="selectedTab = 'ask'">ask question</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="fill-space mobile-Hidden"></div>
         <form class="searchForm" ng-controller="searchController" ng-submit="searchQuestions()">
             <input class="searchFormInput" ng-model="searchQuery.question" type="text" placeholder="Search Questions">
             <button class="searchFormButton">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </button>
         </form>
-        <div class="fill-space mobile-Hidden"></div>
-        <div class="askDropdown">
+        <!-- <div class="fill-space mobile-Hidden"></div> -->
+        <!-- <div class="askDropdown">
             <button class="stylessButton" ng-click="revealedAskQuestion = !revealedAskQuestion">
                 propose question
                 <i class="fa fa-chevron-down" aria-hidden="true" ng-hide="revealedAskQuestion"></i>
                 <i class="fa fa-chevron-up" aria-hidden="true" ng-hide="!revealedAskQuestion"></i>
             </button>
-        </div>
+        </div> -->
     </header>
 
     <div class="askQuestion" ng-if="revealedAskQuestion">

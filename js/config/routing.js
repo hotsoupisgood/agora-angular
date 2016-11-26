@@ -1,6 +1,8 @@
 module.exports = function($routeProvider) {
     $routeProvider
-        .when('/questions', {
+        .when('/ask', {
+            templateUrl: 'html-components/ask-question-page.html'
+        }).when('/questions', {
             templateUrl: 'html-components/top30.html',
             controller: 'questions'
         }).when('/search', {

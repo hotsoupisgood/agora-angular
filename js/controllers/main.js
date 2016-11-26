@@ -8,17 +8,17 @@ module.exports =  function($scope, $rootScope, $route,
       $scope.minBanner = isMin;
       $scope.$apply()
     };
-    // $scope.$on('$routeChangeSuccess', function(e) {
-    //     $cookies.put
-    // });
     window.addEventListener('scroll', function(e){
         var distanceY = window.pageYOffset,
             shrinkOn = 20,
             absOn = 70,
             banner = document.getElementById ('banner');
-            // console.log($cookies.get('lastScrollLocation'));
+            
+        // console.log($cookies.get('lastScrollLocation'));
         // $cookies.put('lastScrollLocation', distanceY);
         // scrollService.scrollToLastOpen();
+
+        //listens for banner change
         if (distanceY > shrinkOn) {
             $scope.minimiseHeader(true);
         } else {
@@ -30,12 +30,4 @@ module.exports =  function($scope, $rootScope, $route,
             $scope.smallHead = false;
         }
     });
-
-    // $timeout (function () {
-    //   $location.hash('fucker');
-    //
-    //   // call $anchorScroll()
-    //   $anchorScroll();
-    // }, 4000);
-
 };

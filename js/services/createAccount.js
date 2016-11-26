@@ -2,8 +2,8 @@ module.exports = function ($http, $location, $rootScope, $cookies, accountServic
   this.submit = function(inputUsername, inputPassword, remember) {
       $http({
           method: 'POST',
-          url: 'https://startandselect.com/api/full/register/',
-          data: {
+          url: 'http://api.iex.ist/full/register/',
+          params: {
               username: inputUsername,
               password: inputPassword
           },

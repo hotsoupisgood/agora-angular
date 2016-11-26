@@ -4,7 +4,7 @@ module.exports = function (accountService) {
         //request
         $http({
             method: 'POST',
-            url: 'https://startandselect.com/scripts/UpVote.php',
+            url: 'http://startandselect.com/scripts/UpVote.php',
             params: {
                 response_id: responseId,
                 user_id: accountService.startQuestion

@@ -2,7 +2,7 @@ module.exports = function ($http, accountService) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
           method: 'GET',
-          url: 'https://startandselect.com/api/full/question/search/',
+          url: 'http://api.iex.ist/full/question/search/',
           params: {
               limit: accountService.numIteratedPerPage,
               query: currentSearchTerm,

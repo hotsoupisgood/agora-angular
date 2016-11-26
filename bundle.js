@@ -1,7 +1,9 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = function($routeProvider) {
     $routeProvider
-        .when('/questions', {
+        .when('/ask', {
+            templateUrl: 'html-components/ask-question-page.html'
+        }).when('/questions', {
             templateUrl: 'html-components/top30.html',
             controller: 'questions'
         }).when('/search', {
@@ -146,17 +148,17 @@ module.exports =  function($scope, $rootScope, $route,
       $scope.minBanner = isMin;
       $scope.$apply()
     };
-    // $scope.$on('$routeChangeSuccess', function(e) {
-    //     $cookies.put
-    // });
     window.addEventListener('scroll', function(e){
         var distanceY = window.pageYOffset,
             shrinkOn = 20,
             absOn = 70,
             banner = document.getElementById ('banner');
-            // console.log($cookies.get('lastScrollLocation'));
+            
+        // console.log($cookies.get('lastScrollLocation'));
         // $cookies.put('lastScrollLocation', distanceY);
         // scrollService.scrollToLastOpen();
+
+        //listens for banner change
         if (distanceY > shrinkOn) {
             $scope.minimiseHeader(true);
         } else {
@@ -168,14 +170,6 @@ module.exports =  function($scope, $rootScope, $route,
             $scope.smallHead = false;
         }
     });
-
-    // $timeout (function () {
-    //   $location.hash('fucker');
-    //
-    //   // call $anchorScroll()
-    //   $anchorScroll();
-    // }, 4000);
-
 };
 
 },{}],10:[function(require,module,exports){
@@ -187,7 +181,7 @@ module.exports =  function($scope, accountService) {
 };
 
 },{}],11:[function(require,module,exports){
-module.exports = function($scope, scrollService) {
+module.exports = function($scope, $anchorScroll, scrollService) {
     $scope.name = 'questionController';
     //init
     $scope.isBodyHidden = false;
@@ -208,6 +202,7 @@ module.exports = function($scope, scrollService) {
         return false;
       }
     };
+    $anchorScroll();
 };
 
 },{}],12:[function(require,module,exports){
@@ -223,16 +218,17 @@ module.exports = function($scope, $routeParams, $route, $cookies, upVoteService,
     $scope.isCurrentSearchTermEmpty = true;
     $scope.isQueryEmpty = false;
     $scope.order = 'date';
+    $scope.gotQuestions = true;
     //manage event listeners
     $scope.$on('$routeChangeSuccess', function(e) {
-        // if ($routeParams.query) {
-        //     $scope.currentSearchTerm = $routeParams.query;
-        //     $scope.isCurrentSearchTermEmpty = true;
-        //     $scope.getSearchQuery();
-        // } else {
-        //     // $location.path('/questions');
-        //     $scope.getTopQuestions();
-        // }
+        if ($routeParams.query) {
+            $scope.currentSearchTerm = $routeParams.query;
+            $scope.isCurrentSearchTermEmpty = true;
+            $scope.getSearchQuery();
+        } else {
+            // $location.path('/questions');
+            $scope.getTopQuestions();
+        }
     });
     $scope.agree = function(responseId) {
         upVoteService.submit(responseId);
@@ -249,23 +245,19 @@ module.exports = function($scope, $routeParams, $route, $cookies, upVoteService,
     $scope.getTopQuestions = function() {
         questionsTopService.get($scope.currentPage, $scope.order, 'min')
             .then(function(response) {
-                $scope.questions = response.objects;
-                $scope.isQueryEmpty = false;
-                // scrollService.scrollToLastOpen();
-                // $timeout(function () {
-                //   $location.hash('4');
-                //   $anchorScroll();
-                // });
-                // window.scrollTo(0, $cookies.get('lastScrollLocation'));
-            });
-            questionsTopService.get($scope.currentPage, $scope.order, 'full')
-                .then(function(response) {
+                if (response) {
                     $scope.questions = response.objects;
                     $scope.isQueryEmpty = false;
-                    // $location.hash('4');
-                    // scrollService.scrollToLastOpen();
-                    // window.scrollTo(0, $cookies.get('lastScrollLocation'));
-                });
+                    $scope.gotQuestions = true;
+                    questionsTopService.get($scope.currentPage, $scope.order, 'full')
+                        .then(function(response) {
+                            $scope.questions = response.objects;
+                            $scope.isQueryEmpty = false;
+                        });
+                } else {
+                    $scope.gotQuestions = false;
+                }
+            });
     };
     $scope.orderDate = function() {
         $scope.order = 'date';
@@ -541,8 +533,8 @@ module.exports = function ($http, $location, $rootScope, $cookies, accountServic
   this.submit = function(inputUsername, inputPassword, remember) {
       $http({
           method: 'POST',
-          url: 'https://startandselect.com/api/full/register/',
-          data: {
+          url: 'http://api.iex.ist/full/register/',
+          params: {
               username: inputUsername,
               password: inputPassword
           },
@@ -582,11 +574,12 @@ module.exports = function ($http, $location, $rootScope, $cookies, accountServic
 module.exports = function ($cookies, $rootScope, $location, $http, accountService) {
   this.login = function(inputUsername, inputPassword, remember) {
     $cookies.put('password', inputPassword);
+    console.log("imapas" + inputUsername+ inputPassword );
       $http({
-          method: 'POST',
-          url: 'https://startandselect.com/api/full/user/login/',
+          method: 'GET',
+          url: 'http://api.iex.ist/full/login/',
           // production params
-           data: {
+           params: {
              username: inputUsername,
              password: inputPassword
           },
@@ -597,7 +590,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
           // this callback will be called asynchronously
           // when the response is available
           // $location.path('/account');
-          if (remember) {
+          // if (remember) {
             accountService.setAccountInfo(response.data);
             accountService.setIsLoggedIn(true);
             $rootScope.accountInfo = response.data;
@@ -607,7 +600,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
             $cookies.put('password', inputPassword);
             $cookies.put('key', $rootScope.accountInfo.key);
             $location.url('/questions');
-          }
+          // }
           //debug response callback logs
           // console.log('successCallback, parsed: ' + JSON.stringify(response.data));
       }, function errorCallback(response) {
@@ -624,9 +617,9 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
       this.username = $cookies.get('username');
       this.password = $cookies.get('password');
         $http({
-            method: 'POST',
-            url: 'https://startandselect.com/api/full/user/login/',
-            data: {
+            method: 'GET',
+            url: 'http://api.iex.ist/full/login/',
+            params: {
                 username: this.username,
                 password: this.password
             },
@@ -677,7 +670,7 @@ module.exports = function ($http, accountService) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
           method: 'GET',
-          url: 'https://startandselect.com/api/full/question/search/',
+          url: 'http://api.iex.ist/full/question/search/',
           params: {
               limit: accountService.numIteratedPerPage,
               query: currentSearchTerm,
@@ -705,36 +698,37 @@ module.exports = function ($http, accountService) {
 }
 
 },{}],23:[function(require,module,exports){
-module.exports = function (accountService, $http) {
-  this.get = function (currentPage, order, size) {
-    //multiply page number for first question desired
-    var startQuestion = currentPage * accountService.questionsAPage;
-    //request
-    var returnData = $http({
-        method: 'GET',
-        url: 'https://startandselect.com/api/'+ size +'/question/',
-        params: {
-            limit: accountService.numIteratedPerPage,
-            offset: startQuestion,
-            order_by: order
-        },
-        headers: {
-          'Content-type': 'application/json'
-        }
-    }).then(function successCallback(response) {
-        // this callback will be called asynchronously
-        // when the response is available
-        //  console.log('successCallback unparsed response: ' + JSON.stringify(response.data.questions));
-        // console.log('successCallback unparsed response: ' + response.data);
-        return response.data;
-    }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        //show response for debug
-        console.log('errorCallback unparsed response: ' + JSON.stringify(response.data));
-    });
-    return returnData;
-  };
+module.exports = function(accountService, $http) {
+    this.get = function(currentPage, order, size) {
+        //multiply page number for first question desired
+        var startQuestion = currentPage * accountService.questionsAPage;
+        //request
+        var returnData = $http({
+            method: 'GET',
+            url: 'http://api.iex.ist/' + size + '/question/',
+            params: {
+                limit: accountService.numIteratedPerPage,
+                offset: startQuestion,
+                order_by: order
+            },
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+            //  console.log('successCallback unparsed response: ' + JSON.stringify(response.data.questions));
+            console.log(response.data);
+
+            return response.data;
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            //show response for debug
+            return false;
+        });
+        return returnData;
+    };
 }
 
 },{}],24:[function(require,module,exports){
@@ -770,9 +764,9 @@ module.exports = function($http, $rootScope, accountService) {
         //logged/not
         return $http({
             method: 'POST',
-            url: 'https://startandselect.com/api/full/question/',
+            url: 'http://api.iex.ist/full/question/',
             //production params
-            data: {
+            params: {
                 text: askedQuestion,
                 tags: questionsTags
             },
@@ -799,9 +793,9 @@ module.exports = function($http, $cookies, $rootScope, accountService) {
     this.submit = function (questionId, inputResponse, modules) {
             return $http({
                 method: 'POST',
-                url: 'https://startandselect.com/api/full/response/',
+                url: 'http://api.iex.ist/full/response/',
                 //production params
-                data: {
+                params: {
                     question_id: questionId,
                     text: inputResponse,
                     modules: modules
@@ -833,7 +827,7 @@ module.exports = function (accountService) {
         //request
         $http({
             method: 'POST',
-            url: 'https://startandselect.com/scripts/UpVote.php',
+            url: 'http://startandselect.com/scripts/UpVote.php',
             params: {
                 response_id: responseId,
                 user_id: accountService.startQuestion

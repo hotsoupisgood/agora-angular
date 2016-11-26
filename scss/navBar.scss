@@ -110,6 +110,8 @@ $navbarHeightMobile: 20vh;
 header {
   transition: height 0.3s;
   font-size: 13px;
+  display: flex;
+  flex-direction: row;
   form {
     display: inline-flex;
     width: auto;
@@ -117,10 +119,12 @@ header {
     height: 20px;
     input{
       border-radius: $standardBorderRadius 0px 0px $standardBorderRadius;
+      flex-grow: 10;
     }
     button {
       border-radius: 0px $standardBorderRadius $standardBorderRadius 0px;
       font-size: 11px;
+      flex-grow: 1;
     }
   }
   button {
@@ -133,7 +137,7 @@ header {
     color: white;
     display: flex;
     align-items: center;
-    padding-right: 50px;
+    // padding-right: 10px;
 }
 .askQuestion {
   background: lighten($navbarColor, 10%);
@@ -152,12 +156,14 @@ header {
         padding: 0;
     }
     a {
+        flex-grow: 5;
         text-decoration: none;
         color: white;
-        padding: 7px;
-        padding-top: 8px;
-        margin-left: 10px;
-        margin-right: 10px;
+        padding: .5em;
+        padding-top: .5em;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+        border-right: thin solid rgba(#000000, 0.2);
         height: calc($navbarHeight - 20px);
         display: inline;
     }

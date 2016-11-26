@@ -1,11 +1,12 @@
 module.exports = function ($cookies, $rootScope, $location, $http, accountService) {
   this.login = function(inputUsername, inputPassword, remember) {
     $cookies.put('password', inputPassword);
+    console.log("imapas" + inputUsername+ inputPassword );
       $http({
-          method: 'POST',
-          url: 'https://startandselect.com/api/full/user/login/',
+          method: 'GET',
+          url: 'http://api.iex.ist/full/login/',
           // production params
-           data: {
+           params: {
              username: inputUsername,
              password: inputPassword
           },
@@ -16,7 +17,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
           // this callback will be called asynchronously
           // when the response is available
           // $location.path('/account');
-          if (remember) {
+          // if (remember) {
             accountService.setAccountInfo(response.data);
             accountService.setIsLoggedIn(true);
             $rootScope.accountInfo = response.data;
@@ -26,7 +27,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
             $cookies.put('password', inputPassword);
             $cookies.put('key', $rootScope.accountInfo.key);
             $location.url('/questions');
-          }
+          // }
           //debug response callback logs
           // console.log('successCallback, parsed: ' + JSON.stringify(response.data));
       }, function errorCallback(response) {
@@ -43,9 +44,9 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
       this.username = $cookies.get('username');
       this.password = $cookies.get('password');
         $http({
-            method: 'POST',
-            url: 'https://startandselect.com/api/full/user/login/',
-            data: {
+            method: 'GET',
+            url: 'http://api.iex.ist/full/login/',
+            params: {
                 username: this.username,
                 password: this.password
             },
