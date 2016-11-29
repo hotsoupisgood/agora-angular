@@ -487,7 +487,7 @@ agoraApp.service('logoutService',                   require('./services/logout.j
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));
 
 //controllers
-agoraApp.controller('questionController',               require('./controllers/question.js'));
+agoraApp.controller('questionController',           require('./controllers/question.js'));
 agoraApp.controller('mainController',               require('./controllers/main.js'));
 agoraApp.controller('aboutController',              require('./controllers/about.js'));
 agoraApp.controller('accountController',            require('./controllers/account.js'));

@@ -35,7 +35,7 @@ module.exports = function(grunt) {
     },
   });
 
-  // Load the plugin that provides the "uglify" task.
+  grunt.registerTask('default', ['watch']);
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');

@@ -248,7 +248,7 @@
 }
 .siteBanner {
   z-index: -999;
-  color: black !important;
+  color: black;
   background: #77d5f7;
   transition: max-height 1s;
   overflow: hidden;
@@ -291,6 +291,7 @@
   position: fixed;
   width: 100%;
   top: 0;
+  box-shadow: 3px 3px 3px 2px rgba(182, 182, 182, 0.45);
 }
 
 header {
@@ -320,20 +321,10 @@ header button {
 
 .site-header {
   min-height: 30px;
-  background: #16b7f2;
-  color: white;
+  background: white;
+  color: black;
   display: flex;
   align-items: center;
-}
-
-.askQuestion {
-  background: #46c6f5;
-}
-.askQuestion .ng-enter, .askQuestion .ng-leave {
-  transition: all 0.5s;
-}
-.askQuestion h2 {
-  color: white;
 }
 
 .site-nav ul {
@@ -345,7 +336,7 @@ header button {
 .site-nav a {
   flex-grow: 5;
   text-decoration: none;
-  color: white;
+  color: black !important;
   padding: .5em;
   padding-top: .5em;
   padding-left: 1.5em;
@@ -355,8 +346,7 @@ header button {
   display: inline;
 }
 .site-nav .active a {
-  background: #0b97ca;
-  color: white;
+  color: #228ee6 !important;
 }
 
 .account-actions {
