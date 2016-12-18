@@ -22,7 +22,7 @@ $phoneButtonHeight: 15vw;
 }
 .questionSubHeader {
   width: 100%;
-  background: lighten($secondaryColor, 20%);
+  // background: lighten($secondaryColor, 20%);
 }
 .orderContainer {
     display: flex;
@@ -34,7 +34,7 @@ $phoneButtonHeight: 15vw;
 }
 .activeQuestion {
     // padding-top: 15px;
-    background: lighten($secondaryColor, 45%);
+    // background: lighten($secondaryColor, 45%);
     border-top-right-radius: $standardBorderRadius;
     border-top-left-radius: $standardBorderRadius;
 }
@@ -57,11 +57,13 @@ $phoneButtonHeight: 15vw;
 }
 .questionStream {
     .questionContainer {
-
+      border-top: 1px solid lightgrey;
     }
     .questionContainerActive {
-      border: 1px solid black;
+      // border: 1px solid black;
+      box-shadow: 3px 3px 3px 2px rgba(#b6b6b6, 0.45);
       border-radius: $standardBorderRadius;
+      z-index: 2;
     }
     ul {
         //kill random padding
@@ -75,13 +77,12 @@ $phoneButtonHeight: 15vw;
             flex-direction: column;
             .questionTitle {
                 border: none;
-                border-top: 1px solid lightgrey;
                 padding: 15px;
-                text-decoration: none;
-                background: rgba(255, 255, 255, 0);
+                background: rgba(255, 255, 255, 1);
                 color: black;
-                display: block;
-                text-align: center;
+                display: flex;;
+                flex-direction: column;
+                text-align: left;
                 border-radius: 0;
                 padding: 1;
                 box-shadow: none;

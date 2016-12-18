@@ -28,12 +28,14 @@
                 </li>
             </ul>
         </nav>
-        <div class="fill-space mobile-Hidden"></div>
-        <form class="searchForm" ng-controller="searchController" ng-submit="searchQuestions()">
+        <!-- <div class="fill-space mobile-Hidden"></div> -->
+        <form class="searchForm fill-space container-row" ng-controller="searchController" ng-submit="searchQuestions()">
             <input class="searchFormInput" ng-model="searchQuery.question" type="text" placeholder="Search Questions">
-            <button class="searchFormButton">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
+            <div class="container-col">
+              <button class="fill-space">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </div>
         </form>
         <!-- <div class="fill-space mobile-Hidden"></div> -->
         <!-- <div class="askDropdown">

@@ -2,29 +2,31 @@
     <ul>
         <li class="questionContainer" ng-controller="questionController" ng-repeat="q in questions" ng-init="isBodyHidden = shouldOpen(q.id)" ng-class="{'questionContainerActive':isBodyHidden === true}" >
             <div class="container-row highlight-hover" ng-class="{'activeQuestion':isBodyHidden == true}">
-                <button class="questionTitle" id="q.id" ng-click="onClickOfQuestion(q.id)">
-                    {{q.text}}
-                    <div class="fill-space"></div>
-                    <p>
-                      {{q.date}}
-                    </p>
+                <button class="questionTitle container-col" id="q.id" ng-click="onClickOfQuestion(q.id)">
+                    <div class="container-row">
+                      {{q.text}}
+                    </div>
+                    <div class="container-row">
+                      <p>
+                        {{q.date}}
+                      </p>
+                    </div>
+                    <div class="contianer-row">
+                      <div class="tag" ng-repeat="tag in q.tags">
+                        <p>{{tag.name}}</p>
+                      </div>
+                      <a ng-href="#answer/{{q.id}}">Answer</a>
+                      <p ng-hide="isLoggedIn">
+                        Please <a ng-href="#login"> login </a> or <a ng-href="#createAccount"> create an account </a> to answer the question!
+                      </p>
+                    </div>
                 </button>
+                <!-- <button class="addResponseButton" ng-show="isLoggedIn" ng-click="isAddResponseHidden=!isAddResponseHidden"> -->
+
+                <!-- </button> -->
             </div>
 
-            <div class="" ng-if="isBodyHidden">
-              <div class="container-row questionSubHeader">
-                <button class="addResponseButton" ng-show="isLoggedIn" ng-click="isAddResponseHidden=!isAddResponseHidden">
-                  Answer
-                </button>
-                <p>
-                  Please <a ng-href="#login"> login </a> or <a ng-href="#createAccount"> create an account </a> to answer the question!
-                </p>
-              </div>
-              <div class="margin-b">
-                <div class="addResponseBody" ng-if="isAddResponseHidden">
-                  <ng-include src="'html-components/add-response.html'"></ng-include>
-                </div>
-              </div>
+            <div class="expandedQuestion" ng-if="isBodyHidden">
                 <div class="responsesContainer">
                   <ng-include src="'html-components/responses.html'"></ng-include>
 

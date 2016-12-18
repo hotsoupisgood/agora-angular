@@ -1,10 +1,10 @@
-module.exports = function($scope, $cookies, $route, $location, logoutService, loginService) {
+module.exports = function($scope, $cookies, $route, $location, logoutService, cookieService) {
     $scope.name = 'headerController';
     // $scope.radioStyle = 'light';
     $scope.logout = function () {
         logoutService.submit();
     };
-    $location.path('/questions')
+    // $location.path('/questions');
     // $scope.switchStyle = function () {
     //   if ($scope.radioStyle == 'light') {
     //     document.getElementById('bootstrapStylesheet').href ='node_modules/bootstrap/dist/css/bootstrap-light.css';
@@ -13,5 +13,5 @@ module.exports = function($scope, $cookies, $route, $location, logoutService, lo
     //     document.getElementById('bootstrapStylesheet').href = 'node_modules/bootstrap/dist/css/bootstrap-dark.css';
     //   }
     // };
-    loginService.cookieLogin();
+    cookieService.all();
 };

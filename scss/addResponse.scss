@@ -1,4 +1,39 @@
 .addResponse {
+  .modules {
+    display: flex;
+    flex-direction: column;
+    .moduleTitles {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 3;
+      input {
+        min-height: 3vh;
+        flex-grow: 10;
+      }
+    }
+    .moduleResponses {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 7;
+      textarea {
+        flex-grow: 10;
+        min-height: 8vh;
+      }
+    }
+  }
+  .bigTitle {
+    input {
+      min-height: 3vh;
+    }
+  }
+  .submitResponse {
+    display: flex;
+    flex-direction: row;
+    button {
+      min-height: 3vh;
+      flex-grow: 10;
+    }
+  }
   ol {
     li {
       display:list-item;

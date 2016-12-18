@@ -57,56 +57,12 @@ $navbarHeightMobile: 20vh;
       }
     }
 }
-.siteBanner {
-  z-index: -999;
-  // position: absolute;
-  color: black;
-  background: lighten($secondaryColor, 20%);
-  // transition: height .5s;
-  // transition: max-height 1s;
-  // transition: 1s linear;
-  transition: max-height 1s ;
-  overflow: hidden;
-  max-height: 12em;
-  .agoraDude {
-    width: 70px;
-    height: 110px;
-  }
-  .centeredPouch {
-    padding: 20px;
-    font-family: 'Amatic SC', cursive;
-  }
-  .title {
-    font-size: 100px;
-  }
-  a {
-    color: black;
-    text-decoration: none;
-  }
-  .about {
-    font-size: 20px;
-  }
-}
-.smallHead {
-  max-height: 3em;
-  // transition: max-height 1s;
-  // opacity: 0;
-  .centeredPouch {
-    padding: 2px !important;
-    .about {
-      opacity: 0;
-      display: none;
-    }
-    .title {
-      font-size: 2.75em;
-    }
-  }
-}
 .management {
   position: fixed;
   width: 100%;
   top: 0;
   box-shadow: 3px 3px 3px 2px rgba(#b6b6b6, 0.45);
+  z-index: 10;
 }
 header {
   transition: height 0.3s;
@@ -115,17 +71,25 @@ header {
   flex-direction: row;
   form {
     display: inline-flex;
-    width: auto;
+    // width: auto;
     padding: 3px;
+    margin: 0, 2vw, 0, 2vw;
     height: 20px;
     input{
       border-radius: $standardBorderRadius 0px 0px $standardBorderRadius;
       flex-grow: 10;
     }
     button {
+      position: absolute;
+      background: rgba(255, 255, 255, 0);
+      color: black;
+      z-index: 11;
+      bottom: 1px;
+      right: 7px;
       border-radius: 0px $standardBorderRadius $standardBorderRadius 0px;
-      font-size: 11px;
-      flex-grow: 1;
+      // font-size: 15px;
+      // height: 100%;
+      // flex-shrink: 2;
     }
   }
   button {

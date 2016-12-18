@@ -1,0 +1,45 @@
+.siteBanner {
+  z-index: 10;
+  // position: absolute;
+  color: black;
+  background: $secondaryColor;
+  // transition: height .5s;
+  // transition: max-height 1s;
+  // transition: 1s linear;
+  transition: max-height 1s ;
+  overflow: hidden;
+  max-height: 12em;
+  .agoraDude {
+    width: 70px;
+    height: 110px;
+  }
+  .centeredPouch {
+    padding: 20px;
+    font-family: 'Amatic SC', cursive;
+  }
+  .title {
+    font-size: 100px;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  .about {
+    font-size: 20px;
+  }
+}
+.smallHead {
+  max-height: 3em;
+  // transition: max-height 1s;
+  // opacity: 0;
+  .centeredPouch {
+    padding: 2px !important;
+    .about {
+      opacity: 0;
+      display: none;
+    }
+    .title {
+      font-size: 2.75em;
+    }
+  }
+}

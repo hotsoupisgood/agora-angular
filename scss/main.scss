@@ -1,11 +1,13 @@
 $background: white;
 $primaryColor: #db3a3a;
-$secondaryColor: rgba(#16b7f2, 1);
+$secondaryColor: rgba(#64d3fb, 1);
 // $navbarColor: rgb(73, 77, 72);
 $navbarColor: $secondaryColor;
 $standardBorderRadius: 2px;
 $singleInputFormHeight: 20px;
 
+@import "tags";
+@import "siteBanner";
 @import "error_code";
 @import "addResponse";
 @import "responses";
@@ -59,6 +61,7 @@ body {
     font-family: 'font-awesome', sans-serif;
     background: $background;
     margin: 0;
+    font-size: 20px;
 }
 input {
   border: none;
@@ -72,7 +75,7 @@ input {
 button {
   border: none;
   margin: none;
-  min-height: 3vh;
+  min-height: 2em;
   text-decoration: none;
   background-color: $primaryColor;
   display: block;

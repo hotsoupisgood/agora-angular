@@ -2,11 +2,12 @@ module.exports = function($http, $rootScope, accountService) {
 
     this.submit = function(askedQuestion, questionsTags) {
         //logged/not
+        console.log(questionsTags);
         return $http({
             method: 'POST',
             url: 'http://api.iex.ist/full/question/',
             //production params
-            params: {
+            data: {
                 text: askedQuestion,
                 tags: questionsTags
             },
@@ -23,7 +24,9 @@ module.exports = function($http, $rootScope, accountService) {
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            console.log('errorCallback, response: ' + response.data);
+            console.log('errorCallback, response: ');
+            console.log(response.data);
+            return false;
         });
     }
 };

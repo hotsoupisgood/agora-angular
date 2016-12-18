@@ -1,6 +1,8 @@
 .loginPage {
   display: flex;
   flex-direction: row;
+  margin-left: 30vw;
+  margin-right: 30vw;
   @media (pointer:coarse) {
 
       img {
@@ -35,9 +37,11 @@
     input {
       margin: 10px;
       padding: 5px;
+      font-size: 1.0em;
     }
     button {
-      margin: 10px;
+      font-size: 1.0em;
+      height: 30px;
     }
     label {
       margin: 10px;

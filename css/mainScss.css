@@ -1,8 +1,92 @@
 @import "https://fonts.googleapis.com/css?family=Amatic+SC:700";
+.tag {
+  border: 1px solid lightgreen;
+  border-radius: .1em;
+  text-align: center;
+  margin: .2em;
+}
+.tag p {
+  margin: 0 .2em;
+}
+
+.siteBanner {
+  z-index: 10;
+  color: black;
+  background: #64d3fb;
+  transition: max-height 1s;
+  overflow: hidden;
+  max-height: 12em;
+}
+.siteBanner .agoraDude {
+  width: 70px;
+  height: 110px;
+}
+.siteBanner .centeredPouch {
+  padding: 20px;
+  font-family: 'Amatic SC', cursive;
+}
+.siteBanner .title {
+  font-size: 100px;
+}
+.siteBanner a {
+  color: black;
+  text-decoration: none;
+}
+.siteBanner .about {
+  font-size: 20px;
+}
+
+.smallHead {
+  max-height: 3em;
+}
+.smallHead .centeredPouch {
+  padding: 2px !important;
+}
+.smallHead .centeredPouch .about {
+  opacity: 0;
+  display: none;
+}
+.smallHead .centeredPouch .title {
+  font-size: 2.75em;
+}
+
 .error_code .desat {
   filter: grayscale(100%);
 }
 
+.addResponse .modules {
+  display: flex;
+  flex-direction: column;
+}
+.addResponse .modules .moduleTitles {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 3;
+}
+.addResponse .modules .moduleTitles input {
+  min-height: 3vh;
+  flex-grow: 10;
+}
+.addResponse .modules .moduleResponses {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 7;
+}
+.addResponse .modules .moduleResponses textarea {
+  flex-grow: 10;
+  min-height: 8vh;
+}
+.addResponse .bigTitle input {
+  min-height: 3vh;
+}
+.addResponse .submitResponse {
+  display: flex;
+  flex-direction: row;
+}
+.addResponse .submitResponse button {
+  min-height: 3vh;
+  flex-grow: 10;
+}
 .addResponse ol li {
   display: list-item;
   font-size: 12px;
@@ -13,28 +97,12 @@
   background-color: white;
 }
 
-.responsesContainer.ng-enter, .responsesContainer.ng-leave {
-  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s;
-}
-
-.responsesContainer.ng-enter,
-.responsesContainer.ng-leave.ng-leave-active {
-  opacity: 0;
-}
-
-.responsesContainer.ng-leave,
-.responsesContainer.ng-enter.ng-enter-active {
-  opacity: 1;
-}
-
 .addResponseButton {
   color: black;
-  width: 100%;
-  height: 35px;
-  border: none;
+  border: 1px solid lightblue;
   border-radius: 2px;
-  font-size: 15px;
-  background: #bfebfb;
+  background: white;
+  margin: .5em;
 }
 
 .responseButtonActive {
@@ -43,7 +111,6 @@
 }
 
 .addResponseBody {
-  background-color: #e1f6fd !important;
   padding: 10px;
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -246,52 +313,12 @@
     font-size: 2vw;
   }
 }
-.siteBanner {
-  z-index: -999;
-  color: black;
-  background: #77d5f7;
-  transition: max-height 1s;
-  overflow: hidden;
-  max-height: 12em;
-}
-.siteBanner .agoraDude {
-  width: 70px;
-  height: 110px;
-}
-.siteBanner .centeredPouch {
-  padding: 20px;
-  font-family: 'Amatic SC', cursive;
-}
-.siteBanner .title {
-  font-size: 100px;
-}
-.siteBanner a {
-  color: black;
-  text-decoration: none;
-}
-.siteBanner .about {
-  font-size: 20px;
-}
-
-.smallHead {
-  max-height: 3em;
-}
-.smallHead .centeredPouch {
-  padding: 2px !important;
-}
-.smallHead .centeredPouch .about {
-  opacity: 0;
-  display: none;
-}
-.smallHead .centeredPouch .title {
-  font-size: 2.75em;
-}
-
 .management {
   position: fixed;
   width: 100%;
   top: 0;
   box-shadow: 3px 3px 3px 2px rgba(182, 182, 182, 0.45);
+  z-index: 10;
 }
 
 header {
@@ -302,8 +329,8 @@ header {
 }
 header form {
   display: inline-flex;
-  width: auto;
   padding: 3px;
+  margin: 0, 2vw, 0, 2vw;
   height: 20px;
 }
 header form input {
@@ -311,9 +338,13 @@ header form input {
   flex-grow: 10;
 }
 header form button {
+  position: absolute;
+  background: rgba(255, 255, 255, 0);
+  color: black;
+  z-index: 11;
+  bottom: 1px;
+  right: 7px;
   border-radius: 0px 2px 2px 0px;
-  font-size: 11px;
-  flex-grow: 1;
 }
 header button {
   font-size: 13px;
@@ -398,7 +429,6 @@ header button {
 }
 .questionSubHeader {
   width: 100%;
-  background: #77d5f7;
 }
 
 .orderContainer {
@@ -411,7 +441,6 @@ header button {
 }
 
 .activeQuestion {
-  background: #effafe;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
 }
@@ -437,9 +466,13 @@ header button {
   opacity: 1;
 }
 
+.questionStream .questionContainer {
+  border-top: 1px solid lightgrey;
+}
 .questionStream .questionContainerActive {
-  border: 1px solid black;
+  box-shadow: 3px 3px 3px 2px rgba(182, 182, 182, 0.45);
   border-radius: 2px;
+  z-index: 2;
 }
 .questionStream ul {
   padding-left: 0;
@@ -453,13 +486,12 @@ header button {
 }
 .questionStream ul li .questionTitle {
   border: none;
-  border-top: 1px solid lightgrey;
   padding: 15px;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0);
+  background: white;
   color: black;
-  display: block;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
   border-radius: 0;
   padding: 1;
   box-shadow: none;
@@ -473,6 +505,8 @@ header button {
 .loginPage {
   display: flex;
   flex-direction: row;
+  margin-left: 30vw;
+  margin-right: 30vw;
 }
 @media (pointer: coarse) {
   .loginPage img {
@@ -504,9 +538,11 @@ header button {
 .loginPage form input {
   margin: 10px;
   padding: 5px;
+  font-size: 1.0em;
 }
 .loginPage form button {
-  margin: 10px;
+  font-size: 1.0em;
+  height: 30px;
 }
 .loginPage form label {
   margin: 10px;
@@ -581,6 +617,7 @@ body {
   font-family: 'font-awesome', sans-serif;
   background: white;
   margin: 0;
+  font-size: 20px;
 }
 
 input {
@@ -595,7 +632,7 @@ input {
 button {
   border: none;
   margin: none;
-  min-height: 3vh;
+  min-height: 2em;
   text-decoration: none;
   background-color: #db3a3a;
   display: block;

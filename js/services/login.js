@@ -23,9 +23,13 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             // set cookie
-            $cookies.put('username', inputUsername);
-            $cookies.put('password', inputPassword);
-            $cookies.put('key', $rootScope.accountInfo.key);
+            if (remember) {
+              $cookies.put('username', inputUsername);
+              $cookies.put('password', inputPassword);
+              $cookies.put('key', $rootScope.accountInfo.key);
+            }else {
+              $rootScope.rememberLogin = false;
+            }
             $location.url('/questions');
           // }
           //debug response callback logs

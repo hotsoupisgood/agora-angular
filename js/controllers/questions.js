@@ -1,10 +1,17 @@
-module.exports = function($scope, $routeParams, $route, $cookies, upVoteService, $location, $anchorScroll, $timeout,
-    accountService, questionsTopService, questionsSearchService, scrollService) {
+module.exports = function($scope, $routeParams, $route, upVoteService, $location,
+    accountService, questionsTopService, questionsSearchService, scrollService, getSingleQuestionService) {
     // routing goodies
     $scope.name = 'top30';
     $scope.$params = $routeParams;
     //manage questions
-    $scope.currentPage = 0;
+    // if ($routeParams.page !=) {
+    console.log($routeParams.page);
+      $scope.currentPage = $routeParams.page;
+      console.log($routeParams.page +'.....'+ $scope.currentPage);
+    // }
+    // else {
+      // $scope.currentPage = 0;
+    // }
     $scope.startQuestion;
     $scope.currentSearchTerm = '';
     $scope.isCurrentSearchTermEmpty = true;
@@ -41,57 +48,58 @@ module.exports = function($scope, $routeParams, $route, $cookies, upVoteService,
                     $scope.questions = response.objects;
                     $scope.isQueryEmpty = false;
                     $scope.gotQuestions = true;
-                    questionsTopService.get($scope.currentPage, $scope.order, 'full')
-                        .then(function(response) {
-                            $scope.questions = response.objects;
-                            $scope.isQueryEmpty = false;
-                        });
                 } else {
                     $scope.gotQuestions = false;
                 }
             });
     };
-    $scope.orderDate = function() {
-        $scope.order = 'date';
-        $scope.refresh();
-    };
-    $scope.orderAlphabet = function() {
-        $scope.order = 'text';
-        $scope.refresh();
-    };
+    // $scope.orderDate = function() {
+    //     $scope.order = 'date';
+    //     $scope.refresh();
+    // };
+    // $scope.orderAlphabet = function() {
+    //     $scope.order = 'text';
+    //     $scope.refresh();
+    // };
     //util
-    $scope.refresh = function() {
-        if ($scope.isCurrentSearchTermEmpty) {
-            $scope.questions = {};
-            $scope.getTopQuestions();
-            //
-        } else {
-            $scope.questions = {};
-            $scope.getSearchQuery();
-        }
-        $scope.isQueryEmpty = false;
-    };
+    // $scope.refresh = function() {
+    //     if ($scope.isCurrentSearchTermEmpty) {
+    //         $scope.questions = {};
+    //         $scope.getTopQuestions();
+    //         //
+    //     } else {
+    //         $scope.questions = {};
+    //         $scope.getSearchQuery();
+    //     }
+    //     $scope.isQueryEmpty = false;
+    // };
     //go back to first page
-    $scope.resetFirstPage = function() {
-        $scope.currentPage = 0;
-        $scope.startQuestion = 0;
-        $scope.isQueryEmpty = false;
-        scroll(0, 0);
-    };
+    // $scope.resetFirstPage = function() {
+    //     $scope.currentPage = 0;
+    //     $scope.startQuestion = 0;
+    //     $scope.isQueryEmpty = false;
+    //     scroll(0, 0);
+    // };
     //go forward a page
     $scope.nextPage = function() {
-        $scope.questions = {};
+        // $scope.questions = {};
         $scope.currentPage++;
-        $scope.getTopQuestions();
-        scroll(0, 0);
+        // console.log($scope.currentPage);
+        return $scope.currentPage;
+
+        // $scope.getTopQuestions();
+        // scroll(0, 0);
     };
     //go back a page
     $scope.backPage = function() {
-        $scope.questions = {};
-        if ($scope.currentPage > 0)
-            $scope.currentPage--;
-        $scope.getTopQuestions();
-        scroll(0, 0);
+        // $scope.questions = {};
+        if ($scope.currentPage > 0){
+          $scope.currentPage--;
+          console.log($scope.currentPage);
+          return $scope.currentPage;
+        }
+        // $scope.getTopQuestions();
+        // scroll(0, 0);
     };
     //get current page num
     $scope.getcurrentPage = function() {
