@@ -6,16 +6,23 @@
                     <div class="container-row">
                         {{q.text}}
                     </div>
-                    <div class="container-row">
-                        <p>
+                    <div class="belowTitle">
                             {{q.date}}
-                        </p>
+                        <div class="fill-space">
+
+                        </div>
+                          <label>responses <i class="fa fa-chevron-down" aria-hidden="true"></i></label>
+
                     </div>
                 </button>
+
                 <div class="subcontrol">
+                  <label>
+                    tags:
                     <a class="tag infoButton" ng-href="#tag/{{tag.id}}" ng-repeat="tag in q.tags">
                         {{tag.name}}
                     </a>
+                  </label>
                     <div class="fill-space"></div>
                     <a class="answer doButton" ng-href="#answer/{{q.id}}">
                         Answer this question
