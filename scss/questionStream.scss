@@ -59,12 +59,11 @@ $phoneButtonHeight: 15vw;
       .subcontrol {
         display: flex;
         flex-direction: row;
-        margin-bottom: .2em;
+        margin-bottom: .35em;
         font-size: .6em;
         color: grey;
         padding-left: 6px;
         a {
-          // border: 1px solid lightgrey;
           border-radius: .1em;
           text-decoration: none;
           padding: .2em;
@@ -72,7 +71,7 @@ $phoneButtonHeight: 15vw;
           color: grey;
         }
         .tag{
-
+          padding: .1em;
         }
         .answer {
 
@@ -80,13 +79,13 @@ $phoneButtonHeight: 15vw;
       }
     }
     .questionContainerActive {
-      // border: 1px solid black;
-      box-shadow: 3px 3px 3px 2px rgba(#b6b6b6, 0.45);
+      box-shadow: 0px 0px 3px 3px rgba(#b6b6b6, 0.45);
       border-radius: $standardBorderRadius;
       z-index: 2;
     }
     ul {
         //kill random padding
+        margin-top: 0;
         padding-left: 0;
         //contiue
         list-style: none;
@@ -104,21 +103,28 @@ $phoneButtonHeight: 15vw;
                 border-radius: 0;
                 box-shadow: none;
                 font-size: 1rem;
+                text-decoration: none;
                 .belowTitle {
                   display: flex;
                   flex-direction: row;
                   font-size: .7em;
                   color: grey;
-                  margin-top: .2em;
+                  margin-top: 1em;
                   margin-bottom: .2em;
 
                 }
             }
+            .questionTitle:hover {
+              text-decoration: underline;
+            }
         }
     }
     .pagerContainer {
-        button {
+        a {
             margin-left: 10px;
+            text-decoration: none;
+            color: black;
+            font-size: .7em;
         }
     }
 }

@@ -9,10 +9,13 @@ module.exports = function($routeProvider, $locationProvider) {
             controller: 'submitResponseFormController'
         }).when('/ask', {
             templateUrl: 'html-components/ask-question-page.html'
-        }).when('/questions/:page', {
+        }).when('/discover/:page', {
             templateUrl: 'html-components/top30.html',
             controller: 'questions'
-        }).when('/search', {
+        }).when('/question/:questionId', {
+            templateUrl: 'html-components/question-full.html',
+            controller: 'questionController'
+        }).when('/search/:searchQuery', {
             templateUrl: 'html-components/questionsSearch.html',
             controller: 'questionSearchController'
         }).when('/user/:username', {
@@ -28,10 +31,8 @@ module.exports = function($routeProvider, $locationProvider) {
             templateUrl: 'html-components/login.html',
             controller: 'loginController'
         }).otherwise({
-            redirectTo: '/questions/0'
+            redirectTo: '/discover/0'
         });
-        // one day....
-        // $locationProvider.html5Mode(true);
 };
 
 },{}],2:[function(require,module,exports){
@@ -141,6 +142,9 @@ module.exports =  function($scope, $rootScope, $route,
     $scope.questions = {};
     // $cookies.put('lastScrollLocation', 0);
     $rootScope.rememberLogin = true;
+    $scope.back = function() {
+      window.history.back();
+    }
     // $scope.minimiseHeader = function (isMin) {
     //   $scope.minBanner = isMin;
     //   $cookies.put('minBanner', $scope.minBanner)
@@ -179,23 +183,30 @@ module.exports =  function($scope, userService) {
 };
 
 },{}],10:[function(require,module,exports){
-module.exports = function($scope, $anchorScroll, scrollService, getSingleQuestionService) {
+module.exports = function($scope, $routeParams, getSingleQuestionService) {
     $scope.name = 'questionController';
     //init
-    $scope.isBodyHidden = false;
-    $scope.isAddResponseHidden = false;
-    $scope.responses;
-    // getSingleQuestionService.get($scope.id).then(function (response) {
-    //   $scope.responses = response;
-    // });
-    $scope.onClickOfQuestion = function (id) {
-      $scope.isBodyHidden=!$scope.isBodyHidden;
+    // $scope.isBodyHidden = false;
+    // $scope.isAddResponseHidden = false;
+    $scope.question = {};
+    $scope.responses = {};
+    $scope.questionId = $routeParams.questionId;
+
+    $scope.getQuestionFull = function () {
+      getSingleQuestionService.get($scope.questionId).then(function (response) {
+        $scope.question = response;
+      });
+    }
+    $scope.getQuestionFull();
+
+    // $scope.onClickOfQuestion = function (id) {
+      // $scope.isBodyHidden=!$scope.isBodyHidden;
       // if ($scope.isBodyHidden) {
       //   scrollService.storeLastOpen(id);
       // }else {
       //   scrollService.storeLastOpen('')
       // }
-    };
+    // };
     // $scope.shouldOpen = function (id) {
     //   console.log('id: ' + scrollService.getLastOpen());
     //   if (scrollService.getLastOpen() == id) {
@@ -263,7 +274,6 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
                 }
             });
     };
-    // $scope.getTopQuestions();
     // $scope.orderDate = function() {
     //     $scope.order = 'date';
     //     $scope.refresh();
@@ -272,48 +282,21 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
     //     $scope.order = 'text';
     //     $scope.refresh();
     // };
-    //util
-    // $scope.refresh = function() {
-    //     if ($scope.isCurrentSearchTermEmpty) {
-    //         $scope.questions = {};
-    //         $scope.getTopQuestions();
-    //         //
-    //     } else {
-    //         $scope.questions = {};
-    //         $scope.getSearchQuery();
-    //     }
-    //     $scope.isQueryEmpty = false;
-    // };
-    //go back to first page
-    // $scope.resetFirstPage = function() {
-    //     $scope.currentPage = 0;
-    //     $scope.startQuestion = 0;
-    //     $scope.isQueryEmpty = false;
-    //     scroll(0, 0);
-    // };
     //go forward a page
     $scope.nextPage = function() {
-        // $scope.questions = {};
-        $scope.currentPage++;
+        $scope.currentPage = 1 + parseInt($routeParams.page, 10);
         return $scope.currentPage;
-
-        // $scope.getTopQuestions();
-        // scroll(0, 0);
     };
     //go back a page
     $scope.backPage = function() {
-        // $scope.questions = {};
-        if ($scope.currentPage > 0){
-          $scope.currentPage--;
+        if ($routeParams.page > 0){
+          $scope.currentPage =  $routeParams.page-1;
           console.log($scope.currentPage);
           return $scope.currentPage;
         }
-        // $scope.getTopQuestions();
-        // scroll(0, 0);
-    };
-    //get current page num
-    $scope.getcurrentPage = function() {
-        return $scope.currentPage;
+        else {
+          return $routeParams.page;
+        }
     };
 };
 
@@ -446,7 +429,7 @@ module.exports = function($scope, submitQuestionService) {
 };
 
 },{}],15:[function(require,module,exports){
-module.exports = function($scope, $routeParams, submitResponseService) {
+module.exports = function($scope, $routeParams, submitResponseService, getSingleQuestionService) {
     $scope.name = 'submitResponseFormController';
     $scope.response = '';
     $scope.moduleTitle = [];
@@ -456,6 +439,14 @@ module.exports = function($scope, $routeParams, submitResponseService) {
     $scope.success = false;
     $scope.failed = false;
     $scope.questionId = $routeParams.questionId;
+    $scope.question = {}
+    $scope.getQuestion = function () {
+      getSingleQuestionService.get($scope.questionId).then(function (response) {
+        console.log(response);
+        $scope.question = response;
+      })
+    }
+    $scope.getQuestion();
     $scope.addModule = function() {
       if ($scope.moduleIterator < 8) {
         $scope.modules.push({
@@ -491,6 +482,8 @@ module.exports = function($scope, $rootScope, $route, $routeParams, userService)
     $scope.$params = $routeParams;
     $scope.info = {};
     $scope.questions = {};
+    $scope.showQuestions = false;
+    $scope.showResponses = false;
     $scope.populateSubmitedQuestions = function () {
       userService.get($routeParams.username).then(function(response) {
         $scope.info = response;
@@ -498,7 +491,12 @@ module.exports = function($scope, $rootScope, $route, $routeParams, userService)
       });
     };
     $scope.populateSubmitedQuestions();
-
+    $scope.showQ = function () {
+      $scope.showQuestions = !$scope.showQuestions;
+    }
+    $scope.showR = function () {
+      $scope.showResponses = !$scope.showResponses;
+    }
 };
 
 },{}],17:[function(require,module,exports){
@@ -605,7 +603,7 @@ module.exports = function($http) {
         //request
         var returnData = $http({
             method: 'GET',
-            url: 'http://api.iex.ist/question/'+id,
+            url: 'http://api.iex.ist/full/question/' + id,
             headers: {
                 'Content-type': 'application/json'
             }
@@ -706,13 +704,10 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
 },{}],22:[function(require,module,exports){
 module.exports = function ($rootScope, $cookies, userService) {
   this.submit = function () {
-      userService.setIsLoggedIn(false);
-      userService.setAccountInfo(null);
       $rootScope.accountInfo = null;
       $rootScope.isLoggedIn = false;
       $cookies.remove('username');
       $cookies.remove('password');
-      // $location.path('/login');
       console.log('logged out');
   };
 }

@@ -5,6 +5,9 @@ module.exports =  function($scope, $rootScope, $route,
     $scope.questions = {};
     // $cookies.put('lastScrollLocation', 0);
     $rootScope.rememberLogin = true;
+    $scope.back = function() {
+      window.history.back();
+    }
     // $scope.minimiseHeader = function (isMin) {
     //   $scope.minBanner = isMin;
     //   $cookies.put('minBanner', $scope.minBanner)

@@ -1,7 +1,20 @@
 .addResponse {
     margin-left: 3em;
     margin-right: 3em;
+    .question{
+      border-bottom:1px solid black;
+      margin-bottom: 1em;
+    }
+    .bigTitle {
+      border-bottom:1px solid grey;
+        input {
+            min-height: 3vh;
+        }
 
+        .addModule {
+            background: rgba(45, 191, 169, 0.22);
+        }
+    }
     .note {
         color: lightgrey;
         font-size: 0.6em;
@@ -30,16 +43,6 @@
                 flex-grow: 10;
                 min-height: 8vh;
             }
-        }
-    }
-
-    .bigTitle {
-        input {
-            min-height: 3vh;
-        }
-
-        .addModule {
-            background: rgba(45, 191, 169, 0.22);
         }
     }
 

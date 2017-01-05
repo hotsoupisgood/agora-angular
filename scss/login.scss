@@ -1,8 +1,6 @@
 .loginPage {
   display: flex;
   flex-direction: row;
-  margin-left: 30vw;
-  margin-right: 30vw;
   @media (pointer:coarse) {
 
       img {
@@ -16,35 +14,29 @@
           font-size: 3vw;
         }
         label {
-          font-size: 3vw;
         }
       }
   }
-  img {
-    margin: 30px;
-    width: 20%;
-    height: 20%;
-  }
   .loginContainer {
       padding: 20px;
-      margin-left: 50vw;
       margin: 30px;
-      width: 45%;
       border-radius: 10px;
       flex-grow: 4;
-  }
-  form {
-    input {
-      margin: 10px;
-      padding: 5px;
-      font-size: 1.0em;
-    }
-    button {
-      font-size: 1.0em;
-      height: 30px;
-    }
-    label {
-      margin: 10px;
-    }
+      form {
+        font-size: .8em;
+        max-width: 25em;
+        input {
+          margin-bottom: 1em;
+          padding: .3em;
+        }
+        button {
+        }
+        label {
+          // margin: 10px;
+        }
+        .loginFormContainer{
+          justify-content: center;
+        }
+      }
   }
 }

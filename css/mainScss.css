@@ -1,4 +1,47 @@
 @import "https://fonts.googleapis.com/css?family=Amatic+SC:700";
+.single-question {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.single-question .qHeader .subHeader {
+  display: flex;
+  flex-direction: row;
+  font-size: .7em;
+  color: grey;
+  margin-top: .3em;
+  margin-bottom: .2em;
+}
+.single-question .qHeader .subHeader a {
+  color: grey;
+}
+.single-question .qHeader .subHeader .tag {
+  text-decoration: none;
+}
+.single-question .responses {
+  margin-top: .5em;
+}
+.single-question .responses .total {
+  border-bottom: 1px solid lightgrey;
+}
+.single-question .responses .response {
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+}
+.single-question .responses .response .header {
+  display: flex;
+  flex-direction: column;
+}
+.single-question .responses .response .header .subHeader {
+  display: flex;
+  flex-direction: row;
+}
+.single-question .responses .response .sections {
+  margin-top: .5em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
 .siteBanner {
   z-index: 10;
   color: black;
@@ -48,6 +91,19 @@
   margin-left: 3em;
   margin-right: 3em;
 }
+.addResponse .question {
+  border-bottom: 1px solid black;
+  margin-bottom: 1em;
+}
+.addResponse .bigTitle {
+  border-bottom: 1px solid grey;
+}
+.addResponse .bigTitle input {
+  min-height: 3vh;
+}
+.addResponse .bigTitle .addModule {
+  background: rgba(45, 191, 169, 0.22);
+}
 .addResponse .note {
   color: lightgrey;
   font-size: 0.6em;
@@ -73,12 +129,6 @@
 .addResponse .modules .moduleResponses textarea {
   flex-grow: 10;
   min-height: 8vh;
-}
-.addResponse .bigTitle input {
-  min-height: 3vh;
-}
-.addResponse .bigTitle .addModule {
-  background: rgba(45, 191, 169, 0.22);
 }
 .addResponse .submitResponse {
   display: flex;
@@ -256,8 +306,11 @@
   display: flex;
   flex-flow: column;
 }
-.account .accountStats h4 {
-  border-bottom: 1px solid lightgrey;
+.account .accountStats .subheader .details {
+  display: flex;
+  align-items: center;
+  font-size: .6em;
+  color: grey;
 }
 .account .accountStats .container-row p {
   margin-right: 5px;
@@ -474,7 +527,7 @@ header button {
 .questionStream .questionContainer .subcontrol {
   display: flex;
   flex-direction: row;
-  margin-bottom: .2em;
+  margin-bottom: .35em;
   font-size: .6em;
   color: grey;
   padding-left: 6px;
@@ -486,12 +539,16 @@ header button {
   margin-left: 1em;
   color: grey;
 }
+.questionStream .questionContainer .subcontrol .tag {
+  padding: .1em;
+}
 .questionStream .questionContainerActive {
-  box-shadow: 3px 3px 3px 2px rgba(182, 182, 182, 0.45);
+  box-shadow: 0px 0px 3px 3px rgba(182, 182, 182, 0.45);
   border-radius: 2px;
   z-index: 2;
 }
 .questionStream ul {
+  margin-top: 0;
   padding-left: 0;
   list-style: none;
   display: flex;
@@ -510,24 +567,29 @@ header button {
   border-radius: 0;
   box-shadow: none;
   font-size: 1rem;
+  text-decoration: none;
 }
 .questionStream ul li .questionTitle .belowTitle {
   display: flex;
   flex-direction: row;
   font-size: .7em;
   color: grey;
-  margin-top: .2em;
+  margin-top: 1em;
   margin-bottom: .2em;
 }
-.questionStream .pagerContainer button {
+.questionStream ul li .questionTitle:hover {
+  text-decoration: underline;
+}
+.questionStream .pagerContainer a {
   margin-left: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: .7em;
 }
 
 .loginPage {
   display: flex;
   flex-direction: row;
-  margin-left: 30vw;
-  margin-right: 30vw;
 }
 @media (pointer: coarse) {
   .loginPage img {
@@ -539,34 +601,23 @@ header button {
   .loginPage form button {
     font-size: 3vw;
   }
-  .loginPage form label {
-    font-size: 3vw;
-  }
-}
-.loginPage img {
-  margin: 30px;
-  width: 20%;
-  height: 20%;
 }
 .loginPage .loginContainer {
   padding: 20px;
-  margin-left: 50vw;
   margin: 30px;
-  width: 45%;
   border-radius: 10px;
   flex-grow: 4;
 }
-.loginPage form input {
-  margin: 10px;
-  padding: 5px;
-  font-size: 1.0em;
+.loginPage .loginContainer form {
+  font-size: .8em;
+  max-width: 25em;
 }
-.loginPage form button {
-  font-size: 1.0em;
-  height: 30px;
+.loginPage .loginContainer form input {
+  margin-bottom: 1em;
+  padding: .3em;
 }
-.loginPage form label {
-  margin: 10px;
+.loginPage .loginContainer form .loginFormContainer {
+  justify-content: center;
 }
 
 .advancedSearch {
@@ -626,6 +677,19 @@ header button {
   margin-top: 6em;
 }
 
+.back {
+  margin-bottom: 1em;
+  font-size: .7em;
+}
+.back .click-area {
+  cursor: pointer !important;
+}
+
+.detailText {
+  color: grey;
+  font-size: 0.6em;
+}
+
 .contentBigHead {
   margin-top: 15em;
 }
@@ -672,6 +736,10 @@ button {
 
 .doButton {
   border: 0.5px solid rgba(50, 140, 191, 0.46);
+}
+
+.lightEmphasisButton {
+  border-bottom: .5px solid lightgrey;
 }
 
 .plainBoarderedButton {

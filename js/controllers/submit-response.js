@@ -1,4 +1,4 @@
-module.exports = function($scope, $routeParams, submitResponseService) {
+module.exports = function($scope, $routeParams, submitResponseService, getSingleQuestionService) {
     $scope.name = 'submitResponseFormController';
     $scope.response = '';
     $scope.moduleTitle = [];
@@ -8,6 +8,14 @@ module.exports = function($scope, $routeParams, submitResponseService) {
     $scope.success = false;
     $scope.failed = false;
     $scope.questionId = $routeParams.questionId;
+    $scope.question = {}
+    $scope.getQuestion = function () {
+      getSingleQuestionService.get($scope.questionId).then(function (response) {
+        console.log(response);
+        $scope.question = response;
+      })
+    }
+    $scope.getQuestion();
     $scope.addModule = function() {
       if ($scope.moduleIterator < 8) {
         $scope.modules.push({

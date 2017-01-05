@@ -1,5 +1,24 @@
+
 <form class="container-col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
-  <div class="bigTitle container-row border-thin-black-b margin-b padding-b">
+  <div class="back">
+    <div class="click-area" ng-click="back()">
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      back
+    </div>
+  </div>
+<div class="question container-row">
+  {{question.text}}
+  <div class="fill-space">
+
+  </div>
+  <div class="detailText container-col">
+    <div class="fill-space">
+
+    </div>
+      {{question.date}}
+  </div>
+</div>
+  <div class="bigTitle container-row margin-b padding-b">
     <input class="fill-space margin-r" type="text" placeholder="brief response/ summary of sections" ng-model="response" required>
     <button class="addModule"type="button" ng-click="addModule()">Add Section</button>
   </div>

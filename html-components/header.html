@@ -1,11 +1,11 @@
 <div  class="management container-col" ng-init="revealedAskQuestion = false" ng-controller="headerController">
     <ng-include src="'html-components/splashPage.html'"></ng-include>
-    <header class="site-header" ng-init="selectedTab = 'questions'">
+    <header class="site-header" ng-init="selectedTab = 'discover'">
 
         <nav class="site-nav">
             <ul>
-                <li ng-class="{'active':selectedTab === 'questions'}">
-                    <a ng-href="#questions" ng-click="selectedTab = 'questions'">Questions</a>
+                <li ng-class="{'active':selectedTab === 'discover'}">
+                    <a ng-href="#discover" ng-click="selectedTab = 'discover'">Discover</a>
                 </li>
                 <li ng-class="{'active':selectedTab === 'login'}">
                     <a ng-href="#login" ng-show="!isLoggedIn" ng-click="selectedTab = 'login'">Login</a>

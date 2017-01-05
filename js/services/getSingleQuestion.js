@@ -4,7 +4,7 @@ module.exports = function($http) {
         //request
         var returnData = $http({
             method: 'GET',
-            url: 'http://api.iex.ist/question/'+id,
+            url: 'http://api.iex.ist/full/question/' + id,
             headers: {
                 'Content-type': 'application/json'
             }

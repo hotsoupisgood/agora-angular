@@ -8,10 +8,13 @@ module.exports = function($routeProvider, $locationProvider) {
             controller: 'submitResponseFormController'
         }).when('/ask', {
             templateUrl: 'html-components/ask-question-page.html'
-        }).when('/questions/:page', {
+        }).when('/discover/:page', {
             templateUrl: 'html-components/top30.html',
             controller: 'questions'
-        }).when('/search', {
+        }).when('/question/:questionId', {
+            templateUrl: 'html-components/question-full.html',
+            controller: 'questionController'
+        }).when('/search/:searchQuery', {
             templateUrl: 'html-components/questionsSearch.html',
             controller: 'questionSearchController'
         }).when('/user/:username', {
@@ -27,8 +30,6 @@ module.exports = function($routeProvider, $locationProvider) {
             templateUrl: 'html-components/login.html',
             controller: 'loginController'
         }).otherwise({
-            redirectTo: '/questions/0'
+            redirectTo: '/discover/0'
         });
-        // one day....
-        // $locationProvider.html5Mode(true);
 };

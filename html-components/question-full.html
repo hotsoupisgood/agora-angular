@@ -1,0 +1,74 @@
+<div class="single-question">
+  <div class="back">
+    <div class="click-area" ng-click="back()">
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      back
+    </div>
+  </div>
+  <div class="qHeader container-col">
+    <div class="container-row">
+      <div class="question">
+        {{question.text}}
+      </div>
+      <div class="fill-space"></div>
+      <div class="detailText">
+        {{question.date}}
+      </div>
+    </div>
+    <div class="container-row subHeader">
+      <a class="answer" ng-href="#answer/{{question.id}}" ng-show="isLoggedIn">
+          <u>
+              Respond
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+          </u>
+      </a>
+      <div ng-hide="isLoggedIn">
+          Please
+          <!-- <a class="" ng-href="#login"> -->
+              login
+          <!-- </a> -->
+          or
+          <!-- <a class="" ng-href="#createAccount"> -->
+              create an account
+          <!-- </a> -->
+          to answer the question!
+      </div>
+      <div class="fill-space"></div>
+      <label>
+        tags:
+        <a class="tag infoButton" ng-href="#tag/{{tag.id}}" ng-repeat="tag in question.tags">
+            {{tag.name}}
+        </a>
+      </label>
+    </div>
+  </div>
+  <div class="responses">
+    <div class="total">
+      <label>
+        {{question.total_responses}}
+        Responses
+      </label>
+    </div>
+      <div class="response" ng-repeat="response in question.responses">
+        <div class="header">
+          <div class="subHeader">
+            {{response.text}}
+            <div class="fill-space"></div>
+            <div class="detailText">
+              <label>
+                Writen {{response.date}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="sections" ng-repeat="section in response.modules">
+          <div class="section-header">
+            {{section.title}}
+          </div>
+          <div class="section-body">
+            {{section.body}}
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

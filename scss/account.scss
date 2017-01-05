@@ -6,8 +6,16 @@
     padding: 10px;
     display: flex;
     flex-flow: column;
-    h4 {
-      border-bottom:1px solid lightgrey
+    .subheader {
+      .contentTitle {
+        // font-size: 2em;
+      }
+      .details {
+        display: flex;
+        align-items: center;
+        font-size: .6em;
+        color: grey;
+      }
     }
     .container-row {
       p {

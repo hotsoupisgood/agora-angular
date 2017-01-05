@@ -4,16 +4,17 @@
         <h2>
             login
         </h2>
-        <form ng-controller="loginFormController" ng-submit="login()">
+        <form class="loginFormContainer" ng-controller="loginFormController" ng-submit="login()">
             <div class="container-col">
                 <input ng-model="username" type="text" class="" placeholder="username">
                 <input ng-model="password" type="password" class="" placeholder="password">
                 <div class="container-row">
-                    <button class="" type="submit">login</button>
+                    <button class="submitButton" type="submit">login</button>
                     <div class="fill-space"></div>
-                    <div>
-                        remember me:
-                        <input ng-model="remember" type="checkbox" value="">
+                    <div class="remember">
+                        <label>
+                          remember me:
+                        <input ng-model="remember" type="checkbox" value=""></label>
                     </div>
                 </div>
             </div>
