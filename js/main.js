@@ -13,14 +13,14 @@ var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'angular-toAr
 //config
 agoraApp.config(['$routeProvider', '$locationProvider', require('./config/routing.js')]);
 //services
-agoraApp.service('getSingleQuestionService',               require('./services/getSingleQuestion.js'));
+agoraApp.service('getSingleQuestionService',        require('./services/getSingleQuestion.js'));
 agoraApp.service('cookieService',                   require('./services/cookieUtil.js'));
 agoraApp.service('scrollService',                   require('./services/scroll.js'));
 agoraApp.service('submitResponseService',           require('./services/submitResponse.js'));
 agoraApp.service('submitQuestionService',           require('./services/submitQuestion.js'));
 agoraApp.service('questionsTopService',             require('./services/questionsTop.js'));
 agoraApp.service('questionsSearchService',          require('./services/questionsSearch.js'));
-agoraApp.service('accountService',                  require('./services/account.js'));
+agoraApp.service('userService',                     require('./services/user.js'));
 agoraApp.service('upVoteService',                   require('./services/upVote.js'));
 agoraApp.service('loginService',                    require('./services/login.js'));
 agoraApp.service('logoutService',                   require('./services/logout.js'));
@@ -30,7 +30,7 @@ agoraApp.service('createAccountService',            require('./services/createAc
 agoraApp.controller('questionController',           require('./controllers/question.js'));
 agoraApp.controller('mainController',               require('./controllers/main.js'));
 agoraApp.controller('aboutController',              require('./controllers/about.js'));
-agoraApp.controller('accountController',            require('./controllers/account.js'));
+agoraApp.controller('userController',               require('./controllers/user.js'));
 agoraApp.controller('createAccountController',      require('./controllers/createAccount.js'));
 agoraApp.controller('checkUsernameController',      require('./controllers/checkUsername.js'));
 agoraApp.controller('loginController',              require('./controllers/login.js'));

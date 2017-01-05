@@ -1,24 +1,32 @@
 <form class="container-col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
   <div class="bigTitle container-row border-thin-black-b margin-b padding-b">
-    <input class="fill-space margin-r" type="text" placeholder="title" ng-model="response" required>
-    <button type="button" ng-click="addModule()">Add Module</button>
-    <a href="#"></a>
+    <input class="fill-space margin-r" type="text" placeholder="brief response/ summary of sections" ng-model="response" required>
+    <button class="addModule"type="button" ng-click="addModule()">Add Section</button>
+  </div>
+  <div class="note">
+    note: Add sections if you want to make your response longer than one line :)
   </div>
   <div class="modules" ng-repeat="m in modules">
     <div class="moduleTitles">
-      <input class="" type="text" placeholder="section title (optional)" ng-model="m.title">
+      <input class="" type="text" placeholder="Section header (optional)" ng-model="m.title">
+      <button class="" type="button" ng-click="removeModule($index)">Delete section <i class="fa fa-times" aria-hidden="true"></i></button>
     </div>
     <div class="moduleResponses">
-      <textarea class="fill-space" rows="8" cols="50" placeholder="section body" ng-model="m.text" required></textarea>
+      <textarea class="fill-space" rows="8" cols="50" placeholder="Section body" ng-model="m.text" required></textarea>
     </div>
   </div>
   <div class="submitResponse">
-    <button ng-hide="success"type="submit">Submit Response</button>
+    <button class="submitButton" ng-hide="success"type="submit">Submit Response</button>
   </div>
 
   <div class="container-row" ng-show="success">
     <div class="fill-space"></div>
     <h4 style="color:green">SUCCESS!</h4>
+    <div class="fill-space"></div>
+  </div>
+  <div class="container-row" ng-show="failed">
+    <div class="fill-space"></div>
+    <h4 style="color:green">failed... try refreshing the page</h4>
     <div class="fill-space"></div>
   </div>
 </form>

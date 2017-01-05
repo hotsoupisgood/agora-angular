@@ -1,26 +1,37 @@
 <div class="container-col">
     <ul>
-        <li class="questionContainer" ng-controller="questionController" ng-repeat="q in questions" ng-init="isBodyHidden = shouldOpen(q.id)" ng-class="{'questionContainerActive':isBodyHidden === true}" >
-            <div class="container-row highlight-hover" ng-class="{'activeQuestion':isBodyHidden == true}">
-                <button class="questionTitle container-col" id="q.id" ng-click="onClickOfQuestion(q.id)">
+        <li class="questionContainer" ng-controller="questionController" ng-repeat="q in questions" ng-init="isBodyHidden = shouldOpen(q.id)" ng-class="{'questionContainerActive':isBodyHidden === true}">
+            <div class="container-col" ng-class="{'activeQuestion':isBodyHidden == true}">
+                <button class="questionTitle" id="q.id" ng-click="onClickOfQuestion(q.id)">
                     <div class="container-row">
-                      {{q.text}}
+                        {{q.text}}
                     </div>
                     <div class="container-row">
-                      <p>
-                        {{q.date}}
-                      </p>
-                    </div>
-                    <div class="contianer-row">
-                      <div class="tag" ng-repeat="tag in q.tags">
-                        <p>{{tag.name}}</p>
-                      </div>
-                      <a ng-href="#answer/{{q.id}}">Answer</a>
-                      <p ng-hide="isLoggedIn">
-                        Please <a ng-href="#login"> login </a> or <a ng-href="#createAccount"> create an account </a> to answer the question!
-                      </p>
+                        <p>
+                            {{q.date}}
+                        </p>
                     </div>
                 </button>
+                <div class="subcontrol">
+                    <a class="tag infoButton" ng-href="#tag/{{tag.id}}" ng-repeat="tag in q.tags">
+                        {{tag.name}}
+                    </a>
+                    <div class="fill-space"></div>
+                    <a class="answer doButton" ng-href="#answer/{{q.id}}">
+                        Answer this question
+                    </a>
+                    <div ng-hide="isLoggedIn">
+                        Please
+                        <a class="answer doButton" ng-href="#login">
+                            login
+                        </a>
+                        or
+                        <a class="answer doButton" ng-href="#createAccount">
+                            create an account
+                        </a>
+                        to answer the question!
+                    </div>
+                </div>
                 <!-- <button class="addResponseButton" ng-show="isLoggedIn" ng-click="isAddResponseHidden=!isAddResponseHidden"> -->
 
                 <!-- </button> -->
@@ -28,13 +39,13 @@
 
             <div class="expandedQuestion" ng-if="isBodyHidden">
                 <div class="responsesContainer">
-                  <ng-include src="'html-components/responses.html'"></ng-include>
+                    <ng-include src="'html-components/responses.html'"></ng-include>
 
-                  <div class="container-row" ng-if="!q.responses.length">
-                    <div class="fill-space"></div>
-                      <h4 class="centerText">no responses...</h4>
-                      <div class="fill-space"></div>
-                  </div>
+                    <div class="container-row" ng-if="!q.responses.length">
+                        <div class="fill-space"></div>
+                        <h4 class="centerText">no responses...</h4>
+                        <div class="fill-space"></div>
+                    </div>
                 </div>
             </div>
         </li>

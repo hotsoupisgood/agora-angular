@@ -8,23 +8,23 @@
                     <a ng-href="#questions" ng-click="selectedTab = 'questions'">Questions</a>
                 </li>
                 <li ng-class="{'active':selectedTab === 'login'}">
-                    <a ng-href="#login" ng-show="!isLoggedIn" ng-click="selectedTab = 'login'">login</a>
+                    <a ng-href="#login" ng-show="!isLoggedIn" ng-click="selectedTab = 'login'">Login</a>
                 </li>
                 <li ng-class="{'active':selectedTab === 'createAccount'}">
-                    <a ng-href="#createAccount" ng-show="!isLoggedIn" ng-click="selectedTab = 'createAccount'">new account</a>
+                    <a ng-href="#createAccount" ng-show="!isLoggedIn" ng-click="selectedTab = 'createAccount'">New Account</a>
                 </li>
-                <li ng-class="{'active':selectedTab === 'account'}">
-                    <a ng-href="#account" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">manage account</a>
-                </li>
+                <!-- <li ng-class="{'active':selectedTab === 'account'}">
+                    <a ng-href="#user/{{accountInfo.username}}" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">Manage Account</a>
+                </li> -->
             </ul>
         </nav>
         <nav class="site-nav">
             <ul>
               <li ng-class="{'active':selectedTab === 'about'}">
-                  <a ng-href="#about" ng-click="selectedTab = 'about'">about</a>
+                  <a ng-href="#about" ng-click="selectedTab = 'about'">About</a>
               </li>
                 <li ng-class="{'active':selectedTab === 'ask'}">
-                    <a ng-href="#ask" ng-click="selectedTab = 'ask'">ask question</a>
+                    <a ng-href="#ask" ng-click="selectedTab = 'ask'">Ask Question</a>
                 </li>
             </ul>
         </nav>

@@ -1,7 +1,5 @@
-module.exports = function ($cookies, $rootScope, $location, $http, accountService) {
+module.exports = function ($cookies, $rootScope, $location, $http, userService) {
   this.login = function(inputUsername, inputPassword, remember) {
-    $cookies.put('password', inputPassword);
-    console.log("imapas" + inputUsername+ inputPassword );
       $http({
           method: 'GET',
           url: 'http://api.iex.ist/full/login/',
@@ -16,10 +14,6 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
       }).then(function successCallback(response) {
           // this callback will be called asynchronously
           // when the response is available
-          // $location.path('/account');
-          // if (remember) {
-            accountService.setAccountInfo(response.data);
-            accountService.setIsLoggedIn(true);
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             // set cookie
@@ -31,9 +25,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
               $rootScope.rememberLogin = false;
             }
             $location.url('/questions');
-          // }
           //debug response callback logs
-          // console.log('successCallback, parsed: ' + JSON.stringify(response.data));
       }, function errorCallback(response) {
         $cookies.put('password', null);
           // called asynchronously if an error occurs
@@ -60,9 +52,9 @@ module.exports = function ($cookies, $rootScope, $location, $http, accountServic
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            // accountService.setAccountInfo(response.data);
+            // userService.setAccountInfo(response.data);
 
-            // accountService.setIsLoggedIn(true);
+
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             // set cookie

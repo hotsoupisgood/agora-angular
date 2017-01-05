@@ -56,6 +56,9 @@ $transparentColor: rgba(255, 255, 255, 0);
 .center-vertical {
   align-items: center;
 }
+.noWrap {
+  flex-wrap: nowrap;
+}
 .flex-left {
   justify-content: flex-start;
   align-items: flex-start;
@@ -81,7 +84,7 @@ $transparentColor: rgba(255, 255, 255, 0);
   background: darken($primaryColor, 20%);;
 }
 .highlight-hover:hover {
-  background: rgba(110, 210, 180, 0.08);
+  background: rgba(110, 210, 180, 0.08) !important;
 }
 .activeQuestion {
   background: rgba(110, 210, 180, 0.08);

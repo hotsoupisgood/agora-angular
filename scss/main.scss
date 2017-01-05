@@ -77,20 +77,32 @@ button {
   margin: none;
   min-height: 2em;
   text-decoration: none;
-  background-color: $primaryColor;
+  background-color: rgba(255, 255, 255, 0);
   display: block;
-  color: #FFF;
+  color: black;
   text-align: center;
   border-radius: $standardBorderRadius;
-  // padding:  3px;
-  // border: .5px solid black;
 }
-// button:hover {
-//   box-sizing: border-box;
-//   border: .5px solid black;
-// }
+.submitButton {
+  border: .5px solid rgb(54, 186, 83);
+}
+.infoButton {
+  border: .5px solid rgba(159, 38, 209, 0.22);
+}
+.doButton {
+  border: .5px solid rgba(50, 140, 191, 0.46);
+}
+.plainBoarderedButton {
+  border: .5px solid black;
+}
 button:focus {
   outline: none;
+}
+button:hover {
+  background: rgba(223, 170, 35, 0.05);
+}
+a:hover {
+  background: rgba(223, 170, 35, 0.05);
 }
 textarea {
   border: 1px ;

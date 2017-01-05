@@ -1,0 +1,18 @@
+    <div class="account container-col" ng-controller="userController">
+      <div class="container-row">
+        <h3>{{accountInfo.username}}'s account info</h3>
+      </div>
+        <div class="container-row fill-space accountStats">
+          <h4>Your Questions</h4>
+            <div class="container-row margin-r">
+                <p>Total Questions: </p>
+                <p>{{accountInfo.total_questions}}</p>
+            </div>
+            <div class="questionStream" ng-if="questions.length">
+              <ng-include src="'html-components/questionStreamTest.html'"> </ng-include>
+            </div>
+            <!-- <div class="container-row margin-r" ng-repeat="i in info">
+
+            </div> -->
+        </div>
+    </div>

@@ -1,11 +1,10 @@
 module.exports = function($scope, $routeParams, $route, upVoteService, $location,
-    accountService, questionsTopService, questionsSearchService, scrollService, getSingleQuestionService) {
+    userService, questionsTopService, questionsSearchService, scrollService, getSingleQuestionService) {
     // routing goodies
-    $scope.name = 'top30';
-    $scope.$params = $routeParams;
+    $scope.name = 'questions';
     //manage questions
     // if ($routeParams.page !=) {
-    console.log($routeParams.page);
+    // console.log($routeParams.page);
       $scope.currentPage = $routeParams.page;
       console.log($routeParams.page +'.....'+ $scope.currentPage);
     // }
@@ -45,6 +44,7 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
         questionsTopService.get($scope.currentPage, $scope.order, 'min')
             .then(function(response) {
                 if (response) {
+                  console.log(response);
                     $scope.questions = response.objects;
                     $scope.isQueryEmpty = false;
                     $scope.gotQuestions = true;
@@ -53,6 +53,7 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
                 }
             });
     };
+    // $scope.getTopQuestions();
     // $scope.orderDate = function() {
     //     $scope.order = 'date';
     //     $scope.refresh();
@@ -84,7 +85,6 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
     $scope.nextPage = function() {
         // $scope.questions = {};
         $scope.currentPage++;
-        // console.log($scope.currentPage);
         return $scope.currentPage;
 
         // $scope.getTopQuestions();

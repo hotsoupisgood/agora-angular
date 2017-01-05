@@ -1,13 +1,13 @@
-module.exports = function (accountService) {
+module.exports = function (userService) {
   this.submit = function () {
-    if (accountService.isLoggedIn) {
+    if (userService.isLoggedIn) {
         //request
         $http({
             method: 'POST',
             url: 'http://startandselect.com/scripts/UpVote.php',
             params: {
                 response_id: responseId,
-                user_id: accountService.startQuestion
+                user_id: userService.startQuestion
             },
             headers: {
               'Content-type': 'application/json'

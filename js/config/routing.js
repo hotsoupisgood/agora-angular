@@ -14,9 +14,9 @@ module.exports = function($routeProvider, $locationProvider) {
         }).when('/search', {
             templateUrl: 'html-components/questionsSearch.html',
             controller: 'questionSearchController'
-        }).when('/account', {
-            templateUrl: 'html-components/account.html',
-            controller: 'accountController'
+        }).when('/user/:username', {
+            templateUrl: 'html-components/user.html',
+            controller: 'userController'
         }).when('/about', {
             templateUrl: 'html-components/about.html',
             controller: 'aboutController'

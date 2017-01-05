@@ -1,4 +1,4 @@
-module.exports = function($scope, $anchorScroll, scrollService,getSingleQuestionService) {
+module.exports = function($scope, $anchorScroll, scrollService, getSingleQuestionService) {
     $scope.name = 'questionController';
     //init
     $scope.isBodyHidden = false;

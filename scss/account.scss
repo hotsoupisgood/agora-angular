@@ -1,9 +1,14 @@
 .account {
   margin: 20px;
+  display: flex;
+
   .accountStats {
-    background: lighten($secondaryColor, 49%);
-    border: 1px solid lightgrey;
     padding: 10px;
+    display: flex;
+    flex-flow: column;
+    h4 {
+      border-bottom:1px solid lightgrey
+    }
     .container-row {
       p {
         margin-right: 5px;

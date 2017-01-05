@@ -1,6 +1,6 @@
 
 module.exports =  function($scope, $routeParams, upVoteService,
-                            accountService, questionsTopService, questionsSearchService) {
+                            userService, questionsTopService, questionsSearchService) {
     // routing goodies
     $scope.name = 'questionSearchController';
     $scope.$params = $routeParams;
@@ -32,7 +32,7 @@ module.exports =  function($scope, $routeParams, upVoteService,
     // get request questions
     $scope.getSearchedQuestions = function() {
         //multiply page number for first question desired
-        $scope.startQuestion = $scope.currentPage * accountService.numIteratedPerPage;
+        $scope.startQuestion = $scope.currentPage * userService.numIteratedPerPage;
         questionsSearchService.get($scope.currentSearchTerm, $scope.startQuestion)
         .then(function (response) {
           $scope.questions = response;

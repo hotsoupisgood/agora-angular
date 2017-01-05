@@ -1,4 +1,4 @@
-module.exports = function($http, $rootScope, accountService) {
+module.exports = function($http, $rootScope, userService) {
 
     this.submit = function(askedQuestion, questionsTags) {
         //logged/not

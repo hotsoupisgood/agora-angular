@@ -1,5 +1,5 @@
-module.exports = function(accountService) {
+module.exports = function(userService) {
   this.getTotalNumberOfPages = function (totalQuestions) {
-    return totalQuestions / accountService.questionsAPage;
+    return totalQuestions / userService.questionsAPage;
   };
 };

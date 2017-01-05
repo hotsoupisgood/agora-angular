@@ -1,10 +1,10 @@
-module.exports = function ($http, accountService) {
+module.exports = function ($http, userService) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
           method: 'GET',
           url: 'http://api.iex.ist/full/question/search/',
           params: {
-              limit: accountService.numIteratedPerPage,
+              limit: userService.numIteratedPerPage,
               query: currentSearchTerm,
               offset: startQuestion
           },

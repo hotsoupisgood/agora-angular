@@ -1,14 +1,4 @@
 @import "https://fonts.googleapis.com/css?family=Amatic+SC:700";
-.tag {
-  border: 1px solid lightgreen;
-  border-radius: .1em;
-  text-align: center;
-  margin: .2em;
-}
-.tag p {
-  margin: 0 .2em;
-}
-
 .siteBanner {
   z-index: 10;
   color: black;
@@ -54,6 +44,15 @@
   filter: grayscale(100%);
 }
 
+.addResponse {
+  margin-left: 3em;
+  margin-right: 3em;
+}
+.addResponse .note {
+  color: lightgrey;
+  font-size: 0.6em;
+  margin-bottom: 1em;
+}
 .addResponse .modules {
   display: flex;
   flex-direction: column;
@@ -61,16 +60,15 @@
 .addResponse .modules .moduleTitles {
   display: flex;
   flex-direction: row;
-  flex-grow: 3;
 }
 .addResponse .modules .moduleTitles input {
   min-height: 3vh;
   flex-grow: 10;
+  margin-left: 20px;
 }
 .addResponse .modules .moduleResponses {
   display: flex;
   flex-direction: row;
-  flex-grow: 7;
 }
 .addResponse .modules .moduleResponses textarea {
   flex-grow: 10;
@@ -79,13 +77,15 @@
 .addResponse .bigTitle input {
   min-height: 3vh;
 }
+.addResponse .bigTitle .addModule {
+  background: rgba(45, 191, 169, 0.22);
+}
 .addResponse .submitResponse {
   display: flex;
   flex-direction: row;
 }
 .addResponse .submitResponse button {
-  min-height: 3vh;
-  flex-grow: 10;
+  min-height: 2em;
 }
 .addResponse ol li {
   display: list-item;
@@ -189,6 +189,10 @@
   align-items: center;
 }
 
+.noWrap {
+  flex-wrap: nowrap;
+}
+
 .flex-left {
   justify-content: flex-start;
   align-items: flex-start;
@@ -221,7 +225,7 @@
 }
 
 .highlight-hover:hover {
-  background: rgba(110, 210, 180, 0.08);
+  background: rgba(110, 210, 180, 0.08) !important;
 }
 
 .activeQuestion {
@@ -250,11 +254,15 @@
 
 .account {
   margin: 20px;
+  display: flex;
 }
 .account .accountStats {
-  background: white;
-  border: 1px solid lightgrey;
   padding: 10px;
+  display: flex;
+  flex-flow: column;
+}
+.account .accountStats h4 {
+  border-bottom: 1px solid lightgrey;
 }
 .account .accountStats .container-row p {
   margin-right: 5px;
@@ -372,7 +380,6 @@ header button {
   padding-top: .5em;
   padding-left: 1.5em;
   padding-right: 1.5em;
-  border-right: thin solid rgba(0, 0, 0, 0.2);
   height: calc($navbarHeight - 20px);
   display: inline;
 }
@@ -469,6 +476,21 @@ header button {
 .questionStream .questionContainer {
   border-top: 1px solid lightgrey;
 }
+.questionStream .questionContainer .subcontrol {
+  display: flex;
+  flex-direction: row;
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
+.questionStream .questionContainer .subcontrol a {
+  border-radius: .1em;
+  color: black;
+  text-decoration: none;
+  padding: .2em;
+  margin-right: 1em;
+  margin-left: 1em;
+  font-size: .7em;
+}
 .questionStream .questionContainerActive {
   box-shadow: 3px 3px 3px 2px rgba(182, 182, 182, 0.45);
   border-radius: 2px;
@@ -489,14 +511,11 @@ header button {
   padding: 15px;
   background: white;
   color: black;
-  display: flex;
-  flex-direction: column;
   text-align: left;
   border-radius: 0;
   padding: 1;
   box-shadow: none;
   font-size: 1rem;
-  flex-grow: 1;
 }
 .questionStream .pagerContainer button {
   margin-left: 10px;
@@ -634,15 +653,39 @@ button {
   margin: none;
   min-height: 2em;
   text-decoration: none;
-  background-color: #db3a3a;
+  background-color: rgba(255, 255, 255, 0);
   display: block;
-  color: #FFF;
+  color: black;
   text-align: center;
   border-radius: 2px;
 }
 
+.submitButton {
+  border: 0.5px solid #36ba53;
+}
+
+.infoButton {
+  border: 0.5px solid rgba(159, 38, 209, 0.22);
+}
+
+.doButton {
+  border: 0.5px solid rgba(50, 140, 191, 0.46);
+}
+
+.plainBoarderedButton {
+  border: .5px solid black;
+}
+
 button:focus {
   outline: none;
+}
+
+button:hover {
+  background: rgba(223, 170, 35, 0.05);
+}
+
+a:hover {
+  background: rgba(223, 170, 35, 0.05);
 }
 
 textarea {

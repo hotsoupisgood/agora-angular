@@ -1,13 +1,13 @@
-module.exports = function(accountService, $http) {
+module.exports = function(userService, $http) {
     this.get = function(currentPage, order, size) {
         //multiply page number for first question desired
-        var startQuestion = currentPage * accountService.questionsAPage;
+        var startQuestion = currentPage * userService.questionsAPage;
         //request
         var returnData = $http({
             method: 'GET',
             url: 'http://api.iex.ist/' + size + '/question/',
             params: {
-                limit: accountService.numIteratedPerPage,
+                limit: userService.numIteratedPerPage,
                 offset: startQuestion,
                 order_by: order
             },

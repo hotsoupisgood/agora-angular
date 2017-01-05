@@ -1,7 +1,7 @@
-module.exports = function ($rootScope, $cookies, accountService) {
+module.exports = function ($rootScope, $cookies, userService) {
   this.submit = function () {
-      accountService.setIsLoggedIn(false);
-      accountService.setAccountInfo(null);
+      userService.setIsLoggedIn(false);
+      userService.setAccountInfo(null);
       $rootScope.accountInfo = null;
       $rootScope.isLoggedIn = false;
       $cookies.remove('username');

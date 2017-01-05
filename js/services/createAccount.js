@@ -1,4 +1,4 @@
-module.exports = function ($http, $location, $rootScope, $cookies, accountService) {
+module.exports = function ($http, $location, $rootScope, $cookies, userService) {
   this.submit = function(inputUsername, inputPassword, remember) {
       $http({
           method: 'POST',
@@ -13,11 +13,11 @@ module.exports = function ($http, $location, $rootScope, $cookies, accountServic
       }).then(function successCallback(response) {
           // this callback will be called asynchronously
           // when the response is available
-          // accountService.setAccountInfo(response.data);
+          // userService.setAccountInfo(response.data);
           //show response for debug
           if (remember) {
-            accountService.setAccountInfo(response.data);
-            accountService.setIsLoggedIn(true);
+            userService.setAccountInfo(response.data);
+            userService.setIsLoggedIn(true);
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             // set cookie
