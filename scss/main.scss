@@ -48,7 +48,7 @@ $singleInputFormHeight: 20px;
     }
 }
 .content {
-  margin-top: 6em;
+  margin-top: 5em;
   // transition: margin-top 90ms;
 }
 .back {
@@ -63,7 +63,7 @@ $singleInputFormHeight: 20px;
   font-size: 0.6em;
 }
 .contentBigHead {
-  margin-top: 15em;
+  margin-top: 12em !important;
   // transition: margin-top 90ms;
 }
 p{
@@ -99,7 +99,9 @@ button {
   border: .5px solid rgb(54, 186, 83);
 }
 .infoButton {
-  border: .5px solid rgba(159, 38, 209, 0.22);
+  // border: .5px solid rgba(159, 38, 209, 0.22);
+  background: rgba(45, 191, 169, 0.22);
+  padding: 2px 6px 3px;
 }
 .doButton {
   border: .5px solid rgba(50, 140, 191, 0.46);

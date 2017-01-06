@@ -28,14 +28,13 @@
             </div> -->
 
             <div class="pagerContainer container-row">
-                <!-- <button class="" ng-click="backPage()" type="button">previous</button> -->
-                <a class="" ng-href="#discover/{{backPage()}}">
+                <a href="" ng-click="goBackOne()">
+                <!-- <a class="" ng-href="#discover/{{parseInt($routeParams.page, 10)-1}}"> -->
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                   previous page
                 </a>
                 <div class="fill-space"></div>
-                <!-- <button class="" ng-click="nextPage()" type="button">next</button> -->
-                <a class="" ng-href="#discover/{{nextPage()}}">
+                <a href="" ng-click="goForwardOne()">
                   next page
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </a>

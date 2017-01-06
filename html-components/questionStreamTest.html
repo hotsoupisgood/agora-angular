@@ -1,17 +1,14 @@
 <div class="container-col">
     <ul>
-        <li class="questionContainer" ng-repeat="q in questions" ng-init="isBodyHidden = shouldOpen(q.id)" ng-class="{'questionContainerActive':isBodyHidden === true}">
+        <li class="questionContainer" ng-repeat="q in questions" ng-class="{'questionContainerActive':isBodyHidden === true}">
             <div class="container-col" ng-class="{'activeQuestion':isBodyHidden == true}">
-                <!-- <a class="questionTitle" id="q.id" ng-click="onClickOfQuestion(q.id)"> -->
                 <a class="questionTitle" ng-href="#/question/{{q.id}}">
-                    <div class="container-row">
+                    <div class="title container-row">
                         {{q.text}}
                     </div>
                     <div class="belowTitle">
                             {{q.date}}
-                        <div class="fill-space">
-
-                        </div>
+                        <div class="fill-space"></div>
                           <label>
                             responses
                             <i class="fa fa-caret-down" aria-hidden="true" ng-hide="isBodyHidden"></i>
@@ -28,27 +25,30 @@
                     </a>
                   </label>
                     <div class="fill-space"></div>
+                    <div class="vote" ng-click="vote()">
+                      upvote
+                    </div>
                     <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
                         <u>
                             Respond
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </u>
                     </a>
-                    <div ng-hide="isLoggedIn">
+                    <div class="" ng-hide="isLoggedIn">
                         Please
-                        <!-- <a class="" ng-href="#login"> -->
+                        <a class="" ng-href="#login">
                             login
-                        <!-- </a> -->
+                        </a>
                         or
-                        <!-- <a class="" ng-href="#createAccount"> -->
+                        <a class="" ng-href="#createAccount">
                             create an account
-                        <!-- </a> -->
+                        </a>
                         to answer the question!
                     </div>
                 </div>
             </div>
 
-            <div class="expandedQuestion" ng-if="isBodyHidden">
+            <!-- <div class="expandedQuestion" ng-if="isBodyHidden">
                 <div class="responsesContainer">
                     <ng-include src="'html-components/responses.html'"></ng-include>
 
@@ -58,7 +58,7 @@
                         <div class="fill-space"></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </li>
     </ul>
 

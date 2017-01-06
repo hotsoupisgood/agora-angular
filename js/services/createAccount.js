@@ -1,9 +1,9 @@
-module.exports = function ($http, $location, $rootScope, $cookies, userService) {
+module.exports = function ($http, $rootScope, $cookies) {
   this.submit = function(inputUsername, inputPassword, remember) {
-      $http({
+      var returnData = $http({
           method: 'POST',
           url: 'http://api.iex.ist/full/register/',
-          params: {
+          data: {
               username: inputUsername,
               password: inputPassword
           },
@@ -11,21 +11,16 @@ module.exports = function ($http, $location, $rootScope, $cookies, userService) 
             'Content-Type': 'application/json'
           }
       }).then(function successCallback(response) {
-          // this callback will be called asynchronously
-          // when the response is available
-          // userService.setAccountInfo(response.data);
-          //show response for debug
           if (remember) {
-            userService.setAccountInfo(response.data);
-            userService.setIsLoggedIn(true);
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             // set cookie
             $cookies.put('username', inputUsername);
             $cookies.put('password', inputPassword);
             $cookies.put('key', $rootScope.accountInfo.key);
-            $location.url('/questions');
+            console.log('ate '+ inputUsername+"'s cookie'");
           }
+          return true;
           // console.log('successCallback unparsed response: ');
           // console.log(response.data);
       }, function errorCallback(response) {
@@ -35,6 +30,8 @@ module.exports = function ($http, $location, $rootScope, $cookies, userService) 
           //show response for debug
           console.log('errorCallback unparsed response: ');
           console.log(response.data);
+          return false;
       });
+      return returnData;
   };
 }

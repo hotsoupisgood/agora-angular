@@ -3,8 +3,17 @@ module.exports =  function($scope, loginService) {
     $scope.username = '';
     $scope.password = '';
     $scope.remember = true;
+    $scope.failed = false;
     $scope.login = function() {
-      loginService.login($scope.username, $scope.password, $scope.remember);
+      loginService.login($scope.username, $scope.password, $scope.remember)
+      .then(function (response) {
+          if (!response) {
+            $scope.failed = true;
+          }
+          else {
+            //works
+          }
+      })
     };
     $scope.cookieLogin = function() {
       loginService.cookieLogin();

@@ -1,10 +1,17 @@
 <div class="loginPage">
-    <!-- <img class="agoraDude" src="media/fad.png"/> -->
     <div class="loginContainer">
-        <h2>
-            login
-        </h2>
-        <form class="loginFormContainer" ng-controller="loginFormController" ng-submit="login()">
+        <div class="container-row">
+            <h2>
+                Login
+            </h2>
+            <div class="fill-space"></div>
+            <div class="failed container-col" ng-show="failed">
+              <div class="fill-space"></div>
+              incorrect login
+              <div class="fill-space"></div>
+            </div>
+        </div>
+        <form class="loginFormContainer" ng-submit="login()">
             <div class="container-col">
                 <input ng-model="username" type="text" class="" placeholder="username">
                 <input ng-model="password" type="password" class="" placeholder="password">
@@ -19,5 +26,8 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="verticalLine">
+
     </div>
 </div>

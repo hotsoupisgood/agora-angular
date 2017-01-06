@@ -65,13 +65,11 @@ $phoneButtonHeight: 15vw;
         padding-left: 6px;
         a {
           border-radius: .1em;
-          text-decoration: none;
-          padding: .2em;
-          margin-left: 1em;
           color: grey;
         }
         .tag{
-          padding: .1em;
+          text-decoration: none;
+          margin-right: .5em;
         }
         .answer {
 
@@ -84,10 +82,8 @@ $phoneButtonHeight: 15vw;
       z-index: 2;
     }
     ul {
-        //kill random padding
         margin-top: 0;
         padding-left: 0;
-        //contiue
         list-style: none;
         display: flex;
         flex-direction: column;
@@ -111,11 +107,12 @@ $phoneButtonHeight: 15vw;
                   color: grey;
                   margin-top: 1em;
                   margin-bottom: .2em;
-
                 }
             }
             .questionTitle:hover {
-              text-decoration: underline;
+              .title {
+                text-decoration: underline;
+              }
             }
         }
     }

@@ -1,12 +1,12 @@
 .single-question {
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
   .qHeader {
     // border-bottom: 1px solid lightgrey;
     .subHeader {
       display: flex;
       flex-direction: row;
-      font-size: .7em;
+      font-size: .6em;
       color: grey;
       margin-top: .3em;
       margin-bottom: .2em;
@@ -15,14 +15,18 @@
       }
       .tag{
         text-decoration: none;
+        margin-right: .2em;
       }
     }
 
   }
   .responses {
     margin-top: .5em;
+    margin-left: 1em;
+    margin-right: 1em;
     .total {
       border-bottom: 1px solid lightgrey;
+      font-size: .9em;
     }
     .response {
       margin-left: 1em;
@@ -31,6 +35,10 @@
       .header {
         display: flex;
         flex-direction: column;
+        font-size: .8em;
+        border: 1px solid lightgrey;
+        border-radius: .2em;
+        padding: .2em;
         .subHeader {
           display: flex;
           flex-direction: row;
@@ -41,10 +49,12 @@
         margin-left: 1em;
         margin-right: 1em;
         .section-header {
-
+          font-size: .7em;
+          border-bottom: 1px solid lightgrey;
+          margin-bottom: .5em;
         }
         .section-body {
-
+          font-size: .7em;
         }
       }
     }

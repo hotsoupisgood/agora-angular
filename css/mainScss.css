@@ -1,12 +1,12 @@
 @import "https://fonts.googleapis.com/css?family=Amatic+SC:700";
 .single-question {
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 .single-question .qHeader .subHeader {
   display: flex;
   flex-direction: row;
-  font-size: .7em;
+  font-size: .6em;
   color: grey;
   margin-top: .3em;
   margin-bottom: .2em;
@@ -16,12 +16,16 @@
 }
 .single-question .qHeader .subHeader .tag {
   text-decoration: none;
+  margin-right: .2em;
 }
 .single-question .responses {
   margin-top: .5em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 .single-question .responses .total {
   border-bottom: 1px solid lightgrey;
+  font-size: .9em;
 }
 .single-question .responses .response {
   margin-left: 1em;
@@ -31,6 +35,10 @@
 .single-question .responses .response .header {
   display: flex;
   flex-direction: column;
+  font-size: .8em;
+  border: 1px solid lightgrey;
+  border-radius: .2em;
+  padding: .2em;
 }
 .single-question .responses .response .header .subHeader {
   display: flex;
@@ -40,6 +48,14 @@
   margin-top: .5em;
   margin-left: 1em;
   margin-right: 1em;
+}
+.single-question .responses .response .sections .section-header {
+  font-size: .7em;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: .5em;
+}
+.single-question .responses .response .sections .section-body {
+  font-size: .7em;
 }
 
 .siteBanner {
@@ -56,14 +72,20 @@
 }
 .siteBanner .centeredPouch {
   padding: 20px;
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Amatic SC', sans-serif;
 }
 .siteBanner .title {
-  font-size: 100px;
+  font-size: 6em;
+  text-decoration: none;
+}
+.siteBanner .logout {
+  text-decoration: none;
+}
+.siteBanner .logOptions {
+  font-size: .9em;
 }
 .siteBanner a {
   color: black;
-  text-decoration: none;
 }
 .siteBanner .about {
   font-size: 20px;
@@ -534,13 +556,11 @@ header button {
 }
 .questionStream .questionContainer .subcontrol a {
   border-radius: .1em;
-  text-decoration: none;
-  padding: .2em;
-  margin-left: 1em;
   color: grey;
 }
 .questionStream .questionContainer .subcontrol .tag {
-  padding: .1em;
+  text-decoration: none;
+  margin-right: .5em;
 }
 .questionStream .questionContainerActive {
   box-shadow: 0px 0px 3px 3px rgba(182, 182, 182, 0.45);
@@ -577,7 +597,7 @@ header button {
   margin-top: 1em;
   margin-bottom: .2em;
 }
-.questionStream ul li .questionTitle:hover {
+.questionStream ul li .questionTitle:hover .title {
   text-decoration: underline;
 }
 .questionStream .pagerContainer a {
@@ -603,10 +623,13 @@ header button {
   }
 }
 .loginPage .loginContainer {
-  padding: 20px;
-  margin: 30px;
-  border-radius: 10px;
+  padding: 2em;
+  margin: 3em;
+  border-radius: .8em;
   flex-grow: 4;
+}
+.loginPage .loginContainer .failed {
+  color: red;
 }
 .loginPage .loginContainer form {
   font-size: .8em;
@@ -674,7 +697,7 @@ header button {
   }
 }
 .content {
-  margin-top: 6em;
+  margin-top: 5em;
 }
 
 .back {
@@ -691,7 +714,7 @@ header button {
 }
 
 .contentBigHead {
-  margin-top: 15em;
+  margin-top: 12em !important;
 }
 
 p {
@@ -731,7 +754,8 @@ button {
 }
 
 .infoButton {
-  border: 0.5px solid rgba(159, 38, 209, 0.22);
+  background: rgba(45, 191, 169, 0.22);
+  padding: 2px 6px 3px;
 }
 
 .doButton {

@@ -8,12 +8,21 @@
           </div>
             <div class="fill-space"></div>
             <img class="agoraDude" src="media/fadMin.png"/>
-
             <a class="title" ng-click="selectecdTab = 'Questions'" href="#top">This Agora</a>
-            <!-- <a class="title" ng-show="isLoggedIn" ng-click="selectecdTab = 'Questions'" href="#top">This {{accountInfo.username}}</a> -->
             <div class="fill-space"></div>
             <div class="container-col">
-              <a ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>
+              <a class="logout" ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>
+              <div class="logOptions" ng-hide="isLoggedIn">
+                  Please
+                  <a class="" ng-href="#login">
+                      login
+                  </a>
+                  or
+                  <a class="" ng-href="#createAccount">
+                      create an account
+                  </a>
+                  to participate in discussion!
+              </div>
               <div class="fill-space">
               </div>
             </div>

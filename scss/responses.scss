@@ -4,13 +4,10 @@
 }
 $responseButtonBackground: $secondaryColor;
 .addResponseButton {
-  // flex-direction: column;
-  // flex-grow:;
   color: black;
   border: 1px solid lightblue;
   border-radius: $standardBorderRadius;
   background: white;
-  // flex-shrink: 10;
   margin: .5em;
 }
 .responseButtonActive {
@@ -18,7 +15,6 @@ $responseButtonBackground: $secondaryColor;
   border-bottom-left-radius: 0px;
 }
 .addResponseBody {
-  // background-color: lighten($responseButtonBackground, 7%) !important;
   padding: 10px;
   border-bottom-right-radius: $standardBorderRadius;
   border-bottom-left-radius: $standardBorderRadius;

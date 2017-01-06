@@ -12,34 +12,35 @@
       </div>
       <div class="fill-space"></div>
       <div class="detailText">
+        Writen
         {{question.date}}
       </div>
     </div>
     <div class="container-row subHeader">
-      <a class="answer" ng-href="#answer/{{question.id}}" ng-show="isLoggedIn">
-          <u>
-              Respond
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-          </u>
-      </a>
-      <div ng-hide="isLoggedIn">
-          Please
-          <!-- <a class="" ng-href="#login"> -->
-              login
-          <!-- </a> -->
-          or
-          <!-- <a class="" ng-href="#createAccount"> -->
-              create an account
-          <!-- </a> -->
-          to answer the question!
-      </div>
-      <div class="fill-space"></div>
       <label>
         tags:
         <a class="tag infoButton" ng-href="#tag/{{tag.id}}" ng-repeat="tag in question.tags">
             {{tag.name}}
         </a>
       </label>
+      <div class="fill-space"></div>
+      <div class="answer" ng-hide="isLoggedIn">
+          Please
+          <a class="" ng-href="#login">
+              login
+          </a>
+          or
+          <a class="" ng-href="#createAccount">
+              create an account
+          </a>
+          to answer the question!
+      </div>
+      <a class="answer" ng-href="#answer/{{question.id}}" ng-show="isLoggedIn">
+          <u>
+              Respond
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+          </u>
+      </a>
     </div>
   </div>
   <div class="responses">
@@ -52,21 +53,23 @@
       <div class="response" ng-repeat="response in question.responses">
         <div class="header">
           <div class="subHeader">
-            {{response.text}}
+            <b>{{response.text}}</b>
             <div class="fill-space"></div>
-            <div class="detailText">
+            <div class="detailText container-col">
+              <div class="fill-space"></div>
               <label>
                 Writen {{response.date}}
               </label>
+              <div class="fill-space"></div>
             </div>
           </div>
         </div>
         <div class="sections" ng-repeat="section in response.modules">
           <div class="section-header">
-            {{section.title}}
+            <b>{{section.title}}</b>
           </div>
           <div class="section-body">
-            {{section.body}}
+            {{section.text}}
           </div>
         </div>
       </div>

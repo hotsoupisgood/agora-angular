@@ -1,4 +1,4 @@
-module.exports =  function($scope, $routeParams, createAccountService) {
+module.exports =  function($scope, $routeParams, $location, createAccountService) {
     $scope.name = 'createAccountController';
     $scope.$params = $routeParams;
     $scope.username;
@@ -10,6 +10,9 @@ module.exports =  function($scope, $routeParams, createAccountService) {
       createAccountService.submit($scope.username, $scope.password, $scope.remember)
       .then(function (response) {
         $scope.success = response;
+        if (response) {
+          $location.url('/Discover');
+        }
       });
     };
 };

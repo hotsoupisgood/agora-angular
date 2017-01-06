@@ -29,7 +29,7 @@ module.exports = function($routeProvider, $locationProvider) {
             controller: 'createAccountController'
         }).when('/login', {
             templateUrl: 'html-components/login.html',
-            controller: 'loginController'
+            controller: 'loginFormController'
         }).otherwise({
             redirectTo: '/discover/0'
         });
@@ -76,7 +76,7 @@ module.exports =  function($scope) {
 };
 
 },{}],4:[function(require,module,exports){
-module.exports =  function($scope, $routeParams, createAccountService) {
+module.exports =  function($scope, $routeParams, $location, createAccountService) {
     $scope.name = 'createAccountController';
     $scope.$params = $routeParams;
     $scope.username;
@@ -88,6 +88,9 @@ module.exports =  function($scope, $routeParams, createAccountService) {
       createAccountService.submit($scope.username, $scope.password, $scope.remember)
       .then(function (response) {
         $scope.success = response;
+        if (response) {
+          $location.url('/Discover');
+        }
       });
     };
 };
@@ -112,31 +115,31 @@ module.exports = function($scope, $cookies, $route, $location, logoutService, co
 };
 
 },{}],6:[function(require,module,exports){
-module.exports =  function($scope, $rootScope, $route,
-    $routeParams, $location) {
-    $scope.name = 'loginController';
-    $scope.$params = $routeParams;
-    $scope.loginInfo = {};
-    $scope.loginInfo.isLoggedIn = false;
-};
-
-},{}],7:[function(require,module,exports){
 module.exports =  function($scope, loginService) {
     $scope.name = 'loginFormController';
     $scope.username = '';
     $scope.password = '';
     $scope.remember = true;
+    $scope.failed = false;
     $scope.login = function() {
-      loginService.login($scope.username, $scope.password, $scope.remember);
+      loginService.login($scope.username, $scope.password, $scope.remember)
+      .then(function (response) {
+          if (!response) {
+            $scope.failed = true;
+          }
+          else {
+            //works
+          }
+      })
     };
     $scope.cookieLogin = function() {
       loginService.cookieLogin();
     }
 };
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 module.exports =  function($scope, $rootScope, $route,
-    $routeParams, $location, $anchorScroll, $cookies, $timeout, scrollService) {
+    $routeParams, $location, $anchorScroll, $cookies, $timeout) {
     $scope.name = 'mainController';
     $rootScope.minBanner = false;
     $scope.questions = {};
@@ -145,44 +148,32 @@ module.exports =  function($scope, $rootScope, $route,
     $scope.back = function() {
       window.history.back();
     }
-    // $scope.minimiseHeader = function (isMin) {
-    //   $scope.minBanner = isMin;
-    //   $cookies.put('minBanner', $scope.minBanner)
-    //   $scope.$apply()
-    // };
-    // window.addEventListener('scroll', function(e){
-    //     var distanceY = window.pageYOffset,
-    //         shrinkOn = 20,
-    //         absOn = 70,
-    //         banner = document.getElementById ('banner');
-    //
-    //     // console.log($cookies.get('lastScrollLocation'));
-    //     // $cookies.put('lastScrollLocation', distanceY);
-    //     // scrollService.scrollToLastOpen();
-    //
-    //     //listens for banner change
-    //     if (distanceY > shrinkOn) {
-    //         $scope.minimiseHeader(true);
-    //     } else {
-    //         $scope.smallHead = false;
-    //     }
-    //     if (distanceY > absOn) {
-    //         $scope.minimiseHeader(true);
-    //     } else {
-    //         $scope.smallHead = false;
-    //     }
-    // });
+    $scope.minimiseHeader = function (isMin) {
+      $scope.minBanner = isMin;
+      $cookies.put('minBanner', $scope.minBanner)
+      $scope.$apply()
+    };
+    window.addEventListener('scroll', function(e){
+        var distanceY = window.pageYOffset,
+            shrinkOn = 20,
+            absOn = 70,
+            banner = document.getElementById ('banner');
+
+        //listens for banner change
+        if (distanceY > shrinkOn) {
+            $scope.minimiseHeader(true);
+        } else {
+            $scope.smallHead = false;
+        }
+        if (distanceY > absOn) {
+            $scope.minimiseHeader(true);
+        } else {
+            $scope.smallHead = false;
+        }
+    });
 };
 
-},{}],9:[function(require,module,exports){
-module.exports =  function($scope, userService) {
-    $scope.name = 'pagerController';
-    $scope.totalItems = totalQueriedQuestions;
-    $scope.currentPage = userService.questionsAPage;
-
-};
-
-},{}],10:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 module.exports = function($scope, $routeParams, getSingleQuestionService) {
     $scope.name = 'questionController';
     //init
@@ -198,40 +189,14 @@ module.exports = function($scope, $routeParams, getSingleQuestionService) {
       });
     }
     $scope.getQuestionFull();
-
-    // $scope.onClickOfQuestion = function (id) {
-      // $scope.isBodyHidden=!$scope.isBodyHidden;
-      // if ($scope.isBodyHidden) {
-      //   scrollService.storeLastOpen(id);
-      // }else {
-      //   scrollService.storeLastOpen('')
-      // }
-    // };
-    // $scope.shouldOpen = function (id) {
-    //   console.log('id: ' + scrollService.getLastOpen());
-    //   if (scrollService.getLastOpen() == id) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // };
-    // $anchorScroll();
 };
 
-},{}],11:[function(require,module,exports){
-module.exports = function($scope, $routeParams, $route, upVoteService, $location,
-    userService, questionsTopService, questionsSearchService, scrollService, getSingleQuestionService) {
+},{}],9:[function(require,module,exports){
+module.exports = function($scope, $routeParams, $route, upVoteService, $location, userService, questionsTopService, questionsSearchService, getSingleQuestionService) {
     // routing goodies
     $scope.name = 'questions';
     //manage questions
-    // if ($routeParams.page !=) {
-    // console.log($routeParams.page);
-      $scope.currentPage = $routeParams.page;
-      console.log($routeParams.page +'.....'+ $scope.currentPage);
-    // }
-    // else {
-      // $scope.currentPage = 0;
-    // }
+    $scope.currentPage = $routeParams.page;
     $scope.startQuestion;
     $scope.currentSearchTerm = '';
     $scope.isCurrentSearchTermEmpty = true;
@@ -254,53 +219,51 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
     };
     // get request questions
     $scope.getSearchQuery = function() {
-        questionsSearchService.get($scope.currentSearchTerm, $scope.currentPage)
-            .then(function(response) {
-                // console.log(response);
-                $scope.questions = response.objects;
-                $scope.isQueryEmpty = false;
-            });
+        questionsSearchService.get($scope.currentSearchTerm, $scope.currentPage).then(function(response) {
+            // console.log(response);
+            $scope.questions = response.objects;
+            $scope.isQueryEmpty = false;
+        });
     };
     $scope.getTopQuestions = function() {
-        questionsTopService.get($scope.currentPage, $scope.order, 'min')
-            .then(function(response) {
-                if (response) {
-                  console.log(response);
-                    $scope.questions = response.objects;
-                    $scope.isQueryEmpty = false;
-                    $scope.gotQuestions = true;
-                } else {
-                    $scope.gotQuestions = false;
-                }
-            });
+        questionsTopService.get($scope.currentPage, $scope.order, 'min').then(function(response) {
+            if (response) {
+                console.log(response);
+                $scope.questions = response.objects;
+                $scope.isQueryEmpty = false;
+                $scope.gotQuestions = true;
+            } else {
+                $scope.gotQuestions = false;
+            }
+        });
     };
-    // $scope.orderDate = function() {
-    //     $scope.order = 'date';
-    //     $scope.refresh();
-    // };
-    // $scope.orderAlphabet = function() {
-    //     $scope.order = 'text';
-    //     $scope.refresh();
-    // };
+    $scope.orderDate = function() {
+        $scope.order = 'date';
+        $scope.getTopQuestions();
+    };
+    $scope.orderAlphabet = function() {
+        $scope.order = 'text';
+        $scope.getTopQuestions();
+    };
     //go forward a page
-    $scope.nextPage = function() {
+    $scope.goForwardOne = function() {
         $scope.currentPage = 1 + parseInt($routeParams.page, 10);
-        return $scope.currentPage;
+        $location.path('discover/'+$scope.currentPage);
     };
     //go back a page
-    $scope.backPage = function() {
-        if ($routeParams.page > 0){
-          $scope.currentPage =  $routeParams.page-1;
-          console.log($scope.currentPage);
-          return $scope.currentPage;
-        }
-        else {
-          return $routeParams.page;
+    $scope.goBackOne = function() {
+        if ($routeParams.page > 0) {
+            $scope.currentPage =  parseInt($routeParams.page, 10) - 1;
+            console.log($scope.currentPage);
+            console.log('discover/'+$scope.currentPage);
+            $location.path('discover/'+$scope.currentPage);
+        } else {
+          //do nothing
         }
     };
 };
 
-},{}],12:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 
 module.exports =  function($scope, $routeParams, upVoteService,
                             userService, questionsTopService, questionsSearchService) {
@@ -385,7 +348,7 @@ module.exports =  function($scope, $routeParams, upVoteService,
     };
   };
 
-},{}],13:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = function($scope, $rootScope, $timeout, $location) {
     $scope.name = 'searchController';
     $scope.searchQuery;
@@ -408,7 +371,7 @@ module.exports = function($scope, $rootScope, $timeout, $location) {
     }
 };
 
-},{}],14:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = function($scope, submitQuestionService) {
     $scope.name = 'submitQuestionFormController';
     $scope.question = '';
@@ -428,7 +391,7 @@ module.exports = function($scope, submitQuestionService) {
     };
 };
 
-},{}],15:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = function($scope, $routeParams, submitResponseService, getSingleQuestionService) {
     $scope.name = 'submitResponseFormController';
     $scope.response = '';
@@ -476,7 +439,7 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
     };
 };
 
-},{}],16:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = function($scope, $rootScope, $route, $routeParams, userService) {
     $scope.name = 'userController';
     $scope.$params = $routeParams;
@@ -499,7 +462,7 @@ module.exports = function($scope, $rootScope, $route, $routeParams, userService)
     }
 };
 
-},{}],17:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 const angular = require('angular');
 require('angular-route');
 require('angular-cookies');
@@ -517,7 +480,6 @@ agoraApp.config(['$routeProvider', '$locationProvider', require('./config/routin
 //services
 agoraApp.service('getSingleQuestionService',        require('./services/getSingleQuestion.js'));
 agoraApp.service('cookieService',                   require('./services/cookieUtil.js'));
-agoraApp.service('scrollService',                   require('./services/scroll.js'));
 agoraApp.service('submitResponseService',           require('./services/submitResponse.js'));
 agoraApp.service('submitQuestionService',           require('./services/submitQuestion.js'));
 agoraApp.service('questionsTopService',             require('./services/questionsTop.js'));
@@ -535,17 +497,15 @@ agoraApp.controller('aboutController',              require('./controllers/about
 agoraApp.controller('userController',               require('./controllers/user.js'));
 agoraApp.controller('createAccountController',      require('./controllers/createAccount.js'));
 agoraApp.controller('checkUsernameController',      require('./controllers/checkUsername.js'));
-agoraApp.controller('loginController',              require('./controllers/login.js'));
 agoraApp.controller('loginFormController',          require('./controllers/loginForm.js'));
 agoraApp.controller('questions',                    require('./controllers/questions.js'));
-agoraApp.controller('pagerController',              require('./controllers/pager.js'));
 agoraApp.controller('searchController',             require('./controllers/search.js'));
 agoraApp.controller('submitQuestionFormController', require('./controllers/submit-question.js'));
 agoraApp.controller('submitResponseFormController', require('./controllers/submit-response.js'));
 agoraApp.controller('questionSearchController',     require('./controllers/questionsSearch.js'));
 agoraApp.controller('headerController',             require('./controllers/header.js'));
 
-},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/checkUsername.js":3,"./controllers/createAccount.js":4,"./controllers/header.js":5,"./controllers/login.js":6,"./controllers/loginForm.js":7,"./controllers/main.js":8,"./controllers/pager.js":9,"./controllers/question.js":10,"./controllers/questions.js":11,"./controllers/questionsSearch.js":12,"./controllers/search.js":13,"./controllers/submit-question.js":14,"./controllers/submit-response.js":15,"./controllers/user.js":16,"./services/cookieUtil.js":18,"./services/createAccount.js":19,"./services/getSingleQuestion.js":20,"./services/login.js":21,"./services/logout.js":22,"./services/questionsSearch.js":23,"./services/questionsTop.js":24,"./services/scroll.js":25,"./services/submitQuestion.js":26,"./services/submitResponse.js":27,"./services/upVote.js":28,"./services/user.js":29,"angular":38,"angular-animate":31,"angular-cookies":33,"angular-route":35,"angular-toArrayFilter":36}],18:[function(require,module,exports){
+},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/checkUsername.js":3,"./controllers/createAccount.js":4,"./controllers/header.js":5,"./controllers/loginForm.js":6,"./controllers/main.js":7,"./controllers/question.js":8,"./controllers/questions.js":9,"./controllers/questionsSearch.js":10,"./controllers/search.js":11,"./controllers/submit-question.js":12,"./controllers/submit-response.js":13,"./controllers/user.js":14,"./services/cookieUtil.js":16,"./services/createAccount.js":17,"./services/getSingleQuestion.js":18,"./services/login.js":19,"./services/logout.js":20,"./services/questionsSearch.js":21,"./services/questionsTop.js":22,"./services/submitQuestion.js":23,"./services/submitResponse.js":24,"./services/upVote.js":25,"./services/user.js":26,"angular":35,"angular-animate":28,"angular-cookies":30,"angular-route":32,"angular-toArrayFilter":33}],16:[function(require,module,exports){
 module.exports = function ($http, $cookies, $rootScope, loginService) {
   this.all = function () {
     loginService.cookieLogin();
@@ -554,13 +514,13 @@ module.exports = function ($http, $cookies, $rootScope, loginService) {
   }
 };
 
-},{}],19:[function(require,module,exports){
-module.exports = function ($http, $location, $rootScope, $cookies, userService) {
+},{}],17:[function(require,module,exports){
+module.exports = function ($http, $rootScope, $cookies) {
   this.submit = function(inputUsername, inputPassword, remember) {
-      $http({
+      var returnData = $http({
           method: 'POST',
           url: 'http://api.iex.ist/full/register/',
-          params: {
+          data: {
               username: inputUsername,
               password: inputPassword
           },
@@ -568,21 +528,16 @@ module.exports = function ($http, $location, $rootScope, $cookies, userService) 
             'Content-Type': 'application/json'
           }
       }).then(function successCallback(response) {
-          // this callback will be called asynchronously
-          // when the response is available
-          // userService.setAccountInfo(response.data);
-          //show response for debug
           if (remember) {
-            userService.setAccountInfo(response.data);
-            userService.setIsLoggedIn(true);
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             // set cookie
             $cookies.put('username', inputUsername);
             $cookies.put('password', inputPassword);
             $cookies.put('key', $rootScope.accountInfo.key);
-            $location.url('/questions');
+            console.log('ate '+ inputUsername+"'s cookie'");
           }
+          return true;
           // console.log('successCallback unparsed response: ');
           // console.log(response.data);
       }, function errorCallback(response) {
@@ -592,11 +547,13 @@ module.exports = function ($http, $location, $rootScope, $cookies, userService) 
           //show response for debug
           console.log('errorCallback unparsed response: ');
           console.log(response.data);
+          return false;
       });
+      return returnData;
   };
 }
 
-},{}],20:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = function($http) {
     this.get = function(id) {
         //multiply page number for first question desired
@@ -624,10 +581,10 @@ module.exports = function($http) {
     };
 }
 
-},{}],21:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = function ($cookies, $rootScope, $location, $http, userService) {
   this.login = function(inputUsername, inputPassword, remember) {
-      $http({
+      var returnData = $http({
           method: 'GET',
           url: 'http://api.iex.ist/full/login/',
           // production params
@@ -651,14 +608,17 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             }else {
               $rootScope.rememberLogin = false;
             }
-            $location.url('/questions');
+            $location.url('#discover');
+            return true;
           //debug response callback logs
       }, function errorCallback(response) {
         $cookies.put('password', null);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           console.log('errorCallback, response: ' + JSON.stringify(response.data));
+          return false;
       });
+      return returnData;
   }
   this.cookieLogin = function() {
     if ($cookies.get('username') == null || $cookies.get('password') == null) {
@@ -701,7 +661,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
   }
 }
 
-},{}],22:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports = function ($rootScope, $cookies, userService) {
   this.submit = function () {
       $rootScope.accountInfo = null;
@@ -712,7 +672,7 @@ module.exports = function ($rootScope, $cookies, userService) {
   };
 }
 
-},{}],23:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = function ($http, userService) {
     this.get = function (currentSearchTerm, startQuestion) {
       var returnData = $http({
@@ -744,7 +704,7 @@ module.exports = function ($http, userService) {
     };
 }
 
-},{}],24:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 module.exports = function(userService, $http) {
     this.get = function(currentPage, order, size) {
         //multiply page number for first question desired
@@ -778,33 +738,7 @@ module.exports = function(userService, $http) {
     };
 }
 
-},{}],25:[function(require,module,exports){
-module.exports = function($location, $anchorScroll, $cookies, $timeout) {
-      this.scrollToId = function (id) {
-        $location.hash(id);
-        $anchorScroll();
-      };
-      this.scrollToLastOpen = function () {
-        // $timeout(function () {
-        //   var old = $location.hash();
-        //   // $location.hash('#' + old);
-        //   $anchorScroll();
-        //   // console.log($location.hash());
-        //   // $anchorScroll();
-        // });
-      };
-      this.storeLastOpen = function (id) {
-        $location.hash(id);
-      };
-      this.getLastOpen = function () {
-        return $location.hash();
-      };
-      this.clearLastOpen = function () {
-        $location.hash(null);
-      };
-};
-
-},{}],26:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports = function($http, $rootScope, userService) {
 
     this.submit = function(askedQuestion, questionsTags) {
@@ -838,7 +772,7 @@ module.exports = function($http, $rootScope, userService) {
     }
 };
 
-},{}],27:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = function($http, $cookies, $rootScope, userService) {
     this.submit = function (questionId, inputResponse, modules) {
             return $http({
@@ -869,7 +803,7 @@ module.exports = function($http, $cookies, $rootScope, userService) {
     };
 };
 
-},{}],28:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module.exports = function (userService) {
   this.submit = function () {
     if (userService.isLoggedIn) {
@@ -902,7 +836,7 @@ module.exports = function (userService) {
   }
 };
 
-},{}],29:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 module.exports = function($cookies, $http) {
       // account info
       this.accountInfo = null;
@@ -943,7 +877,7 @@ module.exports = function($cookies, $http) {
       };
 };
 
-},{}],30:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.9
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -5097,11 +5031,11 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 })(window, window.angular);
 
-},{}],31:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 require('./angular-animate');
 module.exports = 'ngAnimate';
 
-},{"./angular-animate":30}],32:[function(require,module,exports){
+},{"./angular-animate":27}],29:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.7
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -5425,11 +5359,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],33:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":32}],34:[function(require,module,exports){
+},{"./angular-cookies":29}],31:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.7
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -6496,11 +6430,11 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],35:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 require('./angular-route');
 module.exports = 'ngRoute';
 
-},{"./angular-route":34}],36:[function(require,module,exports){
+},{"./angular-route":31}],33:[function(require,module,exports){
 angular.module('angular-toArrayFilter', [])
 
 .filter('toArray', function () {
@@ -6520,7 +6454,7 @@ angular.module('angular-toArrayFilter', [])
     }
   };
 });
-},{}],37:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.6
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -37544,8 +37478,8 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],38:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":37}]},{},[17]);
+},{"./angular":34}]},{},[15]);

@@ -1,6 +1,6 @@
 module.exports = function ($cookies, $rootScope, $location, $http, userService) {
   this.login = function(inputUsername, inputPassword, remember) {
-      $http({
+      var returnData = $http({
           method: 'GET',
           url: 'http://api.iex.ist/full/login/',
           // production params
@@ -24,14 +24,17 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             }else {
               $rootScope.rememberLogin = false;
             }
-            $location.url('/questions');
+            $location.url('#discover');
+            return true;
           //debug response callback logs
       }, function errorCallback(response) {
         $cookies.put('password', null);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           console.log('errorCallback, response: ' + JSON.stringify(response.data));
+          return false;
       });
+      return returnData;
   }
   this.cookieLogin = function() {
     if ($cookies.get('username') == null || $cookies.get('password') == null) {

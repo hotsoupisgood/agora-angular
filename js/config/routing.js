@@ -28,7 +28,7 @@ module.exports = function($routeProvider, $locationProvider) {
             controller: 'createAccountController'
         }).when('/login', {
             templateUrl: 'html-components/login.html',
-            controller: 'loginController'
+            controller: 'loginFormController'
         }).otherwise({
             redirectTo: '/discover/0'
         });
