@@ -625,8 +625,8 @@ header button {
 .loginPage .loginContainer {
   padding: 2em;
   margin: 3em;
-  border-radius: .8em;
   flex-grow: 4;
+  border-right: grey solid 1px;
 }
 .loginPage .loginContainer .failed {
   color: red;

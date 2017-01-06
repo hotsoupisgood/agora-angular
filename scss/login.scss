@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: row;
   .verticalLine {
-    
   }
   @media (pointer:coarse) {
 
@@ -23,9 +22,8 @@
   .loginContainer {
       padding: 2em;
       margin: 3em;
-      border-radius: .8em;
       flex-grow: 4;
-
+      border-right: grey solid 1px;
       .failed {
         color: red;
       }
