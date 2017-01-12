@@ -9,14 +9,17 @@ module.exports = function($routeProvider, $locationProvider) {
         }).when('/ask', {
             templateUrl: 'html-components/ask-question-page.html'
         }).when('/discover/:page', {
-            templateUrl: 'html-components/top30.html',
+            templateUrl: 'html-components/discover.html',
             controller: 'questions'
         }).when('/question/:questionId', {
             templateUrl: 'html-components/question-full.html',
             controller: 'questionController'
         }).when('/search/:searchQuery', {
-            templateUrl: 'html-components/questionsSearch.html',
-            controller: 'questionSearchController'
+            templateUrl: 'html-components/search.html',
+            controller: 'searchController'
+        }).when('/search', {
+            templateUrl: 'html-components/search.html',
+            controller: 'searchController'
         }).when('/user/:username', {
             templateUrl: 'html-components/user.html',
             controller: 'userController'

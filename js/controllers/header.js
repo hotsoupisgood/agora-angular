@@ -1,17 +1,12 @@
 module.exports = function($scope, $cookies, $route, $location, logoutService, cookieService) {
     $scope.name = 'headerController';
-    // $scope.radioStyle = 'light';
+    $scope.searchQuery = '';
     $scope.logout = function () {
         logoutService.submit();
     };
-    // $location.path('/questions');
-    // $scope.switchStyle = function () {
-    //   if ($scope.radioStyle == 'light') {
-    //     document.getElementById('bootstrapStylesheet').href ='node_modules/bootstrap/dist/css/bootstrap-light.css';
-    //   }
-    //   else {
-    //     document.getElementById('bootstrapStylesheet').href = 'node_modules/bootstrap/dist/css/bootstrap-dark.css';
-    //   }
-    // };
+    $scope.search = function () {
+      var urlSafeQuery = $scope.searchQuery.replace(/ /g, '+');
+      $location.url('/search/'+urlSafeQuery);
+    }
     cookieService.all();
 };

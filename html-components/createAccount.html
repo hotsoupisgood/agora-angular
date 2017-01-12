@@ -5,12 +5,12 @@
             <small>create account</small>
         </h1>
         <form ng-submit="createAccount(username, password)">
-            <div class="container-col ">
+            <div class="col ">
                 <input ng-model="username" type="text" class="container" placeholder="username">
                 <input ng-model="password" type="password" class="container" placeholder="password">
-                <div class="container-row">
+                <div class="row">
                     <button class="submitButton" type="submit" ng-hide="success">create</button>
-                    <div class="container-row" ng-show="success">
+                    <div class="row" ng-show="success">
                       <div class="fill-space" style="color:green"></div>
                       <h4>SUCCESS!</h4>
                       <div class="fill-space"></div>

@@ -11,7 +11,7 @@ module.exports =  function($scope, $routeParams, $location, createAccountService
       .then(function (response) {
         $scope.success = response;
         if (response) {
-          $location.url('/Discover');
+          $location.url('/discover');
         }
       });
     };

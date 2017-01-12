@@ -1,21 +1,21 @@
 <div class="loginPage">
     <div class="loginContainer">
-        <div class="container-row">
+        <div class="row">
             <h2>
                 Login
             </h2>
             <div class="fill-space"></div>
-            <div class="failed container-col" ng-show="failed">
+            <div class="failed col" ng-show="failed">
               <div class="fill-space"></div>
               incorrect login
               <div class="fill-space"></div>
             </div>
         </div>
         <form class="loginFormContainer" ng-submit="login()">
-            <div class="container-col">
+            <div class="col">
                 <input ng-model="username" type="text" class="" placeholder="username">
                 <input ng-model="password" type="password" class="" placeholder="password">
-                <div class="container-row">
+                <div class="row">
                     <button class="submitButton" type="submit">login</button>
                     <div class="fill-space"></div>
                     <div class="remember">

@@ -5,8 +5,8 @@
       back
     </div>
   </div>
-  <div class="qHeader container-col">
-    <div class="container-row">
+  <div class="qHeader col">
+    <div class="row">
       <div class="question">
         {{question.text}}
       </div>
@@ -16,7 +16,7 @@
         {{question.date}}
       </div>
     </div>
-    <div class="container-row subHeader">
+    <div class="row subHeader">
       <label>
         tags:
         <a class="tag infoButton" ng-href="#tag/{{tag.id}}" ng-repeat="tag in question.tags">
@@ -54,8 +54,12 @@
         <div class="header">
           <div class="subHeader">
             <b>{{response.text}}</b>
+            <div href="" class="vote" ng-click="upVote('{{response.id}}')">
+              upvote
+              <i class="fa fa-arrow-up" aria-hidden="true"></i>
+            </div>
             <div class="fill-space"></div>
-            <div class="detailText container-col">
+            <div class="detailText col">
               <div class="fill-space"></div>
               <label>
                 Writen {{response.date}}

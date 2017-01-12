@@ -1,28 +1,27 @@
-.askQuestionContainer {
+.askQuestionPage {
   display: flex;
-  // position: fixed;
-  // background: lighten($secondaryColor, 20%);
-  width: 100%;
-  flex-direction: column;
-  margin: 0;
-  text-align: center;
   align-items: center;
-  h2 {
-    flex-grow: 1;
+  justify-content: center;
+  .askQuestion {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 10;
+    h2 {
+      flex-grow: 1;
+    }
+    input {
+      padding: 1em;
+      min-width: 30em;
+    }
+    textarea {
+      padding: 1em;
+      min-width: 30em;
+    }
+    button {
+      margin-top: 1em;
+    }
   }
-  button {
-    flex-grow: 1;
-    margin: 10px;
-    min-width: 10%;
-  }
-  input {
-    flex-grow: 6;
-    padding: 10px;
-    min-width: 50%;
-  }
-  textarea {
-    flex-grow: 6;
-    padding: 10px;
-    min-width: 50%;
-  }
+
 }

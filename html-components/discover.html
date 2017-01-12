@@ -1,0 +1,45 @@
+  <div class="row questionStream">
+    <!-- <ng-include src="'html-components/sidebar.html'"></ng-include> -->
+    <!-- <div class="fill-space"></div> -->
+    <div class="col fill-space">
+      <div class="optionsBox row detailText">
+        <a ng-href="#discover">
+          New
+        </a>
+        <a ng-href="#discover">
+          Popular
+        </a>
+        <a ng-href="#/search">
+          Detailed Search
+        </a>
+      </div>
+        <div class="col">
+          <div class="fill-space"></div>
+          <div class="row" ng-if="!questions.length">
+            <div class="fill-space"></div>
+              <div class="center-horizontal">
+                  <img src="media/loading.svg">
+              </div>
+              <div class="fill-space"></div>
+          </div>
+          <div class="fill-space"></div>
+        </div>
+        <div ng-if="questions.length">
+            <div class="" >
+              <ng-include src="'html-components/questionStream.html'"> </ng-include>
+            </div>
+
+            <div class="pagerContainer row">
+                <a href="" ng-click="goBackOne()">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                  previous page
+                </a>
+                <div class="fill-space"></div>
+                <a href="" ng-click="goForwardOne()">
+                  next page
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

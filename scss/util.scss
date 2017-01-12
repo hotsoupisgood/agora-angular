@@ -38,15 +38,15 @@ $transparentColor: rgba(255, 255, 255, 0);
 .margin-a {
   margin: 10px;
 }
-.container-row {
+.row {
   display: flex;
   flex-direction: row;
 }
-.container-col {
+.col {
   display: flex;
   flex-direction: column;
 }
-.container-row-inline {
+.row-inline {
   display: inline-flex;
   flex-direction: row;
 }

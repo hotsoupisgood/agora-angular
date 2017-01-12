@@ -1,17 +1,9 @@
-module.exports = function (userService) {
-  this.submit = function () {
-    if (userService.isLoggedIn) {
+module.exports = function ($rootScope, $http, userService ) {
+    if ($rootScope.isLoggedIn) {
         //request
         $http({
             method: 'POST',
-            url: 'http://startandselect.com/scripts/UpVote.php',
-            params: {
-                response_id: responseId,
-                user_id: userService.startQuestion
-            },
-            headers: {
-              'Content-type': 'application/json'
-            }
+            url: 'http://iex.ist/full/upVote' + 1,
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
@@ -24,8 +16,5 @@ module.exports = function (userService) {
             //show response for debug
             console.log('errorCallback unparsed response: ' + response);
         });
-    } else {
-
-    };
   }
 };

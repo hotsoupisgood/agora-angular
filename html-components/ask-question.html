@@ -1,22 +1,20 @@
-<div class="" ng-controller="submitQuestionFormController">
-    <div>
-        <form class="askQuestionContainer" ng-submit="submit()" role="form">
+<div class="askQuestionPage" ng-controller="submitQuestionFormController">
+        <form class="askQuestion" ng-submit="submit()" role="form">
             <h2>Ask A Question!</h2>
             <textarea type="text" class="" placeholder="ask a question; eg. (Can kowalas survive biscuts and gravy?)" required ng-model="question"></textarea>
             <input  class="" ng-model="questionTags" type="text" placeholder="tag your question; eg. (cute cats, derivitives)">
             <button type="submit" class="submitButton" ng-hide="success; loading">
                 submit
             </button>
-            <div class="container-row" ng-show="loading">
+            <div class="row" ng-show="loading">
               <div class="fill-space"></div>
               <img src="media/loading.svg">
               <div class="fill-space"></div>
             </div>
-            <div class="container-row" ng-show="success">
+            <div class="row" ng-show="success">
               <div class="fill-space"></div>
               <h4 style="color:green">Question added!</h4>
               <div class="fill-space"></div>
             </div>
         </form>
-    </div>
 </div>

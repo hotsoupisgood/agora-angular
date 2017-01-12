@@ -1,24 +1,22 @@
 
-<form class="container-col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
+<form class="col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
   <div class="back">
     <div class="click-area" ng-click="back()">
       <i class="fa fa-chevron-left" aria-hidden="true"></i>
       back
     </div>
   </div>
-<div class="question container-row">
+<div class="question row">
   {{question.text}}
   <div class="fill-space">
 
   </div>
-  <div class="detailText container-col">
-    <div class="fill-space">
-
-    </div>
+  <div class="detailText col">
+    <div class="fill-space"></div>
       {{question.date}}
   </div>
 </div>
-  <div class="bigTitle container-row margin-b padding-b">
+  <div class="bigTitle row margin-b padding-b">
     <input class="fill-space margin-r" type="text" placeholder="brief response/ summary of sections" ng-model="response" required>
     <button class="addModule"type="button" ng-click="addModule()">Add Section</button>
   </div>
@@ -38,12 +36,12 @@
     <button class="submitButton" ng-hide="success"type="submit">Submit Response</button>
   </div>
 
-  <div class="container-row" ng-show="success">
+  <div class="row" ng-show="success">
     <div class="fill-space"></div>
     <h4 style="color:green">SUCCESS!</h4>
     <div class="fill-space"></div>
   </div>
-  <div class="container-row" ng-show="failed">
+  <div class="row" ng-show="failed">
     <div class="fill-space"></div>
     <h4 style="color:green">failed... try refreshing the page</h4>
     <div class="fill-space"></div>

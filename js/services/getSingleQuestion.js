@@ -4,14 +4,11 @@ module.exports = function($http) {
         //request
         var returnData = $http({
             method: 'GET',
-            url: 'http://api.iex.ist/full/question/' + id,
-            headers: {
-                'Content-type': 'application/json'
-            }
+            url: 'http://api.iex.ist/full/question/' + id
+
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            //  console.log('successCallback unparsed response: ' + JSON.stringify(response.data.questions));
             console.log(response.data);
 
             return response.data;

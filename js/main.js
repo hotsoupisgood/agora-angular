@@ -3,13 +3,10 @@ require('angular-route');
 require('angular-cookies');
 require('angular-toArrayFilter');
 require('angular-animate');
-//every app that needs user data has acess to $rootscope
-//timeout required becuase we need to wait for ng-href
-//in the header.html to trigger before we trigger the logout funtion
+
 //app decrelation
 var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'angular-toArrayFilter', 'ngCookies']);
 
-//util
 //config
 agoraApp.config(['$routeProvider', '$locationProvider', require('./config/routing.js')]);
 //services
@@ -18,9 +15,9 @@ agoraApp.service('cookieService',                   require('./services/cookieUt
 agoraApp.service('submitResponseService',           require('./services/submitResponse.js'));
 agoraApp.service('submitQuestionService',           require('./services/submitQuestion.js'));
 agoraApp.service('questionsTopService',             require('./services/questionsTop.js'));
-agoraApp.service('questionsSearchService',          require('./services/questionsSearch.js'));
+agoraApp.service('searchService',                   require('./services/search.js'));
 agoraApp.service('userService',                     require('./services/user.js'));
-agoraApp.service('upVoteService',                   require('./services/upVote.js'));
+agoraApp.service('upVoteQuestionService',           require('./services/upVoteQuestion.js'));
 agoraApp.service('loginService',                    require('./services/login.js'));
 agoraApp.service('logoutService',                   require('./services/logout.js'));
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));

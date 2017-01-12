@@ -1,0 +1,40 @@
+<div class="col">
+    <ul class="questionList">
+        <li class="questionContainer" ng-repeat="q in questions" >
+                <div class="header row">
+                  <a class="text" ng-href="#/question/{{q.id}}">
+                      <div class="title row">
+                          {{q.text}}
+                      </div>
+                    </a>
+                    <div class="tags">
+                      <a class="tag infoButton" ng-href="#search/{{tag.name}}" ng-repeat="tag in q.tags">
+                          {{tag.name}}
+                      </a>
+                    </div>
+                </div>
+                    <div class="belowTitle">
+                            {{q.date}}
+                        <div class="fill-space"></div>
+                        <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
+                            <u>
+                                Respond
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </u>
+                        </a>
+                        <div class="" ng-hide="isLoggedIn">
+                            Please
+                            <a class="" ng-href="#login">
+                                login
+                            </a>
+                            or
+                            <a class="" ng-href="#createAccount">
+                                create an account
+                            </a>
+                            to answer the question!
+                        </div>
+                    </div>
+        </li>
+    </ul>
+
+</div>

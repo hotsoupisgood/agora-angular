@@ -1,4 +1,4 @@
-module.exports = function($scope, $routeParams, $route, upVoteService, $location, userService, questionsTopService, questionsSearchService, getSingleQuestionService) {
+module.exports = function($scope, $routeParams, $route, upVoteQuestionService, $location, userService, questionsTopService, upVoteQuestionService, searchService, getSingleQuestionService) {
     // routing goodies
     $scope.name = 'questions';
     //manage questions
@@ -7,7 +7,7 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
     $scope.currentSearchTerm = '';
     $scope.isCurrentSearchTermEmpty = true;
     $scope.isQueryEmpty = false;
-    $scope.order = 'date';
+    $scope.order = '-date';
     $scope.gotQuestions = true;
     //manage event listeners
     $scope.$on('$routeChangeSuccess', function(e) {
@@ -16,16 +16,15 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
             $scope.isCurrentSearchTermEmpty = true;
             $scope.getSearchQuery();
         } else {
-            // $location.path('/questions');
             $scope.getTopQuestions();
         }
     });
-    $scope.agree = function(responseId) {
-        upVoteService.submit(responseId);
+    $scope.upVote = function(id) {
+        upVoteQuestionService.submit(id);
     };
     // get request questions
     $scope.getSearchQuery = function() {
-        questionsSearchService.get($scope.currentSearchTerm, $scope.currentPage).then(function(response) {
+        searchService.get($scope.currentSearchTerm, $scope.currentPage).then(function(response) {
             // console.log(response);
             $scope.questions = response.objects;
             $scope.isQueryEmpty = false;
@@ -34,10 +33,15 @@ module.exports = function($scope, $routeParams, $route, upVoteService, $location
     $scope.getTopQuestions = function() {
         questionsTopService.get($scope.currentPage, $scope.order, 'min').then(function(response) {
             if (response) {
-                console.log(response);
-                $scope.questions = response.objects;
-                $scope.isQueryEmpty = false;
-                $scope.gotQuestions = true;
+              $scope.questions = response.objects;
+                if ($scope.questions.length) {
+                  console.log(response);
+                  $scope.isQueryEmpty = false;
+                  $scope.gotQuestions = true;
+                }
+                else {
+                  window.history.back();
+                }
             } else {
                 $scope.gotQuestions = false;
             }

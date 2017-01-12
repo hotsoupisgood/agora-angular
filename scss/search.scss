@@ -1,0 +1,16 @@
+.search {
+  margin: 1em;
+  .searchParameters{
+    background: rgb(246, 246, 246);
+    padding: .5em;
+    border-radius: .2em;
+    .searchForm {
+      div {
+        margin: .3em;
+      }
+    }
+  }
+  .searchResults {
+    margin-top: 1em;
+  }
+}

@@ -5,11 +5,10 @@ $secondaryColor: rgba(#64d3fb, 1);
 $navbarColor: $secondaryColor;
 $standardBorderRadius: 2px;
 $singleInputFormHeight: 20px;
-
+@import "search";
 @import "question";
 @import "tags";
-@import "siteBanner";
-@import "error_code";
+@import "banner";
 @import "addResponse";
 @import "responses";
 @import "util";
@@ -19,7 +18,6 @@ $singleInputFormHeight: 20px;
 @import "ask";
 @import "questionStream";
 @import "login";
-@import "advancedSearch";
 @import "about";
 //until functional
 .sidebar {

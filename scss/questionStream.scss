@@ -2,23 +2,8 @@ $listBackgroundColor: rgb(255, 255, 255);
 $phoneButtonSize: 20vw;
 $phoneButtonHeight: 15vw;
 @media(pointer:coarse) {
-    .questionStream {
-        ul {
-            li {
-                .questionTitle {
+  //for mobile
 
-                }
-            }
-        }
-        .pagerContainer {
-            button {
-                margin-left: 10px;
-                width: 20vw;
-                height: 5vw;
-                font-size: 3vw;
-            }
-        }
-    }
 }
 .questionSubHeader {
   width: 100%;
@@ -54,32 +39,57 @@ $phoneButtonHeight: 15vw;
     opacity: 1;
 }
 .questionStream {
+  .optionsBox {
+    background: rgb(246, 246, 246);
+    border-radius: .2em;
+    padding: 1em;
+    margin-bottom: 1em;
+    a {
+      color: black;
+      margin-left: 1em;
+    }
+  }
     .questionContainer {
       border-top: 1px solid lightgrey;
-      .subcontrol {
+      display: flex;
+      flex-direction: column;
+      .header {
+        margin-top: .3em;
+        .text {
+            color: black;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        .text:hover {
+          .title {
+            text-decoration: underline;
+          }
+        }
+        .tags {
+          margin-left: .5em;
+          align-content: center;
+          .tag{
+            border-radius: .2em;
+            font-size: .5em;
+            color: grey;
+            text-decoration: none;
+            margin-right: .5em;
+          }
+        }
+
+      }
+      .belowTitle {
         display: flex;
         flex-direction: row;
-        margin-bottom: .35em;
-        font-size: .6em;
+        font-size: .7em;
         color: grey;
-        padding-left: 6px;
+        margin-top: 1em;
+        margin-bottom: .2em;
         a {
           border-radius: .1em;
           color: grey;
         }
-        .tag{
-          text-decoration: none;
-          margin-right: .5em;
-        }
-        .answer {
-
-        }
       }
-    }
-    .questionContainerActive {
-      box-shadow: 0px 0px 3px 3px rgba(#b6b6b6, 0.45);
-      border-radius: $standardBorderRadius;
-      z-index: 2;
     }
     ul {
         margin-top: 0;
@@ -87,34 +97,6 @@ $phoneButtonHeight: 15vw;
         list-style: none;
         display: flex;
         flex-direction: column;
-        li {
-            display: flex;
-            flex-direction: column;
-            .questionTitle {
-                border: none;
-                padding-top: 15px;
-                background: rgba(255, 255, 255, 1);
-                color: black;
-                text-align: left;
-                border-radius: 0;
-                box-shadow: none;
-                font-size: 1rem;
-                text-decoration: none;
-                .belowTitle {
-                  display: flex;
-                  flex-direction: row;
-                  font-size: .7em;
-                  color: grey;
-                  margin-top: 1em;
-                  margin-bottom: .2em;
-                }
-            }
-            .questionTitle:hover {
-              .title {
-                text-decoration: underline;
-              }
-            }
-        }
     }
     .pagerContainer {
         a {

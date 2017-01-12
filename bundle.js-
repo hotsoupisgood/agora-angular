@@ -2,8 +2,8 @@
 module.exports = function($routeProvider) {
     $routeProvider
         .when('/top', {
-            templateUrl: 'html-components/top30.html',
-            controller: 'top30'
+            templateUrl: 'html-components/discover.html',
+            controller: 'discover'
         }).when('/search', {
             templateUrl: 'html-components/questionsSearch.html',
             controller: 'questionSearchController'
@@ -147,7 +147,7 @@ module.exports =  function($scope, accountService) {
 module.exports =  function($scope, $routeParams, upVoteService,
                             accountService, questionsTopService, questionsSearchService) {
     // routing goodies
-    $scope.name = 'top30';
+    $scope.name = 'discover';
     $scope.$params = $routeParams;
     //manage questions
     $scope.currentPage = 0;
@@ -347,7 +347,7 @@ agoraApp.controller('createAccountController',      require('./controllers/creat
 agoraApp.controller('checkUsernameController',      require('./controllers/checkUsername.js'));
 agoraApp.controller('loginController',              require('./controllers/login.js'));
 agoraApp.controller('loginFormController',          require('./controllers/loginForm.js'));
-agoraApp.controller('top30',                        require('./controllers/questions.js'));
+agoraApp.controller('discover',                        require('./controllers/questions.js'));
 agoraApp.controller('pagerController',              require('./controllers/pager.js'));
 agoraApp.controller('searchController',             require('./controllers/search.js'));
 agoraApp.controller('submitQuestionFormController', require('./controllers/submit-question.js'));

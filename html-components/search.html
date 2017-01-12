@@ -1,10 +1,85 @@
-<form class=""ng-controller="searchController" ng-submit="searchQuestions()">
-    <div class="input-group">
-        <input ng-model="searchQuery.question" type="text" class="form-control input-sm" placeholder="Search Questions">
-        <span class="input-group-btn">
-            <button  class="" submit>
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </span>
+<div class="search">
+  <div class="searchParameters">
+    <form class="searchForm col" ng-submit="submitQuery()">
+      <div class="col">
+        Search...
+      </div>
+      <div class="row">
+        <div class="question">
+          <label>
+            questions:
+            <input type="text" name="question content" placeholder="question content" ng-model="question">
+          </label>
+        </div>
+          <div class="tags">
+            <label>
+              tags:
+              <input type="text" name="tag content" placeholder="tag content" ng-model="tag">
+            </label>
+          </div>
+          <div class="user">
+            <label>
+              users:
+              <input type="text" name="user content" placeholder="user content" ng-model="user">
+            </label>
+          </div>
+          <div class="response">
+            <label>
+              responses:
+              <input type="text" name="response content" placeholder="response content" ng-model="response">
+            </label>
+          </div>
+          <div class="">
+            <button class="submitButton" type="submit">Search</button>
+          </div>
+      </div>
+    </form>
+    <ul>
+      <li class="detailText">
+        If your results are not satisfing please try to be more specific or less broad. (ex. searching for "a" will return nothing)
+      </li>
+      <li class="detailText">
+        It takes about a half hour for questions/responses/tags to get indexed in our search engine.
+      </li>
+    </ul>
+  </div>
+  <div class="searchResults">
+    <div class="questions" ng-if="questions.length">
+      <div class="header">
+        Questions
+        ({{questions.length}})
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      </div>
+      <div class="searchResults questionStream">
+        <ng-include src="'html-components/questionStream.html'"> </ng-include>
+      </div>
     </div>
-</form>
+    <div class="responses" ng-if="responseResults.length">
+      <div class="header">
+        Responses
+        ({{responseResults.length}})
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      </div>
+      <div class="searchResults">
+
+      </div>
+    </div>
+    <div class="users" ng-if="userResults.length">
+      <div class="header">
+        Users
+        ({{userResults.length}})
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      </div>
+      <div class="searchResults">
+
+      </div>
+    </div>
+    <div class="tags" ng-if="tagResults.length">
+      <div class="header">
+        Tags
+        ({{tagResults.length}})
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+</div>

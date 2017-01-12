@@ -1,15 +1,15 @@
-    <div class="account container-col" ng-controller="userController">
+    <div class="account col" ng-controller="userController">
       <div class="back">
         <div class="click-area" ng-click="back()">
           <i class="fa fa-chevron-left" aria-hidden="true"></i>
           back
         </div>
       </div>
-      <div class="container-row">
+      <div class="row">
         <h4>{{accountInfo.username}}'s account</h4>
       </div>
-        <div class="container-row fill-space accountStats">
-          <div class="container-row subheader" ng-click="showQ()">
+        <div class="row fill-space accountStats">
+          <div class="row subheader" ng-click="showQ()">
             <div class="contentTitle">
               <label>
                 Your Questions
@@ -20,16 +20,16 @@
             <div class="fill-space"></div>
             <div class="details">
               <label>Total:
-              {{accountInfo.total_questions}}
+              {{accountInfo.my_questions}}
             </label>
             </div>
           </div>
             <div class="questionStream" ng-if="questions.length && showQuestions">
-              <ng-include src="'html-components/questionStreamTest.html'"> </ng-include>
+              <ng-include src="'html-components/questionStream.html'"> </ng-include>
             </div>
         </div>
-        <div class="container-row fill-space accountStats">
-          <div class="container-row subheader" ng-click="showR()">
+        <div class="row fill-space accountStats">
+          <div class="row subheader" ng-click="showR()">
             <div class="contentTitle">
               <label>
                 Your Responses
@@ -40,7 +40,7 @@
             <div class="fill-space"></div>
             <div class="details">
               <label>Total:
-              {{accountInfo.total_responses}}
+              {{accountInfo.my_responses}}
             </label>
             </div>
           </div>

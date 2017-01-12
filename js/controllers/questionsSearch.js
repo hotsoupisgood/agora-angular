@@ -1,6 +1,6 @@
 
-module.exports =  function($scope, $routeParams, upVoteService,
-                            userService, questionsTopService, questionsSearchService) {
+module.exports =  function($scope, $routeParams, upVoteQuestionService,
+                            userService, questionsTopService, searchService) {
     // routing goodies
     $scope.name = 'questionSearchController';
     $scope.$params = $routeParams;
@@ -27,13 +27,13 @@ module.exports =  function($scope, $routeParams, upVoteService,
     //   console.log('unfinished');
     // });
     $scope.agree = function(responseId) {
-      upVoteService.submit(responseId);
+      upVoteQuestionService.submit(responseId);
     };
     // get request questions
     $scope.getSearchedQuestions = function() {
         //multiply page number for first question desired
         $scope.startQuestion = $scope.currentPage * userService.numIteratedPerPage;
-        questionsSearchService.get($scope.currentSearchTerm, $scope.startQuestion)
+        searchService.get($scope.currentSearchTerm, $scope.startQuestion)
         .then(function (response) {
           $scope.questions = response;
           console.log($scope.questions);
