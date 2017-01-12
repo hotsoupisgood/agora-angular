@@ -46,7 +46,7 @@ module.exports = function ($http, userService) {
           //show response for debug
            console.log('successCallback response: ');
            console.log(response.data.objects);
-          return response.data;
+          return response.data.objects;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
@@ -74,7 +74,7 @@ module.exports = function ($http, userService) {
           //show response for debug
            console.log('successCallback response: ');
            console.log(response.data.objects);
-          return response.data;
+          return response.data.objects;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
@@ -102,7 +102,7 @@ module.exports = function ($http, userService) {
           //show response for debug
            console.log('successCallback response: ');
            console.log(response.data.objects);
-          return response.data;
+          return response.data.objects;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.

@@ -17,12 +17,13 @@
       </div>
     </div>
     <div class="row subHeader">
-      <label>
         tags:
-        <a class="tag infoButton" ng-href="#tag/{{tag.id}}" ng-repeat="tag in question.tags">
+        <a class="tag infoButton" ng-href="#search/{{tag.name}}" ng-repeat="tag in question.tags">
             {{tag.name}}
         </a>
-      </label>
+        <div class="none" ng-hide="question.tags.length">
+          none...
+        </div>
       <div class="fill-space"></div>
       <div class="answer" ng-hide="isLoggedIn">
           Please
@@ -46,18 +47,14 @@
   <div class="responses">
     <div class="total">
       <label>
-        {{question.total_responses}}
         Responses
+        ({{question.total_responses}})
       </label>
     </div>
       <div class="response" ng-repeat="response in question.responses">
         <div class="header">
           <div class="subHeader">
-            <b>{{response.text}}</b>
-            <div href="" class="vote" ng-click="upVote('{{response.id}}')">
-              upvote
-              <i class="fa fa-arrow-up" aria-hidden="true"></i>
-            </div>
+            {{response.text}}
             <div class="fill-space"></div>
             <div class="detailText col">
               <div class="fill-space"></div>
@@ -65,6 +62,12 @@
                 Writen {{response.date}}
               </label>
               <div class="fill-space"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="vote" ng-click="upVote(question.responses[$index].id)">
+              vote
+              <i class="fa fa-arrow-up" aria-hidden="true"></i>
             </div>
           </div>
         </div>

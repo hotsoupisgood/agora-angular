@@ -1,4 +1,4 @@
-module.exports = function($scope, $routeParams, $route, upVoteQuestionService, $location, userService, questionsTopService, upVoteQuestionService, searchService, getSingleQuestionService) {
+module.exports = function($scope, $routeParams, $route, $location, userService, questionsTopService, upVoteQuestionService, searchService, getSingleQuestionService) {
     // routing goodies
     $scope.name = 'questions';
     //manage questions
@@ -19,9 +19,6 @@ module.exports = function($scope, $routeParams, $route, upVoteQuestionService, $
             $scope.getTopQuestions();
         }
     });
-    $scope.upVote = function(id) {
-        upVoteQuestionService.submit(id);
-    };
     // get request questions
     $scope.getSearchQuery = function() {
         searchService.get($scope.currentSearchTerm, $scope.currentPage).then(function(response) {

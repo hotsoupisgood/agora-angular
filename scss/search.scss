@@ -7,10 +7,42 @@
     .searchForm {
       div {
         margin: .3em;
+        .searchBox {
+          flex-grow: 10;
+          padding: .6em;
+        }
+        .checkbox {
+          font-size: .7em;
+          color: grey;
+          margin-right: .5em;
+        }
       }
     }
   }
   .searchResults {
     margin-top: 1em;
+    .users {
+      .header {
+
+      }
+      .results {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+        .user {
+          border-bottom: 1px solid lightgrey;
+          a {
+              color: black;
+              font-size: .8em;
+              .details {
+                font-size: .7em;
+                color: grey;
+                margin-left: 1em;
+              }
+          }
+        }
+      }
+    }
   }
 }

@@ -10,8 +10,35 @@
 .search .searchParameters .searchForm div {
   margin: .3em;
 }
+.search .searchParameters .searchForm div .searchBox {
+  flex-grow: 10;
+  padding: .6em;
+}
+.search .searchParameters .searchForm div .checkbox {
+  font-size: .7em;
+  color: grey;
+  margin-right: .5em;
+}
 .search .searchResults {
   margin-top: 1em;
+}
+.search .searchResults .users .results {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.search .searchResults .users .results .user {
+  border-bottom: 1px solid lightgrey;
+}
+.search .searchResults .users .results .user a {
+  color: black;
+  font-size: .8em;
+}
+.search .searchResults .users .results .user a .details {
+  font-size: .7em;
+  color: grey;
+  margin-left: 1em;
 }
 
 .single-question {
@@ -31,7 +58,10 @@
 }
 .single-question .qHeader .subHeader .tag {
   text-decoration: none;
-  margin-right: .2em;
+  margin-left: .2em;
+}
+.single-question .qHeader .subHeader .none {
+  margin-left: 0.5em;
 }
 .single-question .responses {
   margin-top: .5em;
@@ -59,6 +89,12 @@
   display: flex;
   flex-direction: row;
 }
+.single-question .responses .response .header .vote {
+  color: grey;
+  font-size: .7em;
+  text-decoration: underline;
+  cursor: pointer;
+}
 .single-question .responses .response .sections {
   margin-top: .5em;
   margin-left: 1em;
@@ -71,6 +107,8 @@
 }
 .single-question .responses .response .sections .section-body {
   font-size: .7em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .banner {

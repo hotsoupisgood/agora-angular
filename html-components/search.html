@@ -1,38 +1,34 @@
 <div class="search">
   <div class="searchParameters">
     <form class="searchForm col" ng-submit="submitQuery()">
-      <div class="col">
-        Search...
+      <div class="row">
+        Search
       </div>
       <div class="row">
-        <div class="question">
-          <label>
-            questions:
-            <input type="text" name="question content" placeholder="question content" ng-model="question">
-          </label>
-        </div>
-          <div class="tags">
-            <label>
-              tags:
-              <input type="text" name="tag content" placeholder="tag content" ng-model="tag">
-            </label>
-          </div>
-          <div class="user">
-            <label>
-              users:
-              <input type="text" name="user content" placeholder="user content" ng-model="user">
-            </label>
-          </div>
-          <div class="response">
-            <label>
-              responses:
-              <input type="text" name="response content" placeholder="response content" ng-model="response">
-            </label>
-          </div>
+        <input class="searchBox" type="text" name="question content" placeholder="Content (ex. Cats)" ng-model="globalQuery">
+      </div>
+      <div class="row">
+        <label class="checkbox">
+          Questions:
+          <input type="checkbox" name="questions" value="" ng-model="doSearchQuestions">
+        </label>
+        <label class="checkbox">
+          Responses:
+          <input type="checkbox" name="responses" value="" ng-model="doSearchResponses">
+        </label>
+        <label class="checkbox">
+          Users:
+          <input type="checkbox" name="users" value="" ng-model="doSearchUsers">
+        </label>
+        <label class="checkbox">
+          Tags:
+          <input type="checkbox" name="tags" value="" ng-model="doSearchTags">
+        </label>
+      </div>
+
           <div class="">
             <button class="submitButton" type="submit">Search</button>
           </div>
-      </div>
     </form>
     <ul>
       <li class="detailText">
@@ -60,7 +56,7 @@
         ({{responseResults.length}})
         <i class="fa fa-caret-up" aria-hidden="true"></i>
       </div>
-      <div class="searchResults">
+      <div class="results">
 
       </div>
     </div>
@@ -70,8 +66,25 @@
         ({{userResults.length}})
         <i class="fa fa-caret-up" aria-hidden="true"></i>
       </div>
-      <div class="searchResults">
+      <div class="results">
+        <div class="user" ng-repeat="user in userResults">
+          <a class="row" ng-href="#user/{{user.username}}">
+            {{user.username}}
+            <div class="fill-space"></div>
+            <div class="details">
+              total questions:
+              {{user.my_questions}}
+            </div>
+            <div class="details">
+              total responses:
+              {{user.my_responses}}
+            </div>
+<div class="details">
+  total votes:
+  {{user.my_votes}}
 
+</div>          </a>
+        </div>
       </div>
     </div>
     <div class="tags" ng-if="tagResults.length">
@@ -79,6 +92,9 @@
         Tags
         ({{tagResults.length}})
         <i class="fa fa-caret-up" aria-hidden="true"></i>
+      </div>
+      <div class="results">
+
       </div>
     </div>
   </div>

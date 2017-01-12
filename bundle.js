@@ -172,7 +172,7 @@ module.exports =  function($scope, $rootScope, $route,
 };
 
 },{}],8:[function(require,module,exports){
-module.exports = function($scope, $routeParams, getSingleQuestionService) {
+module.exports = function($scope, $routeParams, getSingleQuestionService, upVoteQuestionService) {
     $scope.name = 'questionController';
     //init
     // $scope.isBodyHidden = false;
@@ -187,10 +187,14 @@ module.exports = function($scope, $routeParams, getSingleQuestionService) {
       });
     }
     $scope.getQuestionFull();
+
+    $scope.upVote = function (id) {
+      upVoteQuestionService.response(id);
+    }
 };
 
 },{}],9:[function(require,module,exports){
-module.exports = function($scope, $routeParams, $route, upVoteQuestionService, $location, userService, questionsTopService, upVoteQuestionService, searchService, getSingleQuestionService) {
+module.exports = function($scope, $routeParams, $route, $location, userService, questionsTopService, upVoteQuestionService, searchService, getSingleQuestionService) {
     // routing goodies
     $scope.name = 'questions';
     //manage questions
@@ -211,9 +215,6 @@ module.exports = function($scope, $routeParams, $route, upVoteQuestionService, $
             $scope.getTopQuestions();
         }
     });
-    $scope.upVote = function(id) {
-        upVoteQuestionService.submit(id);
-    };
     // get request questions
     $scope.getSearchQuery = function() {
         searchService.get($scope.currentSearchTerm, $scope.currentPage).then(function(response) {
@@ -359,13 +360,48 @@ module.exports = function($scope, $rootScope, $timeout, $location, $routeParams,
     $scope.user = '';
     $scope.response = '';
 
+    $scope.doSearchQuestions = true;
+    $scope.doSearchResponses = true;
+    $scope.doSearchUsers = true;
+    $scope.doSearchTags = false;
+
     $scope.globalQuery = '';
 
     $scope.questions = {};
     $scope.tagResults = {};
     $scope.userResults = {};
     $scope.responseResults = {};
-    
+
+    $scope.setGlobalQuery = function () {
+      if ($scope.doSearchQuestions) {
+        $scope.question = $scope.globalQuery;
+      }
+      else {
+        $scope.question = '';
+        $scope.questions = {};
+      }
+      if ($scope.doSearchResponses) {
+        $scope.response = $scope.globalQuery;
+      }
+      else {
+        $scope.response = '';
+        $scope.responseResults = {};
+      }
+      if ($scope.doSearchUsers) {
+        $scope.user = $scope.globalQuery;
+      }
+      else {
+        $scope.user = '';
+        $scope.userResults = {};
+      }
+      if ($scope.doSearchTags) {
+        $scope.tag = $scope.globalQuery;
+      }
+      else {
+        $scope.tag = '';
+        $scope.tagResults = {};
+      }
+    }
     $scope.searchQuestions = function () {
       searchService.questions($scope.question).then(function (response) {
         $scope.questions = response;
@@ -373,23 +409,25 @@ module.exports = function($scope, $rootScope, $timeout, $location, $routeParams,
     }
     $scope.searchResponses = function () {
       console.log($scope.response);
-      searchService.responses($scope.question).then(function (response) {
+      searchService.responses($scope.response).then(function (response) {
         $scope.responseResults = response;
       })
     }
     $scope.searchTags = function () {
       console.log($scope.tag);
-      searchService.tagz($scope.question).then(function (response) {
+      searchService.tagz($scope.tag).then(function (response) {
         $scope.tagResults = response;
       })
     }
     $scope.searchUsers = function () {
       console.log($scope.user);
-      searchService.users($scope.question).then(function (response) {
+      searchService.users($scope.user).then(function (response) {
+        console.log(response);
         $scope.userResults = response;
       })
     }
     $scope.submitQuery = function () {
+      $scope.setGlobalQuery();
       if ($scope.question.length > 0) {
         $scope.searchQuestions();
       };if ($scope.tag.length > 0) {
@@ -403,10 +441,7 @@ module.exports = function($scope, $rootScope, $timeout, $location, $routeParams,
     //on page load logic
     if ($routeParams.searchQuery) {
       $scope.globalQuery = $routeParams.searchQuery.split('+').join(' ');
-      $scope.question = $scope.globalQuery;
-      $scope.tag = $scope.globalQuery;
-      $scope.user = $scope.globalQuery;
-      $scope.response = $scope.globalQuery;
+      $scope.setGlobalQuery();
       $scope.submitQuery();
     }
 };
@@ -789,7 +824,7 @@ module.exports = function ($http, userService) {
           //show response for debug
            console.log('successCallback response: ');
            console.log(response.data.objects);
-          return response.data;
+          return response.data.objects;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
@@ -817,7 +852,7 @@ module.exports = function ($http, userService) {
           //show response for debug
            console.log('successCallback response: ');
            console.log(response.data.objects);
-          return response.data;
+          return response.data.objects;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
@@ -845,7 +880,7 @@ module.exports = function ($http, userService) {
           //show response for debug
            console.log('successCallback response: ');
            console.log(response.data.objects);
-          return response.data;
+          return response.data.objects;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
@@ -923,25 +958,37 @@ module.exports = function($http, $cookies, $rootScope, userService) {
 };
 
 },{}],25:[function(require,module,exports){
-module.exports = function ($rootScope, $http, userService ) {
-    if ($rootScope.isLoggedIn) {
-        //request
-        $http({
-            method: 'POST',
-            url: 'http://iex.ist/full/upVote' + 1,
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-
-            //show response for debug
-            console.log('successCallback unparsed response: ' + JSON.stringify(response.data));
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            //show response for debug
-            console.log('errorCallback unparsed response: ' + response);
-        });
-  }
+module.exports = function ($rootScope, $http, userService) {
+    this.response = function (id) {
+      console.log('upvote id: ');
+      console.log(id);
+      if ($rootScope.isLoggedIn) {
+          //request
+          $http({
+              method: 'POST',
+              url: 'http://api.iex.ist/full/vote/',
+              data: {
+                response_id: id
+              },
+              headers: {
+                  'Content-type': 'application/json',
+                  'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
+              }
+          }).then(function successCallback(response) {
+              // this callback will be called asynchronously
+              // when the response is available
+              //show response for debug
+              console.log('successCallback unparsed response: ');
+              console.log(response.data);
+          }, function errorCallback(response) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+              //show response for debug
+              console.log('errorCallback unparsed response: ');
+              console.log(response.data);
+          });
+    }
+    }
 };
 
 },{}],26:[function(require,module,exports){
