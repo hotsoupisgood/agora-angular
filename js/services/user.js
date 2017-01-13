@@ -13,6 +13,7 @@ module.exports = function($cookies, $http) {
       };
 
       this.get = function(inputUsername) {
+        console.log(inputUsername);
           //request
           var returnData = $http({
               method: 'GET',
@@ -33,4 +34,5 @@ module.exports = function($cookies, $http) {
           });
           return returnData;
       };
+      
 };
