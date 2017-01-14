@@ -5,8 +5,12 @@ module.exports = function($scope, $cookies, $route, $location, logoutService, co
         logoutService.submit();
     };
     $scope.search = function () {
-      var urlSafeQuery = $scope.searchQuery.replace(/ /g, '+');
-      $location.url('/search/'+urlSafeQuery);
+      $location.path('/search/').search(
+        {query: $scope.searchQuery,
+        doQ: true,
+        doR: true,
+        doU: true,
+        doT: false});
     }
     cookieService.all();
 };

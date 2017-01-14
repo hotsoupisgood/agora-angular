@@ -18,7 +18,7 @@
     </div>
     <div class="row subHeader">
         tags:
-        <a class="tag infoButton" ng-href="#search/{{tag.name}}" ng-repeat="tag in question.tags">
+        <a class="tag infoButton" ng-click="tagSearch(tag.name)" ng-repeat="tag in question.tags">
             {{tag.name}}
         </a>
         <div class="none" ng-hide="question.tags.length">
@@ -51,7 +51,7 @@
         ({{question.total_responses}})
       </label>
     </div>
-      <div class="response" ng-repeat="response in question.responses">
+      <div class="response" ng-repeat="response in question.responses" ng-controller="responseController">
         <div class="header">
           <div class="subHeader">
             {{response.text}}
@@ -65,7 +65,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="vote" ng-click="upVote(question.responses[$index].id)">
+            <!-- <div class="vote" ng-show="upVoted">
+              voted
+            </div> -->
+            <div class="vote" ng-click="upVote(question.responses[$index].id)" ng-hide="upVoted">
               vote
               <i class="fa fa-arrow-up" aria-hidden="true"></i>
             </div>

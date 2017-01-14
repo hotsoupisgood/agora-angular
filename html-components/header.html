@@ -13,12 +13,12 @@
                 <li ng-class="{'active':selectedTab === 'createAccount'}">
                     <a ng-href="#createAccount" ng-show="!isLoggedIn" ng-click="selectedTab = 'createAccount'">Create Account</a>
                 </li> -->
-                <!-- <li ng-class="{'active':selectedTab === 'account'}">
-                    <a ng-href="#user/{{accountInfo.username}}" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">Manage Account</a>
-                </li> -->
-              <li ng-class="{'active':selectedTab === 'about'}">
+                <li ng-class="{'active':selectedTab === 'account'}">
+                    <a ng-href="#user/{{accountInfo.username}}" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">Account</a>
+                </li>
+              <!-- <li ng-class="{'active':selectedTab === 'about'}">
                   <a ng-href="#about" ng-click="selectedTab = 'about'">About</a>
-              </li>
+              </li> -->
                 <li ng-class="{'active':selectedTab === 'ask'}">
                     <a ng-href="#ask" ng-click="selectedTab = 'ask'">Ask Question</a>
                 </li>
@@ -26,7 +26,7 @@
         </nav>
         <!-- <div class="fill-space mobile-Hidden"></div> -->
         <form class="searchForm fill-space row" ng-submit="search()">
-            <input class="searchFormInput" ng-model="searchQuery" type="text" placeholder="Search Questions">
+            <input class="searchFormInput" ng-model="searchQuery" type="text" placeholder="Search This Agora">
             <div class="col">
               <button class="fill-space">
                   <i class="fa fa-search" aria-hidden="true"></i>

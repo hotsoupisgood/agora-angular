@@ -1,8 +1,6 @@
 module.exports = function($scope, $routeParams, getSingleQuestionService, upVoteQuestionService) {
     $scope.name = 'questionController';
-    //init
-    // $scope.isBodyHidden = false;
-    // $scope.isAddResponseHidden = false;
+
     $scope.question = {};
     $scope.responses = {};
     $scope.questionId = $routeParams.questionId;
@@ -13,8 +11,4 @@ module.exports = function($scope, $routeParams, getSingleQuestionService, upVote
       });
     }
     $scope.getQuestionFull();
-
-    $scope.upVote = function (id) {
-      upVoteQuestionService.response(id);
-    }
 };

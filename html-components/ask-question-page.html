@@ -1,9 +1,9 @@
   <div class="askQuestionPage row" ng-controller="submitQuestionFormController">
       <div>
           <form class="askQuestion" ng-submit="submit()" role="form">
-              <h2>Ask A Question!</h2>
-              <textarea type="text" class="" placeholder="ask a question; eg. (Can kowalas survive biscuts and gravy?)" required ng-model="question"></textarea>
-              <input  class="" ng-model="questionTags" type="text" placeholder="tag your question; eg. (cute cats, derivitives)">
+              Ask A Question!
+              <textarea type="text" class="" placeholder="Ask a question; eg. (Can kowalas survive biscuts and gravy?)" required ng-model="question"></textarea>
+              <input  class="" ng-model="questionTags" type="text" placeholder="Tag your question; eg. (cute cats, derivitives)">
               <button type="submit" class="submitButton" ng-hide="success; loading">
                   submit
               </button>

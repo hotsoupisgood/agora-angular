@@ -1,6 +1,7 @@
 $background: white;
 $primaryColor: #db3a3a;
 $secondaryColor: rgba(#64d3fb, 1);
+$backgroundHighlight: rgb(246, 246, 246);
 // $navbarColor: rgb(73, 77, 72);
 $navbarColor: $secondaryColor;
 $standardBorderRadius: 2px;
@@ -50,8 +51,11 @@ $singleInputFormHeight: 20px;
   // transition: margin-top 90ms;
 }
 .back {
-  margin-bottom: 1em;
   font-size: .7em;
+  background: rgb(246, 246, 246);
+  border-radius: .2em;
+  padding: 1em;
+  margin-bottom: 1em;
   .click-area {
     cursor: pointer !important;
   }
@@ -64,11 +68,15 @@ $singleInputFormHeight: 20px;
   margin-top: 12em !important;
   // transition: margin-top 90ms;
 }
+h4 {
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
 p{
   font-size: .8em;
 }
 body {
-    font-family: 'font-awesome', sans-serif;
+    font-family: 'PT sans', sans-serif;
     background: $background;
     margin: 0;
     font-size: 20px;

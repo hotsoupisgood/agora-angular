@@ -22,6 +22,28 @@
 .search .searchResults {
   margin-top: 1em;
 }
+.search .searchResults .responses .results .response {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: .25em;
+  border: 1px solid lightgrey;
+  border-radius: .2em;
+}
+.search .searchResults .responses .results .response .header .text {
+  color: black;
+  font-size: .8em;
+}
+.search .searchResults .responses .results .response .header .details {
+  font-size: .6em;
+  color: grey;
+  margin-left: 1em;
+}
+.search .searchResults .responses .results .response .subHeader a {
+  font-size: .6em;
+  color: grey;
+}
 .search .searchResults .users .results {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -369,6 +391,19 @@
   margin: 20px;
   display: flex;
 }
+.account .back {
+  display: flex;
+  flex-direction: row;
+}
+.account .back .name {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2em;
+}
+.account .noUser {
+  align-items: center;
+  justify-content: center;
+}
 .account .accountStats {
   padding: 10px;
   display: flex;
@@ -382,6 +417,32 @@
 }
 .account .accountStats .row p {
   margin-right: 5px;
+}
+.account .accountStats .responses .response {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: .25em;
+  border: 1px solid lightgrey;
+  border-radius: .2em;
+}
+.account .accountStats .responses .response .header .text {
+  color: black;
+  font-size: .8em;
+}
+.account .accountStats .responses .response .header .details {
+  font-size: .6em;
+  color: grey;
+  margin-left: 1em;
+}
+.account .accountStats .responses .response .subHeader a {
+  font-size: .6em;
+  color: grey;
+}
+.account .accountStats .responses .response .subHeader .details {
+  font-size: .6em;
+  color: grey;
 }
 
 .sidebar {
@@ -525,10 +586,11 @@ header button {
   justify-content: center;
   display: flex;
   flex-direction: column;
+  margin-top: 2em;
+  background: #f6f6f6;
+  border-radius: .2em;
   flex-grow: 10;
-}
-.askQuestionPage .askQuestion h2 {
-  flex-grow: 1;
+  padding: 1em;
 }
 .askQuestionPage .askQuestion input {
   padding: 1em;
@@ -681,10 +743,14 @@ header button {
 }
 
 #aboutFrame {
-  margin: 50px;
+  margin: 4em;
+  background: #f6f6f6;
+  border-radius: .2em;
+  padding: 1em;
 }
 #aboutFrame #inAbout {
-  margin: 5px;
+  margin-bottom: .5em;
+  font-size: .9em;
 }
 #aboutFrame img {
   border-radius: 5px;
@@ -717,8 +783,11 @@ header button {
 }
 
 .back {
-  margin-bottom: 1em;
   font-size: .7em;
+  background: #f6f6f6;
+  border-radius: .2em;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 .back .click-area {
   cursor: pointer !important;
@@ -733,12 +802,17 @@ header button {
   margin-top: 12em !important;
 }
 
+h4 {
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
+
 p {
   font-size: .8em;
 }
 
 body {
-  font-family: 'font-awesome', sans-serif;
+  font-family: 'PT sans', sans-serif;
   background: white;
   margin: 0;
   font-size: 20px;

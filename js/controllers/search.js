@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $timeout, $location, $routeParams,
+module.exports = function($scope, $rootScope, $timeout, $location, $routeParams, $route,
   searchService) {
     $scope.name = 'searchController';
     $scope.question = '';
@@ -84,10 +84,21 @@ module.exports = function($scope, $rootScope, $timeout, $location, $routeParams,
         $scope.searchResponses();
       }
     }
+    $scope.submit = function () {
+      $location.search(
+        {query: $scope.globalQuery,
+        doQ: $scope.doSearchQuestions,
+        doR: $scope.doSearchResponses,
+        doU: $scope.doSearchUsers,
+        doT: $scope.doSearchTags});
+    }
     //on page load logic
-    if ($routeParams.searchQuery) {
-      $scope.globalQuery = $routeParams.searchQuery.split('+').join(' ');
-      $scope.setGlobalQuery();
+    if ($location.search().query) {
+      $scope.globalQuery = $location.search().query;
+      $scope.doSearchQuestions = $location.search().doQ;
+      $scope.doSearchResponses = $location.search().doR;
+      $scope.doSearchUsers = $location.search().doU;
+      $scope.doSearchTags = $location.search().doT;
       $scope.submitQuery();
     }
 };

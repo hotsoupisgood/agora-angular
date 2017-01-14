@@ -13,6 +13,14 @@ module.exports =  function($scope, $rootScope, $route,
       $cookies.put('minBanner', $scope.minBanner)
       $scope.$apply()
     };
+    $scope.tagSearch = function (tag) {
+      $location.path('/search/').search(
+        {query: tag,
+        doQ: false,
+        doR: false,
+        doU: false,
+        doT: true});
+    }
     window.addEventListener('scroll', function(e){
         var distanceY = window.pageYOffset,
             shrinkOn = 20,

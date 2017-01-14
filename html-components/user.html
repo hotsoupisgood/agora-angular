@@ -1,52 +1,84 @@
     <div class="account col" ng-controller="userController">
-      <div class="back">
+      <div class="back row">
         <div class="click-area" ng-click="back()">
           <i class="fa fa-chevron-left" aria-hidden="true"></i>
           back
         </div>
-      </div>
-      <div class="row">
-        <h4>{{info.username}}'s account</h4>
-      </div>
-        <div class="row fill-space accountStats">
-          <div class="row subheader" ng-click="showQ()">
-            <div class="contentTitle">
-              <label>
-                Your Questions
-                <i class="fa fa-caret-down" aria-hidden="true" ng-hide="showQuestions"></i>
-                <i class="fa fa-caret-up" aria-hidden="true" ng-show="showQuestions"></i>
-              </label>
-            </div>
-            <div class="fill-space"></div>
-            <div class="details">
-              <label>Total:
-              {{info.my_questions}}
-            </label>
-            </div>
-          </div>
-            <div class="questionStream" ng-if="questions.length && showQuestions">
-              <ng-include src="'html-components/questionStream.html'"> </ng-include>
-            </div>
+        <div class="fill-space">
+
         </div>
-        <div class="row fill-space accountStats">
-          <div class="row subheader" ng-click="showR()">
-            <div class="contentTitle">
-              <label>
-                Your Responses
-                <i class="fa fa-caret-down" aria-hidden="true" ng-hide="showResponses"></i>
-                <i class="fa fa-caret-up" aria-hidden="true" ng-show="showResponses"></i>
-              </label>
-            </div>
-            <div class="fill-space"></div>
-            <div class="details">
-              <label>Total:
-              {{info.my_responses}}
-            </label>
-            </div>
-          </div>
-            <!-- <div class="usersResponseStream" ng-if="responses.length && showResponses">
-              <ng-include src="'html-components/responseStream.html'"> </ng-include>
-            </div> -->
-            </div>
+        <div class="name">
+          {{info.username}}'s account
         </div>
+        <div class="fill-space">
+
+        </div>
+      </div>
+      <div class="noUser" ng-show="noUser">
+        No user found.
+      </div>
+      <div class="" ng-hide="noUser">
+          <div class="col">
+            <div class="row fill-space accountStats">
+              <div class="row subheader" ng-click="showQ()">
+                <div class="contentTitle">
+                  <label>
+                     Questions
+                    <!-- <i class="fa fa-caret-down" aria-hidden="true" ng-hide="showQuestions"></i> -->
+                    <!-- <i class="fa fa-caret-up" aria-hidden="true" ng-show="showQuestions"></i> -->
+                  </label>
+                </div>
+                <div class="fill-space"></div>
+                <div class="details">
+                  <label>Total:
+                  {{info.my_questions}}
+                </label>
+                </div>
+              </div>
+                <div class="questionStream" ng-if="questions.length && showQuestions">
+                  <ng-include src="'html-components/questionStream.html'"> </ng-include>
+                </div>
+            </div>
+            <div class="row fill-space accountStats">
+              <div class="row subheader" ng-click="showR()">
+                <div class="contentTitle">
+                  <label>
+                     Responses
+                    <!-- <i class="fa fa-caret-down" aria-hidden="true" ng-hide="showResponses"></i> -->
+                    <!-- <i class="fa fa-caret-up" aria-hidden="true" ng-show="showResponses"></i> -->
+                  </label>
+                </div>
+                <div class="fill-space"></div>
+                <div class="details">
+                  <label>Total:
+                  {{info.my_responses}}
+                </label>
+                </div>
+              </div>
+              <div class="responses">
+                <div class="response" ng-repeat="response in responses">
+                  <div class="header row">
+                    <div class="text">
+                      {{response.text}}
+                    </div>
+                  </div>
+                  <div class="subHeader row">
+                    <a ng-href="#/question/{{response.id}}">
+                      Go to context
+                    </a>
+                    <div class="fill-space"></div>
+                    <div class="details">
+                      Writen
+                      {{response.date}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+              <!-- <div class="usersResponseStream" ng-if="responses.length && showResponses">
+                <ng-include src="'html-components/responseStream.html'"> </ng-include>
+              </div> -->
+              </div>
+          </div>
+      </div>
     </div>

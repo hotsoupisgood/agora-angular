@@ -8,7 +8,7 @@
                       </div>
                     </a>
                     <div class="tags">
-                      <a class="tag infoButton" ng-href="#search/{{tag.name}}" ng-repeat="tag in q.tags">
+                      <a class="tag infoButton" ng-click="tagSearch(tag.name)" ng-repeat="tag in q.tags">
                           {{tag.name}}
                       </a>
                     </div>

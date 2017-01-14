@@ -1,6 +1,6 @@
 <div class="search">
   <div class="searchParameters">
-    <form class="searchForm col" ng-submit="submitQuery()">
+    <form class="searchForm col" ng-submit="submit()">
       <div class="row">
         Search
       </div>
@@ -57,7 +57,23 @@
         <i class="fa fa-caret-up" aria-hidden="true"></i>
       </div>
       <div class="results">
-
+        <div class="response" ng-repeat="response in responseResults">
+          <div class="header row">
+            <div class="text">
+              {{response.text}}
+            </div>
+            <div class="fill-space"></div>
+            <div class="details">
+              Writen
+              {{response.date}}
+            </div>
+          </div>
+          <div class="subHeader row">
+            <a ng-href="#/question/{{response.id}}">
+              Go to context
+            </a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="users" ng-if="userResults.length">
@@ -79,11 +95,12 @@
               total responses:
               {{user.my_responses}}
             </div>
-<div class="details">
-  total votes:
-  {{user.my_votes}}
+            <div class="details">
+              total votes:
+              {{user.my_votes}}
 
-</div>          </a>
+            </div>
+          </a>
         </div>
       </div>
     </div>
