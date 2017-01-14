@@ -1,31 +1,65 @@
-<div class="loginPage">
-    <div class="loginContainer">
-        <div class="row">
-            <h2>
-                Login
-            </h2>
-            <div class="fill-space"></div>
-            <div class="failed col" ng-show="failed">
-              <div class="fill-space"></div>
-              incorrect login
-              <div class="fill-space"></div>
-            </div>
-        </div>
-        <form class="loginFormContainer" ng-submit="login()">
-            <div class="col">
-                <input ng-model="username" type="text" class="" placeholder="username">
-                <input ng-model="password" type="password" class="" placeholder="password">
-                <div class="row">
-                    <button class="submitButton" type="submit">login</button>
-                    <div class="fill-space"></div>
-                    <div class="remember">
-                        <label>
-                          remember me:
-                        <input ng-model="remember" type="checkbox" value=""></label>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
+<div class="loginPage col">
+  <div class="header row">
+    <div class="fill-space">
 
+    </div>
+    Login or create an account
+    <div class="fill-space">
+
+    </div>
+  </div>
+    <div class="row">
+      <div class="loginContainer">
+          <div class="row">
+              <h2>
+                  Login
+              </h2>
+              <div class="fill-space"></div>
+              <div class="failed col" ng-show="failed">
+                <div class="fill-space"></div>
+                incorrect login
+                <div class="fill-space"></div>
+              </div>
+          </div>
+          <form class="loginFormContainer" ng-submit="login()">
+              <div class="col">
+                  <input ng-model="username" type="text" class="" placeholder="username">
+                  <input ng-model="password" type="password" class="" placeholder="password">
+                  <div class="row">
+                      <button class="submitButton" type="submit">login</button>
+                      <div class="fill-space"></div>
+                      <div class="remember">
+                          <label>
+                            remember me:
+                          <input ng-model="remember" type="checkbox" value=""></label>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+      <div class="createContainer">
+          <h2>
+              Create Account
+          </h2>
+          <form ng-submit="createAccount(username, password)">
+              <div class="col ">
+                  <input ng-model="username" type="text" class="container" placeholder="username">
+                  <input ng-model="password" type="password" class="container" placeholder="password">
+                  <div class="row">
+                      <button class="submitButton" type="submit" ng-hide="success">create</button>
+                      <div class="row" ng-show="success">
+                        <div class="fill-space" style="color:green"></div>
+                        <h4>SUCCESS!</h4>
+                        <div class="fill-space"></div>
+                      </div>
+                      <div class="fill-space"></div>
+                      <label>
+                          remember me:
+                          <input type="checkbox" value="" ng-model="remember">
+                      </label>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>
 </div>

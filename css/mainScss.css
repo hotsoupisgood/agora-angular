@@ -79,6 +79,7 @@
   color: grey;
 }
 .single-question .qHeader .subHeader .tag {
+  cursor: pointer;
   text-decoration: none;
   margin-left: .2em;
 }
@@ -674,6 +675,7 @@ header button {
   align-content: center;
 }
 .questionStream .questionContainer .header .tags .tag {
+  cursor: pointer !important;
   border-radius: .2em;
   font-size: .5em;
   color: grey;
@@ -707,8 +709,7 @@ header button {
 }
 
 .loginPage {
-  display: flex;
-  flex-direction: row;
+  margin-top: 1em;
 }
 @media (pointer: coarse) {
   .loginPage img {
@@ -721,9 +722,17 @@ header button {
     font-size: 3vw;
   }
 }
+.loginPage .header {
+  font-size: 1.2em;
+  background: #f6f6f6;
+  border-radius: .2em;
+  padding: 1em;
+  margin-bottom: 1em;
+  margin: .5em;
+}
 .loginPage .loginContainer {
   padding: 2em;
-  margin: 3em;
+  margin-left: 1em;
   flex-grow: 4;
   border-right: grey solid 1px;
 }
@@ -739,6 +748,25 @@ header button {
   padding: .3em;
 }
 .loginPage .loginContainer form .loginFormContainer {
+  justify-content: center;
+}
+.loginPage .createContainer {
+  padding: 2em;
+  margin-right: 1em;
+  flex-grow: 4;
+}
+.loginPage .createContainer .failed {
+  color: red;
+}
+.loginPage .createContainer form {
+  font-size: .8em;
+  max-width: 25em;
+}
+.loginPage .createContainer form input {
+  margin-bottom: 1em;
+  padding: .3em;
+}
+.loginPage .createContainer form .loginFormContainer {
   justify-content: center;
 }
 

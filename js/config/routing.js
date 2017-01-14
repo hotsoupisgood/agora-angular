@@ -26,9 +26,6 @@ module.exports = function($routeProvider, $locationProvider) {
         }).when('/about', {
             templateUrl: 'html-components/about.html',
             controller: 'aboutController'
-        }).when('/createAccount', {
-            templateUrl: 'html-components/createAccount.html',
-            controller: 'createAccountController'
         }).when('/login', {
             templateUrl: 'html-components/login.html',
             controller: 'loginFormController'

@@ -1,6 +1,5 @@
 .loginPage {
-  display: flex;
-  flex-direction: row;
+  margin-top: 1em;
   @media (pointer:coarse) {
 
       img {
@@ -17,11 +16,43 @@
         }
       }
   }
+  .header {
+    font-size: 1.2em;
+    background: rgb(246, 246, 246);
+    border-radius: .2em;
+    padding: 1em;
+    margin-bottom: 1em;
+    margin: .5em;
+  }
   .loginContainer {
       padding: 2em;
-      margin: 3em;
+      margin-left: 1em;
       flex-grow: 4;
       border-right: grey solid 1px;
+      .failed {
+        color: red;
+      }
+      form {
+        font-size: .8em;
+        max-width: 25em;
+        input {
+          margin-bottom: 1em;
+          padding: .3em;
+        }
+        button {
+        }
+        label {
+          // margin: 10px;
+        }
+        .loginFormContainer{
+          justify-content: center;
+        }
+      }
+  }
+  .createContainer {
+      padding: 2em;
+      margin-right: 1em;
+      flex-grow: 4;
       .failed {
         color: red;
       }
