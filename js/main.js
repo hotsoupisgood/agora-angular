@@ -3,9 +3,9 @@ require('angular-route');
 require('angular-cookies');
 require('angular-toArrayFilter');
 require('angular-animate');
-
+require('angular-sanitize');
 //app decrelation
-var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'angular-toArrayFilter', 'ngCookies']);
+var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'angular-toArrayFilter', 'ngCookies', 'ngSanitize']);
 
 //config
 agoraApp.config(['$routeProvider', '$locationProvider', require('./config/routing.js')]);
@@ -21,8 +21,10 @@ agoraApp.service('upVoteQuestionService',           require('./services/upVoteQu
 agoraApp.service('loginService',                    require('./services/login.js'));
 agoraApp.service('logoutService',                   require('./services/logout.js'));
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));
+agoraApp.service('editService',                     require('./services/edit.js'));
 
 //controllers
+agoraApp.controller('editQuestionController',       require('./controllers/edit-question.js'));
 agoraApp.controller('responseController',           require('./controllers/response.js'));
 agoraApp.controller('questionController',           require('./controllers/question.js'));
 agoraApp.controller('mainController',               require('./controllers/main.js'));

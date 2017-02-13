@@ -27,8 +27,10 @@ module.exports = function($routeProvider, $locationProvider) {
             templateUrl: 'html-components/about.html',
             controller: 'aboutController'
         }).when('/login', {
-            templateUrl: 'html-components/login.html',
-            controller: 'loginFormController'
+            templateUrl: 'html-components/login.html'
+        }).when('/edit/question/:id', {
+            templateUrl: 'html-components/edit-question.html',
+            controller: 'editQuestionController'
         }).otherwise({
             redirectTo: '/discover/0'
         });

@@ -52,12 +52,17 @@
           font-size: .7em;
           text-decoration: underline;
           cursor: pointer;
+          margin-left: .5em;
         }
       }
       .sections {
         margin-top: .5em;
         margin-left: 1em;
         margin-right: 1em;
+        border: 1px solid lightgrey;
+        border-radius: .2em;
+        padding: .5em;
+
         .section-header {
           font-size: .7em;
           border-bottom: 1px solid lightgrey;
@@ -67,6 +72,22 @@
           font-size: .7em;
           margin-left: 1em;
           margin-right: 1em;
+        }
+
+        .sectionComments {
+          font-size: .7em;
+          padding-top: .5em;
+          input {
+            padding: .2em 3em .2em 3em;
+            margin-right: .5em;
+          }
+          .sectionHeader {
+            .addComment {
+              // font-size: .8em;
+              // padding-top: .5em;
+            }
+          }
+
         }
       }
     }

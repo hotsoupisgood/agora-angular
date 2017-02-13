@@ -31,7 +31,8 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
         $cookies.put('password', null);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
-          console.log('errorCallback, response: ' + JSON.stringify(response.data));
+          console.log('successCallback, response: ')
+          console.log(response)
           return false;
       });
       return returnData;
@@ -66,7 +67,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             $cookies.put('key', $rootScope.accountInfo.key);
             //debug response callback logs
             // console.log('successCallback, response: ');
-            // console.log(response.data);
+            console.log(response.data);
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.

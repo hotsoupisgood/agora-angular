@@ -1,4 +1,4 @@
-module.exports = function($cookies, $http) {
+module.exports = function($cookies, $http, $rootScope) {
       // account info
       this.accountInfo = null;
       this.isLoggedIn = false;
@@ -10,6 +10,9 @@ module.exports = function($cookies, $http) {
       };
       this.setIsLoggedIn = function (infoToSet) {
         this.isLoggedIn = this.infoToSet;
+      };
+      this.getApiKey = function () {
+        return 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
       };
 
       this.get = function(inputUsername) {

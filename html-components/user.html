@@ -11,8 +11,12 @@
           {{info.username}}'s account
         </div>
         <div class="fill-space">
-
         </div>
+      </div>
+      <div class="row" ng-hide="info.username.length || noUser">
+        <div class="fill-space"></div>
+        <img src="media/animal.gif">
+        <div class="fill-space"></div>
       </div>
       <div class="noUser" ng-show="noUser">
         No user found.

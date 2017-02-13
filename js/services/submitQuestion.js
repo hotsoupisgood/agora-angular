@@ -1,5 +1,4 @@
 module.exports = function($http, $rootScope, userService) {
-
     this.submit = function(askedQuestion, questionsTags) {
         //logged/not
         console.log(questionsTags);

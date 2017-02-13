@@ -86,15 +86,7 @@ module.exports = function ($http, userService) {
     };this.tagz = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min/tag/search/',
-          params: {
-              limit: 10,
-              query: currentSearchTerm,
-              offset: 0
-          },
-          headers: {
-            'Content-type': 'application/json'
-          }
+          url: 'http://api.iex.ist/min/question/?tags__name=' + currentSearchTerm
       }).then(function successCallback(response) {
         console.log(currentSearchTerm);
           // this callback will be called asynchronously

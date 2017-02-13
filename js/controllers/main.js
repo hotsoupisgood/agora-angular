@@ -1,10 +1,19 @@
 module.exports =  function($scope, $rootScope, $route,
-    $routeParams, $location, $anchorScroll, $cookies, $timeout) {
+    $routeParams, $location, $cookies, $sce) {
     $scope.name = 'mainController';
     $rootScope.minBanner = false;
     $scope.questions = {};
-    // $cookies.put('lastScrollLocation', 0);
+
     $rootScope.rememberLogin = true;
+
+    var reader = new commonmark.Parser();
+    var writer = new commonmark.HtmlRenderer();
+
+      $scope.mark = function (text) {
+        var parsed = reader.parse(text);
+        return $sce.trustAsHtml(writer.render(parsed));
+
+      }
     $scope.back = function() {
       window.history.back();
     }

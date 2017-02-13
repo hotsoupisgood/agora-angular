@@ -117,11 +117,15 @@
   font-size: .7em;
   text-decoration: underline;
   cursor: pointer;
+  margin-left: .5em;
 }
 .single-question .responses .response .sections {
   margin-top: .5em;
   margin-left: 1em;
   margin-right: 1em;
+  border: 1px solid lightgrey;
+  border-radius: .2em;
+  padding: .5em;
 }
 .single-question .responses .response .sections .section-header {
   font-size: .7em;
@@ -132,6 +136,14 @@
   font-size: .7em;
   margin-left: 1em;
   margin-right: 1em;
+}
+.single-question .responses .response .sections .sectionComments {
+  font-size: .7em;
+  padding-top: .5em;
+}
+.single-question .responses .response .sections .sectionComments input {
+  padding: .2em 3em .2em 3em;
+  margin-right: .5em;
 }
 
 .banner {
@@ -747,6 +759,9 @@ header button {
   margin-bottom: 1em;
   padding: .3em;
 }
+.loginPage .loginContainer form button {
+  cursor: pointer;
+}
 .loginPage .loginContainer form .loginFormContainer {
   justify-content: center;
 }
@@ -765,6 +780,9 @@ header button {
 .loginPage .createContainer form input {
   margin-bottom: 1em;
   padding: .3em;
+}
+.loginPage .createContainer form button {
+  cursor: pointer;
 }
 .loginPage .createContainer form .loginFormContainer {
   justify-content: center;
@@ -888,16 +906,27 @@ button {
   border: .5px solid black;
 }
 
+.editButton {
+  background: rgba(255, 0, 0, 0.62);
+  border-radius: 2px;
+  padding: .2em .5em .2em .5em;
+  margin: 0 .5em 0 .5em;
+  text-decoration: none;
+  color: black;
+  font-size: .7em;
+}
+
 button:focus {
   outline: none;
 }
 
 button:hover {
   background: rgba(223, 170, 35, 0.05);
+  cursor: pointer;
 }
 
 a:hover {
-  background: rgba(223, 170, 35, 0.05);
+  cursor: pointer !important;
 }
 
 textarea {

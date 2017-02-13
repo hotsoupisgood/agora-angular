@@ -21,7 +21,7 @@
                 <div class="fill-space"></div>
               </div>
           </div>
-          <form class="loginFormContainer" ng-submit="login()">
+          <form class="loginFormContainer" ng-submit="login()" ng-controller="loginFormController">
               <div class="col">
                   <input ng-model="username" type="text" class="" placeholder="username">
                   <input ng-model="password" type="password" class="" placeholder="password">
@@ -37,7 +37,7 @@
               </div>
           </form>
       </div>
-      <div class="createContainer">
+      <div class="createContainer" ng-controller="createAccountController">
           <h2>
               Create Account
           </h2>

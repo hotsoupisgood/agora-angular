@@ -118,14 +118,25 @@ button {
 .plainBoarderedButton {
   border: .5px solid black;
 }
+.editButton {
+  background: rgba(255, 0, 0, 0.62);
+  border-radius: $standardBorderRadius;
+  padding: .2em .5em .2em .5em;
+  margin: 0 .5em 0 .5em;
+  text-decoration: none;
+  color: black;
+  font-size: .7em;
+}
 button:focus {
   outline: none;
 }
 button:hover {
   background: rgba(223, 170, 35, 0.05);
+  cursor: pointer;
 }
 a:hover {
-  background: rgba(223, 170, 35, 0.05);
+  // background: rgba(223, 170, 35, 0.05);
+  cursor: pointer !important;
 }
 textarea {
   border: 1px ;
