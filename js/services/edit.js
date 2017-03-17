@@ -1,10 +1,8 @@
 module.exports = function ($rootScope, $http, userService) {
-  this.submitQuestion = function(askedQuestion, questionsTags) {
-      //logged/not
-      console.log(questionsTags);
+  this.submitQuestion = function(askedQuestion, questionsTags, id) {
       return $http({
-          method: 'POST',
-          url: 'http://api.iex.ist/full/question/',
+          method: 'PATCH',
+          url: 'http://api.iex.ist/full/question/' + id + '/',
           //production params
           data: {
               text: askedQuestion,

@@ -1,10 +1,10 @@
 <div class="single-question">
-  <div class="back">
+  <!-- <div class="back">
     <div class="click-area" ng-click="back()">
       <i class="fa fa-chevron-left" aria-hidden="true"></i>
       back
     </div>
-  </div>
+  </div> -->
   <div class="row" ng-hide="question.text.length">
     <div class="fill-space"></div>
     <img src="media/animal.gif">
@@ -31,6 +31,12 @@
           <div class="none" ng-hide="question.tags.length">
             none...
           </div>
+          <div class="total">
+            <label>
+              Responses
+              ({{question.total_responses}})
+            </label>
+          </div>
         <div class="fill-space"></div>
         <div class="answer" ng-hide="isLoggedIn">
             Please
@@ -52,11 +58,10 @@
       </div>
     </div>
     <div class="responses">
-      <div class="total">
-        <label>
-          Responses
-          ({{question.total_responses}})
-        </label>
+      <div class="row" ng-if="!question.responses.length">
+        <div class="fill-space"></div>
+        <img src="media/agora_dude_2.png" alt="">
+        <div class="fill-space"></div>
       </div>
         <div class="response" ng-repeat="response in question.responses" ng-controller="responseController">
           <div class="header">
@@ -87,15 +92,15 @@
             <div class="section-body">
               {{section.text}}
             </div>
-            <div class="sectionComments">
-              <div class="sectionHeader row">
+            <div class="sectionComments" ng-controller="commentsController">
+              <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">
                 Comments ({{section.comments.length}})
                 <div class="fill-space"></div>
                 <div class="addComment row">
-                  <label>Comment: <input type="text" name="" value="" placeholder="ex. State yo sources?!?!"></label>
-                  <button type="button" name="submit" class="submitButton">submit</button>
+                  <label>Comment: <input type="text" ng-model="commentText" value="" placeholder="ex. State yo sources?!?!"></label>
+                  <button type="button" name="submit" class="submitButton" submit>submit</button>
                 </div>
-              </div>
+              </form>
               <div class="comment" ng-repeat="comment in section.comments">
                 {{comment.text}}
               </div>

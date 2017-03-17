@@ -1,4 +1,4 @@
-$background: white;
+$background: lightgrey;
 $primaryColor: #db3a3a;
 $secondaryColor: rgba(#64d3fb, 1);
 $backgroundHighlight: rgb(246, 246, 246);
@@ -24,6 +24,7 @@ $singleInputFormHeight: 20px;
 .sidebar {
   display: none;
 }
+
 @media(pointer:coarse) {
     .sidebar {
       display: none;
@@ -80,6 +81,8 @@ body {
     background: $background;
     margin: 0;
     font-size: 20px;
+    // display: flex;
+    // flex-direction: column;
 }
 input {
   border: none;

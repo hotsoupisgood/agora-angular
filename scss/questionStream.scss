@@ -39,14 +39,20 @@ $phoneButtonHeight: 15vw;
     opacity: 1;
 }
 .questionStream {
+  background: white;
   .optionsBox {
     background: rgb(246, 246, 246);
     border-radius: .2em;
     padding: 1em;
     margin-bottom: 1em;
     a {
-      color: black;
-      margin-left: 1em;
+      color: blue;
+      margin-left: .5em;
+      margin-right: .5em;
+    }
+    .divider {
+      width: 1px;
+      background: grey;
     }
   }
     .questionContainer {

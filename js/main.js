@@ -14,6 +14,7 @@ agoraApp.service('getSingleQuestionService',        require('./services/getSingl
 agoraApp.service('cookieService',                   require('./services/cookieUtil.js'));
 agoraApp.service('submitResponseService',           require('./services/submitResponse.js'));
 agoraApp.service('submitQuestionService',           require('./services/submitQuestion.js'));
+agoraApp.service('submitCommentService',            require('./services/submitComment.js'));
 agoraApp.service('questionsTopService',             require('./services/questionsTop.js'));
 agoraApp.service('searchService',                   require('./services/search.js'));
 agoraApp.service('userService',                     require('./services/user.js'));
@@ -27,6 +28,8 @@ agoraApp.service('editService',                     require('./services/edit.js'
 agoraApp.controller('editQuestionController',       require('./controllers/edit-question.js'));
 agoraApp.controller('responseController',           require('./controllers/response.js'));
 agoraApp.controller('questionController',           require('./controllers/question.js'));
+agoraApp.controller('commentsController',           require('./controllers/comments.js'));
+agoraApp.controller('submitCommentController',      require('./controllers/submit-comment.js'));
 agoraApp.controller('mainController',               require('./controllers/main.js'));
 agoraApp.controller('aboutController',              require('./controllers/about.js'));
 agoraApp.controller('userController',               require('./controllers/user.js'));

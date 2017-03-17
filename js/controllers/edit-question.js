@@ -15,12 +15,14 @@ module.exports =  function($scope, $routeParams, getSingleQuestionService, editS
       })
     }
     $scope.submit = function() {
-      editService.submitQuestion($scope.text, $scope.tags).then(function (response) {
+      console.log($routeParams.id);
+      editService.submitQuestion($scope.text, $scope.tags, $routeParams.id).then(function (response) {
           if (!response) {
             $scope.failed = true
           }
           else {
             //works
+            $location.path('question/'+$routeParams.id);
           }
       })
     }
