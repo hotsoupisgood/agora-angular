@@ -1,8 +1,7 @@
-$background: lightgrey;
+$background: rgb(224, 223, 223);
 $primaryColor: #db3a3a;
-$secondaryColor: rgba(#64d3fb, 1);
-$backgroundHighlight: rgb(246, 246, 246);
-// $navbarColor: rgb(73, 77, 72);
+$secondaryColor: rgb(152, 233, 89);
+$infoBackground: rgb(255, 255, 255);
 $navbarColor: $secondaryColor;
 $standardBorderRadius: 2px;
 $singleInputFormHeight: 20px;
@@ -20,39 +19,27 @@ $singleInputFormHeight: 20px;
 @import "questionStream";
 @import "login";
 @import "about";
+@import "discover";
 //until functional
 .sidebar {
-  display: none;
+  // display: none;
 }
-
 @media(pointer:coarse) {
-    .sidebar {
-      display: none;
-    }
     body {
-      font-size: 3vw;
+      font-size: 4vw!important;
     }
-    .questionStream {
-        ul {
-            li {
-                .questionTitle {
-                    font-size: 4vw;
-                }
-            }
-        }
-    }
-}
-@media(max-width: 800px) {
-    .sidebar {
-      display: none;
+    .content {
+      margin-top: 9em!important;
     }
 }
 .content {
-  margin-top: 5em;
+  margin-top: 6.4em;
+  display: flex;
+  flex-direction: column;
   // transition: margin-top 90ms;
 }
 .back {
-  font-size: .7em;
+  // font-size: 1em;
   background: rgb(246, 246, 246);
   border-radius: .2em;
   padding: 1em;
@@ -63,11 +50,26 @@ $singleInputFormHeight: 20px;
 }
 .detailText {
   color: grey;
-  font-size: 0.6em;
+  font-size: 0.8em;
 }
 .contentBigHead {
   margin-top: 12em !important;
   // transition: margin-top 90ms;
+}
+.optionsBox {
+  // background: rgb(246, 246, 246);
+  // border-radius: .2em;
+  padding: .4em;
+  a {
+    color: rgb(68, 210, 190);
+    margin-left: .5em;
+    margin-right: .5em;
+    text-decoration: none;
+  }
+  .divider {
+    width: 1px;
+    background: grey;
+  }
 }
 h4 {
   margin-top: .2em;
@@ -77,58 +79,45 @@ p{
   font-size: .8em;
 }
 body {
-    font-family: 'PT sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+
     background: $background;
     margin: 0;
-    font-size: 20px;
+    font-size: 15px;
     // display: flex;
     // flex-direction: column;
 }
 input {
   border: none;
   margin: none;
-  min-height: 2vh;
-  padding-left: 5px;
+  padding-left: .5em;
+  font-size: 1em;
   border-radius: $standardBorderRadius;
-  // text-align: center;
-  border: .5px solid black;
+  border: .5px solid grey;
+}
+textarea {
+  border: none;
+  margin: none;
+  padding-left: 5px;
+  font-size: 1em;
+  border-radius: $standardBorderRadius;
+  border: .5px solid grey;
 }
 button {
   border: none;
   margin: none;
-  min-height: 2em;
+  font-size: .8em;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0);
   display: block;
+  padding: .6em;
   color: black;
   text-align: center;
+  justify-content: center;
   border-radius: $standardBorderRadius;
 }
-.submitButton {
-  border: .5px solid rgb(54, 186, 83);
-}
-.infoButton {
-  // border: .5px solid rgba(159, 38, 209, 0.22);
-  background: rgba(45, 191, 169, 0.22);
-  padding: 2px 6px 3px;
-}
-.doButton {
-  border: .5px solid rgba(50, 140, 191, 0.46);
-}
-.lightEmphasisButton {
-  border-bottom: .5px solid lightgrey;
-}
-.plainBoarderedButton {
-  border: .5px solid black;
-}
-.editButton {
-  background: rgba(255, 0, 0, 0.62);
-  border-radius: $standardBorderRadius;
-  padding: .2em .5em .2em .5em;
-  margin: 0 .5em 0 .5em;
-  text-decoration: none;
-  color: black;
-  font-size: .7em;
+label {
+  // font-size: .8em;
 }
 button:focus {
   outline: none;
@@ -154,7 +143,56 @@ form {
     width: auto;
     padding: 3px;
 }
-.questionStream {
-  margin: 10px;
-  padding: 10px;
+.tag{
+  font-size: .8em;
+  cursor: pointer !important;
+  border-radius: .8em;
+  margin-right: .5em;
+  padding: .2em;
+  padding-right: 1em;
+  padding-left: 1em;
+  background: rgba(43, 182, 233, 0.11);
+  align-self: center;
+  color: grey;
+}
+.tag:hover {
+  background: darken(rgba(43, 182, 233, 0.11), 20%);
+}
+.submitButton {
+  border: .5px solid rgb(54, 186, 83);
+}
+.infoButton {
+  text-align: center;
+  color: rgba(54, 187, 51, 1);
+  padding: .2em .4em .2em;
+}
+.doButton {
+  text-align: center;
+  background: rgba(82, 172, 222, 1);
+  padding: .6em;
+  border-radius: .4em;
+  text-decoration: none;
+  color: white;
+  // border: .14em solid grey;
+  box-shadow: 0 0 .2em .2em rgba(167, 165, 165, 0.45);
+
+}
+.doButton:hover {
+  // color: grey;
+  background: darken(rgba(50, 140, 191, 0.46), 20%);
+  transition: 100ms;
+}
+.lightEmphasisButton {
+  border-bottom: .5px solid lightgrey;
+}
+.plainBoarderedButton {
+  border: .5px solid black;
+}
+.editButton {
+  background: rgba(255, 0, 0, 0.62);
+  border-radius: 1em;
+  padding: .2em .6em;
+  margin: 0 .5em;
+  text-decoration: none;
+  color: black;
 }

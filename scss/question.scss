@@ -1,100 +1,99 @@
 .single-question {
-  // margin-left: 2em;
-  // margin-right: 2em;
-  margin: .5em;
-  background: white;
-  padding: .5em;
-  flex-grow: 10;
-  .qHeader {
-    .subHeader {
-      display: flex;
-      flex-direction: row;
-      font-size: .6em;
-      color: grey;
-      margin-top: .3em;
-      margin-bottom: .2em;
-      a {
-        color: grey;
-      }
-      .tag{
-        cursor: pointer;
-        text-decoration: none;
-        margin-left: .2em;
+    margin: 0.5em;
+    background: $infoBackground;
+    padding: 1em;
+    flex-grow: 10;
 
-      }
-      .none {
-        margin-left: .5em
-      }
-      .total {
-        margin-left: 1em;
-      }
-    }
+    .qHeader {
+        margin-top: 0.4em;
 
-  }
-  .responses {
-    margin-top: .5em;
-    margin-left: 1em;
-    margin-right: 1em;
-    .response {
-      margin-left: 1em;
-      margin-right: 1em;
-      margin-top: 1em;
-      padding-bottom: .5em;
-      border: 1px solid lightgrey;
-      border-radius: .2em;
+        .title {
+            font-size: 1.2em;
+        }
 
-      .header {
-        display: flex;
-        flex-direction: column;
-        font-size: .8em;
-        padding: .2em;
         .subHeader {
-          display: flex;
-          flex-direction: row;
-        }
-        .vote {
-          color: grey;
-          font-size: .7em;
-          text-decoration: underline;
-          cursor: pointer;
-          margin-left: .5em;
-        }
-      }
-      .sections {
-        margin-top: .5em;
-        margin-left: 1em;
-        margin-right: 1em;
-        border: 1px solid lightgrey;
-        border-radius: .2em;
-        padding: .5em;
+            display: flex;
+            flex-direction: row;
+            color: grey;
+            margin-top: 0.3em;
+            margin-bottom: 0.2em;
 
-        .section-header {
-          font-size: .7em;
-          border-bottom: 1px solid lightgrey;
-          margin-bottom: .5em;
-        }
-        .section-body {
-          font-size: .7em;
-          margin-left: 1em;
-          margin-right: 1em;
-        }
-
-        .sectionComments {
-          font-size: .7em;
-          padding-top: .5em;
-          input {
-            padding: .2em 3em .2em 3em;
-            margin-right: .5em;
-          }
-          .sectionHeader {
-            .addComment {
-              // font-size: .8em;
-              // padding-top: .5em;
+            a {
+                color: grey;
             }
-          }
 
+            .none {}
+
+            .total {}
         }
-      }
     }
-  }
+
+    .responses {
+        margin-top: 0.5em;
+
+        .response {
+            margin-left: 1em;
+            margin-right: 1em;
+            margin-top: 1em;
+            padding-bottom: 0.5em;
+            border: 1px solid lightgrey;
+            border-radius: 0.2em;
+
+            .header {
+                display: flex;
+                flex-direction: column;
+                padding: 0.2em;
+
+                .subHeader {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                .vote {
+                    color: grey;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    margin-left: 0.5em;
+                }
+            }
+
+            .sections {
+                margin-top: 0.5em;
+                margin-left: 1em;
+                margin-right: 1em;
+                border: 1px solid lightgrey;
+                border-radius: 0.2em;
+                padding: 0.5em;
+
+                .section-header {
+                    font-size: 0.8em;
+                    border-bottom: 1px solid lightgrey;
+                    margin-bottom: 0.5em;
+                }
+
+                .section-body {
+                    font-size: 0.7em;
+                    margin-left: 1em;
+                    margin-right: 1em;
+                }
+
+                .sectionComments {
+                    font-size: 0.7em;
+                    padding-top: 0.5em;
+
+                    input {
+                        padding: 0.2em 3em;
+                        margin-right: 0.5em;
+                    }
+
+                    .sectionHeader {
+                        .addComment {
+                            // font-size: .8em;
+                            // padding-top: .5em;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

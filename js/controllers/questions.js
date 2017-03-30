@@ -37,7 +37,8 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
                   $scope.gotQuestions = true;
                 }
                 else {
-                  window.history.back();
+                  // window.history.back();
+                  $scope.isQueryEmpty = true;
                 }
             } else {
                 $scope.gotQuestions = false;

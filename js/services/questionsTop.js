@@ -17,9 +17,7 @@ module.exports = function(userService, $http) {
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            //  console.log('successCallback unparsed response: ' + JSON.stringify(response.data.questions));
-            console.log(response.data);
-
+            // console.log(response.data);
             return response.data;
         }, function errorCallback(response) {
             // called asynchronously if an error occurs

@@ -1,8 +1,9 @@
-  <div class="row questionStream">
-    <!-- <ng-include src="'html-components/sidebar.html'"></ng-include> -->
+<div class="row">
+  <ng-include src="'html-components/sidebar.html'"></ng-include>
+  <div class="row discover">
     <!-- <div class="fill-space"></div> -->
-    <div class="col fill-space">
-      <div class="optionsBox row detailText">
+    <div class="col fill-space questionStream">
+      <div class="optionsBox row">
         Sort by:
         <a ng-href="#discover">
           new,
@@ -28,8 +29,11 @@
           <div class="fill-space"></div>
           <div class="row" ng-if="!questions.length">
             <div class="fill-space"></div>
-              <div class="center-horizontal">
+              <div class="center-horizontal" ng-if="!isQueryEmpty">
                   <img src="media/animal.gif">
+              </div>
+              <div class="center-horizontal" ng-if="isQueryEmpty">
+                  hmmm... there doesn't seem to be anything here...
               </div>
               <div class="fill-space"></div>
           </div>
@@ -39,18 +43,19 @@
             <div class="" >
               <ng-include src="'html-components/questionStream.html'"> </ng-include>
             </div>
-
-            <div class="pagerContainer row">
-                <a href="" ng-click="goBackOne()">
-                  <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                  previous page
-                </a>
-                <div class="fill-space"></div>
-                <a href="" ng-click="goForwardOne()">
-                  next page
-                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                </a>
-            </div>
+        </div>
+        <div class="pagerContainer row">
+            <a href="" ng-click="goBackOne()">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              previous page
+            </a>
+            <div class="fill-space"></div>
+            <a href="" ng-click="goForwardOne()">
+              next page
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
         </div>
     </div>
+</div>
+
 </div>

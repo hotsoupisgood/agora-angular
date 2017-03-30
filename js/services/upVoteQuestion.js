@@ -4,7 +4,7 @@ module.exports = function ($rootScope, $http, userService) {
           //request
           var returnData = $http({
               method: 'POST',
-              url: 'http://api.iex.ist/full/vote/',
+              url: 'http://api.iex.ist/full/response_vote/',
               data: {
                 response_id: id
               },

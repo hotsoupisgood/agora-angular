@@ -12,6 +12,7 @@ module.exports = function($scope, submitQuestionService) {
         if (response) {
           $scope.success = response;
           $scope.loading = false;
+          $location.url('#/question/'+response.id);
         }
       });
     };

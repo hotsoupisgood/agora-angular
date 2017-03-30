@@ -9,7 +9,7 @@
     .name {
       display: flex;
       flex-direction: row;
-      font-size: 1.2em;
+      font-size: 1em;
     }
   }
   .noUser {
@@ -28,9 +28,12 @@
       .details {
         display: flex;
         align-items: center;
-        font-size: .6em;
+        // font-size: em;
         color: grey;
       }
+    }
+    .empty-text {
+      align-self: center;
     }
     .row {
       p {
@@ -52,18 +55,18 @@
                 font-size: .8em;
               }
               .details {
-                font-size: .6em;
+                font-size: .8em;
                 color: grey;
                 margin-left: 1em;
               }
             }
             .subHeader {
               a {
-                font-size: .6em;
+                font-size: .8em;
                 color: grey;
               }
               .details {
-                font-size: .6em;
+                font-size: .8em;
                 color: grey;
               }
             }

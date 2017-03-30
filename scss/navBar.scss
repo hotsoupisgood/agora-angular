@@ -2,60 +2,6 @@ $navbarHeight: 30px;
 $navbarHeightMobile: 20vh;
 @import 'https://fonts.googleapis.com/css?family=Amatic+SC:700';
 @media(pointer:coarse) {
-    .site-header {
-
-        display: flex;
-        flex-direction: column;
-        min-height: 20vh;
-        nav {
-          margin: 1vw;
-        }
-        form {
-          margin: 1vw;
-        }
-        div {
-          margin: 1vw;
-        }
-        .mobile-Hidden {
-          display: none;
-        }
-        form {
-          height: 5vh !important;
-          font-size: 2vw !important;
-
-          input{
-            font-size: 3vw !important;
-            padding-left: 2vw !important;
-            width: 70vw !important;
-          }
-          button {
-            font-size: 3vw !important;
-            width: 10vw !important;
-          }
-        }
-    }
-    header {
-      font-size: 13px;
-      ul {
-        li {
-
-        }
-      }
-      a {
-        font-size: 3vw;
-        margin: 5px;
-        padding: 5px;
-      }
-      form {
-        input{
-        }
-        button {
-        }
-      }
-      button {
-        font-size: 2vw;
-      }
-    }
 }
 .management {
   position: fixed;
@@ -66,34 +12,66 @@ $navbarHeightMobile: 20vh;
 }
 header {
   transition: height 0.3s;
-  font-size: 13px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   form {
-    display: inline-flex;
-    // width: auto;
-    padding: 3px;
-    margin: 0, 2vw, 0, 2vw;
-    height: 20px;
+    padding: .2em;
+    display: flex;
+    flex-direction: column;
+    min-height: 2em;
     input{
       border-radius: $standardBorderRadius 0px 0px $standardBorderRadius;
       flex-grow: 10;
+      min-height: 2em;
     }
     button {
       position: absolute;
       background: rgba(255, 255, 255, 0);
       color: black;
       z-index: 11;
-      bottom: 1px;
-      right: 7px;
+      bottom: .2em;
+      right: 1em;
       border-radius: 0px $standardBorderRadius $standardBorderRadius 0px;
-      // font-size: 15px;
-      // height: 100%;
-      // flex-shrink: 2;
     }
   }
   button {
-    font-size: 13px;
+    font-size: 1em;
+  }
+  .active {
+      a {
+        color: rgb(34, 142, 230) !important;
+      }
+  }
+
+  .site-nav {
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        li {
+          display: flex;
+          flex-direction: row;
+          a {
+              flex-grow: 5;
+              text-decoration: none;
+              color: black !important;
+              padding: .5em;
+              padding-top: .5em;
+              justify-content: center;
+              height: calc($navbarHeight - 20px);
+              display: inline;
+              margin-left: .2em;
+          }
+          a:hover {
+            background: rgb(224, 224, 224)!important;
+            border-radius: .2em;
+          }
+        }
+    }
   }
 }
 .site-header {
@@ -104,37 +82,11 @@ header {
     align-items: center;
     // padding-right: 10px;
 }
-.site-nav {
-    ul {
-        list-style: none;
-        display: flex;
-        margin: 0;
-        padding: 0;
-    }
-    a {
-        flex-grow: 5;
-        text-decoration: none;
-        color: black !important;
-        padding: .5em;
-        padding-top: .5em;
-        padding-left: 1.5em;
-        padding-right: 1.5em;
-        // border-right: thin solid rgba(#000000, 0.2);
-        height: calc($navbarHeight - 20px);
-        display: inline;
-    }
-    .active {
-        a {
-          // background: darken($secondaryColor, 10%);;
-          color: rgb(34, 142, 230) !important;
-        }
-    }
-}
 .account-actions {
     margin-left: auto;
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    margin-right: 1em;
 }
 .account-dropdown:hover {
   ul {

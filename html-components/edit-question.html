@@ -3,9 +3,14 @@
             <h2>Edit your question</h2>
             <textarea type="text" class="" placeholder="ask a question; eg. (Can kowalas survive biscuts and gravy?)" required ng-model="text"></textarea>
             <input  class="" ng-model="tags" type="text" placeholder="tag your question; eg. (cute cats, derivitives)">
-            <button type="submit" class="submitButton" ng-hide="success; loading">
-                submit edits
-            </button>
+            <div class="row">
+              <button type="submit" class="submitButton" ng-hide="success; loading">
+                  submit edits
+              </button>
+              <button type="submit" class="delete-button">
+                  Delete
+              </button>
+            </div>
             <div class="row" ng-show="loading">
               <div class="fill-space"></div>
               <img src="media/animal.gif">

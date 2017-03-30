@@ -1,112 +1,102 @@
 <div class="single-question">
-  <!-- <div class="back">
+    <!-- <div class="back">
     <div class="click-area" ng-click="back()">
       <i class="fa fa-chevron-left" aria-hidden="true"></i>
       back
     </div>
   </div> -->
-  <div class="row" ng-hide="question.text.length">
-    <div class="fill-space"></div>
-    <img src="media/animal.gif">
-    <div class="fill-space"></div>
-  </div>
-  <div ng-show="question.text.length">
-    <div class="qHeader col">
-      <div class="row">
-        <div class="question">
-          {{question.text}}
-        </div>
-        <a class="editButton" ng-href="#edit/question/{{question.id}}" ng-show="question.creator.username == accountInfo.username">edit</a>
+    <div class="row" ng-hide="question.text.length">
         <div class="fill-space"></div>
-        <div class="detailText">
-          Writen
-          {{question.date}}
-        </div>
-      </div>
-      <div class="row subHeader">
-          tags:
-          <a class="tag infoButton" ng-click="tagSearch(tag.name)" ng-repeat="tag in question.tags">
-              {{tag.name}}
-          </a>
-          <div class="none" ng-hide="question.tags.length">
-            none...
-          </div>
-          <div class="total">
-            <label>
+        <img src="media/animal.gif">
+        <div class="fill-space"></div>
+    </div>
+    <div ng-show="question.text.length">
+        <a class="tag" ng-click="tagSearch(tag.name)" ng-repeat="tag in question.tags">
+        {{tag.name}}
+    </a>
+        <div class="qHeader col">
+            <div class="row">
+                <div class="title">
+                    {{question.text}}
+                </div>
+                <a class="editButton" ng-href="#edit/question/{{question.id}}" ng-show="question.creator.username == accountInfo.username">edit</a>
+                <div class="fill-space"></div>
+                <div class="detailText">
+                    Writen {{question.date}}
+                </div>
+            </div>
+            <div class="row subHeader">
+                <!-- tags: -->
+                <div class="none" ng-hide="question.tags.length">
+                    none...
+                </div>
+                <div class="total">
+                    <label>
               Responses
               ({{question.total_responses}})
             </label>
-          </div>
-        <div class="fill-space"></div>
-        <div class="answer" ng-hide="isLoggedIn">
-            Please
-            <a class="" ng-href="#login">
-                login
-            </a>
-            or
-            <a class="" ng-href="#createAccount">
-                create an account
-            </a>
-            to answer the question!
-        </div>
-        <a class="answer" ng-href="#answer/{{question.id}}" ng-show="isLoggedIn">
-            <u>
+                </div>
+                <div class="fill-space"></div>
+                <a class="answer" ng-href="#login" ng-hide="isLoggedIn">
                 Respond
                 <i class="fa fa-pencil" aria-hidden="true"></i>
-            </u>
+                </a>
+                <a class="answer" ng-href="#answer/{{question.id}}" ng-show="isLoggedIn">
+                Respond
+                <i class="fa fa-pencil" aria-hidden="true"></i>
         </a>
-      </div>
-    </div>
-    <div class="responses">
-      <div class="row" ng-if="!question.responses.length">
+            </div>
+        </div>
+        <div class="responses">
+            <!-- <div class="row" ng-if="!question.responses.length">
         <div class="fill-space"></div>
         <img src="media/agora_dude_2.png" alt="">
         <div class="fill-space"></div>
-      </div>
-        <div class="response" ng-repeat="response in question.responses" ng-controller="responseController">
-          <div class="header">
-            <div class="subHeader">
-              {{response.text}}
-              <div class="vote col" ng-click="upVote(question.responses[$index].id)" ng-hide="upVoted">
-                <div class="fill-space"></div>
-                <div class="row">
-                  vote :)
-                  <!-- <i class="fa fa-arrow-up" aria-hidden="true"></i> -->
-                </div>
-                <div class="fill-space"></div>
-              </div>
-              <div class="fill-space"></div>
-              <div class="detailText col">
-                <div class="fill-space"></div>
-                <label>
+      </div> -->
+            <div class="response" ng-repeat="response in question.responses" ng-controller="responseController">
+                <div class="header">
+                    <div class="subHeader">
+                        {{response.text}}
+                        <div class="vote col" ng-click="upVote(question.responses[$index].id)" ng-hide="upVoted">
+                            <div class="fill-space"></div>
+                            <div class="row">
+                                vote :)
+                                <!-- <i class="fa fa-arrow-up" aria-hidden="true"></i> -->
+                            </div>
+                            <div class="fill-space"></div>
+                        </div>
+                        <div class="fill-space"></div>
+                        <div class="detailText col">
+                            <div class="fill-space"></div>
+                            <label>
                   Writen {{response.date}}
                 </label>
-                <div class="fill-space"></div>
-              </div>
-            </div>
-          </div>
-          <div class="sections" ng-repeat="section in response.modules">
-            <div class="section-header">
-              <b>{{section.title}}</b>
-            </div>
-            <div class="section-body">
-              {{section.text}}
-            </div>
-            <div class="sectionComments" ng-controller="commentsController">
-              <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">
-                Comments ({{section.comments.length}})
-                <div class="fill-space"></div>
-                <div class="addComment row">
-                  <label>Comment: <input type="text" ng-model="commentText" value="" placeholder="ex. State yo sources?!?!"></label>
-                  <button type="button" name="submit" class="submitButton" submit>submit</button>
+                            <div class="fill-space"></div>
+                        </div>
+                    </div>
                 </div>
-              </form>
-              <div class="comment" ng-repeat="comment in section.comments">
-                {{comment.text}}
-              </div>
+                <div class="sections" ng-repeat="section in response.modules">
+                    <div class="section-header">
+                        <b>{{section.title}}</b>
+                    </div>
+                    <div class="section-body">
+                        {{section.text}}
+                    </div>
+                    <div class="sectionComments" ng-controller="commentsController">
+                        <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">
+                            Comments ({{section.comments.length}})
+                            <div class="fill-space"></div>
+                            <div class="addComment row">
+                                <label>Comment: <input type="text" ng-model="commentText" value="" placeholder="ex. State yo sources?!?!"></label>
+                                <button type="button" name="submit" class="submitButton" submit>submit</button>
+                            </div>
+                        </form>
+                        <div class="comment" ng-repeat="comment in section.comments">
+                            {{comment.text}}
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
     </div>
-  </div>
 </div>

@@ -1,22 +1,37 @@
-  <div class="askQuestionPage row" ng-controller="submitQuestionFormController">
-      <div>
-          <form class="askQuestion" ng-submit="submit()" role="form">
-              Ask A Question!
-              <textarea type="text" class="" placeholder="Ask a question; eg. (Can kowalas survive biscuts and gravy?)" required ng-model="question"></textarea>
-              <input  class="" ng-model="questionTags" type="text" placeholder="Tag your question; eg. (cute cats, derivitives)">
-              <button type="submit" class="submitButton" ng-hide="success; loading">
-                  submit
+<div class="askQuestionPage col" ng-controller="submitQuestionFormController">
+    <div class="header row center-horizontal fill-space">
+        Ask a question!
+    </div>
+    <div class="row">
+        <form class="askQuestion" ng-submit="submit()" role="form">
+            <div class="row fill-space">
+                <textarea type="text" class="fill-space" placeholder="Ask a question; eg. (Can kowalas survive biscuts and gravy?)" required ng-model="question"></textarea>
+            </div>
+            <div class="row fill-space">
+                <input class="fill-space" ng-model="questionTags" type="text" placeholder="Tag your question; eg. (cute cats, derivitives)">
+            </div>
+            <button type="submit" class="submitButton" ng-hide="success; loading">
+                  Submit
               </button>
-              <div class="row" ng-show="loading">
+            <div class="row" ng-show="loading">
                 <div class="fill-space"></div>
                 <img src="media/animal.gif">
                 <div class="fill-space"></div>
-              </div>
-              <div class="row" ng-show="success">
+            </div>
+            <div class="row" ng-show="success">
                 <div class="fill-space"></div>
                 <h4 style="color:green">Question added!</h4>
                 <div class="fill-space"></div>
-              </div>
-          </form>
-      </div>
-  </div>
+            </div>
+        </form>
+        <div class="how-to col center-horizontal">
+            <ul>
+                <li>We encourage prompts with opinionated solutions</li>
+                <li>State your prompt clearly</li>
+                <li>Be interested</li>
+                <li>Please don't post spam -_-</li>
+                <li>And for the love of god... Spell</li>
+            </ul>
+        </div>
+    </div>
+</div>

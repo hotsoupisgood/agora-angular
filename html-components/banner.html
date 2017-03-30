@@ -1,17 +1,18 @@
 <div class="banner col" ng-class="{'smallHead': minBanner}">
     <div class="centeredPouch col center-horizontal">
         <div class="row">
-          <div class="col">
-            <a href="#user/{{accountInfo.username}}" ng-show="isLoggedIn">hello {{accountInfo.username}}</a>
-            <div class="fill-space">
-            </div>
+          <div ng-show="isLoggedIn" class="col">
+            <a class="logOptions"href="#user/{{accountInfo.username}}">hello {{accountInfo.username}}</a>
+            <div class="fill-space"></div>
           </div>
             <div class="fill-space"></div>
-            <img class="agoraDude" src="media/fadMin.png"/>
-            <a class="title" ng-click="selectedTab = 'about'" ng-href="#about">This Agora</a>
+            <div class="pouch">
+              <img class="agoraDude" src="media/fadMin.png"/>
+              <a class="title" ng-click="selectedTab = 'about'" ng-href="#about">This Agora</a>
+            </div>
             <div class="fill-space"></div>
             <div class="col">
-              <a class="logout" ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>
+              <a class="logout logOptions" ng-href="#" ng-click="logout()" ng-show="isLoggedIn">log out</a>
               <div class="logOptions" ng-hide="isLoggedIn">
                   Please
                   <a class="" ng-href="#login">

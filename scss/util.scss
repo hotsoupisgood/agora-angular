@@ -74,6 +74,12 @@ $transparentColor: rgba(255, 255, 255, 0);
 .border-thin-black-b {
   border-bottom: .5px solid black;
 }
+.flex-wrap{
+  flex-wrap: wrap;
+}
+.flex-fill {
+  flex-basis: fill;
+}
 .border-thin-black {
   border: .5px solid grey;
 }
@@ -102,6 +108,9 @@ $transparentColor: rgba(255, 255, 255, 0);
   border-radius: 0;
   padding:  0;
   box-shadow: none;
+}
+.tall {
+  height: 100%;
 }
 .mobile-Hidden {
 }

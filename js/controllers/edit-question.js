@@ -1,6 +1,4 @@
 module.exports =  function($scope, $routeParams, getSingleQuestionService, editService) {
-    // routing goodies
-    $scope.name = 'editController'
     $scope.failed = false
     $scope.text = ''
     $scope.tags = ''
@@ -22,7 +20,7 @@ module.exports =  function($scope, $routeParams, getSingleQuestionService, editS
           }
           else {
             //works
-            $location.path('question/'+$routeParams.id);
+            $location.path('/question/'+$routeParams.id);
           }
       })
     }

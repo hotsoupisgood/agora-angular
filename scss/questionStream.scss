@@ -3,11 +3,9 @@ $phoneButtonSize: 20vw;
 $phoneButtonHeight: 15vw;
 @media(pointer:coarse) {
   //for mobile
-
 }
 .questionSubHeader {
   width: 100%;
-  // background: lighten($secondaryColor, 20%);
 }
 .orderContainer {
     display: flex;
@@ -17,85 +15,52 @@ $phoneButtonHeight: 15vw;
         margin-left: 5px;
     }
 }
-.activeQuestion {
-    border-top-right-radius: $standardBorderRadius;
-    border-top-left-radius: $standardBorderRadius;
-}
-.responsesContainer {
-    border-top: 1px solid lightgrey;
-    background-color: rgba(255, 255, 255, 1);
-    margin: 15px;
-}
-.responsesContainer.ng-enter,
-.responsesContainer.ng-leave {
-    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.15s;
-}
-.responsesContainer.ng-enter,
-.responsesContainer.ng-leave.ng-leave-active {
-    opacity: 0;
-}
-.responsesContainer.ng-enter.ng-enter-active,
-.responsesContainer.ng-leave {
-    opacity: 1;
-}
 .questionStream {
-  background: white;
-  .optionsBox {
-    background: rgb(246, 246, 246);
-    border-radius: .2em;
-    padding: 1em;
-    margin-bottom: 1em;
-    a {
-      color: blue;
-      margin-left: .5em;
-      margin-right: .5em;
-    }
-    .divider {
-      width: 1px;
-      background: grey;
+  ul{
+    margin: 0;
+    li {
+      border-top: .2em solid $background;
     }
   }
     .questionContainer {
-      border-top: 1px solid lightgrey;
+      padding-top: .4em;
+      margin-left: 1em;
+      margin-right: 1em;
+      margin-bottom: .4em;
       display: flex;
       flex-direction: column;
+      .tags {
+        margin-bottom: .2em;
+        display: flex;
+      }
       .header {
         margin-top: .3em;
+        display: flex;
+        justify-content: space-between;
         .text {
-            color: black;
-            font-size: 1rem;
+          color: black;
+          font-family: 'Lato', sans-serif;
             text-decoration: none;
+            // font-weight: bold;
+            font-size: 1.2em;
         }
         .text:hover {
           .title {
             text-decoration: underline;
           }
         }
-        .tags {
-          margin-left: .5em;
-          align-content: center;
-          .tag{
-            cursor: pointer !important;
-            border-radius: .2em;
-            font-size: .5em;
+        .belowTitle {
+          display: flex;
+          flex-direction: row;
+          color: grey;
+          justify-content: space-between;
+          a {
+            border-radius: .1em;
             color: grey;
-            text-decoration: none;
-            margin-right: .5em;
+            margin: 0 .4em;
           }
         }
 
-      }
-      .belowTitle {
-        display: flex;
-        flex-direction: row;
-        font-size: .7em;
-        color: grey;
-        margin-top: 1em;
-        margin-bottom: .2em;
-        a {
-          border-radius: .1em;
-          color: grey;
-        }
       }
     }
     ul {
@@ -106,11 +71,11 @@ $phoneButtonHeight: 15vw;
         flex-direction: column;
     }
     .pagerContainer {
+      margin-top: 1em;
         a {
             margin-left: 10px;
             text-decoration: none;
             color: black;
-            font-size: .7em;
         }
     }
 }

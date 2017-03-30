@@ -1,8 +1,27 @@
 .sidebar {
-  transition: 100ms;
-  border-right: .5px solid lightgrey;
-  margin: 25px;
-  margin-left: 5px;
-  flex-grow: 10;
-  height: 100%;
+    background: $infoBackground;
+    display: flex;
+    flex-direction: column;
+    transition: 100ms;
+    padding: 0.6em;
+    margin: 0.4em;
+    flex-grow: 10;
+
+    .catagory {
+        display: flex;
+        flex-direction: column;
+        padding: 0.6em;
+        margin-bottom: 0.4em;
+        border-bottom: 0.2em solid lightgrey;
+
+        .tags {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .ask {
+            text-decoration: none;
+        }
+    }
 }

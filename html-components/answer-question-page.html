@@ -1,49 +1,54 @@
 
-<form class="col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
-  <div class="back">
+<div class="col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
+  <!-- <div class="back">
     <div class="click-area" ng-click="back()">
       <i class="fa fa-chevron-left" aria-hidden="true"></i>
       back
     </div>
-  </div>
-<div class="question row">
-  {{question.text}}
-  <div class="fill-space">
-
-  </div>
-  <div class="detailText col">
+  </div> -->
+<form class="col" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
+  <div class="question row">
+    {{question.text}}
     <div class="fill-space"></div>
-      {{question.date}}
-  </div>
-</div>
-  <div class="bigTitle row margin-b padding-b">
-    <input class="fill-space margin-r" type="text" placeholder="brief response/ summary of sections" ng-model="response" required>
-    <button class="addModule"type="button" ng-click="addModule()">Add Section</button>
-  </div>
-  <div class="note">
-    note: Add sections if you want to make your response longer than one line :)
-  </div>
-  <div class="modules" ng-repeat="m in modules">
-    <div class="moduleTitles">
-      <input class="" type="text" placeholder="Section header (optional)" ng-model="m.title">
-      <button class="" type="button" ng-click="removeModule($index)">Delete section <i class="fa fa-times" aria-hidden="true"></i></button>
-    </div>
-    <div class="moduleResponses">
-      <textarea class="fill-space" rows="8" cols="50" placeholder="Section body" ng-model="m.text" required></textarea>
+    <div class="detailText col">
+      <div class="fill-space"></div>
+        {{question.date}}
     </div>
   </div>
-  <div class="submitResponse">
-    <button class="submitButton" ng-hide="success"type="submit">Submit Response</button>
-  </div>
-
-  <div class="row" ng-show="success">
-    <div class="fill-space"></div>
-    <h4 style="color:green">SUCCESS!</h4>
-    <div class="fill-space"></div>
-  </div>
-  <div class="row" ng-show="failed">
-    <div class="fill-space"></div>
-    <h4 style="color:green">failed... try refreshing the page</h4>
-    <div class="fill-space"></div>
-  </div>
+    <div class="bigTitle row margin-b padding-b">
+      <input class="fill-space margin-r" type="text" placeholder="brief response/ summary of sections" ng-model="response" required>
+      <button class="addModule"type="button" ng-click="addModule()">Add Section</button>
+    </div>
+    <div class="modules" ng-repeat="m in modules">
+      <div class="moduleTitles">
+        <input class="" type="text" placeholder="Section header (optional)" ng-model="m.title">
+        <button class="" type="button" ng-click="removeModule($index)">Delete section <i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+      <div class="moduleResponses">
+        <textarea class="fill-space" rows="8" cols="50" placeholder="Section body" ng-model="m.text" required></textarea>
+      </div>
+    </div>
+    <div class="submitResponse">
+      <button class="submitButton" ng-hide="success"type="submit">Submit Response</button>
+    </div>
+    <div class="row" ng-show="success">
+      <div class="fill-space"></div>
+      <h4 style="color:green">SUCCESS!</h4>
+      <div class="fill-space"></div>
+    </div>
+    <div class="row" ng-show="failed">
+      <div class="fill-space"></div>
+      <h4 style="color:green">failed... try refreshing the page</h4>
+      <div class="fill-space"></div>
+    </div>
 </form>
+<div class="row">
+  <ul>
+    <li>Attempt to answer the prompt</li>
+    <li>Add sections to organize the idea(s) in the post</li>
+    <li>Each section has an area to comment, which allows your specific idea to be commented on, to learn why we did this, go <a href="#/about">here</a></li>
+    <li>Cater to any audience with your response, from mathematicians to elementary schoolers</li>
+    <li>Don't be a dick</li>
+  </ul>
+</div>
+</div>

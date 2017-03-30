@@ -1,33 +1,24 @@
 .loginPage {
-  margin-top: 1em;
+  margin: .5em;
+  background: white;
+  padding: .5em;
+  flex-grow: 10;
+  display: flex;
   @media (pointer:coarse) {
-
-      img {
-        display: none;
-      }
-      form {
-        input {
-          font-size: 5vw;
-        }
-        button {
-          font-size: 3vw;
-        }
-        label {
-        }
-      }
+    // none
   }
   .header {
     font-size: 1.2em;
     background: rgb(246, 246, 246);
     border-radius: .2em;
-    padding: 1em;
-    margin-bottom: 1em;
+    padding: .5em;
     margin: .5em;
   }
   .loginContainer {
       padding: 2em;
-      margin-left: 1em;
+      padding-top: .5em;
       flex-grow: 4;
+      justify-content: center;
       border-right: grey solid 1px;
       .failed {
         color: red;
@@ -52,7 +43,8 @@
   }
   .createContainer {
       padding: 2em;
-      margin-right: 1em;
+      padding-top: .5em;
+      justify-content: center;
       flex-grow: 4;
       .failed {
         color: red;

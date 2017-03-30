@@ -1,31 +1,20 @@
 <div  class="management col" ng-init="revealedAskQuestion = false" ng-controller="headerController">
     <ng-include src="'html-components/banner.html'"></ng-include>
     <header class="site-header" ng-init="selectedTab = 'discover'">
-
         <nav class="site-nav">
             <ul>
                 <li ng-class="{'active':selectedTab === 'discover'}">
                     <a ng-href="#discover" ng-click="selectedTab = 'discover'">Discover</a>
                 </li>
-                <!-- <li ng-class="{'active':selectedTab === 'login'}">
-                    <a ng-href="#login" ng-show="!isLoggedIn" ng-click="selectedTab = 'login'">Login</a>
-                </li>
-                <li ng-class="{'active':selectedTab === 'createAccount'}">
-                    <a ng-href="#createAccount" ng-show="!isLoggedIn" ng-click="selectedTab = 'createAccount'">Create Account</a>
-                </li> -->
                 <li ng-class="{'active':selectedTab === 'account'}">
                     <a ng-href="#user/{{accountInfo.username}}" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">Account</a>
                 </li>
-              <!-- <li ng-class="{'active':selectedTab === 'about'}">
-                  <a ng-href="#about" ng-click="selectedTab = 'about'">About</a>
-              </li> -->
                 <li ng-class="{'active':selectedTab === 'ask'}">
-                    <a ng-href="#ask" ng-click="selectedTab = 'ask'">Ask Question</a>
+                    <a ng-href="#ask" ng-click="selectedTab = 'ask'" ng-show="isLoggedIn">Ask Question</a>
                 </li>
             </ul>
         </nav>
-        <!-- <div class="fill-space mobile-Hidden"></div> -->
-        <form class="searchForm fill-space row" ng-submit="search()">
+        <form class="searchForm fill-space" ng-submit="search()">
             <input class="searchFormInput" ng-model="searchQuery" type="text" placeholder="Search This Agora">
             <div class="col">
               <button class="fill-space">
@@ -33,18 +22,5 @@
               </button>
             </div>
         </form>
-        <!-- <div class="fill-space mobile-Hidden"></div> -->
-        <!-- <div class="askDropdown">
-            <button class="stylessButton" ng-click="revealedAskQuestion = !revealedAskQuestion">
-                propose question
-                <i class="fa fa-chevron-down" aria-hidden="true" ng-hide="revealedAskQuestion"></i>
-                <i class="fa fa-chevron-up" aria-hidden="true" ng-hide="!revealedAskQuestion"></i>
-            </button>
-        </div> -->
     </header>
-
-    <div class="askQuestion" ng-if="revealedAskQuestion">
-        <ng-include src="'html-components/ask-question.html'"></ng-include>
-    </div>
-
 </div>

@@ -120,8 +120,6 @@ module.exports =  function($scope, $routeParams, $location, createAccountService
 
 },{}],6:[function(require,module,exports){
 module.exports =  function($scope, $routeParams, getSingleQuestionService, editService) {
-    // routing goodies
-    $scope.name = 'editController'
     $scope.failed = false
     $scope.text = ''
     $scope.tags = ''
@@ -143,7 +141,7 @@ module.exports =  function($scope, $routeParams, getSingleQuestionService, editS
           }
           else {
             //works
-            $location.path('question/'+$routeParams.id);
+            $location.path('/question/'+$routeParams.id);
           }
       })
     }
@@ -301,7 +299,8 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
                   $scope.gotQuestions = true;
                 }
                 else {
-                  window.history.back();
+                  // window.history.back();
+                  $scope.isQueryEmpty = true;
                 }
             } else {
                 $scope.gotQuestions = false;
@@ -576,6 +575,7 @@ module.exports = function($scope, submitQuestionService) {
         if (response) {
           $scope.success = response;
           $scope.loading = false;
+          $location.url('#/question/'+response.id);
         }
       });
     };
@@ -921,9 +921,7 @@ module.exports = function(userService, $http) {
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            //  console.log('successCallback unparsed response: ' + JSON.stringify(response.data.questions));
-            console.log(response.data);
-
+            // console.log(response.data);
             return response.data;
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
@@ -1097,7 +1095,7 @@ module.exports = function($http, $rootScope, userService) {
             // when the response is available
             console.log('successCallback, response: ');
             console.log(response.data);
-            return true;
+            return response.data;
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -1146,7 +1144,7 @@ module.exports = function ($rootScope, $http, userService) {
           //request
           var returnData = $http({
               method: 'POST',
-              url: 'http://api.iex.ist/full/vote/',
+              url: 'http://api.iex.ist/full/response_vote/',
               data: {
                 response_id: id
               },
