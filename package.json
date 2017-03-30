@@ -17,8 +17,10 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
+    "grunt-concurrent": "^2.3.1",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-notify": "^0.4.5",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "install": "^0.8.1",
