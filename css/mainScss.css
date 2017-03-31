@@ -796,7 +796,7 @@ header .site-nav ul li a:hover {
   }
 }
 .discover {
-  margin: .4em;
+  margin: 0.4em;
   background: white;
   padding: .4em;
   flex-grow: 2;

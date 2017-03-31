@@ -1,4 +1,4 @@
 module.exports = {
-  browserify: ['browserify'],
-  sass: ['sass'],
+  browserify: ['newer:browserify'],
+  sass: ['newer:sass'],
 };
