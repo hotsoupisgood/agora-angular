@@ -13,7 +13,6 @@ module.exports =  function($scope, $routeParams, getSingleQuestionService, editS
       })
     }
     $scope.submit = function() {
-      console.log($routeParams.id);
       editService.submitQuestion($scope.text, $scope.tags, $routeParams.id).then(function (response) {
           if (!response) {
             $scope.failed = true

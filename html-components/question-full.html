@@ -1,10 +1,4 @@
 <div class="single-question">
-    <!-- <div class="back">
-    <div class="click-area" ng-click="back()">
-      <i class="fa fa-chevron-left" aria-hidden="true"></i>
-      back
-    </div>
-  </div> -->
     <div class="row" ng-hide="question.text.length">
         <div class="fill-space"></div>
         <img src="media/animal.gif">
@@ -48,11 +42,6 @@
             </div>
         </div>
         <div class="responses">
-            <!-- <div class="row" ng-if="!question.responses.length">
-        <div class="fill-space"></div>
-        <img src="media/agora_dude_2.png" alt="">
-        <div class="fill-space"></div>
-      </div> -->
             <div class="response" ng-repeat="response in question.responses" ng-controller="responseController">
                 <div class="header">
                     <div class="subHeader">
@@ -76,11 +65,13 @@
                     </div>
                 </div>
                 <div class="sections" ng-repeat="section in response.modules">
-                    <div class="section-header">
-                        <b>{{section.title}}</b>
-                    </div>
-                    <div class="section-body">
-                        {{section.text}}
+                    <div class="col">
+                      <div class="section-header">
+                          <b>{{section.title}}</b>
+                      </div>
+                      <div class="section-body">
+                          {{section.text}}
+                      </div>
                     </div>
                     <div class="sectionComments" ng-controller="commentsController">
                         <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">

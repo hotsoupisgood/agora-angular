@@ -18,10 +18,11 @@
                               {{q.text}}
                           </div>
                       </a>
+                      <div class="belowTitle d-time">
+                        {{q.dtime}}
+                      </div>
                     </div>
                     <div class="belowTitle">
-                        {{q.dtime}}
-                        <div class="fill-space"></div>
                         <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
                                       Respond
                                       <i class="fa fa-pencil" aria-hidden="true"></i>
