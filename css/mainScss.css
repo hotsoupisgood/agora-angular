@@ -114,12 +114,14 @@
   margin-left: 0.5em;
 }
 .single-question .responses .response .sections {
-  margin-top: 0.5em;
+  margin-top: 0.4em;
   margin-left: 1em;
   margin-right: 1em;
-  border: 1px solid lightgrey;
+  border-top: .1em solid lightgrey;
   border-radius: 0.2em;
-  padding: 0.5em;
+  padding: 0.4em;
+  display: flex;
+  flex-direction: row;
 }
 .single-question .responses .response .sections .section-header {
   font-size: 0.8em;
@@ -127,17 +129,21 @@
   margin-bottom: 0.5em;
 }
 .single-question .responses .response .sections .section-body {
-  font-size: 0.7em;
+  font-size: 0.8em;
   margin-left: 1em;
   margin-right: 1em;
 }
-.single-question .responses .response .sections .sectionComments {
-  font-size: 0.7em;
-  padding-top: 0.5em;
+.single-question .responses .response .sections .section-comments {
+  display: flex;
+  flex-direction: column;
 }
-.single-question .responses .response .sections .sectionComments input {
+.single-question .responses .response .sections .section-comments .section-comment {
+  font-size: 0.8em;
+  padding-top: 0.6em;
+}
+.single-question .responses .response .sections .section-comments .section-comment input {
   padding: 0.2em 3em;
-  margin-right: 0.5em;
+  margin-right: 0.4em;
 }
 
 @media (pointer: coarse) {
@@ -401,8 +407,8 @@
   background: rgba(110, 210, 180, 0.08) !important;
 }
 
-.verticalLine {
-  width: 1px;
+.vertical-line {
+  width: .1em;
   background: grey;
   margin-top: .5em;
   margin-bottom: .5em;
@@ -843,7 +849,7 @@ header .site-nav ul li a:hover {
   padding: .4em;
 }
 .optionsBox a {
-  color: #44d2be;
+  color: #52acde;
   margin-left: .5em;
   margin-right: .5em;
   text-decoration: none;

@@ -58,12 +58,14 @@
             }
 
             .sections {
-                margin-top: 0.5em;
+                margin-top: 0.4em;
                 margin-left: 1em;
                 margin-right: 1em;
-                border: 1px solid lightgrey;
+                border-top: .1em solid lightgrey;
                 border-radius: 0.2em;
-                padding: 0.5em;
+                padding: 0.4em;
+                display: flex;
+                flex-direction: row;
 
                 .section-header {
                     font-size: 0.8em;
@@ -72,26 +74,29 @@
                 }
 
                 .section-body {
-                    font-size: 0.7em;
+                    font-size: 0.8em;
                     margin-left: 1em;
                     margin-right: 1em;
                 }
+                .section-comments {
+                  display: flex;
+                  flex-direction: column;
+                  .section-comment {
+                      font-size: 0.8em;
+                      padding-top: 0.6em;
 
-                .sectionComments {
-                    font-size: 0.7em;
-                    padding-top: 0.5em;
+                      input {
+                          padding: 0.2em 3em;
+                          margin-right: 0.4em;
+                      }
 
-                    input {
-                        padding: 0.2em 3em;
-                        margin-right: 0.5em;
-                    }
-
-                    .sectionHeader {
-                        .addComment {
-                            // font-size: .8em;
-                            // padding-top: .5em;
-                        }
-                    }
+                      .sectionHeader {
+                          .addComment {
+                              // font-size: .8em;
+                              // padding-top: .5em;
+                          }
+                      }
+                  }
                 }
             }
         }

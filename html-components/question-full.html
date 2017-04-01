@@ -73,18 +73,20 @@
                           {{section.text}}
                       </div>
                     </div>
-                    <div class="sectionComments" ng-controller="commentsController">
-                        <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">
-                            Comments ({{section.comments.length}})
-                            <div class="fill-space"></div>
-                            <div class="addComment row">
-                                <label>Comment: <input type="text" ng-model="commentText" value="" placeholder="ex. State yo sources?!?!"></label>
-                                <button type="button" name="submit" class="submitButton" submit>submit</button>
-                            </div>
-                        </form>
-                        <div class="comment" ng-repeat="comment in section.comments">
-                            {{comment.text}}
-                        </div>
+                    <div class="section-comments">
+                      <div class="section-comment" ng-controller="commentsController">
+                          <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">
+                              Comments ({{section.comments.length}})
+                              <div class="fill-space"></div>
+                              <div class="addComment row">
+                                  <label>Comment: <input type="text" ng-model="commentText" value="" placeholder="ex. State yo sources?!?!"></label>
+                                  <button type="button" name="submit" class="submitButton" submit>submit</button>
+                              </div>
+                          </form>
+                          <div class="comment" ng-repeat="comment in section.comments">
+                              {{comment.text}}
+                          </div>
+                      </div>
                     </div>
                 </div>
             </div>

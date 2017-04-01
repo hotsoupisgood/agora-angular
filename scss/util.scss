@@ -92,8 +92,8 @@ $transparentColor: rgba(255, 255, 255, 0);
 .highlight-hover:hover {
   background: rgba(110, 210, 180, 0.08) !important;
 }
-.verticalLine {
-  width: 1px;
+.vertical-line {
+  width: .1em;
   background: grey;
   margin-top: .5em;
   margin-bottom: .5em;
