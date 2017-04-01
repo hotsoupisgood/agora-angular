@@ -687,6 +687,9 @@ header .site-nav ul li a:hover {
 .questionStream .questionContainer .header .text:hover .title {
   text-decoration: underline;
 }
+.questionStream .questionContainer .header .d-time {
+  margin-left: 1em;
+}
 .questionStream .questionContainer .header .belowTitle {
   display: flex;
   flex-direction: row;
@@ -833,7 +836,7 @@ header .site-nav ul li a:hover {
 }
 
 .contentBigHead {
-  margin-top: 12em !important;
+  margin-top: 9em !important;
 }
 
 .optionsBox {
@@ -977,12 +980,9 @@ form {
 }
 
 .editButton {
-  background: rgba(255, 0, 0, 0.62);
-  border-radius: 1em;
-  padding: .2em .6em;
+  padding: .2em;
   margin: 0 .5em;
   text-decoration: none;
-  color: black;
 }
 
 /*# sourceMappingURL=mainScss.css.map */

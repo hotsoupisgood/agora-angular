@@ -86,21 +86,24 @@ module.exports = function ($http, userService) {
     };this.tagz = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min/question/?tags__name=' + currentSearchTerm
+          url: 'http://api.iex.ist/min',
+          params: {
+              query: currentSearchTerm,
+          }
       }).then(function successCallback(response) {
         console.log(currentSearchTerm);
           // this callback will be called asynchronously
           // when the response is available
           //show response for debug
            console.log('successCallback response: ');
-           console.log(response.data.objects);
-          return response.data.objects;
+           console.log(response.data);
+          return response.data;
       }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           //show response for debug
           console.log('errorCallback unparsed response: ');
-          console.log(response.data.objects);
+          console.log(response.data);
       });
       return returnData;
     };

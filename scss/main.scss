@@ -53,12 +53,9 @@ $singleInputFormHeight: 20px;
   font-size: 0.8em;
 }
 .contentBigHead {
-  margin-top: 12em !important;
-  // transition: margin-top 90ms;
+  margin-top: 9em !important;
 }
 .optionsBox {
-  // background: rgb(246, 246, 246);
-  // border-radius: .2em;
   padding: .4em;
   a {
     color: rgb(68, 210, 190);
@@ -189,10 +186,10 @@ form {
   border: .5px solid black;
 }
 .editButton {
-  background: rgba(255, 0, 0, 0.62);
-  border-radius: 1em;
-  padding: .2em .6em;
+  // background: rgba(255, 0, 0, 0.62);
+  // border-radius: 1em;
+  padding: .2em;
   margin: 0 .5em;
   text-decoration: none;
-  color: black;
+  // color: black;
 }
