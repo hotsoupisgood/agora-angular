@@ -1,4 +1,4 @@
-module.exports = function($scope, submitQuestionService) {
+module.exports = function($scope, $location, submitQuestionService) {
     $scope.name = 'submitQuestionFormController';
     $scope.question = '';
     $scope.questionTags = '';
@@ -12,7 +12,7 @@ module.exports = function($scope, submitQuestionService) {
         if (response) {
           $scope.success = response;
           $scope.loading = false;
-          $location.url('#/question/'+response.id);
+          $location.url('/question/'+response.id);
         }
       });
     };

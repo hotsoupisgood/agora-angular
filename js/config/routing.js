@@ -8,6 +8,8 @@ module.exports = function($routeProvider, $locationProvider) {
             controller: 'submitResponseFormController'
         }).when('/ask', {
             templateUrl: 'html-components/ask-question-page.html'
+        }).when('/delete/:id', {
+            templateUrl: 'html-components/delete-question.html'
         }).when('/discover/:page', {
             templateUrl: 'html-components/discover.html',
             controller: 'questions'

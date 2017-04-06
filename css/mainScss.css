@@ -140,10 +140,16 @@
 .single-question .responses .response .sections .section-comments .section-comment {
   font-size: 0.8em;
   padding-top: 0.6em;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
 }
 .single-question .responses .response .sections .section-comments .section-comment input {
   padding: 0.2em 3em;
   margin-right: 0.4em;
+}
+.single-question .responses .response .sections .section-comments .section-comment .comment {
+  border-top: .1em solid lightgrey;
 }
 
 @media (pointer: coarse) {
@@ -647,6 +653,9 @@ header .site-nav ul li a:hover {
 .askQuestionPage .askQuestion button {
   margin-top: 1em;
 }
+.askQuestionPage .askQuestion .delete-button {
+  color: red;
+}
 
 .questionSubHeader {
   width: 100%;
@@ -912,7 +921,6 @@ button:focus {
 }
 
 button:hover {
-  background: rgba(223, 170, 35, 0.05);
   cursor: pointer;
 }
 

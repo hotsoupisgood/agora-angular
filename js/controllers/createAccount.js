@@ -1,5 +1,4 @@
 module.exports =  function($scope, $routeParams, $location, createAccountService) {
-    $scope.name = 'createAccountController';
     $scope.$params = $routeParams;
     $scope.username;
     $scope.password;

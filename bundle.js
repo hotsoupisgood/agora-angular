@@ -9,6 +9,8 @@ module.exports = function($routeProvider, $locationProvider) {
             controller: 'submitResponseFormController'
         }).when('/ask', {
             templateUrl: 'html-components/ask-question-page.html'
+        }).when('/delete/:id', {
+            templateUrl: 'html-components/delete-question.html'
         }).when('/discover/:page', {
             templateUrl: 'html-components/discover.html',
             controller: 'questions'
@@ -39,12 +41,10 @@ module.exports = function($routeProvider, $locationProvider) {
 
 },{}],2:[function(require,module,exports){
 module.exports =  function($scope) {
-    $scope.name = 'aboutController';
 };
 
 },{}],3:[function(require,module,exports){
 module.exports =  function($scope) {
-    $scope.name = 'checkUsernameController';
     $scope.hiddenInfo = {};
     $scope.hiddenInfo.usernameTaken = true;
 
@@ -100,7 +100,6 @@ module.exports = function($scope, submitCommentService) {
 
 },{}],5:[function(require,module,exports){
 module.exports =  function($scope, $routeParams, $location, createAccountService) {
-    $scope.name = 'createAccountController';
     $scope.$params = $routeParams;
     $scope.username;
     $scope.password;
@@ -123,11 +122,13 @@ module.exports =  function($scope, $routeParams, getSingleQuestionService, editS
     $scope.failed = false
     $scope.text = ''
     $scope.tags = ''
+    $scope.qId = ''
 
     $scope.getQuestionFull = function () {
       getSingleQuestionService.get($routeParams.id).then(function (response) {
         $scope.question = response
         $scope.text = response.text
+        $scope.qId = response.id
         response.tags.forEach(function (item) {
           $scope.tags += item.slug + ', '
         })
@@ -560,7 +561,7 @@ module.exports = function($scope, submitCommentService) {
 };
 
 },{}],16:[function(require,module,exports){
-module.exports = function($scope, submitQuestionService) {
+module.exports = function($scope, $location, submitQuestionService) {
     $scope.name = 'submitQuestionFormController';
     $scope.question = '';
     $scope.questionTags = '';
@@ -574,7 +575,7 @@ module.exports = function($scope, submitQuestionService) {
         if (response) {
           $scope.success = response;
           $scope.loading = false;
-          $location.url('#/question/'+response.id);
+          $location.url('/question/'+response.id);
         }
       });
     };

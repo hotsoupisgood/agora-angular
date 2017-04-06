@@ -1,2 +1,10 @@
-.sass-cache
-css/mainScss.css.map
+.sass-cache/
+*.css.map
+
+*.scssc
+
+.sass-cache/4b48533167786bd4ba0242f3f3dbe48c2569adf5/ask.scssc
+
+*.scssc
+
+.sass-cache/4b48533167786bd4ba0242f3f3dbe48c2569adf5/main.scssc

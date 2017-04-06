@@ -1,5 +1,4 @@
 module.exports =  function($scope) {
-    $scope.name = 'checkUsernameController';
     $scope.hiddenInfo = {};
     $scope.hiddenInfo.usernameTaken = true;
 

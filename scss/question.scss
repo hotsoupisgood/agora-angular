@@ -84,12 +84,16 @@
                   .section-comment {
                       font-size: 0.8em;
                       padding-top: 0.6em;
-
+                      display: flex;
+                      flex-direction: column;
+                      align-content: space-between;
                       input {
                           padding: 0.2em 3em;
                           margin-right: 0.4em;
                       }
-
+                      .comment {
+                        border-top: .1em solid lightgrey;
+                      }
                       .sectionHeader {
                           .addComment {
                               // font-size: .8em;
