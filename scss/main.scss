@@ -24,6 +24,15 @@ $singleInputFormHeight: 20px;
 .sidebar {
   // display: none;
 }
+body {
+  // font-family: 'Open Sans', sans-serif;
+  font-family: 'Arvo', sans-serif;
+    background: $background;
+    margin: 0;
+    font-size: 15px;
+    // display: flex;
+    // flex-direction: column;
+}
 @media(pointer:coarse) {
     body {
       font-size: 4vw!important;
@@ -32,57 +41,12 @@ $singleInputFormHeight: 20px;
       margin-top: 9em!important;
     }
 }
-.content {
-  margin-top: 6.4em;
-  display: flex;
-  flex-direction: column;
-  // transition: margin-top 90ms;
-}
-.back {
-  // font-size: 1em;
-  background: rgb(246, 246, 246);
-  border-radius: .2em;
-  padding: 1em;
-  margin-bottom: 1em;
-  .click-area {
-    cursor: pointer !important;
-  }
-}
-.detailText {
-  color: grey;
-  font-size: 0.8em;
-}
-.contentBigHead {
-  margin-top: 9em !important;
-}
-.optionsBox {
-  padding: .4em;
-  a {
-    color: rgba(82, 172, 222, 1);
-    margin-left: .5em;
-    margin-right: .5em;
-    text-decoration: none;
-  }
-  .divider {
-    width: 1px;
-    background: grey;
-  }
-}
 h4 {
   margin-top: .2em;
   margin-bottom: .2em;
 }
 p{
   font-size: .8em;
-}
-body {
-  font-family: 'Open Sans', sans-serif;
-
-    background: $background;
-    margin: 0;
-    font-size: 15px;
-    // display: flex;
-    // flex-direction: column;
 }
 input {
   border: none;
@@ -138,7 +102,44 @@ form {
     width: auto;
     padding: 3px;
 }
+.content {
+  margin-top: 6.4em;
+  display: flex;
+  flex-direction: column;
+  // transition: margin-top 90ms;
+}
+.back {
+  // font-size: 1em;
+  background: rgb(246, 246, 246);
+  border-radius: .2em;
+  padding: 1em;
+  margin-bottom: 1em;
+  .click-area {
+    cursor: pointer !important;
+  }
+}
+.detailText {
+  color: grey;
+  font-size: 0.8em;
+}
+.contentBigHead {
+  margin-top: 9em !important;
+}
+.optionsBox {
+  padding: .4em;
+  a {
+    color: rgba(82, 172, 222, 1);
+    margin-left: .5em;
+    margin-right: .5em;
+    text-decoration: none;
+  }
+  .divider {
+    width: 1px;
+    background: grey;
+  }
+}
 .tag{
+  // font-family: 'Arvo', sans-serif;
   font-size: .8em;
   cursor: pointer !important;
   border-radius: .8em;

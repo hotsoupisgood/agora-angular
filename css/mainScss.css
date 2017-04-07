@@ -114,22 +114,35 @@
   margin-left: 0.5em;
 }
 .single-question .responses .response .sections {
-  align-content: space-between;
-  margin-top: 0.4em;
-  margin-left: 1em;
-  margin-right: 1em;
+  display: flex;
+  flex-direction: row;
+  margin: .2em 1em;
   border-top: 0.1em solid lightgrey;
   border-radius: 0.2em;
   padding: 0.4em;
-  display: flex;
-  flex-direction: row;
-}
-.single-question .responses .response .sections .section {
-  flex-shrink: 4;
 }
 .single-question .responses .response .sections .section .section-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid lightgrey;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.4em;
+}
+.single-question .responses .response .sections .section .section-header .addComment {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8em;
+  flex-grow: 5;
+}
+.single-question .responses .response .sections .section .section-header .addComment button {
+  padding: 0.2em .4em;
+  margin: 0.2em;
+}
+.single-question .responses .response .sections .section .section-header .addComment input {
+  padding: 0.2em 1em;
+  margin: 0.2em;
+  flex-grow: 3;
 }
 .single-question .responses .response .sections .section .section-body {
   margin-left: 1em;
@@ -143,17 +156,22 @@
   border-left: 0.1em solid lightgrey;
   padding-left: 1em;
 }
+.single-question .responses .response .sections .section-comments .section-comment-header {
+  font-size: .8em;
+  color: grey;
+  padding-bottom: 0.6em;
+}
 .single-question .responses .response .sections .section-comments .section-comment {
-  padding-top: 0.6em;
   display: flex;
-  align-content: space-between;
+  flex-wrap: nowrap;
 }
 .single-question .responses .response .sections .section-comments .section-comment .comment {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  border-top: 0.1em solid lightgrey;
   padding-top: 0.4em;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 .single-question .responses .response .sections .section-comments .section-comment .comment .username {
   margin-right: .4em;
@@ -164,24 +182,8 @@
   align-self: center;
   justify-content: center;
 }
-.single-question .responses .response .sections .section-comments .section-comment button {
-  padding: 0.2em;
-}
-.single-question .responses .response .sections .section-comments .section-comment .section-comment-header {
-  flex-grow: 1;
-}
-.single-question .responses .response .sections .section-comments .section-comment .section-comment-header .addComment {
-  display: flex;
-  flex-direction: row;
-  font-size: 0.8em;
-}
-.single-question .responses .response .sections .section-comments .section-comment .section-comment-header .addComment button {
-  padding: 0.1em;
-  margin: 0.4em;
-}
-.single-question .responses .response .sections .section-comments .section-comment .section-comment-header .addComment input {
-  padding: 0.1em;
-  margin: 0.4em;
+.single-question .responses .response .sections .section-comments .section-comment .comment .editButton {
+  color: blue;
 }
 
 @media (pointer: coarse) {
@@ -545,12 +547,15 @@
   padding: 0.6em;
   margin-bottom: 0.4em;
   border-bottom: 0.2em solid lightgrey;
+  max-width: 13em;
+}
+.sidebar .catagory ul {
+  padding-left: .8em;
 }
 .sidebar .catagory .tags {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 12em;
   margin: .2em;
 }
 .sidebar .catagory .tags .tag {
@@ -723,6 +728,7 @@ header .site-nav ul li a:hover {
   margin-bottom: .4em;
   display: flex;
   flex-direction: column;
+  font-size: .9em;
 }
 .questionStream .questionContainer .tags {
   margin-bottom: .2em;
@@ -735,7 +741,6 @@ header .site-nav ul li a:hover {
 }
 .questionStream .questionContainer .header .text {
   color: black;
-  font-family: 'Arvo', sans-serif;
   text-decoration: none;
   font-size: 1.2em;
 }
@@ -750,6 +755,7 @@ header .site-nav ul li a:hover {
   flex-direction: row;
   color: grey;
   justify-content: space-between;
+  font-size: .8em;
 }
 .questionStream .questionContainer .header .belowTitle a {
   border-radius: .1em;
@@ -860,6 +866,13 @@ header .site-nav ul li a:hover {
   flex-grow: 2;
 }
 
+body {
+  font-family: 'Arvo', sans-serif;
+  background: #e0dfdf;
+  margin: 0;
+  font-size: 15px;
+}
+
 @media (pointer: coarse) {
   body {
     font-size: 4vw !important;
@@ -869,45 +882,6 @@ header .site-nav ul li a:hover {
     margin-top: 9em !important;
   }
 }
-.content {
-  margin-top: 6.4em;
-  display: flex;
-  flex-direction: column;
-}
-
-.back {
-  background: #f6f6f6;
-  border-radius: .2em;
-  padding: 1em;
-  margin-bottom: 1em;
-}
-.back .click-area {
-  cursor: pointer !important;
-}
-
-.detailText {
-  color: grey;
-  font-size: 0.8em;
-}
-
-.contentBigHead {
-  margin-top: 9em !important;
-}
-
-.optionsBox {
-  padding: .4em;
-}
-.optionsBox a {
-  color: #52acde;
-  margin-left: .5em;
-  margin-right: .5em;
-  text-decoration: none;
-}
-.optionsBox .divider {
-  width: 1px;
-  background: grey;
-}
-
 h4 {
   margin-top: .2em;
   margin-bottom: .2em;
@@ -915,13 +889,6 @@ h4 {
 
 p {
   font-size: .8em;
-}
-
-body {
-  font-family: 'Open Sans', sans-serif;
-  background: #e0dfdf;
-  margin: 0;
-  font-size: 15px;
 }
 
 input {
@@ -981,6 +948,45 @@ form {
   border-radius: 2px;
   width: auto;
   padding: 3px;
+}
+
+.content {
+  margin-top: 6.4em;
+  display: flex;
+  flex-direction: column;
+}
+
+.back {
+  background: #f6f6f6;
+  border-radius: .2em;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+.back .click-area {
+  cursor: pointer !important;
+}
+
+.detailText {
+  color: grey;
+  font-size: 0.8em;
+}
+
+.contentBigHead {
+  margin-top: 9em !important;
+}
+
+.optionsBox {
+  padding: .4em;
+}
+.optionsBox a {
+  color: #52acde;
+  margin-left: .5em;
+  margin-right: .5em;
+  text-decoration: none;
+}
+.optionsBox .divider {
+  width: 1px;
+  background: grey;
 }
 
 .tag {

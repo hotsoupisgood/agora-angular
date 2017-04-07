@@ -3,12 +3,22 @@
 
     <a class="ask doButton"href="#/ask">Click me to ask a question</a>
   </div>
+  <div class="catagory about">
+    <div class="row">
+      Ask literally any question.
+    </div>
+    <ul>
+      <li>That is not spammy.</li>
+      <li> Then try to answer others questions in, non spammy, ways...</li>
+      <li> Then argue with others. Without spam. Please.</li>
+    </ul>
+  </div>
   <div class="catagory">
     Search for a random tag:
     <div class="tags">
-      <div class="tag"ng-repeat="tag in randomTags">
+      <a ng-href="#/search?query={{tag.slug}}&doQ=false&doR=false&doU=false&doT" class="tag"ng-repeat="tag in randomTags">
         {{tag.slug}}
-      </div>
+      </a>
     </div>
   </div>
 </div>

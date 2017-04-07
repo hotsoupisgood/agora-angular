@@ -30,7 +30,7 @@ module.exports = function(userService, $http) {
     this.getRandomTags = function() {
         var returnData = $http({
             method: 'GET',
-            url: 'http://api.iex.ist/full/tag'
+            url: 'http://api.iex.ist/full/tag/?order_by=?'
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available

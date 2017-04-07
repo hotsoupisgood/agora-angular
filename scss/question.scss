@@ -59,23 +59,38 @@
             }
 
             .sections {
-                align-content: space-between;
-                margin-top: 0.4em;
-                margin-left: 1em;
-                margin-right: 1em;
+              display: flex;
+              flex-direction: row;
+                margin: .2em 1em;
                 border-top: 0.1em solid lightgrey;
                 border-radius: 0.2em;
                 padding: 0.4em;
-                display: flex;
-                flex-direction: row;
 
                 .section {
-                    flex-shrink: 4;
-
                     .section-header {
-                        // font-size: 0.8em;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
                         border-bottom: 1px solid lightgrey;
-                        margin-bottom: 0.5em;
+                        margin-bottom: 0.4em;
+                        .addComment {
+                            display: flex;
+                            flex-direction: row;
+                            font-size: 0.8em;
+                            flex-grow: 5;
+
+                            button {
+                                padding: 0.2em .4em;
+                                margin: 0.2em;
+                            }
+
+                            input {
+                                padding: 0.2em 1em;
+                                margin: 0.2em;
+                                flex-grow: 3;
+                            }
+                        }
                     }
 
                     .section-body {
@@ -92,18 +107,23 @@
                     margin-left: 1em;
                     border-left: 0.1em solid lightgrey;
                     padding-left: 1em;
+                    .section-comment-header {
+                      font-size: .8em;
+                      color: grey;
+                      padding-bottom: 0.6em;
 
+                    }
                     .section-comment {
-                        padding-top: 0.6em;
                         display: flex;
-                        align-content: space-between;
-
+                        flex-wrap: nowrap;
                         .comment {
                             display: flex;
                             flex-direction: row;
                             flex-grow: 1;
-                            border-top: 0.1em solid lightgrey;
+                            // border-top: 0.1em solid lightgrey;
                             padding-top: 0.4em;
+                            flex-wrap: nowrap;
+                            white-space:nowrap;
                             .username {
                               margin-right: .4em;
                               color: grey;
@@ -113,29 +133,9 @@
                                 align-self: center;
                                 justify-content: center;
                             }
-                        }
-
-                        button {
-                            padding: 0.2em;
-                        }
-                        .section-comment-header {
-                          flex-grow: 1;
-
-                          .addComment {
-                              display: flex;
-                              flex-direction: row;
-                              font-size: 0.8em;
-
-                              button {
-                                  padding: 0.1em;
-                                  margin: 0.4em;
-                              }
-
-                              input {
-                                  padding: 0.1em;
-                                  margin: 0.4em;
-                              }
-                          }
+                            .editButton {
+                              color: blue;
+                            }
                         }
 
                     }

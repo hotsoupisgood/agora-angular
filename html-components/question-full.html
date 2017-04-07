@@ -21,7 +21,7 @@
             </div>
             <div class="row subHeader">
                 <!-- tags: -->
-                
+
                 <div class="total">
                     <label>
               Responses
@@ -56,7 +56,7 @@
                         <div class="detailText col">
                             <div class="fill-space"></div>
                             <label>
-                  Writen {{response.dtime}} ago
+                  Writen by <a ng-href="#/user/{{response.username}}">{{response.username}}</a> {{response.dtime}} ago
                 </label>
                             <div class="fill-space"></div>
                         </div>
@@ -66,40 +66,38 @@
                     <div class="section col">
                       <div class="section-header">
                           <b>{{section.title}}</b>
-                      </div>
-                      <div class="row">
-                        <div class="section-body">
-                            {{section.text}}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="section-comments">
-                      <div class="section-comment col" ng-controller="commentsController">
-                        <div class="section-comment-header">
-                          <div class="row">
-                            Comments ({{section.comments.length}})
-                          </div>
-                          <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn && commentOpen">
+                          <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">
                               <div class="addComment">
                                   <input type="text" ng-model="commentText" value="" placeholder="make a comment">
                                   <button type="button" name="submit" class="submitButton" submit>submit</button>
                               </div>
                           </form>
+                      </div>
+                      <div class="row">
+                        <div class="section-body">
+                            {{section.text}}
                         </div>
-                          <button class="submitButton" ng-click="commentOpen = true"ng-hide="commentOpen">comment!</button>
-                          <div class="row">
-                            <div class="comment" ng-repeat="comment in section.comments">
-                              <div class="row username">
-                                {{comment.username}}:
-                              </div>
-                                <div class="row">
-                                  {{comment.text}}
-                                </div>
-                                <div class="detailText">
-                                  {{comment.dtime}}
-                                </div>
+                        <div class="section-comments" ng-if="section.comments.length">
+                          <div class="section-comment col" ng-controller="commentsController">
+                            <div class="section-comment-header">
+                                <label>Comments&nbsp;({{section.comments.length}})</label>
                             </div>
+                              <button class="submitButton" ng-click="commentOpen = true"ng-hide="commentOpen">comment!</button>
+                              <div class="row">
+                                <div class="comment" ng-repeat="comment in section.comments">
+                                    <div class="row">
+                                      {{comment.text}}
+                                    </div>
+                                    <button class="editButton" ng-click="">
+                                      edit
+                                    </button>
+                                    <div class="detailText">
+                                      Writen by <a ng-href="#/user/{{comment.username}}">{{comment.username}}</a> {{comment.dtime}} ago
+                                    </div>
+                                </div>
+                              </div>
                           </div>
+                        </div>
                       </div>
                     </div>
                 </div>

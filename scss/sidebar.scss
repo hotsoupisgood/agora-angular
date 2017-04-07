@@ -13,12 +13,14 @@
         padding: 0.6em;
         margin-bottom: 0.4em;
         border-bottom: 0.2em solid lightgrey;
-
+        max-width: 13em;
+        ul{
+          padding-left: .8em;
+        }
         .tags {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            max-width: 12em;
             margin: .2em;
             .tag{
               margin: .2em;

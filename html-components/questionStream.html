@@ -9,7 +9,9 @@
                         </a>
                     </div>
                     <div class="fill-space"></div>
-                    <a class="editButton" ng-href="#edit/question/{{q.id}}" ng-show="q.username == accountInfo.username">edit</a>
+                    <div class="belowTitle d-time">
+                      Writen by <a ng-href="#/user/{{q.username}}">{{q.username}}</a> {{q.dtime}} ago
+                    </div>
                 </div>
                 <div class="header row">
                     <div class="row">
@@ -18,9 +20,8 @@
                               {{q.text}}
                           </div>
                       </a>
-                      <div class="belowTitle d-time">
-                        {{q.dtime}}
-                      </div>
+                      <a class="editButton" ng-href="#edit/question/{{q.id}}" ng-show="q.username == accountInfo.username">edit</a>
+
                     </div>
                     <div class="belowTitle">
                         <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
