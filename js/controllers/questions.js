@@ -9,6 +9,7 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
     $scope.isQueryEmpty = false;
     $scope.order = '-date';
     $scope.gotQuestions = true;
+    $scope.randomTags = {};
     //manage event listeners
     $scope.$on('$routeChangeSuccess', function(e) {
         if ($routeParams.query) {
@@ -45,6 +46,14 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
             }
         });
     };
+    $scope.populateRandomTags = function() {
+      questionsTopService.getRandomTags().then(function(response) {
+          if (response) {
+            $scope.randomTags = response;
+          }
+      });
+    }
+    $scope.populateRandomTags();
     $scope.orderDate = function() {
         $scope.order = 'date';
         $scope.getTopQuestions();

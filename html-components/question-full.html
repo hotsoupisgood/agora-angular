@@ -16,14 +16,12 @@
                 <a class="editButton" ng-href="#edit/question/{{question.id}}" ng-show="question.creator.username == accountInfo.username">edit</a>
                 <div class="fill-space"></div>
                 <div class="detailText">
-                    Writen {{question.date}}
+                    Writen {{question.dtime}} ago
                 </div>
             </div>
             <div class="row subHeader">
                 <!-- tags: -->
-                <div class="none" ng-hide="question.tags.length">
-                    none...
-                </div>
+                
                 <div class="total">
                     <label>
               Responses
@@ -58,32 +56,49 @@
                         <div class="detailText col">
                             <div class="fill-space"></div>
                             <label>
-                  Writen {{response.date}}
+                  Writen {{response.dtime}} ago
                 </label>
                             <div class="fill-space"></div>
                         </div>
                     </div>
                 </div>
                 <div class="sections" ng-repeat="section in response.modules">
-                    <div class="col">
+                    <div class="section col">
                       <div class="section-header">
                           <b>{{section.title}}</b>
                       </div>
-                      <div class="section-body">
-                          {{section.text}}
+                      <div class="row">
+                        <div class="section-body">
+                            {{section.text}}
+                        </div>
                       </div>
                     </div>
                     <div class="section-comments">
                       <div class="section-comment col" ng-controller="commentsController">
-                        Comments ({{section.comments.length}})
-                          <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">
-                              <div class="addComment row">
+                        <div class="section-comment-header">
+                          <div class="row">
+                            Comments ({{section.comments.length}})
+                          </div>
+                          <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn && commentOpen">
+                              <div class="addComment">
                                   <input type="text" ng-model="commentText" value="" placeholder="make a comment">
                                   <button type="button" name="submit" class="submitButton" submit>submit</button>
                               </div>
                           </form>
-                          <div class="comment" ng-repeat="comment in section.comments">
-                              {{comment.text}}
+                        </div>
+                          <button class="submitButton" ng-click="commentOpen = true"ng-hide="commentOpen">comment!</button>
+                          <div class="row">
+                            <div class="comment" ng-repeat="comment in section.comments">
+                              <div class="row username">
+                                {{comment.username}}:
+                              </div>
+                                <div class="row">
+                                  {{comment.text}}
+                                </div>
+                                <div class="detailText">
+                                  {{comment.dtime}}
+                                </div>
+                            </div>
                           </div>
                       </div>
                     </div>

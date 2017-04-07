@@ -1,5 +1,6 @@
 module.exports = function($scope, submitCommentService) {
     $scope.comments = {};
+    $scope.commentOpen = true;
     $scope.getCommentsFull = function () {
       getSingleQuestionService.get($scope.section.id).then(function (response) {
         $scope.question = response;

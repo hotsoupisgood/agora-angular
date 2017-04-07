@@ -80,6 +80,7 @@ module.exports =  function($scope) {
 },{}],4:[function(require,module,exports){
 module.exports = function($scope, submitCommentService) {
     $scope.comments = {};
+    $scope.commentOpen = true;
     $scope.getCommentsFull = function () {
       getSingleQuestionService.get($scope.section.id).then(function (response) {
         $scope.question = response;
@@ -271,6 +272,7 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
     $scope.isQueryEmpty = false;
     $scope.order = '-date';
     $scope.gotQuestions = true;
+    $scope.randomTags = {};
     //manage event listeners
     $scope.$on('$routeChangeSuccess', function(e) {
         if ($routeParams.query) {
@@ -307,6 +309,14 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
             }
         });
     };
+    $scope.populateRandomTags = function() {
+      questionsTopService.getRandomTags().then(function(response) {
+          if (response) {
+            $scope.randomTags = response;
+          }
+      });
+    }
+    $scope.populateRandomTags();
     $scope.orderDate = function() {
         $scope.order = 'date';
         $scope.getTopQuestions();
@@ -923,6 +933,23 @@ module.exports = function(userService, $http) {
             // when the response is available
             // console.log(response.data);
             return response.data;
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            //show response for debug
+            return false;
+        });
+        return returnData;
+    };
+    this.getRandomTags = function() {
+        var returnData = $http({
+            method: 'GET',
+            url: 'http://api.iex.ist/full/tag'
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+            console.log(response.data.objects);
+            return response.data.objects;
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.

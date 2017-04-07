@@ -114,42 +114,74 @@
   margin-left: 0.5em;
 }
 .single-question .responses .response .sections {
+  align-content: space-between;
   margin-top: 0.4em;
   margin-left: 1em;
   margin-right: 1em;
-  border-top: .1em solid lightgrey;
+  border-top: 0.1em solid lightgrey;
   border-radius: 0.2em;
   padding: 0.4em;
   display: flex;
   flex-direction: row;
 }
-.single-question .responses .response .sections .section-header {
-  font-size: 0.8em;
+.single-question .responses .response .sections .section {
+  flex-shrink: 4;
+}
+.single-question .responses .response .sections .section .section-header {
   border-bottom: 1px solid lightgrey;
   margin-bottom: 0.5em;
 }
-.single-question .responses .response .sections .section-body {
-  font-size: 0.8em;
+.single-question .responses .response .sections .section .section-body {
   margin-left: 1em;
   margin-right: 1em;
+  flex-shrink: 1;
 }
 .single-question .responses .response .sections .section-comments {
   display: flex;
-  flex-direction: column;
+  flex-grow: 10;
+  margin-left: 1em;
+  border-left: 0.1em solid lightgrey;
+  padding-left: 1em;
 }
 .single-question .responses .response .sections .section-comments .section-comment {
-  font-size: 0.8em;
   padding-top: 0.6em;
   display: flex;
-  flex-direction: column;
   align-content: space-between;
 }
-.single-question .responses .response .sections .section-comments .section-comment input {
-  padding: 0.2em 3em;
-  margin-right: 0.4em;
-}
 .single-question .responses .response .sections .section-comments .section-comment .comment {
-  border-top: .1em solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  border-top: 0.1em solid lightgrey;
+  padding-top: 0.4em;
+}
+.single-question .responses .response .sections .section-comments .section-comment .comment .username {
+  margin-right: .4em;
+  color: grey;
+}
+.single-question .responses .response .sections .section-comments .section-comment .comment .detailText {
+  margin-left: 1em;
+  align-self: center;
+  justify-content: center;
+}
+.single-question .responses .response .sections .section-comments .section-comment button {
+  padding: 0.2em;
+}
+.single-question .responses .response .sections .section-comments .section-comment .section-comment-header {
+  flex-grow: 1;
+}
+.single-question .responses .response .sections .section-comments .section-comment .section-comment-header .addComment {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8em;
+}
+.single-question .responses .response .sections .section-comments .section-comment .section-comment-header .addComment button {
+  padding: 0.1em;
+  margin: 0.4em;
+}
+.single-question .responses .response .sections .section-comments .section-comment .section-comment-header .addComment input {
+  padding: 0.1em;
+  margin: 0.4em;
 }
 
 @media (pointer: coarse) {
@@ -505,11 +537,11 @@
   transition: 100ms;
   padding: 0.6em;
   margin: 0.4em;
-  flex-grow: 10;
 }
 .sidebar .catagory {
   display: flex;
   flex-direction: column;
+  flex-shrink: 1;
   padding: 0.6em;
   margin-bottom: 0.4em;
   border-bottom: 0.2em solid lightgrey;
@@ -518,6 +550,11 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 12em;
+  margin: .2em;
+}
+.sidebar .catagory .tags .tag {
+  margin: .2em;
 }
 .sidebar .catagory .ask {
   text-decoration: none;
@@ -670,6 +707,9 @@ header .site-nav ul li a:hover {
   margin-left: 5px;
 }
 
+.questionStream {
+  flex-grow: 10;
+}
 .questionStream ul {
   margin: 0;
 }
@@ -887,7 +927,7 @@ body {
 input {
   border: none;
   margin: none;
-  padding-left: .5em;
+  padding-left: .1em;
   font-size: 1em;
   border-radius: 2px;
   border: .5px solid grey;
