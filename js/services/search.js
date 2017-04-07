@@ -2,7 +2,7 @@ module.exports = function ($http, userService) {
     this.questions = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min/question/search/',
+          url: 'https://api.iex.ist/min/question/search/',
           params: {
               limit: 10,
               query: currentSearchTerm,
@@ -30,7 +30,7 @@ module.exports = function ($http, userService) {
     this.responses = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min/response/search/',
+          url: 'https://api.iex.ist/min/response/search/',
           params: {
               limit: 10,
               query: currentSearchTerm,
@@ -58,7 +58,7 @@ module.exports = function ($http, userService) {
     };this.users = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min/user/search/',
+          url: 'https://api.iex.ist/min/user/search/',
           params: {
               limit: 10,
               query: currentSearchTerm,
@@ -86,7 +86,7 @@ module.exports = function ($http, userService) {
     };this.tagz = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min',
+          url: 'https://api.iex.ist/min',
           params: {
               query: currentSearchTerm,
           }

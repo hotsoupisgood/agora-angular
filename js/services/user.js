@@ -20,7 +20,7 @@ module.exports = function($cookies, $http, $rootScope) {
           //request
           var returnData = $http({
               method: 'GET',
-              url: 'http://api.iex.ist/full/user/'+inputUsername
+              url: 'https://api.iex.ist/full/user/'+inputUsername
 
           }).then(function successCallback(response) {
               // this callback will be called asynchronously

@@ -2,7 +2,7 @@ module.exports = function ($rootScope, $http, userService) {
   this.submitQuestion = function(askedQuestion, questionsTags, id) {
       return $http({
           method: 'PATCH',
-          url: 'http://api.iex.ist/full/question/' + id + '/',
+          url: 'https://api.iex.ist/full/question/' + id + '/',
           //production params
           data: {
               text: askedQuestion,

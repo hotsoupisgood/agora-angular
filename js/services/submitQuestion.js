@@ -4,7 +4,7 @@ module.exports = function($http, $rootScope, userService) {
         console.log(questionsTags);
         return $http({
             method: 'POST',
-            url: 'http://api.iex.ist/full/question/',
+            url: 'https://api.iex.ist/full/question/',
             //production params
             data: {
                 text: askedQuestion,

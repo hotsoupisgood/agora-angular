@@ -2,7 +2,7 @@ module.exports = function ($http, $rootScope, $cookies) {
   this.submit = function(inputUsername, inputPassword, remember) {
       var returnData = $http({
           method: 'POST',
-          url: 'http://api.iex.ist/full/register/',
+          url: 'https://api.iex.ist/full/register/',
           data: {
               username: inputUsername,
               password: inputPassword

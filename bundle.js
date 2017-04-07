@@ -729,7 +729,7 @@ module.exports = function ($http, $rootScope, $cookies) {
   this.submit = function(inputUsername, inputPassword, remember) {
       var returnData = $http({
           method: 'POST',
-          url: 'http://api.iex.ist/full/register/',
+          url: 'https://api.iex.ist/full/register/',
           data: {
               username: inputUsername,
               password: inputPassword
@@ -768,7 +768,7 @@ module.exports = function ($rootScope, $http, userService) {
   this.submitQuestion = function(askedQuestion, questionsTags, id) {
       return $http({
           method: 'PATCH',
-          url: 'http://api.iex.ist/full/question/' + id + '/',
+          url: 'https://api.iex.ist/full/question/' + id + '/',
           //production params
           data: {
               text: askedQuestion,
@@ -801,7 +801,7 @@ module.exports = function($http) {
         //request
         var returnData = $http({
             method: 'GET',
-            url: 'http://api.iex.ist/full/question/' + id
+            url: 'https://api.iex.ist/full/question/' + id
 
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
@@ -824,7 +824,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
   this.login = function(inputUsername, inputPassword, remember) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/full/login/',
+          url: 'https://api.iex.ist/full/login/',
           // production params
            params: {
              username: inputUsername,
@@ -867,7 +867,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
       this.password = $cookies.get('password');
         $http({
             method: 'GET',
-            url: 'http://api.iex.ist/full/login/',
+            url: 'https://api.iex.ist/full/login/',
             params: {
                 username: this.username,
                 password: this.password
@@ -919,7 +919,7 @@ module.exports = function(userService, $http) {
         //request
         var returnData = $http({
             method: 'GET',
-            url: 'http://api.iex.ist/' + size + '/question/',
+            url: 'https://api.iex.ist/' + size + '/question/',
             params: {
                 limit: userService.numIteratedPerPage,
                 offset: startQuestion,
@@ -944,7 +944,7 @@ module.exports = function(userService, $http) {
     this.getRandomTags = function() {
         var returnData = $http({
             method: 'GET',
-            url: 'http://api.iex.ist/full/tag/?order_by=?'
+            url: 'https://api.iex.ist/full/tag/?order_by=?'
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
@@ -965,7 +965,7 @@ module.exports = function ($http, userService) {
     this.questions = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min/question/search/',
+          url: 'https://api.iex.ist/min/question/search/',
           params: {
               limit: 10,
               query: currentSearchTerm,
@@ -993,7 +993,7 @@ module.exports = function ($http, userService) {
     this.responses = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min/response/search/',
+          url: 'https://api.iex.ist/min/response/search/',
           params: {
               limit: 10,
               query: currentSearchTerm,
@@ -1021,7 +1021,7 @@ module.exports = function ($http, userService) {
     };this.users = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min/user/search/',
+          url: 'https://api.iex.ist/min/user/search/',
           params: {
               limit: 10,
               query: currentSearchTerm,
@@ -1049,7 +1049,7 @@ module.exports = function ($http, userService) {
     };this.tagz = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/min',
+          url: 'https://api.iex.ist/min',
           params: {
               query: currentSearchTerm,
           }
@@ -1078,7 +1078,7 @@ module.exports = function($http, $cookies, $rootScope) {
       console.log(moduleId + ": " + commentText)
             return $http({
                 method: 'POST',
-                url: 'http://api.iex.ist/full/comment/',
+                url: 'https://api.iex.ist/full/comment/',
                 data: {
                     text: commentText,
                     module_id: moduleId
@@ -1110,7 +1110,7 @@ module.exports = function($http, $rootScope, userService) {
         console.log(questionsTags);
         return $http({
             method: 'POST',
-            url: 'http://api.iex.ist/full/question/',
+            url: 'https://api.iex.ist/full/question/',
             //production params
             data: {
                 text: askedQuestion,
@@ -1141,7 +1141,7 @@ module.exports = function($http, $cookies, $rootScope, userService) {
     this.submit = function (questionId, inputResponse, modules) {
             return $http({
                 method: 'POST',
-                url: 'http://api.iex.ist/full/response/',
+                url: 'https://api.iex.ist/full/response/',
                 data: {
                     question_id: questionId,
                     text: inputResponse,
@@ -1174,7 +1174,7 @@ module.exports = function ($rootScope, $http, userService) {
           //request
           var returnData = $http({
               method: 'POST',
-              url: 'http://api.iex.ist/full/response_vote/',
+              url: 'https://api.iex.ist/full/response_vote/',
               data: {
                 response_id: id
               },
@@ -1225,7 +1225,7 @@ module.exports = function($cookies, $http, $rootScope) {
           //request
           var returnData = $http({
               method: 'GET',
-              url: 'http://api.iex.ist/full/user/'+inputUsername
+              url: 'https://api.iex.ist/full/user/'+inputUsername
 
           }).then(function successCallback(response) {
               // this callback will be called asynchronously

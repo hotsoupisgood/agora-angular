@@ -3,7 +3,7 @@ module.exports = function($http, $cookies, $rootScope) {
       console.log(moduleId + ": " + commentText)
             return $http({
                 method: 'POST',
-                url: 'http://api.iex.ist/full/comment/',
+                url: 'https://api.iex.ist/full/comment/',
                 data: {
                     text: commentText,
                     module_id: moduleId

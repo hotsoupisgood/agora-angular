@@ -4,7 +4,7 @@ module.exports = function($http) {
         //request
         var returnData = $http({
             method: 'GET',
-            url: 'http://api.iex.ist/full/question/' + id
+            url: 'https://api.iex.ist/full/question/' + id
 
         }).then(function successCallback(response) {
             // this callback will be called asynchronously

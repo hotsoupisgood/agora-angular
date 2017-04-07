@@ -2,7 +2,7 @@ module.exports = function($http, $cookies, $rootScope, userService) {
     this.submit = function (questionId, inputResponse, modules) {
             return $http({
                 method: 'POST',
-                url: 'http://api.iex.ist/full/response/',
+                url: 'https://api.iex.ist/full/response/',
                 data: {
                     question_id: questionId,
                     text: inputResponse,

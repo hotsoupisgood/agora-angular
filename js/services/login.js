@@ -2,7 +2,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
   this.login = function(inputUsername, inputPassword, remember) {
       var returnData = $http({
           method: 'GET',
-          url: 'http://api.iex.ist/full/login/',
+          url: 'https://api.iex.ist/full/login/',
           // production params
            params: {
              username: inputUsername,
@@ -45,7 +45,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
       this.password = $cookies.get('password');
         $http({
             method: 'GET',
-            url: 'http://api.iex.ist/full/login/',
+            url: 'https://api.iex.ist/full/login/',
             params: {
                 username: this.username,
                 password: this.password
