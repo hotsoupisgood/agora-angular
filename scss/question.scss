@@ -35,7 +35,6 @@
             margin-left: 1em;
             margin-right: 1em;
             margin-top: 1em;
-            // border: 1px solid lightgrey;
             box-shadow: 0 0 .8em 0 rgba(#b6b6b6, 0.45);
             border-radius: 0.2em;
             padding: .4em;
@@ -72,7 +71,6 @@
                         flex-direction: row;
                         align-items: center;
                         justify-content: space-between;
-                        border-bottom: 1px solid lightgrey;
                         margin-bottom: 0.4em;
                         .addComment {
                             display: flex;
@@ -120,7 +118,6 @@
                             display: flex;
                             flex-direction: row;
                             flex-grow: 1;
-                            // border-top: 0.1em solid lightgrey;
                             padding-top: 0.4em;
                             flex-wrap: nowrap;
                             white-space:nowrap;

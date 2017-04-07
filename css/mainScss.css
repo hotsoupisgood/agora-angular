@@ -126,7 +126,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid lightgrey;
   margin-bottom: 0.4em;
 }
 .single-question .responses .response .sections .section .section-header .addComment {
@@ -222,7 +221,7 @@
   padding: 0 .6em;
 }
 .banner .title {
-  font-size: 6em;
+  font-size: 3em;
   text-decoration: none;
 }
 .banner .logOptions {
@@ -841,17 +840,18 @@ header .site-nav ul li a:hover {
 }
 
 #aboutFrame {
-  margin: 4em;
+  display: flex;
+  flex-direction: column;
+  margin: 1em 1em;
   background: white;
   border-radius: .2em;
   padding: 1em;
 }
 #aboutFrame #inAbout {
-  margin-bottom: .5em;
-  font-size: .9em;
+  margin-bottom: .4em;
 }
 #aboutFrame img {
-  border-radius: 5px;
+  border-radius: .4em;
 }
 
 @media (pointer: coarse) {
