@@ -35,9 +35,10 @@
             margin-left: 1em;
             margin-right: 1em;
             margin-top: 1em;
-            padding-bottom: 0.5em;
-            border: 1px solid lightgrey;
+            // border: 1px solid lightgrey;
+            box-shadow: 0 0 .8em 0 rgba(#b6b6b6, 0.45);
             border-radius: 0.2em;
+            padding: .4em;
 
             .header {
                 display: flex;

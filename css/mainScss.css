@@ -94,9 +94,9 @@
   margin-left: 1em;
   margin-right: 1em;
   margin-top: 1em;
-  padding-bottom: 0.5em;
-  border: 1px solid lightgrey;
+  box-shadow: 0 0 0.8em 0 rgba(182, 182, 182, 0.45);
   border-radius: 0.2em;
+  padding: .4em;
 }
 .single-question .responses .response .header {
   display: flex;
@@ -735,7 +735,7 @@ header .site-nav ul li a:hover {
 }
 .questionStream .questionContainer .header .text {
   color: black;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Arvo', sans-serif;
   text-decoration: none;
   font-size: 1.2em;
 }
