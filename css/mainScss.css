@@ -1008,6 +1008,16 @@ form {
 
 .submitButton {
   border: 0.5px solid #36ba53;
+  background-color: #fff;
+  transition: background-color .3s;
+}
+
+.submitButton:hover {
+  background-color: #ccc;
+}
+
+.submitButton:active {
+  background-color: #999;
 }
 
 .infoButton {

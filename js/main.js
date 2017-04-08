@@ -23,6 +23,7 @@ agoraApp.service('loginService',                    require('./services/login.js
 agoraApp.service('logoutService',                   require('./services/logout.js'));
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));
 agoraApp.service('editService',                     require('./services/edit.js'));
+agoraApp.service('deleteService',                   require('./services/delete.js'));
 
 //controllers
 agoraApp.controller('editQuestionController',       require('./controllers/edit-question.js'));

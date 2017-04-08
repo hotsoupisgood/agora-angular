@@ -154,8 +154,16 @@ form {
 .tag:hover {
   background: darken(rgba(43, 182, 233, 0.11), 20%);
 }
-.submitButton {
+.submitButton{
   border: .5px solid rgb(54, 186, 83);
+  background-color: #fff;
+  transition: background-color .3s;
+}
+.submitButton:hover{
+  background-color: #ccc;
+}
+.submitButton:active{
+  background-color: #999;
 }
 .infoButton {
   text-align: center;

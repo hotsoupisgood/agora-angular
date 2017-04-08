@@ -193,13 +193,12 @@ module.exports =  function($scope, loginService) {
 
 },{}],9:[function(require,module,exports){
 module.exports =  function($scope, $rootScope, $route,
-    $routeParams, $location, $cookies, $sce) {
+    $routeParams, $location, $cookies, $deleteService) {
     $scope.name = 'mainController';
     $rootScope.minBanner = false;
     $scope.questions = {};
 
     $rootScope.rememberLogin = true;
-
     var reader = new commonmark.Parser();
     var writer = new commonmark.HtmlRenderer();
 
@@ -695,6 +694,7 @@ agoraApp.service('loginService',                    require('./services/login.js
 agoraApp.service('logoutService',                   require('./services/logout.js'));
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));
 agoraApp.service('editService',                     require('./services/edit.js'));
+agoraApp.service('deleteService',                   require('./services/delete.js'));
 
 //controllers
 agoraApp.controller('editQuestionController',       require('./controllers/edit-question.js'));
@@ -715,7 +715,7 @@ agoraApp.controller('submitResponseFormController', require('./controllers/submi
 agoraApp.controller('questionSearchController',     require('./controllers/questionsSearch.js'));
 agoraApp.controller('headerController',             require('./controllers/header.js'));
 
-},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/checkUsername.js":3,"./controllers/comments.js":4,"./controllers/createAccount.js":5,"./controllers/edit-question.js":6,"./controllers/header.js":7,"./controllers/loginForm.js":8,"./controllers/main.js":9,"./controllers/question.js":10,"./controllers/questions.js":11,"./controllers/questionsSearch.js":12,"./controllers/response.js":13,"./controllers/search.js":14,"./controllers/submit-comment.js":15,"./controllers/submit-question.js":16,"./controllers/submit-response.js":17,"./controllers/user.js":18,"./services/cookieUtil.js":20,"./services/createAccount.js":21,"./services/edit.js":22,"./services/getSingleQuestion.js":23,"./services/login.js":24,"./services/logout.js":25,"./services/questionsTop.js":26,"./services/search.js":27,"./services/submitComment.js":28,"./services/submitQuestion.js":29,"./services/submitResponse.js":30,"./services/upVoteQuestion.js":31,"./services/user.js":32,"angular":43,"angular-animate":34,"angular-cookies":36,"angular-route":38,"angular-sanitize":40,"angular-toArrayFilter":41}],20:[function(require,module,exports){
+},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/checkUsername.js":3,"./controllers/comments.js":4,"./controllers/createAccount.js":5,"./controllers/edit-question.js":6,"./controllers/header.js":7,"./controllers/loginForm.js":8,"./controllers/main.js":9,"./controllers/question.js":10,"./controllers/questions.js":11,"./controllers/questionsSearch.js":12,"./controllers/response.js":13,"./controllers/search.js":14,"./controllers/submit-comment.js":15,"./controllers/submit-question.js":16,"./controllers/submit-response.js":17,"./controllers/user.js":18,"./services/cookieUtil.js":20,"./services/createAccount.js":21,"./services/delete.js":22,"./services/edit.js":23,"./services/getSingleQuestion.js":24,"./services/login.js":25,"./services/logout.js":26,"./services/questionsTop.js":27,"./services/search.js":28,"./services/submitComment.js":29,"./services/submitQuestion.js":30,"./services/submitResponse.js":31,"./services/upVoteQuestion.js":32,"./services/user.js":33,"angular":44,"angular-animate":35,"angular-cookies":37,"angular-route":39,"angular-sanitize":41,"angular-toArrayFilter":42}],20:[function(require,module,exports){
 module.exports = function ($http, $cookies, $rootScope, loginService) {
   this.all = function () {
     loginService.cookieLogin();
@@ -765,6 +765,32 @@ module.exports = function ($http, $rootScope, $cookies) {
 
 },{}],22:[function(require,module,exports){
 module.exports = function ($rootScope, $http, userService) {
+  this.TYPE_QUESTION = "question";
+  this.TYPE_RESPONSE = "response";
+  this.TYPE_MODULE = "module";
+  this.TYPE_COMMENT = "comment";
+  this.delete = function(type, id) {
+      return $http({
+          method: 'DELETE',
+          url: 'https://api.iex.ist/full/'+type+'/' + id + '/',
+          headers: {
+              'Content-type': 'application/json',
+              'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
+          }
+      }).then(function successCallback(response) {
+          console.log('successCallback, response: ');
+          console.log(response.data);
+          return true;
+      }, function errorCallback(response) {
+          console.log('errorCallback, response: ');
+          console.log(response.data);
+          return false;
+      });
+  }
+}
+
+},{}],23:[function(require,module,exports){
+module.exports = function ($rootScope, $http, userService) {
   this.submitQuestion = function(askedQuestion, questionsTags, id) {
       return $http({
           method: 'PATCH',
@@ -794,7 +820,7 @@ module.exports = function ($rootScope, $http, userService) {
   }
 }
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = function($http) {
     this.get = function(id) {
         //multiply page number for first question desired
@@ -819,7 +845,7 @@ module.exports = function($http) {
     };
 }
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module.exports = function ($cookies, $rootScope, $location, $http, userService) {
   this.login = function(inputUsername, inputPassword, remember) {
       var returnData = $http({
@@ -900,7 +926,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
   }
 }
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 module.exports = function ($rootScope, $cookies, userService) {
   this.submit = function () {
       $rootScope.accountInfo = null;
@@ -911,7 +937,7 @@ module.exports = function ($rootScope, $cookies, userService) {
   };
 }
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 module.exports = function(userService, $http) {
     this.get = function(currentPage, order, size) {
         //multiply page number for first question desired
@@ -960,7 +986,7 @@ module.exports = function(userService, $http) {
     };
 }
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 module.exports = function ($http, userService) {
     this.questions = function (currentSearchTerm) {
       var returnData = $http({
@@ -1072,7 +1098,7 @@ module.exports = function ($http, userService) {
     };
 }
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports = function($http, $cookies, $rootScope) {
     this.submit = function (moduleId, commentText) {
       console.log(moduleId + ": " + commentText)
@@ -1103,7 +1129,7 @@ module.exports = function($http, $cookies, $rootScope) {
     };
 };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 module.exports = function($http, $rootScope, userService) {
     this.submit = function(askedQuestion, questionsTags) {
         //logged/not
@@ -1136,7 +1162,7 @@ module.exports = function($http, $rootScope, userService) {
     }
 };
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 module.exports = function($http, $cookies, $rootScope, userService) {
     this.submit = function (questionId, inputResponse, modules) {
             return $http({
@@ -1167,7 +1193,7 @@ module.exports = function($http, $cookies, $rootScope, userService) {
     };
 };
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 module.exports = function ($rootScope, $http, userService) {
     this.response = function (id) {
       if ($rootScope.isLoggedIn) {
@@ -1202,7 +1228,7 @@ module.exports = function ($rootScope, $http, userService) {
     }
 };
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 module.exports = function($cookies, $http, $rootScope) {
       // account info
       this.accountInfo = null;
@@ -1245,7 +1271,7 @@ module.exports = function($cookies, $http, $rootScope) {
 
 };
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.9
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -5399,11 +5425,11 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 })(window, window.angular);
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 require('./angular-animate');
 module.exports = 'ngAnimate';
 
-},{"./angular-animate":33}],35:[function(require,module,exports){
+},{"./angular-animate":34}],36:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.7
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -5727,11 +5753,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":35}],37:[function(require,module,exports){
+},{"./angular-cookies":36}],38:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.7
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -6798,11 +6824,11 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 require('./angular-route');
 module.exports = 'ngRoute';
 
-},{"./angular-route":37}],39:[function(require,module,exports){
+},{"./angular-route":38}],40:[function(require,module,exports){
 /**
  * @license AngularJS v1.6.1
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -7543,11 +7569,11 @@ angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
 
 })(window, window.angular);
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 require('./angular-sanitize');
 module.exports = 'ngSanitize';
 
-},{"./angular-sanitize":39}],41:[function(require,module,exports){
+},{"./angular-sanitize":40}],42:[function(require,module,exports){
 angular.module('angular-toArrayFilter', [])
 
 .filter('toArray', function () {
@@ -7567,7 +7593,7 @@ angular.module('angular-toArrayFilter', [])
     }
   };
 });
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.6
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -38591,8 +38617,8 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":42}]},{},[19]);
+},{"./angular":43}]},{},[19]);
