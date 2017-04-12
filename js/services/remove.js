@@ -1,7 +1,7 @@
 module.exports = function($rootScope, $http, userService) {
-    this.delete = function(type, id) {
+    this.remove = function(type, id) {
         return $http({
-            method: 'DELETE',
+            method: 'remove',
             url: 'https://api.iex.ist/full/' + type + '/' + id + '/',
             headers: {
                 'Content-type': 'application/json',
@@ -17,8 +17,8 @@ module.exports = function($rootScope, $http, userService) {
             return false;
         });
     }
-    this.deleteQuestion=function(id) {this.delete("question");};
-    this.deleteResponse=function(id) {this.delete("response");};
-    this.deleteModule=function(id) {this.delete("module");};
-    this.deleteComment=function(id) {this.delete("comment");};
+    this.removeQuestion=function(id) {this.remove("question");};
+    this.removeResponse=function(id) {this.remove("response");};
+    this.removeModule=function(id) {this.remove("module");};
+    this.removeComment=function(id) {this.remove("comment");};
 }

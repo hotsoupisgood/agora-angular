@@ -694,7 +694,7 @@ agoraApp.service('loginService',                    require('./services/login.js
 agoraApp.service('logoutService',                   require('./services/logout.js'));
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));
 agoraApp.service('editService',                     require('./services/edit.js'));
-agoraApp.service('deleteService',                   require('./services/delete.js'));
+agoraApp.service('removeService',                   require('./services/remove.js'));
 
 //controllers
 agoraApp.controller('editQuestionController',       require('./controllers/edit-question.js'));
@@ -715,7 +715,7 @@ agoraApp.controller('submitResponseFormController', require('./controllers/submi
 agoraApp.controller('questionSearchController',     require('./controllers/questionsSearch.js'));
 agoraApp.controller('headerController',             require('./controllers/header.js'));
 
-},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/checkUsername.js":3,"./controllers/comments.js":4,"./controllers/createAccount.js":5,"./controllers/edit-question.js":6,"./controllers/header.js":7,"./controllers/loginForm.js":8,"./controllers/main.js":9,"./controllers/question.js":10,"./controllers/questions.js":11,"./controllers/questionsSearch.js":12,"./controllers/response.js":13,"./controllers/search.js":14,"./controllers/submit-comment.js":15,"./controllers/submit-question.js":16,"./controllers/submit-response.js":17,"./controllers/user.js":18,"./services/cookieUtil.js":20,"./services/createAccount.js":21,"./services/delete.js":22,"./services/edit.js":23,"./services/getSingleQuestion.js":24,"./services/login.js":25,"./services/logout.js":26,"./services/questionsTop.js":27,"./services/search.js":28,"./services/submitComment.js":29,"./services/submitQuestion.js":30,"./services/submitResponse.js":31,"./services/upVoteQuestion.js":32,"./services/user.js":33,"angular":44,"angular-animate":35,"angular-cookies":37,"angular-route":39,"angular-sanitize":41,"angular-toArrayFilter":42}],20:[function(require,module,exports){
+},{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/checkUsername.js":3,"./controllers/comments.js":4,"./controllers/createAccount.js":5,"./controllers/edit-question.js":6,"./controllers/header.js":7,"./controllers/loginForm.js":8,"./controllers/main.js":9,"./controllers/question.js":10,"./controllers/questions.js":11,"./controllers/questionsSearch.js":12,"./controllers/response.js":13,"./controllers/search.js":14,"./controllers/submit-comment.js":15,"./controllers/submit-question.js":16,"./controllers/submit-response.js":17,"./controllers/user.js":18,"./services/cookieUtil.js":20,"./services/createAccount.js":21,"./services/edit.js":22,"./services/getSingleQuestion.js":23,"./services/login.js":24,"./services/logout.js":25,"./services/questionsTop.js":26,"./services/remove.js":27,"./services/search.js":28,"./services/submitComment.js":29,"./services/submitQuestion.js":30,"./services/submitResponse.js":31,"./services/upVoteQuestion.js":32,"./services/user.js":33,"angular":44,"angular-animate":35,"angular-cookies":37,"angular-route":39,"angular-sanitize":41,"angular-toArrayFilter":42}],20:[function(require,module,exports){
 module.exports = function ($http, $cookies, $rootScope, loginService) {
   this.all = function () {
     loginService.cookieLogin();
@@ -765,32 +765,6 @@ module.exports = function ($http, $rootScope, $cookies) {
 
 },{}],22:[function(require,module,exports){
 module.exports = function ($rootScope, $http, userService) {
-  this.TYPE_QUESTION = "question";
-  this.TYPE_RESPONSE = "response";
-  this.TYPE_MODULE = "module";
-  this.TYPE_COMMENT = "comment";
-  this.delete = function(type, id) {
-      return $http({
-          method: 'DELETE',
-          url: 'https://api.iex.ist/full/'+type+'/' + id + '/',
-          headers: {
-              'Content-type': 'application/json',
-              'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
-          }
-      }).then(function successCallback(response) {
-          console.log('successCallback, response: ');
-          console.log(response.data);
-          return true;
-      }, function errorCallback(response) {
-          console.log('errorCallback, response: ');
-          console.log(response.data);
-          return false;
-      });
-  }
-}
-
-},{}],23:[function(require,module,exports){
-module.exports = function ($rootScope, $http, userService) {
   this.submitQuestion = function(askedQuestion, questionsTags, id) {
       return $http({
           method: 'PATCH',
@@ -820,7 +794,7 @@ module.exports = function ($rootScope, $http, userService) {
   }
 }
 
-},{}],24:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports = function($http) {
     this.get = function(id) {
         //multiply page number for first question desired
@@ -845,7 +819,7 @@ module.exports = function($http) {
     };
 }
 
-},{}],25:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = function ($cookies, $rootScope, $location, $http, userService) {
   this.login = function(inputUsername, inputPassword, remember) {
       var returnData = $http({
@@ -926,7 +900,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
   }
 }
 
-},{}],26:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module.exports = function ($rootScope, $cookies, userService) {
   this.submit = function () {
       $rootScope.accountInfo = null;
@@ -937,7 +911,7 @@ module.exports = function ($rootScope, $cookies, userService) {
   };
 }
 
-},{}],27:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 module.exports = function(userService, $http) {
     this.get = function(currentPage, order, size) {
         //multiply page number for first question desired
@@ -984,6 +958,32 @@ module.exports = function(userService, $http) {
         });
         return returnData;
     };
+}
+
+},{}],27:[function(require,module,exports){
+module.exports = function($rootScope, $http, userService) {
+    this.remove = function(type, id) {
+        return $http({
+            method: 'remove',
+            url: 'https://api.iex.ist/full/' + type + '/' + id + '/',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
+            }
+        }).then(function successCallback(response) {
+            console.log('successCallback, response: ');
+            console.log(response.data);
+            return true;
+        }, function errorCallback(response) {
+            console.log('errorCallback, response: ');
+            console.log(response.data);
+            return false;
+        });
+    }
+    this.removeQuestion=function(id) {this.remove("question");};
+    this.removeResponse=function(id) {this.remove("response");};
+    this.removeModule=function(id) {this.remove("module");};
+    this.removeComment=function(id) {this.remove("comment");};
 }
 
 },{}],28:[function(require,module,exports){
