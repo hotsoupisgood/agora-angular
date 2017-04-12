@@ -17,8 +17,8 @@ module.exports = function($rootScope, $http, userService) {
             return false;
         });
     }
-    this.deleteQuestion(id) {this.delete("question");};
-    this.deleteResponse(id) {this.delete("response");};
-    this.deleteModule(id) {this.delete("module");};
-    this.deleteComment(id) {this.delete("comment");};
+    this.deleteQuestion=function(id) {this.delete("question");};
+    this.deleteResponse=function(id) {this.delete("response");};
+    this.deleteModule=function(id) {this.delete("module");};
+    this.deleteComment=function(id) {this.delete("comment");};
 }
