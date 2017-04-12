@@ -1,5 +1,5 @@
 module.exports =  function($scope, $rootScope, $route,
-    $routeParams, $location, $cookies, $deleteService) {
+    $routeParams, $location, $cookies) {
     $scope.name = 'mainController';
     $rootScope.minBanner = false;
     $scope.questions = {};
