@@ -29,12 +29,11 @@
           <div class="fill-space"></div>
           <div class="row" ng-if="!questions.length">
             <div class="fill-space"></div>
-              <div class="center-horizontal" ng-if="!isQueryEmpty">
-                  <img src="media/animal.gif">
-              </div>
-              <div class="center-horizontal" ng-if="isQueryEmpty">
-                  hmmm... there doesn't seem to be anything here...
-              </div>
+              <div class="center-horizontal">
+                <img  ng-if="!isQueryEmpty" ng-hide="couldNotConnect" src="media/animal.gif">
+                <span ng-if="!isQueryEmpty" ng-show="couldNotConnect">Cannot connect to server, check connection.</span>
+                <span ng-if="isQueryEmpty">hmmm... there doesn't seem to be anything here...</span>
+                </div>
               <div class="fill-space"></div>
           </div>
           <div class="fill-space"></div>

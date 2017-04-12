@@ -7,6 +7,7 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
     $scope.currentSearchTerm = '';
     $scope.isCurrentSearchTermEmpty = true;
     $scope.isQueryEmpty = false;
+    $scope.couldNotConnect = false;
     $scope.order = '-date';
     $scope.gotQuestions = true;
     $scope.randomTags = {};
@@ -29,6 +30,7 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
         });
     };
     $scope.getTopQuestions = function() {
+        $scope.couldNotConnect=false;
         questionsTopService.get($scope.currentPage, $scope.order, 'min').then(function(response) {
             if (response) {
               $scope.questions = response.objects;
@@ -42,7 +44,8 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
                   $scope.isQueryEmpty = true;
                 }
             } else {
-                $scope.gotQuestions = false;
+                $scope.gotQuestions=false;
+                $scope.couldNotConnect=true;
             }
         });
     };
