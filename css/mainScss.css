@@ -326,6 +326,10 @@
   border-bottom-left-radius: 2px;
 }
 
+li {
+  font-family: Josefin Slab;
+}
+
 .fill-space {
   flex-grow: 10;
   flex-basis: fill;
@@ -864,6 +868,17 @@ header .site-nav ul li a:hover {
   background: white;
   padding: .4em;
   flex-grow: 2;
+}
+.discover .error {
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 1s ease-in-out;
+  background-color: #fff;
+  color: #000;
+}
+.discover .error.ng-hide {
+  background-color: #f00;
+  color: #fff;
 }
 
 body {

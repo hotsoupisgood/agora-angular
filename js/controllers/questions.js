@@ -46,6 +46,7 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
             } else {
                 $scope.gotQuestions=false;
                 $scope.couldNotConnect=true;
+                //document.querySelector("#no-connection").style["background-color"]="#f00";
             }
         });
     };

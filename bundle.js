@@ -308,6 +308,7 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
             } else {
                 $scope.gotQuestions=false;
                 $scope.couldNotConnect=true;
+                //document.querySelector("#no-connection").style["background-color"]="#f00";
             }
         });
     };
@@ -930,7 +931,8 @@ module.exports = function(userService, $http) {
             },
             headers: {
                 'Content-type': 'application/json'
-            }
+            },
+            timeout: 5000,
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available

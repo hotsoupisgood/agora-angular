@@ -13,7 +13,8 @@ module.exports = function(userService, $http) {
             },
             headers: {
                 'Content-type': 'application/json'
-            }
+            },
+            timeout: 5000,
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available

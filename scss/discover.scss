@@ -9,4 +9,15 @@
   background: white;
   padding: .4em;
   flex-grow: 2;
+  .error{
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 1s ease-in-out;
+    background-color: #fff;
+    color: #000;
+  }
+  .error.ng-hide{
+    background-color: #f00;
+    color: #fff;
+  }
 }
