@@ -1,9 +1,9 @@
 module.exports =  function($scope, $rootScope, $route,
-    $routeParams, $location, $cookies, $deleteService) {
+    $routeParams, $location, $cookies) {
     $scope.name = 'mainController';
     $rootScope.minBanner = false;
     $scope.questions = {};
-
+//
     $rootScope.rememberLogin = true;
     var reader = new commonmark.Parser();
     var writer = new commonmark.HtmlRenderer();
