@@ -7,7 +7,9 @@
   @media (pointer:coarse) {
     // none
   }
-
+  .submitButton{
+    border: .5px solid rgb(54, 186, 83);
+  }
   .header {
     font-size: 1.2em;
     background: rgb(246, 246, 246);

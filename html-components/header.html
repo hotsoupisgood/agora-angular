@@ -4,7 +4,7 @@
         <nav class="site-nav">
             <ul>
                 <li ng-class="{'active':selectedTab === 'discover'}">
-                    <a ng-href="#discover" ng-click="selectedTab = 'discover'">Discover</a>
+                    <a ng-href="#discover" ng-click="selectedTab = 'discover'" class="whiteButton">Discover</a>
                 </li>
                 <li ng-class="{'active':selectedTab === 'account'}">
                     <a ng-href="#user/{{accountInfo.username}}" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">Account</a>

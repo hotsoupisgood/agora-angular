@@ -788,6 +788,9 @@ header .site-nav ul li a:hover {
   flex-grow: 10;
   display: flex;
 }
+.loginPage .submitButton {
+  border: 0.5px solid #36ba53;
+}
 .loginPage .header {
   font-size: 1.2em;
   background: #f6f6f6;
@@ -1021,17 +1024,16 @@ form {
   background: rgba(16, 120, 158, 0.11);
 }
 
-.submitButton {
-  border: 0.5px solid #36ba53;
+.whiteButton {
   background-color: #fff;
   transition: background-color .3s;
 }
 
-.submitButton:hover {
+.whiteButton:hover {
   background-color: #ccc;
 }
 
-.submitButton:active {
+.whiteButton:active {
   background-color: #999;
 }
 
