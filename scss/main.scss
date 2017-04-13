@@ -49,20 +49,19 @@ p{
   font-size: .8em;
 }
 input {
-  border: none;
-  margin: none;
-  padding-left: .1em;
+  padding-left: .4em;
   font-size: 1em;
   border-radius: $standardBorderRadius;
   border: .5px solid grey;
+  font-family: 'open sans', sans-serif;
 }
 textarea {
-  border: none;
-  margin: none;
-  padding-left: 5px;
-  font-size: 1em;
+  margin: 20px;
   border-radius: $standardBorderRadius;
+  resize: vertical;
+  font-size: 1em;
   border: .5px solid grey;
+  font-family: 'open sans', sans-serif;
 }
 button {
   border: none;
@@ -89,14 +88,7 @@ button:hover {
 a:hover {
   cursor: pointer !important;
 }
-textarea {
-  border: 1px ;
-  margin: 20px;
-  border-radius: $standardBorderRadius;
-  padding:  10px;
-  resize: vertical;
-  border: .5px solid black;
-}
+
 form {
     border-radius: $standardBorderRadius;
     width: auto;

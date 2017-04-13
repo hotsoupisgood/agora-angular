@@ -197,7 +197,7 @@ module.exports =  function($scope, $rootScope, $route,
     $scope.name = 'mainController';
     $rootScope.minBanner = false;
     $scope.questions = {};
-
+//
     $rootScope.rememberLogin = true;
     var reader = new commonmark.Parser();
     var writer = new commonmark.HtmlRenderer();
