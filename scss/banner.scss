@@ -1,3 +1,4 @@
+// Fancy banner, gets smaller when scroll, contians site icon
 @media(pointer:coarse) {
     .logOptions {
         display: none;
@@ -7,7 +8,8 @@
 .banner {
     z-index: 10;
     color: black;
-    background: $secondaryColor;
+    // background: $secondaryColor;
+    background: white;
     transition: max-height 1s;
     overflow: hidden;
     max-height: 12em;
@@ -33,7 +35,7 @@
       overflow: hidden;
       height: 3em;
       align-items: center;
-      background: rgb(208, 85, 85);
+      // background: rgb(208, 85, 85);
       border-radius: 4em;
       border: .3em solid white;
       padding:  0 .6em;

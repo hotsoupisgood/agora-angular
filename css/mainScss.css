@@ -5,7 +5,6 @@
   background: white;
 }
 .search .searchParameters {
-  background: #f6f6f6;
   padding: .5em;
   border-radius: .2em;
 }
@@ -67,7 +66,6 @@
 
 .single-question {
   margin: 0.5em;
-  background: white;
   padding: 1em;
   flex-grow: 10;
 }
@@ -193,7 +191,7 @@
 .banner {
   z-index: 10;
   color: black;
-  background: #98e959;
+  background: white;
   transition: max-height 1s;
   overflow: hidden;
   max-height: 12em;
@@ -215,7 +213,6 @@
   overflow: hidden;
   height: 3em;
   align-items: center;
-  background: #d05555;
   border-radius: 4em;
   border: .3em solid white;
   padding: 0 .6em;
@@ -261,9 +258,6 @@
 .addResponse .bigTitle input {
   min-height: 3vh;
 }
-.addResponse .bigTitle .addModule {
-  background: rgba(45, 191, 169, 0.22);
-}
 .addResponse .note {
   color: lightgrey;
   font-size: 0.6em;
@@ -301,33 +295,6 @@
   display: list-item;
   font-size: 12px;
   list-style-type: disc;
-}
-
-.responsesContainer {
-  background-color: white;
-}
-
-.addResponseButton {
-  color: black;
-  border: 1px solid lightblue;
-  border-radius: 2px;
-  background: white;
-  margin: .5em;
-}
-
-.responseButtonActive {
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-
-.addResponseBody {
-  padding: 10px;
-  border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-li {
-  font-family: Josefin Slab;
 }
 
 .fill-space {
@@ -605,9 +572,6 @@ header form button {
 header button {
   font-size: 1em;
 }
-header .active a {
-  color: #228ee6 !important;
-}
 header .site-nav ul {
   list-style: none;
   display: flex;
@@ -673,7 +637,6 @@ header .site-nav ul li a:hover {
 }
 .askQuestionPage .header {
   margin: .5em;
-  background: #f6f6f6;
   padding: .5em;
   font-size: 1.4em;
 }
@@ -722,7 +685,7 @@ header .site-nav ul li a:hover {
   margin: 0;
 }
 .questionStream ul li {
-  border-top: 0.2em solid #e0dfdf;
+  border-top: 0.1em solid #e0dfdf;
 }
 .questionStream .questionContainer {
   padding-top: .4em;
@@ -793,7 +756,6 @@ header .site-nav ul li a:hover {
 }
 .loginPage .header {
   font-size: 1.2em;
-  background: #f6f6f6;
   border-radius: .2em;
   padding: .5em;
   margin: .5em;
@@ -885,8 +847,8 @@ header .site-nav ul li a:hover {
 }
 
 body {
-  font-family: 'Arvo', sans-serif;
-  background: #e0dfdf;
+  font-family: helvetica, 'Arvo', sans-serif;
+  letter-spacing: .02em;
   margin: 0;
   font-size: 15px;
 }
@@ -987,7 +949,6 @@ form {
   padding: .4em;
 }
 .optionsBox a {
-  color: #52acde;
   margin-left: .5em;
   margin-right: .5em;
   text-decoration: none;
@@ -1005,13 +966,8 @@ form {
   padding: .2em;
   padding-right: 1em;
   padding-left: 1em;
-  background: rgba(43, 182, 233, 0.11);
   align-self: center;
   color: grey;
-}
-
-.tag:hover {
-  background: rgba(16, 120, 158, 0.11);
 }
 
 .whiteButton {
@@ -1029,22 +985,18 @@ form {
 
 .infoButton {
   text-align: center;
-  color: #36bb33;
   padding: .2em .4em .2em;
 }
 
 .doButton {
   text-align: center;
-  background: #52acde;
   padding: .6em;
   border-radius: .4em;
   text-decoration: none;
-  color: white;
   box-shadow: 0 0 0.2em 0.2em rgba(167, 165, 165, 0.45);
 }
 
 .doButton:hover {
-  background: rgba(29, 81, 110, 0.46);
   transition: 100ms;
 }
 

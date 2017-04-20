@@ -1,7 +1,7 @@
+//util is reusable for multiple web projects
+//don't put things in here like changes of font
 $transparentColor: rgba(255, 255, 255, 0);
-li{
-  font-family: Josefin Slab;
-}
+
 .fill-space {
   flex-grow: 10;
   flex-basis: fill;

@@ -10,7 +10,6 @@ $singleInputFormHeight: 20px;
 @import "tags";
 @import "banner";
 @import "addResponse";
-@import "responses";
 @import "util";
 @import "account";
 @import "sidebar";
@@ -25,13 +24,10 @@ $singleInputFormHeight: 20px;
   // display: none;
 }
 body {
-  // font-family: 'Open Sans', sans-serif;
-  font-family: 'Arvo', sans-serif;
-    background: $background;
-    margin: 0;
-    font-size: 15px;
-    // display: flex;
-    // flex-direction: column;
+  font-family: helvetica, 'Arvo', sans-serif;
+  letter-spacing: .02em;
+  margin: 0;
+  font-size: 15px;
 }
 @media(pointer:coarse) {
     body {
@@ -120,7 +116,7 @@ form {
 .optionsBox {
   padding: .4em;
   a {
-    color: rgba(82, 172, 222, 1);
+    // color: rgba(82, 172, 222, 1);
     margin-left: .5em;
     margin-right: .5em;
     text-decoration: none;
@@ -139,12 +135,12 @@ form {
   padding: .2em;
   padding-right: 1em;
   padding-left: 1em;
-  background: rgba(43, 182, 233, 0.11);
+  // background: rgba(43, 182, 233, 0.11);
   align-self: center;
   color: grey;
 }
 .tag:hover {
-  background: darken(rgba(43, 182, 233, 0.11), 20%);
+  // background: darken(rgba(43, 182, 233, 0.11), 20%);
 }
 .whiteButton{
   background-color: #fff;
@@ -158,23 +154,22 @@ form {
 }
 .infoButton {
   text-align: center;
-  color: rgba(54, 187, 51, 1);
+  // color: rgba(54, 187, 51, 1);
   padding: .2em .4em .2em;
 }
 .doButton {
   text-align: center;
-  background: rgba(82, 172, 222, 1);
+  // background: rgba(82, 172, 222, 1);
   padding: .6em;
   border-radius: .4em;
   text-decoration: none;
-  color: white;
-  // border: .14em solid grey;
+  // color: white;
   box-shadow: 0 0 .2em .2em rgba(167, 165, 165, 0.45);
 
 }
 .doButton:hover {
   // color: grey;
-  background: darken(rgba(50, 140, 191, 0.46), 20%);
+  // background: darken(rgba(50, 140, 191, 0.46), 20%);
   transition: 100ms;
 }
 .lightEmphasisButton {
