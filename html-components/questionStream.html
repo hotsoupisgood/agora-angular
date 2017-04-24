@@ -10,28 +10,30 @@
                     </div>
                     <div class="fill-space"></div>
                     <div class="belowTitle d-time">
-                      Writen by <a ng-href="#/user/{{q.username}}">{{q.username}}</a> {{q.dtime}} ago
+                        Asked {{q.dtime}} ago by <a ng-href="#/user/{{q.username}}">{{q.username}}</a>.
                     </div>
                 </div>
                 <div class="header row">
                     <div class="row">
-                      <a class="text" ng-href="#/question/{{q.id}}">
-                          <div class="title row">
-                              {{q.text}}
-                          </div>
-                      </a>
-                      <a class="editButton" ng-href="#edit/question/{{q.id}}" ng-show="q.username == accountInfo.username">edit</a>
+                        <a class="text" ng-href="#/question/{{q.id}}">
+                            <div class="title row">
+                                {{q.text}}
+                            </div>
+                        </a>
+                        <a class="editButton" ng-href="#edit/question/{{q.id}}" ng-show="q.username == accountInfo.username">edit</a>
 
                     </div>
                     <div class="belowTitle">
                         <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
-                                      Respond
-                                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                              </a>
+                            <div class="response-button">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </div>
+                        </a>
                         <a class="answer" ng-href="#login" ng-hide="isLoggedIn">
-                                      Respond
-                                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                              </a>
+                            <div class="response-button">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

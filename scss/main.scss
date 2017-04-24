@@ -5,6 +5,10 @@ $infoBackground: rgb(255, 255, 255);
 $navbarColor: $secondaryColor;
 $standardBorderRadius: 2px;
 $singleInputFormHeight: 20px;
+$whiteButton-default: rgba(#fff, 1);
+$whiteButton-hover: rgba(#eee, 1);
+$whiteButton-press: rgba(#ddd, 1);
+$whiteButton-time: .2s;
 @import "search";
 @import "question";
 @import "tags";
@@ -143,14 +147,15 @@ form {
   // background: darken(rgba(43, 182, 233, 0.11), 20%);
 }
 .whiteButton{
-  background-color: #fff;
-  transition: background-color .3s;
+  background-color: $whiteButton-default;
+  transition: background-color $whiteButton-time;
+
 }
 .whiteButton:hover{
-  background-color: #ccc;
+  background-color: $whiteButton-hover;
 }
 .whiteButton:active{
-  background-color: #999;
+  background-color: $whiteButton-press;
 }
 .infoButton {
   text-align: center;

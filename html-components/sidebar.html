@@ -1,22 +1,27 @@
 <div class="sidebar">
-  <div class="catagory">
-
-    <a class="ask doButton"href="#/ask">Click me to ask a question</a>
+  <div class="catagory" ng-if="!isLoggedIn">
+    <a class="doButton buttonCard whiteButton" href="#/ask">Ask a Question</a>
   </div>
-  <div class="catagory about">
-    <div class="row">
-      Ask literally any question.
+  <div class="catagory">
+    <a href="#/question/5" class="row buttonCard whiteButton">
+        Try your luck at answering something random.
+    </a>
+  </div>
+  <div class="catagory sortContainer">
+    <div class="row sortTitle">
+      Sort
     </div>
-    <ul>
-      <li>That is not spammy.</li>
-      <li> Then try to answer others questions in, non spammy, ways...</li>
-      <li> Then argue with others ideas with comments. Without spam. Please.</li>
-    </ul>
+    <div class="row optionsBoxContainer">
+      <div class="optionsBox">
+        <a class="left" ng-href="#discover">recent </a>
+        <a class="right" ng-href="#discover">popular </a>
+      </div>
+    </div>
   </div>
   <div class="catagory">
-    Search for a random tag:
+    <span id="category-prompt">Categories</span>
     <div class="tags">
-      <a ng-href="#/search?query={{tag.slug}}&doQ=false&doR=false&doU=false&doT" class="tag"ng-repeat="tag in randomTags">
+      <a ng-href="#/search?query={{tag.slug}}&doQ=false&doR=false&doU=false&doT" class="tag" ng-repeat="tag in randomTags">
         {{tag.slug}}
       </a>
     </div>

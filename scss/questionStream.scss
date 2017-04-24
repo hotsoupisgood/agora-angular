@@ -3,6 +3,9 @@
 $listBackgroundColor: rgb(255, 255, 255);
 $phoneButtonSize: 20vw;
 $phoneButtonHeight: 15vw;
+$responseButton-Size: 35px;
+$responseButton-Height: 1px; //Height off the screen, it is the drop shadow.
+$responseButton-Shadow: rgba(#000, .5);
 @media(pointer:coarse) {
   //for mobile
 }
@@ -33,6 +36,12 @@ $phoneButtonHeight: 15vw;
       display: flex;
       flex-direction: column;
       font-size: .9em;
+      .d-time{
+        opacity:.6;
+        a{
+          color: black;
+        }
+      }
       .tags {
         margin-bottom: .2em;
         display: flex;
@@ -50,9 +59,10 @@ $phoneButtonHeight: 15vw;
           .title {
             text-decoration: underline;
           }
+
         }
         .d-time {
-          margin-left: 1em;
+          margin-left: 1em; // I think this line is beging ignored. - William
         }
         .belowTitle {
           display: flex;
@@ -60,10 +70,30 @@ $phoneButtonHeight: 15vw;
           color: grey;
           justify-content: space-between;
           font-size: .8em;
+
           a {
             border-radius: .1em;
             color: grey;
             margin: 0 .4em;
+          }
+          .response-button{
+            color: white;
+            font-size: 1*$responseButton-Size/2;
+            height:$responseButton-Size;
+            width:$responseButton-Size;
+            border-radius: $responseButton-Size/2;
+            background-color: $COLOR-ACTION;
+            $h: $responseButton-Height;
+            box-shadow: $h $h $h $responseButton-Shadow;
+          }
+          .response-button > *{
+            $h: $responseButton-Size/2;
+            width: $h;
+            height: $h;
+            margin-top: $h/2;
+            margin-left: $h/2;
+            text-align: center;
+            vertical-align: middle;
           }
         }
 
