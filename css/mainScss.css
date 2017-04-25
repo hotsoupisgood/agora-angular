@@ -29,7 +29,7 @@
   margin-left: 1em;
   margin-right: 1em;
   padding: .25em;
-  border: 1px solid lightgrey;
+  border: rgba(0, 0, 0, 0.1);
   border-radius: .2em;
 }
 .search .searchResults .responses .results .response .header .text {
@@ -178,9 +178,6 @@
   margin-left: 1em;
   align-self: center;
   justify-content: center;
-}
-.single-question .responses .response .sections .section-comments .section-comment .comment .editButton {
-  color: blue;
 }
 
 @media (pointer: coarse) {
@@ -529,7 +526,7 @@
   padding: 5px;
   color: rgba(51, 51, 51, 0.5);
   background-color: #bbb;
-  box-shadow: inset 0px 0 2px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 0 1px rgba(0, 0, 0, 0.3);
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox .left {
   background-color: #eee;
@@ -542,15 +539,8 @@
   border-bottom-right-radius: 5px;
 }
 .sidebar .buttonCard {
-  opacity: .8;
-  color: black;
-  border-radius: 2px;
-  border-color: rgba(238, 238, 238, 0.6);
-  border-width: 1px;
-  border-style: solid;
   padding: 10px;
-  text-decoration: none;
-  box-shadow: 2px 2px 2px #ccc;
+  opacity: .8;
 }
 .sidebar .catagory {
   display: flex;
@@ -572,6 +562,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin: .2em;
+  justify-content: space-between;
 }
 .sidebar .catagory .tags .tag {
   text-decoration: none;
@@ -593,6 +584,10 @@
   z-index: 10;
 }
 
+header > * {
+  opacity: .55;
+}
+
 header {
   transition: height 0.3s;
   display: flex;
@@ -609,6 +604,8 @@ header form input {
   border-radius: 2px 0px 0px 2px;
   flex-grow: 10;
   min-height: 2em;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 1px;
 }
 header form button {
   position: absolute;
@@ -786,18 +783,25 @@ header .site-nav ul li a:hover {
 }
 .questionStream .questionContainer .header .belowTitle .response-button {
   color: white;
-  font-size: 17.5px;
-  height: 35px;
-  width: 35px;
-  border-radius: 17.5px;
+  font-size: 15px;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
   background-color: #d50000;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  transition: all .2s;
+  opacity: .8;
+}
+.questionStream .questionContainer .header .belowTitle .response-button:hover {
+  opacity: .6;
+}
+.questionStream .questionContainer .header .belowTitle .response-button:active {
+  opacity: 1;
 }
 .questionStream .questionContainer .header .belowTitle .response-button > * {
-  width: 17.5px;
-  height: 17.5px;
-  margin-top: 8.75px;
-  margin-left: 8.75px;
+  width: 15px;
+  height: 15px;
+  margin-top: 7.5px;
+  margin-left: 7.5px;
   text-align: center;
   vertical-align: middle;
 }
@@ -815,6 +819,8 @@ header .site-nav ul li a:hover {
   margin-left: 10px;
   text-decoration: none;
   color: black;
+  padding: 10px;
+  opacity: .75;
 }
 
 .loginPage {
@@ -1046,6 +1052,12 @@ form {
 .whiteButton {
   background-color: white;
   transition: background-color 0.2s;
+  color: black;
+  border-radius: 2px;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 1px;
+  border-style: solid;
+  text-decoration: none;
 }
 
 .whiteButton:hover {
@@ -1066,7 +1078,6 @@ form {
   padding: .6em;
   border-radius: .4em;
   text-decoration: none;
-  box-shadow: 0 0 0.2em 0.2em rgba(167, 165, 165, 0.45);
 }
 
 .doButton:hover {
@@ -1085,6 +1096,13 @@ form {
   padding: .2em;
   margin: 0 .5em;
   text-decoration: none;
+}
+
+.editButton {
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: #2962ff;
+  color: white;
 }
 
 /*# sourceMappingURL=mainScss.css.map */
