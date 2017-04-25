@@ -1,8 +1,6 @@
 //util is reusable for multiple web projects
 //don't put things in here like changes of font
 $transparentColor: rgba(255, 255, 255, 0);
-$COLOR-ACTION: rgba(#d50000, 1); //A red for action buttons.
-
 .fill-space {
   flex-grow: 10;
   flex-basis: fill;
