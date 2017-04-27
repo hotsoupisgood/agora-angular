@@ -1,0 +1,48 @@
+//Here is how this is going to work.
+//Opacity is related to priority
+$PRIORITY-LOWEST:.1;
+$PRIORITY-LOWER:.3;
+$PRIORITY-LOW:.5;
+$PRIORITY-MED:.7;
+$PRIORITY-HIGH:.8;
+$PRIORITY-HIGHER:.9;
+$PRIORITY-HIGHEST:1;
+//There is text, and not text.
+//Text is either white, or black, with an opacity.
+$WHITE-TEXT: white;
+$BLACK-TEXT: black;
+$WHITE-LOWEST: rgba($WHITE-TEXT, $PRIORITY-LOWEST);
+$WHITE-LOWER: rgba($WHITE-TEXT, $PRIORITY-LOWER);
+$WHITE-LOW: rgba($WHITE-TEXT, $PRIORITY-LOW);
+$WHITE-MED: rgba($WHITE-TEXT, $PRIORITY-MED);
+$WHITE-HIGH: rgba($WHITE-TEXT, $PRIORITY-HIGH);
+$WHITE-HIGHER: rgba($WHITE-TEXT, $PRIORITY-HIGHER);
+$WHITE-HIGHEST: rgba($WHITE-TEXT, $PRIORITY-HIGHEST);
+$BLACK-LOWEST: rgba($BLACK-TEXT, $PRIORITY-LOWEST);
+$BLACK-LOWER: rgba($BLACK-TEXT, $PRIORITY-LOWER);
+$BLACK-LOW: rgba($BLACK-TEXT, $PRIORITY-LOW);
+$BLACK-MED: rgba($BLACK-TEXT, $PRIORITY-MED);
+$BLACK-HIGH: rgba($BLACK-TEXT, $PRIORITY-HIGH);
+$BLACK-HIGHER: rgba($BLACK-TEXT, $PRIORITY-HIGHER);
+$BLACK-HIGHEST: rgba($BLACK-TEXT, $PRIORITY-HIGHEST);
+//In the case that we want to switch to grey tones, we just change rgba to darken/lighten
+//$WHITE-MED: rgba($WHITE-TEXT, $PRIORITY-MED);
+//$WHITE-MED: darken($WHITE-TEXT, $PRIORITY-MED);
+
+//For Not Text, there can only select from max 4 colors.
+$COLOR-PRIMARY: #db3a3a; //Primary Color
+$COLOR-LIGHT: white; //Lighr Primary
+$COLOR-DARK: black; //Darker Primary
+$COLOR-AUX: rgb(152, 233, 89); //Seconary/Auxillary color
+
+//Other standards
+$SIZE-BIG: 3em;
+$SIZE-MED: 2em;
+$SIZE-SMALL: 1em;
+
+//Button constants
+$BUTTON-COLOR: white;
+$BUTTON-BORDER-SIZE: 1px;
+$BUTTON-BORDER-STYLE: solid;
+$BUTTON-BORDER-COLOR: $BLACK-LOWEST;
+$BUTTON-TIME: .1s; //Transition time for all buttons

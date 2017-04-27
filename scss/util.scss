@@ -88,7 +88,7 @@ $transparentColor: rgba(255, 255, 255, 0);
   width: 100px;
 }
 .button-darken {
-  background: darken($primaryColor, 20%);;
+  background: darken($COLOR-PRIMARY, 20%);;
 }
 .highlight-hover:hover {
   background: rgba(110, 210, 180, 0.08) !important;

@@ -7,10 +7,10 @@
                     <a ng-href="#discover" ng-click="selectedTab = 'discover'" class="whiteButton">Discover</a>
                 </li>
                 <li ng-class="{'active':selectedTab === 'account'}">
-                    <a ng-href="#user/{{accountInfo.username}}" ng-show="isLoggedIn" ng-click="selectedTab = 'account'">Account</a>
+                    <a ng-href="#user/{{accountInfo.username}}" ng-show="isLoggedIn" ng-click="selectedTab = 'account'" class="whiteButton">Account</a>
                 </li>
                 <li ng-class="{'active':selectedTab === 'ask'}">
-                    <a ng-href="#ask" ng-click="selectedTab = 'ask'" ng-show="isLoggedIn">Ask Question</a>
+                    <a ng-href="#ask" ng-click="selectedTab = 'ask'" ng-show="isLoggedIn" class="whiteButton">Ask Question</a>
                 </li>
             </ul>
         </nav>

@@ -2,7 +2,7 @@
     <ul class="questionList">
         <li class="" ng-repeat="q in questions">
             <div class="questionContainer">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="tags">
                         <a class="tag" ng-click="tagSearch(tag.name)" ng-repeat="tag in q.tags">
                     {{tag.name}}
@@ -12,28 +12,30 @@
                     <div class="belowTitle d-time">
                         Asked {{q.dtime}} ago by <a ng-href="#/user/{{q.username}}">{{q.username}}</a>.
                     </div>
-                </div>
+                </div> -->
                 <div class="header row">
+                  <div class="belowTitle">
+                      <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
+                          <div class="circleButton">
+                              <i class="fa fa-pencil" aria-hidden="true"></i>
+                          </div>
+                      </a>
+                      <a class="answer" ng-href="#login" ng-hide="isLoggedIn">
+                          <div class="circleButton">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                          </div>
+                      </a>
+                      <a class="text" ng-href="#/question/{{q.id}}">
+                          <div class="title row">
+                              {{q.text}}
+                          </div>
+                      </a>
+                      <a class="editButton" ng-href="#edit/question/{{q.id}}" ng-show="q.username == accountInfo.username">edit</a>
+                  </div>
                     <div class="row">
-                        <a class="text" ng-href="#/question/{{q.id}}">
-                            <div class="title row">
-                                {{q.text}}
-                            </div>
-                        </a>
-                        <a class="editButton" ng-href="#edit/question/{{q.id}}" ng-show="q.username == accountInfo.username">edit</a>
-
-                    </div>
-                    <div class="belowTitle">
-                        <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
-                            <div class="response-button">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </div>
-                        </a>
-                        <a class="answer" ng-href="#login" ng-hide="isLoggedIn">
-                            <div class="response-button">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </div>
-                        </a>
+                      <div class="belowTitle d-time">
+                          Asked {{q.dtime}} ago by&nbsp;<a ng-href="#/user/{{q.username}}">{{q.username}}</a>
+                      </div>
                     </div>
                 </div>
             </div>

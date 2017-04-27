@@ -1,14 +1,11 @@
+@import "constants";
+//There are other variables, they seem important.
 $background: rgb(224, 223, 223);
-$primaryColor: #db3a3a;
-$secondaryColor: rgb(152, 233, 89);
 $infoBackground: rgb(255, 255, 255);
-$navbarColor: $secondaryColor;
+$navbarColor: $COLOR-AUX;
 $standardBorderRadius: 2px;
 $singleInputFormHeight: 20px;
-$whiteButton-default: rgba(#fff, 1);
-$whiteButton-hover: rgba(#eee, 1);
-$whiteButton-press: rgba(#ddd, 1);
-$whiteButton-time: .2s;
+
 @import "search";
 @import "question";
 @import "tags";
@@ -146,17 +143,7 @@ form {
 .tag:hover {
   // background: darken(rgba(43, 182, 233, 0.11), 20%);
 }
-.whiteButton{
-  background-color: $whiteButton-default;
-  transition: background-color $whiteButton-time;
 
-}
-.whiteButton:hover{
-  background-color: $whiteButton-hover;
-}
-.whiteButton:active{
-  background-color: $whiteButton-press;
-}
 .infoButton {
   text-align: center;
   // color: rgba(54, 187, 51, 1);
@@ -169,7 +156,7 @@ form {
   border-radius: .4em;
   text-decoration: none;
   // color: white;
-  box-shadow: 0 0 .2em .2em rgba(167, 165, 165, 0.45);
+  //box-shadow: 0 0 .2em .2em rgba(167, 165, 165, 0.45);
 
 }
 .doButton:hover {
@@ -190,4 +177,67 @@ form {
   margin: 0 .5em;
   text-decoration: none;
   // color: black;
+}
+.editButton {
+  @extend .whiteButton;
+  display: table;
+}
+
+//William: Writing a bunch of parts.
+
+//Main button class
+.whiteButton.pressed{
+  background-color: darken($BUTTON-COLOR, 20%);
+}
+.whiteButton{
+  color: $BLACK-MED;
+  transition: background-color $BUTTON-TIME ease;
+  background-color: $BUTTON-COLOR;
+  border-radius: 2px;
+  border-color: $BUTTON-BORDER-COLOR;
+  border-width: $BUTTON-BORDER-SIZE;
+  border-style: $BUTTON-BORDER-STYLE;
+  text-decoration: none;
+  &:hover{
+    background-color: darken($BUTTON-COLOR, 10%);
+  }
+  &:active{
+    background-color: darken($BUTTON-COLOR, 20%);
+  }
+}
+//Used to define the border around a lot inputs and buttons.
+BUTTON-BORDER{
+  border-color: $BUTTON-BORDER-COLOR;
+  border-width: $BUTTON-BORDER-SIZE;
+  border-style: $BUTTON-BORDER-STYLE;
+}
+//Round buttons for tag like things.
+$SMALL-SIZE: .7rem;
+.roundButton{
+  $s:$SMALL-SIZE;
+  @extend .whiteButton;
+  height: $s;
+  font-size: $s;
+  line-height: $s;
+  border-radius: $s;
+  vertical-align: middle;
+}
+//Circular buttons for icons
+$MEDIUM-SIZE: 2rem;
+.circleButton{
+  $s:$MEDIUM-SIZE;
+  @extend .whiteButton;
+  font-size:$s/2;
+  height:$s;
+  width:$s;
+  border-radius:$s/2;
+  *{
+    opacity: $PRIORITY-MED;
+    width: $s/2;
+    height: $s/2;
+    margin-top: $s/4;
+    margin-left: $s/4;
+    text-align: center;
+    vertical-align: middle;
+  }
 }

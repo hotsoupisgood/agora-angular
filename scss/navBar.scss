@@ -10,6 +10,9 @@ $navbarHeightMobile: 20vh;
   box-shadow: 3px 3px 3px 2px rgba(#b6b6b6, 0.45);
   z-index: 10;
 }
+header > *{
+  opacity: .55;
+}
 header {
   transition: height 0.3s;
   display: flex;
@@ -24,6 +27,7 @@ header {
       border-radius: $standardBorderRadius 0px 0px $standardBorderRadius;
       flex-grow: 10;
       min-height: 2em;
+      @extend BUTTON-BORDER;
     }
     button {
       position: absolute;

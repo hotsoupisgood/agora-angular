@@ -32,7 +32,7 @@
           margin-left: 1em;
           margin-right: 1em;
           padding: .25em;
-          border: 1px solid lightgrey;
+          @extend BUTTON-BORDER;
           border-radius: .2em;
               .header {
                 .text {

@@ -1,5 +1,4 @@
-$tag-size: 12px;
-$tag-background: rgba(#000, .3);
+
 $toggleRadius: 5px;
 .sidebar {
     background: $infoBackground;
@@ -18,7 +17,7 @@ $toggleRadius: 5px;
           margin: 0;
           padding: 0;
           display: flex;
-          background-color: #eee;
+          background-color: $BUTTON-BORDER-COLOR;
           border-radius: $toggleRadius;
           a{
             //I am not done with this, I had to go do class.
@@ -26,35 +25,31 @@ $toggleRadius: 5px;
             margin: 0;
             padding: 0;
             padding: 5px;
-            color:rgba(#333, .5);
-            background-color: #bbb;
-            box-shadow: inset 0px 0 2px rgba(#000, .3);
+            @extend .whiteButton;
+            border-radius: 0;
           }
           .left{
             //Acting as if this one is selected.
-            background-color: #eee;
-            color: rgba(#000, .8);
             border-bottom-left-radius: $toggleRadius;
             border-top-left-radius: $toggleRadius;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            //border-right-style: none;
           }
           .right{
             border-top-right-radius: $toggleRadius;
             border-bottom-right-radius: $toggleRadius;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            //border-left-style: none;
           }
         }
       }
     }
 
     .buttonCard{
-      opacity: .8;
-      color: black;
-      border-radius: 2px;
-      border-color:rgba(#eee,.6);
-      border-width: 1px;
-      border-style: solid;
       padding: 10px;
-      text-decoration: none;
-      box-shadow: 2px 2px 2px #ccc;
+      opacity: .8;
     }
     .catagory {
         display: flex;
@@ -75,15 +70,10 @@ $toggleRadius: 5px;
             flex-direction: row;
             flex-wrap: wrap;
             margin: .2em;
+            justify-content: space-between;
             .tag{
+              @extend .roundButton;
               text-decoration: none;
-              height: $tag-size;
-              font-size: $tag-size;
-              line-height: $tag-size;
-              vertical-align: middle;
-              border-radius: $tag-size;
-              background-color: $tag-background;
-              color:white;
               margin: .2em;
             }
         }

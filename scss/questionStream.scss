@@ -3,9 +3,6 @@
 $listBackgroundColor: rgb(255, 255, 255);
 $phoneButtonSize: 20vw;
 $phoneButtonHeight: 15vw;
-$responseButton-Size: 35px;
-$responseButton-Height: 1px; //Height off the screen, it is the drop shadow.
-$responseButton-Shadow: rgba(#000, .5);
 @media(pointer:coarse) {
   //for mobile
 }
@@ -30,8 +27,8 @@ $responseButton-Shadow: rgba(#000, .5);
   }
     .questionContainer {
       padding-top: .4em;
-      margin-left: 1em;
-      margin-right: 1em;
+      margin-left: .75rem;
+      margin-right: 1rem;
       margin-bottom: .4em;
       display: flex;
       flex-direction: column;
@@ -55,6 +52,9 @@ $responseButton-Shadow: rgba(#000, .5);
           text-decoration: none;
           font-size: 1.2em;
         }
+        .title{
+            padding-left: 1rem;
+        }
         .text:hover {
           .title {
             text-decoration: underline;
@@ -67,36 +67,13 @@ $responseButton-Shadow: rgba(#000, .5);
         .belowTitle {
           display: flex;
           flex-direction: row;
-          color: grey;
           justify-content: space-between;
-          font-size: .8em;
-
+          align-items: center;
           a {
+            margin: 0;
             border-radius: .1em;
-            color: grey;
-            margin: 0 .4em;
-          }
-          .response-button{
-            color: white;
-            font-size: 1*$responseButton-Size/2;
-            height:$responseButton-Size;
-            width:$responseButton-Size;
-            border-radius: $responseButton-Size/2;
-            background-color: $COLOR-ACTION;
-            $h: $responseButton-Height;
-            box-shadow: $h $h $h $responseButton-Shadow;
-          }
-          .response-button > *{
-            $h: $responseButton-Size/2;
-            width: $h;
-            height: $h;
-            margin-top: $h/2;
-            margin-left: $h/2;
-            text-align: center;
-            vertical-align: middle;
           }
         }
-
       }
     }
     ul {
@@ -112,6 +89,9 @@ $responseButton-Shadow: rgba(#000, .5);
             margin-left: 10px;
             text-decoration: none;
             color: black;
+            padding: 10px;
+            opacity: .75;
         }
     }
+
 }

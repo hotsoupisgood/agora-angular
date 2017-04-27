@@ -29,7 +29,6 @@
   margin-left: 1em;
   margin-right: 1em;
   padding: .25em;
-  border: rgba(0, 0, 0, 0.1);
   border-radius: .2em;
 }
 .search .searchResults .responses .results .response .header .text {
@@ -517,26 +516,26 @@
   margin: 0;
   padding: 0;
   display: flex;
-  background-color: #eee;
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox a {
   margin: 0;
   padding: 0;
   padding: 5px;
-  color: rgba(51, 51, 51, 0.5);
-  background-color: #bbb;
-  box-shadow: inset 0px 0 1px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox .left {
-  background-color: #eee;
-  color: rgba(0, 0, 0, 0.8);
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox .right {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 .sidebar .buttonCard {
   padding: 10px;
@@ -566,13 +565,6 @@
 }
 .sidebar .catagory .tags .tag {
   text-decoration: none;
-  height: 12px;
-  font-size: 12px;
-  line-height: 12px;
-  vertical-align: middle;
-  border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: white;
   margin: .2em;
 }
 
@@ -604,8 +596,6 @@ header form input {
   border-radius: 2px 0px 0px 2px;
   flex-grow: 10;
   min-height: 2em;
-  border-color: rgba(0, 0, 0, 0.1);
-  border-width: 1px;
 }
 header form button {
   position: absolute;
@@ -736,8 +726,8 @@ header .site-nav ul li a:hover {
 }
 .questionStream .questionContainer {
   padding-top: .4em;
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: .75rem;
+  margin-right: 1rem;
   margin-bottom: .4em;
   display: flex;
   flex-direction: column;
@@ -763,6 +753,9 @@ header .site-nav ul li a:hover {
   text-decoration: none;
   font-size: 1.2em;
 }
+.questionStream .questionContainer .header .title {
+  padding-left: 1rem;
+}
 .questionStream .questionContainer .header .text:hover .title {
   text-decoration: underline;
 }
@@ -772,38 +765,12 @@ header .site-nav ul li a:hover {
 .questionStream .questionContainer .header .belowTitle {
   display: flex;
   flex-direction: row;
-  color: grey;
   justify-content: space-between;
-  font-size: .8em;
+  align-items: center;
 }
 .questionStream .questionContainer .header .belowTitle a {
+  margin: 0;
   border-radius: .1em;
-  color: grey;
-  margin: 0 .4em;
-}
-.questionStream .questionContainer .header .belowTitle .response-button {
-  color: white;
-  font-size: 15px;
-  height: 30px;
-  width: 30px;
-  border-radius: 15px;
-  background-color: #d50000;
-  transition: all .2s;
-  opacity: .8;
-}
-.questionStream .questionContainer .header .belowTitle .response-button:hover {
-  opacity: .6;
-}
-.questionStream .questionContainer .header .belowTitle .response-button:active {
-  opacity: 1;
-}
-.questionStream .questionContainer .header .belowTitle .response-button > * {
-  width: 15px;
-  height: 15px;
-  margin-top: 7.5px;
-  margin-left: 7.5px;
-  text-align: center;
-  vertical-align: middle;
 }
 .questionStream ul {
   margin-top: 0;
@@ -1049,25 +1016,6 @@ form {
   color: grey;
 }
 
-.whiteButton {
-  background-color: white;
-  transition: background-color 0.2s;
-  color: black;
-  border-radius: 2px;
-  border-color: rgba(0, 0, 0, 0.1);
-  border-width: 1px;
-  border-style: solid;
-  text-decoration: none;
-}
-
-.whiteButton:hover {
-  background-color: #eeeeee;
-}
-
-.whiteButton:active {
-  background-color: #dddddd;
-}
-
 .infoButton {
   text-align: center;
   padding: .2em .4em .2em;
@@ -1099,10 +1047,58 @@ form {
 }
 
 .editButton {
-  border-radius: 5px;
-  font-size: 20px;
-  background-color: #2962ff;
-  color: white;
+  display: table;
+}
+
+.whiteButton.pressed, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.editButton, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .pressed.circleButton {
+  background-color: #cccccc;
+}
+
+.whiteButton, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .editButton, .roundButton, .sidebar .catagory .tags .tag, .circleButton {
+  color: rgba(0, 0, 0, 0.7);
+  transition: background-color 0.1s ease;
+  background-color: white;
+  border-radius: 2px;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 1px;
+  border-style: solid;
+  text-decoration: none;
+}
+.whiteButton:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .editButton:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .circleButton:hover {
+  background-color: #e6e6e6;
+}
+.whiteButton:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .editButton:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .circleButton:active {
+  background-color: #cccccc;
+}
+
+BUTTON-BORDER, .search .searchResults .responses .results .response, header form input {
+  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 1px;
+  border-style: solid;
+}
+
+.roundButton, .sidebar .catagory .tags .tag {
+  height: 0.7rem;
+  font-size: 0.7rem;
+  line-height: 0.7rem;
+  border-radius: 0.7rem;
+  vertical-align: middle;
+}
+
+.circleButton {
+  font-size: 1rem;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 1rem;
+}
+.circleButton * {
+  opacity: 0.7;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  text-align: center;
+  vertical-align: middle;
 }
 
 /*# sourceMappingURL=mainScss.css.map */

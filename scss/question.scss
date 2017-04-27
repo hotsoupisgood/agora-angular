@@ -3,34 +3,26 @@
     // background: $infoBackground;
     padding: 1em;
     flex-grow: 10;
-
     .qHeader {
         margin-top: 0.4em;
-
         .title {
             font-size: 1.2em;
         }
-
         .subHeader {
             display: flex;
             flex-direction: row;
             color: grey;
             margin-top: 0.3em;
             margin-bottom: 0.2em;
-
             a {
                 color: grey;
             }
-
             .none {}
-
             .total {}
         }
     }
-
     .responses {
         margin-top: 0.5em;
-
         .response {
             margin-left: 1em;
             margin-right: 1em;
@@ -38,17 +30,14 @@
             box-shadow: 0 0 .8em 0 rgba(#b6b6b6, 0.45);
             border-radius: 0.2em;
             padding: .4em;
-
             .header {
                 display: flex;
                 flex-direction: column;
                 padding: 0.2em;
-
                 .subHeader {
                     display: flex;
                     flex-direction: row;
                 }
-
                 .vote {
                     color: grey;
                     text-decoration: underline;
@@ -56,7 +45,6 @@
                     margin-left: 0.5em;
                 }
             }
-
             .sections {
               display: flex;
               flex-direction: row;
@@ -130,11 +118,7 @@
                                 align-self: center;
                                 justify-content: center;
                             }
-                            .editButton {
-                              color: blue;
-                            }
                         }
-
                     }
                 }
             }
