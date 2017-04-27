@@ -538,8 +538,10 @@
   border-top-left-radius: 0;
 }
 .sidebar .buttonCard {
-  padding: 10px;
+  padding: .8rem;
   opacity: .8;
+  align-items: center;
+  justify-content: center;
 }
 .sidebar .catagory {
   display: flex;
