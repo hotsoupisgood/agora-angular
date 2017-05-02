@@ -1,5 +1,3 @@
-//Scss variable naming convention is upper case spine (UPPER-CASE-SPINE)
-
 //Here is how this is going to work.
 //Opacity is related to priority
 $PRIORITY-LOWEST:.1;
@@ -31,7 +29,14 @@ $BLACK-HIGHEST: rgba($BLACK-TEXT, $PRIORITY-HIGHEST);
 //$WHITE-MED: rgba($WHITE-TEXT, $PRIORITY-MED);
 //$WHITE-MED: darken($WHITE-TEXT, $PRIORITY-MED);
 
-//For Not Text, there can only select from max 4 colors.
+//For Not Text, there can only select from max 5 colors.
+//Seems like we are going to use Adobes website:
+//https://color.adobe.com/water-bright-color-theme-9504199/
+//$COLOR-A;
+//$COLOR-B;
+//$COLOR-C;
+//$COLOR-D;
+//$COLOR-E;
 $COLOR-PRIMARY: #db3a3a; //Primary Color
 $COLOR-LIGHT: white; //Lighr Primary
 $COLOR-DARK: black; //Darker Primary
