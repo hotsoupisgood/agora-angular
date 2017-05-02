@@ -13,34 +13,26 @@
     transition: max-height 1s;
     overflow: hidden;
     max-height: 12em;
-
     .agoraDude {
         top: 1em;
         width: 4.4em;
         height: 7em;
     }
-
     .centeredPouch {
       display: flex;
       align-items: center;
       justify-content: center;
-        // padding: 1.8em;
         font-family: 'Amatic SC', sans-serif;
     }
-
     .pouch {
-      // position: absolute;
       display: flex;
       flex-direction: row;
       overflow: hidden;
       height: 3em;
       align-items: center;
-      // background: rgb(208, 85, 85);
       border-radius: 4em;
       border: .3em solid white;
       padding:  0 .6em;
-      // padding: .2em;
-      // bottom: 4em!important;
     }
 
     .title {
@@ -62,7 +54,6 @@
         font-size: 1.8em;
     }
 }
-
 .smallHead {
     max-height: 3em;
     font-size: 1.2em;

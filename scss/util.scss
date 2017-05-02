@@ -55,7 +55,10 @@ $transparentColor: rgba(255, 255, 255, 0);
   justify-content: center;
 }
 .center-vertical {
-  align-items: center;
+  align-self: center;
+}
+.space-between {
+  justify-content: space-between;
 }
 .noWrap {
   flex-wrap: nowrap;

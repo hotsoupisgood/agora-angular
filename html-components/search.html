@@ -2,9 +2,6 @@
   <div class="searchParameters">
     <form class="searchForm col" ng-submit="submit()">
       <div class="row">
-        Search
-      </div>
-      <div class="row">
         <input class="searchBox" type="text" name="question content" placeholder="Content (ex. Cats)" ng-model="globalQuery">
       </div>
       <div class="row">
@@ -26,18 +23,22 @@
         </label>
       </div>
 
-          <div class="">
-            <button class="submitButton" type="submit">Search</button>
+          <div class="row space-between">
+            <div class="">
+              <ul>
+                <li class="detailText">
+                  If your results are not satisfing please try to be more specific or less broad. (ex. searching for "a" will return nothing)
+                </li>
+                <li class="detailText">
+                  It takes about a half hour for questions/responses/tags to get indexed in our search engine.
+                </li>
+              </ul>
+            </div>
+            <div class="">
+              <button class="whiteButton center-vertical" type="submit">Search</button>
+            </div>
           </div>
     </form>
-    <ul>
-      <li class="detailText">
-        If your results are not satisfing please try to be more specific or less broad. (ex. searching for "a" will return nothing)
-      </li>
-      <li class="detailText">
-        It takes about a half hour for questions/responses/tags to get indexed in our search engine.
-      </li>
-    </ul>
   </div>
   <div class="searchResults">
     <div class="questions" ng-if="questions.length">
