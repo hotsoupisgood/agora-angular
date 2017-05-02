@@ -1096,13 +1096,13 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, header form
   border-radius: 5px;
   padding: 10px;
   transition: all 1s ease-in-out;
-  background-color: #fff;
-  color: #000;
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
 }
 
 .error.ng-hide {
-  background-color: #f00;
-  color: #fff;
+  background-color: red;
+  color: white;
 }
 
 /*# sourceMappingURL=mainScss.css.map */

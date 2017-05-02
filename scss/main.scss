@@ -246,10 +246,10 @@ $MEDIUM-SIZE: 2rem;
   border-radius: 5px;
   padding: 10px;
   transition: all 1s ease-in-out;
-  background-color: #fff;
-  color: #000;
+  background-color: $COLOR-ERROR-BG-AFTER;
+  color: $COLOR-ERROR-TEXT-AFTER;
 }
 .error.ng-hide{
-  background-color: #f00;
-  color: #fff;
+  background-color: $COLOR-ERROR-BG-BEFORE;
+  color: $COLOR-ERROR-TEXT-BEFORE;
 }

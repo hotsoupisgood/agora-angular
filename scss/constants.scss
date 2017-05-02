@@ -32,6 +32,10 @@ $BLACK-HIGHEST: rgba($BLACK-TEXT, $PRIORITY-HIGHEST);
 //For Not Text, there can only select from max 5 colors.
 //Seems like we are going to use Adobes website:
 //https://color.adobe.com/water-bright-color-theme-9504199/
+$COLOR-ERROR-BG-BEFORE: rgba(#f00, 1); //Background text for errors.
+$COLOR-ERROR-TEXT-BEFORE: rgba(#fff, 1); // Before the animation
+$COLOR-ERROR-BG-AFTER: rgba(#fff, 0); // After the animation.
+$COLOR-ERROR-TEXT-AFTER: rgba(#000, 1); //
 //$COLOR-A;
 //$COLOR-B;
 //$COLOR-C;
