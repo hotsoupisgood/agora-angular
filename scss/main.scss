@@ -1,19 +1,13 @@
+//Constants, Put reusable vars in there.
 @import "constants";
-//There are other variables, they seem important.
-//Scss variable naming convention is upper case spine (UPPER-CASE-SPINE)
-$background: rgb(224, 223, 223);
-$infoBackground: rgb(255, 255, 255);
-$navbarColor: $COLOR-AUX;
-$standardBorderRadius: 2px;
-$singleInputFormHeight: 20px;
 
 @import "search";
 @import "question";
 @import "tags";
 @import "banner";
-@import "addResponse";
+@import "add_response";
 @import "util";
-@import "account";
+@import "user";
 @import "sidebar";
 @import "navBar";
 @import "ask";
@@ -21,10 +15,8 @@ $singleInputFormHeight: 20px;
 @import "login";
 @import "about";
 @import "discover";
-//until functional
-.sidebar {
-  // display: none;
-}
+
+//Global things go here
 body {
   font-family: helvetica, 'Arvo', sans-serif;
   letter-spacing: .02em;
@@ -38,6 +30,9 @@ body {
     .content {
       margin-top: 9em!important;
     }
+    .sidebar {
+      display: none;
+    }
 }
 h4 {
   margin-top: .2em;
@@ -49,13 +44,13 @@ p{
 input {
   padding-left: .4em;
   font-size: 1em;
-  border-radius: $standardBorderRadius;
+  border-radius: $SBR;
   border: .5px solid grey;
   font-family: 'open sans', sans-serif;
 }
 textarea {
   margin: 20px;
-  border-radius: $standardBorderRadius;
+  border-radius: $SBR;
   resize: vertical;
   font-size: 1em;
   border: .5px solid grey;
@@ -72,7 +67,7 @@ button {
   color: black;
   text-align: center;
   justify-content: center;
-  border-radius: $standardBorderRadius;
+  border-radius: $SBR;
 }
 label {
   // font-size: .8em;
@@ -88,7 +83,7 @@ a:hover {
 }
 
 form {
-    border-radius: $standardBorderRadius;
+    border-radius: $SBR;
     width: auto;
     padding: 3px;
 }
@@ -97,16 +92,6 @@ form {
   display: flex;
   flex-direction: column;
   // transition: margin-top 90ms;
-}
-.back {
-  // font-size: 1em;
-  background: rgb(246, 246, 246);
-  border-radius: .2em;
-  padding: 1em;
-  margin-bottom: 1em;
-  .click-area {
-    cursor: pointer !important;
-  }
 }
 .detailText {
   color: grey;

@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+//Scss CONSTANT variable naming convention is upper case spine (UPPER-CASE-SPINE)
+
+>>>>>>> Stashed changes
 //Here is how this is going to work.
 //Opacity is related to priority
 $PRIORITY-LOWEST:.1;
@@ -57,3 +62,6 @@ $BUTTON-BORDER-SIZE: 1px;
 $BUTTON-BORDER-STYLE: solid;
 $BUTTON-BORDER-COLOR: $BLACK-LOWEST;
 $BUTTON-TIME: .1s; //Transition time for all buttons
+
+//Standard border Radius, i know, not naming convention... Later
+$SBR: .1rem;

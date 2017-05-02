@@ -24,7 +24,7 @@ header {
     flex-direction: column;
     min-height: 2em;
     input{
-      border-radius: $standardBorderRadius 0px 0px $standardBorderRadius;
+      border-radius: $SBR 0px 0px $SBR;
       flex-grow: 10;
       min-height: 2em;
       @extend BUTTON-BORDER;
@@ -36,7 +36,7 @@ header {
       z-index: 11;
       bottom: .2em;
       right: 1em;
-      border-radius: 0px $standardBorderRadius $standardBorderRadius 0px;
+      border-radius: 0px $SBR $SBR 0px;
     }
   }
   button {

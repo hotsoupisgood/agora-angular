@@ -1,15 +1,19 @@
+
+//area to look at a users info(including your own)
+
 .account {
-  margin: .5em;
+  margin: .5rem;
   display: flex;
   background: white;
-  padding: .5em;
-  .back {
+  padding: .5rem;
+  .header {
     display: flex;
     flex-direction: row;
+    margin: .2rem;
     .name {
       display: flex;
       flex-direction: row;
-      font-size: 1em;
+      font-size: 1rem;
     }
   }
   .noUser {
@@ -42,31 +46,31 @@
     }
     .responses {
       .response{
-        margin-top: 1em;
-        margin-bottom: 1em;
-        margin-left: 1em;
-        margin-right: 1em;
-        padding: .25em;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: .25rem;
         border: 1px solid lightgrey;
-        border-radius: .2em;
+        border-radius: .2rem;
             .header {
               .text {
                 color: black;
-                font-size: .8em;
+                font-size: .8rem;
               }
               .details {
-                font-size: .8em;
+                font-size: .8rem;
                 color: grey;
-                margin-left: 1em;
+                margin-left: 1rem;
               }
             }
             .subHeader {
               a {
-                font-size: .8em;
+                font-size: .8rem;
                 color: grey;
               }
               .details {
-                font-size: .8em;
+                font-size: .8rem;
                 color: grey;
               }
             }

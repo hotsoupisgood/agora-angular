@@ -1,9 +1,5 @@
     <div class="account col" ng-controller="userController">
-      <div class="back row">
-        <div class="click-area" ng-click="back()">
-          <i class="fa fa-chevron-left" aria-hidden="true"></i>
-          back
-        </div>
+      <div class="header row">
         <div class="fill-space"></div>
         <div class="name">
           {{info.username}}'s account
@@ -23,11 +19,7 @@
             <div class="row fill-space accountStats">
               <div class="row subheader" ng-click="showQ()">
                 <div class="contentTitle">
-                  <!-- <label> -->
                      Questions
-                    <!-- <i class="fa fa-caret-down" aria-hidden="true" ng-hide="showQuestions"></i> -->
-                    <!-- <i class="fa fa-caret-up" aria-hidden="true" ng-show="showQuestions"></i> -->
-                  <!-- </label> -->
                 </div>
                 <div class="fill-space"></div>
                 <div class="details">
@@ -48,11 +40,7 @@
             <div class="row fill-space accountStats">
               <div class="row subheader" ng-click="showR()">
                 <div class="contentTitle">
-                  <!-- <label> -->
                      Responses
-                    <!-- <i class="fa fa-caret-down" aria-hidden="true" ng-hide="showResponses"></i> -->
-                    <!-- <i class="fa fa-caret-up" aria-hidden="true" ng-show="showResponses"></i> -->
-                  <!-- </label> -->
                 </div>
                 <div class="fill-space"></div>
                 <div class="details">
