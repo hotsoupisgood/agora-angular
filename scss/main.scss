@@ -242,3 +242,14 @@ $MEDIUM-SIZE: 2rem;
     vertical-align: middle;
   }
 }
+.error{
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 1s ease-in-out;
+  background-color: #fff;
+  color: #000;
+}
+.error.ng-hide{
+  background-color: #f00;
+  color: #fff;
+}

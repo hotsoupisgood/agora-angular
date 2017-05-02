@@ -882,17 +882,6 @@ header .site-nav ul li a:hover {
   padding: .4em;
   flex-grow: 2;
 }
-.discover .error {
-  border-radius: 5px;
-  padding: 10px;
-  transition: all 1s ease-in-out;
-  background-color: #fff;
-  color: #000;
-}
-.discover .error.ng-hide {
-  background-color: #f00;
-  color: #fff;
-}
 
 body {
   font-family: helvetica, 'Arvo', sans-serif;
@@ -1101,6 +1090,19 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, header form
   margin-left: 0.5rem;
   text-align: center;
   vertical-align: middle;
+}
+
+.error {
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 1s ease-in-out;
+  background-color: #fff;
+  color: #000;
+}
+
+.error.ng-hide {
+  background-color: #f00;
+  color: #fff;
 }
 
 /*# sourceMappingURL=mainScss.css.map */
