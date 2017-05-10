@@ -1,9 +1,7 @@
     <div class="account col" ng-controller="userController">
       <div class="header row">
         <div class="fill-space"></div>
-        <div class="name">
-          {{info.username}}'s account
-        </div>
+          <span class="page-title">Profile</span>
         <div class="fill-space"></div>
       </div>
       <div class="row" ng-hide="info.username.length || noUser">
@@ -19,17 +17,17 @@
             <div class="row fill-space accountStats">
               <div class="row subheader" ng-click="showQ()">
                 <div class="contentTitle">
-                     Questions
+                     Your Questions
                 </div>
                 <div class="fill-space"></div>
                 <div class="details">
-                  <label>Total:
+                  <label>Total Questions:
                   {{info.my_questions}}
                 </label>
                 </div>
               </div>
               <div class="empty-text" ng-hide="questions.length">
-                ¯\_(ツ)_/¯ Nothing here? Try solving
+                ¯\_(ツ)_/¯ You have not asked any questions! Try solving
                 <a href="#/question/1">THIS</a>
                 easy question!
               </div>
@@ -40,17 +38,17 @@
             <div class="row fill-space accountStats">
               <div class="row subheader" ng-click="showR()">
                 <div class="contentTitle">
-                     Responses
+                     Your Responses
                 </div>
                 <div class="fill-space"></div>
                 <div class="details">
-                  <label>Total:
+                  <label>Total Responses:
                   {{info.my_responses}}
                 </label>
                 </div>
               </div>
               <div class="empty-text" ng-hide="info.my_responses.length">
-                ¯\_(ツ)_/¯ Nothing here? Try solving
+                ¯\_(ツ)_/¯ You have not responsed to any question! Try solving
                 <a href="#/question/1">THIS</a>
                 easy question!
               </div>
