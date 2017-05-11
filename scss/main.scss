@@ -9,7 +9,7 @@
 @import "util";
 @import "user";
 @import "sidebar";
-@import "navBar";
+@import "nav_bar";
 @import "ask";
 @import "questionStream";
 @import "login";
@@ -210,21 +210,46 @@ $SMALL-SIZE: .7rem;
 }
 //Circular buttons for icons
 $MEDIUM-SIZE: 2rem;
-.circleButton{
-  $s:$MEDIUM-SIZE;
-  @extend .whiteButton;
-  font-size:$s/2;
-  height:$s;
-  width:$s;
-  border-radius:$s/2;
-  *{
-    opacity: $PRIORITY-MED;
-    width: $s/2;
-    height: $s/2;
-    margin-top: $s/4;
-    margin-left: $s/4;
-    text-align: center;
-    vertical-align: middle;
+.answer {
+  transition: width 2s linear 1s;
+  .actionButton:hover{
+    .description{
+      visibility: visible;
+      font-size: 1rem;
+      opacity: 1;
+      margin-right: .6rem;
+    }
+  }
+  .actionButton{
+    $s:$MEDIUM-SIZE;
+    border-radius:$s/2;
+    @extend .whiteButton;
+    font-size:$s/2;
+    display: flex;
+    flex-direction: row;
+    .description{
+      transition: font .4s ease;
+      visibility: collapse;
+      opacity: 0;
+      text-decoration: none !important;
+      color: black;
+      font-size: .00001rem;// to completly hide it
+      justify-content: center;
+      align-self: center;
+    }
+    .circleButton{
+      height:$s;
+      width:$s;
+      *{
+        opacity: $PRIORITY-MED;
+        width: $s/2;
+        height: $s/2;
+        margin-top: $s/4;
+        margin-left: $s/4;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
   }
 }
 .error{

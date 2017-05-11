@@ -18,14 +18,17 @@ header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 2.8rem;
+  overflow: hidden;
   form {
     padding: .2em;
     display: flex;
     flex-direction: column;
     min-height: 2em;
+    flex-shrink: 1;
     input{
+      flex-shrink: 1;
       border-radius: $SBR 0px 0px $SBR;
-      flex-grow: 10;
       min-height: 2em;
       @extend BUTTON-BORDER;
     }
@@ -34,7 +37,7 @@ header {
       background: rgba(255, 255, 255, 0);
       color: black;
       z-index: 11;
-      bottom: .2em;
+      bottom: .26em;
       right: 1em;
       border-radius: 0px $SBR $SBR 0px;
     }
@@ -84,17 +87,10 @@ header {
     color: black;
     display: flex;
     align-items: center;
-    // padding-right: 10px;
 }
 .account-actions {
     margin-left: auto;
     display: flex;
     align-items: center;
     margin-right: 1em;
-}
-.account-dropdown:hover {
-  ul {
-    display: flex;
-    flex-direction: column;
-  }
 }

@@ -16,13 +16,23 @@
                 <div class="header row">
                   <div class="belowTitle">
                       <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
+                        <div class="actionButton">
                           <div class="circleButton">
                               <i class="fa fa-pencil" aria-hidden="true"></i>
                           </div>
+                            <div class="description">
+                              Respond
+                            </div>
+                        </div>
                       </a>
                       <a class="answer" ng-href="#login" ng-hide="isLoggedIn">
-                          <div class="circleButton">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <div class="answer">
+                            <div class="circleButton">
+                              <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </div>
+                              <div class="description">
+                                Login to respond
+                              </div>
                           </div>
                       </a>
                       <a class="text" ng-href="#/question/{{q.id}}">
