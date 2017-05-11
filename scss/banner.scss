@@ -6,31 +6,29 @@
 }
 
 .banner {
-    z-index: 10;
     color: black;
     // background: $COLOR-AUX;
-    background: white;
     transition: max-height 1s;
     overflow: hidden;
-    max-height: 12em;
+    margin: 0 2rem;
     .agoraDude {
-        top: 1em;
-        width: 4.4em;
-        height: 7em;
+        top: 1rem;
+        width: 4.4rem;
+        height: 7rem;
     }
     .centeredPouch {
       display: flex;
       align-items: center;
       justify-content: center;
-        font-family: 'Amatic SC', sans-serif;
+      font-family: 'Amatic SC', sans-serif;
     }
     .pouch {
       display: flex;
       flex-direction: row;
       overflow: hidden;
-      height: 3em;
+      height: 3rem;
       align-items: center;
-      border-radius: 4em;
+      border-radius: 4rem;
       border: .3em solid white;
       padding:  0 .6em;
     }
@@ -39,11 +37,9 @@
         font-size: 3em;
         text-decoration: none;
     }
-
-    .logout {}
-
     .logOptions {
         font-size: 1.2em;
+        align-self: center;
     }
 
     a {

@@ -85,13 +85,13 @@ a:hover {
 form {
     border-radius: $SBR;
     width: auto;
-    padding: 3px;
+    padding: .2rem;
 }
 .content {
-  margin-top: 6.4em;
+  margin-top: 3.8rem;
   display: flex;
   flex-direction: column;
-  // transition: margin-top 90ms;
+  transition: margin-top 90ms;
 }
 .detailText {
   color: grey;

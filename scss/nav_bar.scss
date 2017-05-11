@@ -10,9 +10,6 @@ $navbarHeightMobile: 20vh;
   box-shadow: 3px 3px 3px 2px rgba(#b6b6b6, 0.45);
   z-index: 10;
 }
-header > *{
-  opacity: .55;
-}
 header {
   transition: height 0.3s;
   display: flex;
@@ -20,14 +17,14 @@ header {
   flex-wrap: wrap;
   height: 2.8rem;
   overflow: hidden;
+  justify-content: space-between;
   form {
-    padding: .2em;
+    width: 20rem;
+    padding: .2rem;
     display: flex;
     flex-direction: column;
-    min-height: 2em;
-    flex-shrink: 1;
+    min-height: 2rem;
     input{
-      flex-shrink: 1;
       border-radius: $SBR 0px 0px $SBR;
       min-height: 2em;
       @extend BUTTON-BORDER;
