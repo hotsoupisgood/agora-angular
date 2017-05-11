@@ -1,6 +1,6 @@
 <div class="col">
     <ul class="questionList">
-        <li class="" ng-repeat="q in questions">
+        <li class="" ng-repeat="q in questions" ng-class="{darkenQuestion: textHover}">
             <div class="questionContainer">
                 <!-- <div class="row">
                     <div class="tags">
@@ -36,7 +36,7 @@
                           </div>
                       </a>
                       <a class="text" ng-href="#/question/{{q.id}}">
-                          <div class="title row">
+                          <div class="title row" ng-mouseenter="textHover = true" ng-mouseleave="textHover = false">
                               {{q.text}}
                           </div>
                       </a>

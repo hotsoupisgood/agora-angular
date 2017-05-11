@@ -22,8 +22,15 @@ $phoneButtonHeight: 15vw;
   ul{
     margin: 0;
     li {
+<<<<<<< HEAD
+=======
+      transition: background-color, $BUTTON-TIME;
+>>>>>>> origin/master
       border-top: .1em solid lightgrey;
     }
+  }
+  .darkenQuestion{
+    background-color: darken($BUTTON-COLOR, 10%) !important;
   }
     .questionContainer {
       padding-top: .4em;
@@ -58,6 +65,8 @@ $phoneButtonHeight: 15vw;
         .text:hover {
           .title {
             text-decoration: underline;
+            text-decoration-color: $BLACK-LOW;
+            text-decoration-style:dotted;
           }
 
         }
