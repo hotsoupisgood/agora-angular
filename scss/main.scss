@@ -220,36 +220,71 @@ $MEDIUM-SIZE: 2rem;
       margin-right: .6rem;
     }
   }
-  .actionButton{
-    $s:$MEDIUM-SIZE;
-    border-radius:$s/2;
-    @extend .whiteButton;
-    font-size:$s/2;
-    display: flex;
-    flex-direction: row;
+}
+.actionButton{
+  $s:$MEDIUM-SIZE;
+  @extend .whiteButton;
+  min-width:$s;
+  min-height:$s;
+  border-radius:$s/2 !important;
+  font-size:$s/2;
+  display: flex;
+  transition: all .4s !important;
+  color: $BLACK-LOW;
+  &:hover{
     .description{
-      transition: font .4s ease;
-      visibility: collapse;
-      opacity: 0;
-      text-decoration: none !important;
-      color: black;
-      font-size: .00001rem;// to completly hide it
-      justify-content: center;
-      align-self: center;
+      font-size: 2*$s/5;
+      margin: .4rem;
+      margin-left: .2rem;
     }
-    .circleButton{
-      height:$s;
-      width:$s;
-      *{
-        opacity: $PRIORITY-MED;
-        width: $s/2;
-        height: $s/2;
-        margin-top: $s/4;
-        margin-left: $s/4;
-        text-align: center;
-        vertical-align: middle;
-      }
-    }
+  }
+  i{
+    width: $s/2;
+    height: $s/2;
+    margin-top: $s/4;
+    margin-left: $s/4;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .description{
+    transition: all 1s ease;
+    text-decoration: none !important;
+    font-size: 0;
+    justify-content: center;
+    align-self: center;
+    margin: 0;
+  }
+}
+.circleButton{
+  $s:$MEDIUM-SIZE;
+  @extend .whiteButton;
+  font-size:$s/2;
+  height:$s;
+  width:$s;
+  border-radius:$s/2;
+  *{
+    opacity: $PRIORITY-MED;
+    width: $s/2;
+    height: $s/2;
+    margin-top: $s/4;
+    margin-left: $s/4;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+.sideButton{
+  text-align: center;
+  width: 2rem;
+  display: flex;
+  flex-direction: column;
+  &:hover{
+    background-color: $BLACK-LOWEST;
+  }
+  &>div{
+    flex-grow: 1;
+  }
+  &>i{
+    flex-grow: 0;
   }
 }
 .error{
@@ -262,4 +297,10 @@ $MEDIUM-SIZE: 2rem;
 .error.ng-hide{
   background-color: $COLOR-ERROR-BG-BEFORE;
   color: $COLOR-ERROR-TEXT-BEFORE;
+}
+EXPAND{
+  width: 100% !important;
+}
+CONTRACT{
+  width: auto !important;
 }

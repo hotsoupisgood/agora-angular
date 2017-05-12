@@ -1,123 +1,201 @@
 .single-question {
-    margin: 0.5em;
-    padding: 1em;
+    padding: 1rem;
+    padding-right: 0;
+    padding-left: 0;
     flex-grow: 10;
-    .qHeader {
-        margin-top: 0.4em;
-        .title {
-            font-size: 1.2em;
+    .tagContainer{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    #question-outer-container {
+        flex-direction: row;
+        #question-title-container{
+          padding: .4rem;
+          margin-right: 2rem;
+          @extend EXPAND;
+          .title {
+              color: $BLACK-HIGHER;
+              font-size: 1.2rem;
+          }
+          .subHeader {
+              padding: .2rem;
+              font: .6rem !important;
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+              color: $BLACK-LOWER;
+          }
         }
+        .edit{
+          @extend .sideButton;
+          width: 2rem;
+          color: $BLACK-MED;
+          &:hover{
+            background-color: $BLACK-LOWEST;
+          }
+        }
+        .row{
+          align-items: center;
+        }
+        //Used when the edit button is hovered.
+        //Highlights what will be edited.
+        .selected{
+          @extend BUTTON-BORDER;
+        }
+        .unselected{
+          padding: $BUTTON-BORDER-SIZE;
+        }
+    }
+    .responseButton{
+      justify-content: center;
+      margin: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      $t: .4s;
+      *{
+        transition: all $t;
+      }
+      .fade{
+        transition: all $t;
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+      }
+
+    }
+    .responseUI{
+      text-align: center;
+      .fadeIn{
+        transition: all .4s;
+        opacity: 1;
+      }
+      width:100%;
+      border-radius: $BUTTON-BORDER-SIZE;
+      border-style: $BUTTON-BORDER-STYLE;
+      border-color: $BUTTON-BORDER-COLOR;
+      border-width: $BUTTON-BORDER-SIZE;
+      cursor:default !important;
+    }
+    .responses {
+        .response-outer-container{
+          display: flex;
+        }
+        .ownedResponse{
+          margin-top: 1rem;
+          @extend .sideButton;
+          width: 2rem;
+          color: $WHITE-TEXT;
+          background-color: rgba(#fff,0);
+          font-size: 200%;
+          &:hover{
+            background-color: $COLOR-ERROR-BG-BEFORE !important;
+          }
+        }
+    }
+    .unOwnedResponse{
+      margin-right: 2rem;
+      margin-left: 2rem;
+    }
+}
+
+.response {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-color: $BUTTON-BORDER-COLOR;
+    border-style: $BUTTON-BORDER-STYLE;
+    border-width: $BUTTON-BORDER-SIZE;
+    flex-grow: 1;
+    .header {
+        display: flex;
+        flex-direction: column;
+        padding: 0.2em;
+        border-bottom-width: $BUTTON-BORDER-SIZE;
+        border-bottom-color: $BUTTON-BORDER-COLOR;
+        border-bottom-style: $BUTTON-BORDER-STYLE;
         .subHeader {
             display: flex;
             flex-direction: row;
+        }
+        .vote {
             color: grey;
-            margin-top: 0.3em;
-            margin-bottom: 0.2em;
-            a {
-                color: grey;
-            }
-            .none {}
-            .total {}
+            cursor: pointer;
+            margin-left: 0.5em;
         }
     }
-    .responses {
-        margin-top: 0.5em;
-        .response {
-            margin-left: 1em;
-            margin-right: 1em;
-            margin-top: 1em;
-            box-shadow: 0 0 .8em 0 rgba(#b6b6b6, 0.45);
-            border-radius: 0.2em;
-            padding: .4em;
-            .header {
+    .sections {
+      display: flex;
+      flex-direction: row;
+        border-radius: 0.2em;
+        padding: 0.4em;
+
+        .section {
+            .section-header {
                 display: flex;
-                flex-direction: column;
-                padding: 0.2em;
-                .subHeader {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.4em;
+                .addComment {
                     display: flex;
                     flex-direction: row;
-                }
-                .vote {
-                    color: grey;
-                    text-decoration: underline;
-                    cursor: pointer;
-                    margin-left: 0.5em;
+                    font-size: 0.8em;
+                    flex-grow: 5;
+
+                    button {
+                        padding: 0.2em .4em;
+                        margin: 0.2em;
+                    }
+
+                    input {
+                        padding: 0.2em 1em;
+                        margin: 0.2em;
+                        flex-grow: 3;
+                    }
                 }
             }
-            .sections {
-              display: flex;
-              flex-direction: row;
-                margin: .2em 1em;
-                border-top: 0.1em solid lightgrey;
-                border-radius: 0.2em;
-                padding: 0.4em;
 
-                .section {
-                    .section-header {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        justify-content: space-between;
-                        margin-bottom: 0.4em;
-                        .addComment {
-                            display: flex;
-                            flex-direction: row;
-                            font-size: 0.8em;
-                            flex-grow: 5;
+            .section-body {
+                // font-size: 0.8em;
+                margin-left: 1em;
+                margin-right: 1em;
+                flex-shrink: 1;
+            }
+        }
 
-                            button {
-                                padding: 0.2em .4em;
-                                margin: 0.2em;
-                            }
+        .section-comments {
+            display: flex;
+            flex-grow: 10;
+            margin-left: 1em;
+            border-left: 0.1em solid lightgrey;
+            padding-left: 1em;
+            .section-comment-header {
+              font-size: .8em;
+              color: grey;
+              padding-bottom: 0.6em;
 
-                            input {
-                                padding: 0.2em 1em;
-                                margin: 0.2em;
-                                flex-grow: 3;
-                            }
-                        }
-                    }
-
-                    .section-body {
-                        // font-size: 0.8em;
-                        margin-left: 1em;
-                        margin-right: 1em;
-                        flex-shrink: 1;
-                    }
-                }
-
-                .section-comments {
+            }
+            .section-comment {
+                display: flex;
+                flex-wrap: nowrap;
+                .comment {
                     display: flex;
-                    flex-grow: 10;
-                    margin-left: 1em;
-                    border-left: 0.1em solid lightgrey;
-                    padding-left: 1em;
-                    .section-comment-header {
-                      font-size: .8em;
+                    flex-direction: row;
+                    flex-grow: 1;
+                    padding-top: 0.4em;
+                    flex-wrap: nowrap;
+                    white-space:nowrap;
+                    .username {
+                      margin-right: .4em;
                       color: grey;
-                      padding-bottom: 0.6em;
-
                     }
-                    .section-comment {
-                        display: flex;
-                        flex-wrap: nowrap;
-                        .comment {
-                            display: flex;
-                            flex-direction: row;
-                            flex-grow: 1;
-                            padding-top: 0.4em;
-                            flex-wrap: nowrap;
-                            white-space:nowrap;
-                            .username {
-                              margin-right: .4em;
-                              color: grey;
-                            }
-                            .detailText {
-                                margin-left: 1em;
-                                align-self: center;
-                                justify-content: center;
-                            }
-                        }
+                    .detailText {
+                      white-space: nowrap;
+                        margin-left: 1em;
+                        align-self: center;
+                        justify-content: center;
                     }
                 }
             }

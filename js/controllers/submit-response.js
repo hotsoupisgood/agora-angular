@@ -11,9 +11,9 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
     $scope.question = {}
     $scope.getQuestion = function () {
       getSingleQuestionService.get($scope.questionId).then(function (response) {
-        console.log(response);
+        console.log("I went and got a question. " + response);
         $scope.question = response;
-      })
+      });
     }
     $scope.getQuestion();
     $scope.addModule = function() {
@@ -32,14 +32,23 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
 
     }
     $scope.submit = function() {
+      console.log("Testing if responses were passed: " + $scope.$parent.question.responses);
+      if($scope.response == ""){
+        console.log("Nothing in the response.");
+        $scope.noTitle=true;
+        return;
+      }
         submitResponseService.submit($scope.questionId, $scope.response, $scope.modules)
         .then(function(response) {
-          if (response) {
-            $scope.success = true;
-              window.history.back();
-          }
-          else {
-            $scope.failed = true;
+          $scope.success=response.success;
+          if ($scope.success) {
+            var responses = $scope.$parent.question.responses;
+            $scope.openUI=false;
+            console.log(responses);
+            responses.push(response.data);
+            console.log(responses[0].id);
+            console.log(response.data.id);
+            console.log(response.data);
           }
         });
     };

@@ -1,6 +1,6 @@
-<div class="col">
+  <div class="col">
     <ul class="questionList">
-        <li class="" ng-repeat="q in questions" ng-class="{darkenQuestion: textHover}">
+        <li ng-repeat="q in questions" ng-class="{darkenQuestion: textHover}">
             <div class="questionContainer">
                 <!-- <div class="row">
                     <div class="tags">
@@ -15,26 +15,14 @@
                 </div> -->
                 <div class="header row">
                   <div class="belowTitle">
-                      <a class="answer" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
-                        <div class="actionButton">
-                          <div class="circleButton">
-                              <i class="fa fa-pencil" aria-hidden="true"></i>
-                          </div>
-                            <div class="description">
-                              Respond
-                            </div>
-                        </div>
-                      </a>
-                      <a class="answer" ng-href="#login" ng-hide="isLoggedIn">
-                          <div class="actionButton">
-                            <div class="circleButton">
-                              <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </div>
-                              <div class="description">
-                                Login to respond
-                              </div>
-                          </div>
-                      </a>
+                        <a class="actionButton" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <span class="description">Respond</span>
+                        </a>
+                        <a class="actionButton" ng-href="#login" ng-hide="isLoggedIn">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <span class="description">Login to respond</span>
+                        </a>
                       <a class="text" ng-href="#/question/{{q.id}}">
                           <div class="title row" ng-mouseenter="textHover = true" ng-mouseleave="textHover = false">
                               {{q.text}}

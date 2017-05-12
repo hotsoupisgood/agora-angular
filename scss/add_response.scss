@@ -1,18 +1,23 @@
 .addResponse {
-    background: white;
-    padding: .5em;
-    margin: .5em;
-    .question{
-      border-bottom:1px solid black;
-      margin-bottom: 1em;
-    }
+  padding: 1rem;
+  padding-top: 0;
+  .noInput{
+    border: none !important;
+    pointer-events:none;
+  }
     .bigTitle {
-      border-bottom:1px solid grey;
+      border-bottom-width: $BUTTON-BORDER-SIZE;
+      border-bottom-color: $BUTTON-BORDER-COLOR;
+      border-bottom-style: $BUTTON-BORDER-STYLE;
+        .alertField{
+          border-color: red;
+        }
         input {
             min-height: 3vh;
+            @extend BUTTON-BORDER;
         }
-        .addModule {
-            // background: rgba(45, 191, 169, 0.22);
+        button{
+          margin-left: 1rem;
         }
     }
     .note {
@@ -20,7 +25,6 @@
         font-size: 0.6em;
         margin-bottom: 1em;
     }
-
     .modules {
         display: flex;
         flex-direction: column;
@@ -29,9 +33,12 @@
             display: flex;
             flex-direction: row;
             input {
+                @extend BUTTON-BORDER;
                 min-height: 3vh;
-                flex-grow: 10;
-                margin-left: 20px;
+                flex-grow: 1;
+            }
+            button{
+              margin-left: 1rem;
             }
         }
 
@@ -40,13 +47,17 @@
             flex-direction: row;
             // flex-grow: 7;
             textarea {
+                @extend BUTTON-BORDER;
                 flex-grow: 10;
                 min-height: 8vh;
+                margin-right: 0;
             }
         }
     }
 
     .submitResponse {
+      opacity: 0;
+      justify-content: center;
         display: flex;
         flex-direction: row;
 
@@ -62,4 +73,5 @@
             list-style-type: disc;
         }
     }
+
 }

@@ -64,104 +64,171 @@
 }
 
 .single-question {
-  margin: 0.5em;
-  padding: 1em;
+  padding: 1rem;
+  padding-right: 0;
+  padding-left: 0;
   flex-grow: 10;
 }
-.single-question .qHeader {
-  margin-top: 0.4em;
-}
-.single-question .qHeader .title {
-  font-size: 1.2em;
-}
-.single-question .qHeader .subHeader {
+.single-question .tagContainer {
+  width: 100%;
   display: flex;
+  justify-content: center;
+}
+.single-question #question-outer-container {
   flex-direction: row;
-  color: grey;
-  margin-top: 0.3em;
-  margin-bottom: 0.2em;
 }
-.single-question .qHeader .subHeader a {
-  color: grey;
+.single-question #question-outer-container #question-title-container {
+  padding: .4rem;
+  margin-right: 2rem;
 }
-.single-question .responses {
-  margin-top: 0.5em;
+.single-question #question-outer-container #question-title-container .title {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.2rem;
 }
-.single-question .responses .response {
-  margin-left: 1em;
-  margin-right: 1em;
-  margin-top: 1em;
-  box-shadow: 0 0 0.8em 0 rgba(182, 182, 182, 0.45);
-  border-radius: 0.2em;
-  padding: .4em;
+.single-question #question-outer-container #question-title-container .subHeader {
+  padding: .2rem;
+  font: .6rem !important;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.3);
 }
-.single-question .responses .response .header {
+.single-question #question-outer-container .edit {
+  width: 2rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+.single-question #question-outer-container .edit:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.single-question #question-outer-container .row {
+  align-items: center;
+}
+.single-question #question-outer-container .unselected {
+  padding: 1px;
+}
+.single-question .responseButton {
+  justify-content: center;
+  margin: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+}
+.single-question .responseButton * {
+  transition: all 0.4s;
+}
+.single-question .responseButton .fade {
+  transition: all 0.4s;
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+.single-question .responseUI {
+  text-align: center;
+  width: 100%;
+  border-radius: 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 1px;
+  cursor: default !important;
+}
+.single-question .responseUI .fadeIn {
+  transition: all .4s;
+  opacity: 1;
+}
+.single-question .responses .response-outer-container {
+  display: flex;
+}
+.single-question .responses .ownedResponse {
+  margin-top: 1rem;
+  width: 2rem;
+  color: white;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 200%;
+}
+.single-question .responses .ownedResponse:hover {
+  background-color: red !important;
+}
+.single-question .unOwnedResponse {
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+.response {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 1px;
+  flex-grow: 1;
+}
+.response .header {
   display: flex;
   flex-direction: column;
   padding: 0.2em;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-bottom-style: solid;
 }
-.single-question .responses .response .header .subHeader {
+.response .header .subHeader {
   display: flex;
   flex-direction: row;
 }
-.single-question .responses .response .header .vote {
+.response .header .vote {
   color: grey;
-  text-decoration: underline;
   cursor: pointer;
   margin-left: 0.5em;
 }
-.single-question .responses .response .sections {
+.response .sections {
   display: flex;
   flex-direction: row;
-  margin: .2em 1em;
-  border-top: 0.1em solid lightgrey;
   border-radius: 0.2em;
   padding: 0.4em;
 }
-.single-question .responses .response .sections .section .section-header {
+.response .sections .section .section-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.4em;
 }
-.single-question .responses .response .sections .section .section-header .addComment {
+.response .sections .section .section-header .addComment {
   display: flex;
   flex-direction: row;
   font-size: 0.8em;
   flex-grow: 5;
 }
-.single-question .responses .response .sections .section .section-header .addComment button {
+.response .sections .section .section-header .addComment button {
   padding: 0.2em .4em;
   margin: 0.2em;
 }
-.single-question .responses .response .sections .section .section-header .addComment input {
+.response .sections .section .section-header .addComment input {
   padding: 0.2em 1em;
   margin: 0.2em;
   flex-grow: 3;
 }
-.single-question .responses .response .sections .section .section-body {
+.response .sections .section .section-body {
   margin-left: 1em;
   margin-right: 1em;
   flex-shrink: 1;
 }
-.single-question .responses .response .sections .section-comments {
+.response .sections .section-comments {
   display: flex;
   flex-grow: 10;
   margin-left: 1em;
   border-left: 0.1em solid lightgrey;
   padding-left: 1em;
 }
-.single-question .responses .response .sections .section-comments .section-comment-header {
+.response .sections .section-comments .section-comment-header {
   font-size: .8em;
   color: grey;
   padding-bottom: 0.6em;
 }
-.single-question .responses .response .sections .section-comments .section-comment {
+.response .sections .section-comments .section-comment {
   display: flex;
   flex-wrap: nowrap;
 }
-.single-question .responses .response .sections .section-comments .section-comment .comment {
+.response .sections .section-comments .section-comment .comment {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -169,11 +236,12 @@
   flex-wrap: nowrap;
   white-space: nowrap;
 }
-.single-question .responses .response .sections .section-comments .section-comment .comment .username {
+.response .sections .section-comments .section-comment .comment .username {
   margin-right: .4em;
   color: grey;
 }
-.single-question .responses .response .sections .section-comments .section-comment .comment .detailText {
+.response .sections .section-comments .section-comment .comment .detailText {
+  white-space: nowrap;
   margin-left: 1em;
   align-self: center;
   justify-content: center;
@@ -239,19 +307,26 @@
 }
 
 .addResponse {
-  background: white;
-  padding: .5em;
-  margin: .5em;
+  padding: 1rem;
+  padding-top: 0;
 }
-.addResponse .question {
-  border-bottom: 1px solid black;
-  margin-bottom: 1em;
+.addResponse .noInput {
+  border: none !important;
+  pointer-events: none;
 }
 .addResponse .bigTitle {
-  border-bottom: 1px solid grey;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-bottom-style: solid;
+}
+.addResponse .bigTitle .alertField {
+  border-color: red;
 }
 .addResponse .bigTitle input {
   min-height: 3vh;
+}
+.addResponse .bigTitle button {
+  margin-left: 1rem;
 }
 .addResponse .note {
   color: lightgrey;
@@ -268,8 +343,10 @@
 }
 .addResponse .modules .moduleTitles input {
   min-height: 3vh;
-  flex-grow: 10;
-  margin-left: 20px;
+  flex-grow: 1;
+}
+.addResponse .modules .moduleTitles button {
+  margin-left: 1rem;
 }
 .addResponse .modules .moduleResponses {
   display: flex;
@@ -278,8 +355,11 @@
 .addResponse .modules .moduleResponses textarea {
   flex-grow: 10;
   min-height: 8vh;
+  margin-right: 0;
 }
 .addResponse .submitResponse {
+  opacity: 0;
+  justify-content: center;
   display: flex;
   flex-direction: row;
 }
@@ -760,9 +840,11 @@ header .site-nav ul li a:hover {
   padding-left: 1rem;
 }
 .questionStream .questionContainer .header .text:hover .title {
-  text-decoration: underline;
-  text-decoration-color: rgba(0, 0, 0, 0.5);
-  text-decoration-style: dotted;
+  color: rgba(0, 0, 0, 0.8);
+  transition: color 0.1s;
+}
+.questionStream .questionContainer .header .text:hover .title:hover {
+  color: black;
 }
 .questionStream .questionContainer .header .d-time {
   margin-left: 1em;
@@ -1039,11 +1121,11 @@ form {
   display: table;
 }
 
-.whiteButton.pressed, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.editButton, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .answer .pressed.actionButton {
+.whiteButton.pressed, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.editButton, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .pressed.actionButton, .pressed.circleButton {
   background-color: #cccccc;
 }
 
-.whiteButton, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .editButton, .roundButton, .sidebar .catagory .tags .tag, .answer .actionButton {
+.whiteButton, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .editButton, .roundButton, .sidebar .catagory .tags .tag, .actionButton, .circleButton {
   color: rgba(0, 0, 0, 0.7);
   transition: background-color 0.1s ease;
   background-color: white;
@@ -1053,14 +1135,14 @@ form {
   border-style: solid;
   text-decoration: none;
 }
-.whiteButton:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .editButton:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .answer .actionButton:hover {
+.whiteButton:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .editButton:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .actionButton:hover, .circleButton:hover {
   background-color: #e6e6e6;
 }
-.whiteButton:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .editButton:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .answer .actionButton:active {
+.whiteButton:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .editButton:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .actionButton:active, .circleButton:active {
   background-color: #cccccc;
 }
 
-BUTTON-BORDER, .search .searchResults .responses .results .response, header form input {
+BUTTON-BORDER, .search .searchResults .responses .results .response, .single-question #question-outer-container .selected, .addResponse .bigTitle input, .addResponse .modules .moduleTitles input, .addResponse .modules .moduleResponses textarea, header form input {
   border-color: rgba(0, 0, 0, 0.1);
   border-width: 1px;
   border-style: solid;
@@ -1083,27 +1165,45 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, header form
   opacity: 1;
   margin-right: .6rem;
 }
-.answer .actionButton {
-  border-radius: 1rem;
+
+.actionButton {
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 1rem !important;
   font-size: 1rem;
   display: flex;
-  flex-direction: row;
+  transition: all .4s !important;
+  color: rgba(0, 0, 0, 0.5);
 }
-.answer .actionButton .description {
-  transition: font .4s ease;
-  visibility: collapse;
-  opacity: 0;
+.actionButton:hover .description {
+  font-size: 0.8rem;
+  margin: .4rem;
+  margin-left: .2rem;
+}
+.actionButton i {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.actionButton .description {
+  transition: all 1s ease;
   text-decoration: none !important;
-  color: black;
-  font-size: .00001rem;
+  font-size: 0;
   justify-content: center;
   align-self: center;
+  margin: 0;
 }
-.answer .actionButton .circleButton {
+
+.circleButton {
+  font-size: 1rem;
   height: 2rem;
   width: 2rem;
+  border-radius: 1rem;
 }
-.answer .actionButton .circleButton * {
+.circleButton * {
   opacity: 0.7;
   width: 1rem;
   height: 1rem;
@@ -1111,6 +1211,22 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, header form
   margin-left: 0.5rem;
   text-align: center;
   vertical-align: middle;
+}
+
+.sideButton, .single-question #question-outer-container .edit, .single-question .responses .ownedResponse {
+  text-align: center;
+  width: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.sideButton:hover, .single-question #question-outer-container .edit:hover, .single-question .responses .ownedResponse:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.sideButton > div, .single-question #question-outer-container .edit > div, .single-question .responses .ownedResponse > div {
+  flex-grow: 1;
+}
+.sideButton > i, .single-question #question-outer-container .edit > i, .single-question .responses .ownedResponse > i {
+  flex-grow: 0;
 }
 
 .error {
@@ -1124,6 +1240,14 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, header form
 .error.ng-hide {
   background-color: red;
   color: white;
+}
+
+EXPAND, .single-question #question-outer-container #question-title-container {
+  width: 100% !important;
+}
+
+CONTRACT {
+  width: auto !important;
 }
 
 /*# sourceMappingURL=mainScss.css.map */

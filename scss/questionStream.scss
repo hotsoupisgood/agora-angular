@@ -61,9 +61,11 @@ $phoneButtonHeight: 15vw;
         }
         .text:hover {
           .title {
-            text-decoration: underline;
-            text-decoration-color: $BLACK-LOW;
-            text-decoration-style:dotted;
+            color: $BLACK-HIGH;
+            transition: color $BUTTON-TIME;
+            &:hover{
+              color: $BLACK-HIGHEST;
+            }
           }
 
         }

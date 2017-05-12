@@ -1,6 +1,6 @@
-module.exports = function($scope, upVoteQuestionService) {
+module.exports = function($scope, upVoteQuestionService, removeService) {
     $scope.name = 'responseController';
-
+    $scope.deleted=false;
     $scope.upVoted = false;
     $scope.upVote = function (id) {
       upVoteQuestionService.response(id).then(function (response) {
@@ -11,5 +11,10 @@ module.exports = function($scope, upVoteQuestionService) {
           //donothing
         }
       })
-    }
+    };
+    $scope.delete = function(_response){
+      if(removeService.removeResponse(_response.id)){
+        $scope.deleted=true;
+      }
+    };
 };

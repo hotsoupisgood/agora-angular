@@ -244,19 +244,24 @@ module.exports =  function($scope, $rootScope, $route,
 };
 
 },{}],10:[function(require,module,exports){
-module.exports = function($scope, $routeParams, getSingleQuestionService, upVoteQuestionService) {
+module.exports = function($scope, $routeParams, getSingleQuestionService, upVoteQuestionService, editService) {
     $scope.name = 'questionController';
-
     $scope.question = {};
     $scope.responses = {};
     $scope.questionId = $routeParams.questionId;
-
+    $scope.editQuestion=false;
     $scope.getQuestionFull = function () {
       getSingleQuestionService.get($scope.questionId).then(function (response) {
         $scope.question = response;
       });
-    }
+    };
     $scope.getQuestionFull();
+    $scope.saveText=function(question){
+      if(!editService.editQuestion(question.id, question.text)){
+        alert("Failed to update the question. Check your connection.");
+      }
+      $scope.editQuestion=false;
+    };
 };
 
 },{}],11:[function(require,module,exports){
@@ -432,9 +437,9 @@ module.exports =  function($scope, $routeParams, upVoteQuestionService,
   };
 
 },{}],13:[function(require,module,exports){
-module.exports = function($scope, upVoteQuestionService) {
+module.exports = function($scope, upVoteQuestionService, removeService) {
     $scope.name = 'responseController';
-
+    $scope.deleted=false;
     $scope.upVoted = false;
     $scope.upVote = function (id) {
       upVoteQuestionService.response(id).then(function (response) {
@@ -445,7 +450,12 @@ module.exports = function($scope, upVoteQuestionService) {
           //donothing
         }
       })
-    }
+    };
+    $scope.delete = function(_response){
+      if(removeService.removeResponse(_response.id)){
+        $scope.deleted=true;
+      }
+    };
 };
 
 },{}],14:[function(require,module,exports){
@@ -608,9 +618,9 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
     $scope.question = {}
     $scope.getQuestion = function () {
       getSingleQuestionService.get($scope.questionId).then(function (response) {
-        console.log(response);
+        console.log("I went and got a question. " + response);
         $scope.question = response;
-      })
+      });
     }
     $scope.getQuestion();
     $scope.addModule = function() {
@@ -629,14 +639,23 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
 
     }
     $scope.submit = function() {
+      console.log("Testing if responses were passed: " + $scope.$parent.question.responses);
+      if($scope.response == ""){
+        console.log("Nothing in the response.");
+        $scope.noTitle=true;
+        return;
+      }
         submitResponseService.submit($scope.questionId, $scope.response, $scope.modules)
         .then(function(response) {
-          if (response) {
-            $scope.success = true;
-              window.history.back();
-          }
-          else {
-            $scope.failed = true;
+          $scope.success=response.success;
+          if ($scope.success) {
+            var responses = $scope.$parent.question.responses;
+            $scope.openUI=false;
+            console.log(responses);
+            responses.push(response.data);
+            console.log(responses[0].id);
+            console.log(response.data.id);
+            console.log(response.data)
           }
         });
     };
@@ -768,34 +787,70 @@ module.exports = function ($http, $rootScope, $cookies) {
 }
 
 },{}],22:[function(require,module,exports){
-module.exports = function ($rootScope, $http, userService) {
-  this.submitQuestion = function(askedQuestion, questionsTags, id) {
-      return $http({
-          method: 'PATCH',
-          url: 'https://api.iex.ist/full/question/' + id + '/',
-          //production params
-          data: {
-              text: askedQuestion,
-              tags: questionsTags
-          },
-          headers: {
-              'Content-type': 'application/json',
-              'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
-          }
-      }).then(function successCallback(response) {
-          // this callback will be called asynchronously
-          // when the response is available
-          console.log('successCallback, response: ');
-          console.log(response.data);
-          return true;
-      }, function errorCallback(response) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-          console.log('errorCallback, response: ');
-          console.log(response.data);
-          return false;
-      });
-  }
+module.exports = function($rootScope, $http, userService) {
+    this.edit = function(type, id, _text) {
+        return $http({
+            method: 'PATCH',
+            url: 'https://api.iex.ist/full/' + type + '/' + id + '/',
+            //production params
+            data: {
+                text: _text,
+            },
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
+            }
+        }).then(function successCallback(response) {
+            console.log('successCallback, response: ');
+            console.log(response.data);
+            return true;
+        }, function errorCallback(response) {
+            console.log('errorCallback, response: ');
+            console.log(response.data);
+            return false;
+        });
+    }
+    this.editQuestion = function(id, text) {
+        return this.edit("question", id, text);
+    };
+    this.editResponse = function(id, text) {
+        return this.edit("response", id, text);
+    };
+    this.editModule = function(id, text) {
+        return this.edit("module", id, text);
+    };
+    this.editComment = function(id, text) {
+        return this.edit("comment", id, text);
+    };
+
+    //GKRSLCAFKG
+    this.submitQuestion = function(askedQuestion, questionsTags, id) {
+        return $http({
+            method: 'PATCH',
+            url: 'https://api.iex.ist/full/question/' + id + '/',
+            //production params
+            data: {
+                text: askedQuestion,
+                tags: questionsTags
+            },
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
+            }
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+            console.log('successCallback, response: ');
+            console.log(response.data);
+            return true;
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('errorCallback, response: ');
+            console.log(response.data);
+            return false;
+        });
+    }
 }
 
 },{}],23:[function(require,module,exports){
@@ -968,8 +1023,11 @@ module.exports = function(userService, $http) {
 },{}],27:[function(require,module,exports){
 module.exports = function($rootScope, $http, userService) {
     this.remove = function(type, id) {
+        if (!confirm('Are you sure you want to delete this '+ type +'?\nIt will be gone FOREVER!')) {
+          return false;
+        }
         return $http({
-            method: 'remove',
+            method: 'DELETE',
             url: 'https://api.iex.ist/full/' + type + '/' + id + '/',
             headers: {
                 'Content-type': 'application/json',
@@ -984,11 +1042,11 @@ module.exports = function($rootScope, $http, userService) {
             console.log(response.data);
             return false;
         });
-    }
-    this.removeQuestion=function(id) {this.remove("question");};
-    this.removeResponse=function(id) {this.remove("response");};
-    this.removeModule=function(id) {this.remove("module");};
-    this.removeComment=function(id) {this.remove("comment");};
+    };
+    this.removeQuestion=function(id) {return this.remove("question", id);};
+    this.removeResponse=function(id) {return this.remove("response", id);};
+    this.removeModule=function(id) {return this.remove("module", id);};
+    this.removeComment=function(id) {return this.remove("comment", id);};
 }
 
 },{}],28:[function(require,module,exports){
@@ -1187,13 +1245,15 @@ module.exports = function($http, $cookies, $rootScope, userService) {
                 // when the response is available
                 // console.log('successCallback, response: ');
                 // console.log(response.data);
-                return true;
+                response.success=true;
+                return response;
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
                 console.log('errorCallback, response: ');
                 console.log(response.data);
-                return false;
+                response.success=false;
+                return response;
             });
     };
 };
