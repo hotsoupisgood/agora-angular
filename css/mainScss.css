@@ -1156,9 +1156,6 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   vertical-align: middle;
 }
 
-.answer {
-  transition: width 2s linear 1s;
-}
 .answer .actionButton:hover .description {
   visibility: visible;
   font-size: 1rem;
@@ -1189,7 +1186,7 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   vertical-align: middle;
 }
 .actionButton .description {
-  transition: all 1s ease;
+  transition: all .2s ease;
   text-decoration: none !important;
   font-size: 0;
   justify-content: center;

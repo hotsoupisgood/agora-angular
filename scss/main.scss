@@ -211,7 +211,6 @@ $SMALL-SIZE: .7rem;
 //Circular buttons for icons
 $MEDIUM-SIZE: 2rem;
 .answer {
-  transition: width 2s linear 1s;
   .actionButton:hover{
     .description{
       visibility: visible;
@@ -247,7 +246,7 @@ $MEDIUM-SIZE: 2rem;
     vertical-align: middle;
   }
   .description{
-    transition: all 1s ease;
+    transition: all .2s ease;
     text-decoration: none !important;
     font-size: 0;
     justify-content: center;
