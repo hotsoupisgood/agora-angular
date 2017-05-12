@@ -1,0 +1,186 @@
+
+// Everything you need to know bout.... Buttons!!!
+// These buttons are buttons used on multiple pages...
+// Specific buttons should be located on their parent page
+// This page was created because main.scss was filled with buttons
+
+//Main button class
+.whiteButton.pressed{
+  background-color: darken($BUTTON-COLOR, 20%);
+}
+.whiteButton{
+  color: $BLACK-MED;
+  transition: background-color $BUTTON-TIME ease;
+  background-color: $BUTTON-COLOR;
+  border-radius: 2px;
+  border-color: $BUTTON-BORDER-COLOR;
+  border-width: $BUTTON-BORDER-SIZE;
+  border-style: $BUTTON-BORDER-STYLE;
+  text-decoration: none;
+  &:hover{
+    background-color: darken($BUTTON-COLOR, 10%);
+  }
+  &:active{
+    background-color: darken($BUTTON-COLOR, 20%);
+  }
+}
+//Used to define the border around a lot inputs and buttons.
+BUTTON-BORDER{
+  border-color: $BUTTON-BORDER-COLOR;
+  border-width: $BUTTON-BORDER-SIZE;
+  border-style: $BUTTON-BORDER-STYLE;
+}
+.selected {
+  background-color: lighten($LIGHT-HUE, 75%);
+}
+.button-edit{
+  padding: .2rem;
+  min-height: $QUESTION-HEIGHT;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: $LIGHT-HUE;
+  transition: all $BUTTON-TIME;
+  .description{
+    transition: all .2s ease;
+    text-decoration: none !important;
+    font-size: 0;
+    justify-content: center;
+    align-self: center;
+    margin: 0;
+  }
+  &:hover{
+    @extend .selected;
+    .description{
+      font-size: 1rem;
+      margin: .4rem;
+      margin-left: .2rem;
+    }
+  }
+  &>div{
+    flex-grow: 1;
+  }
+}
+//Round buttons for tag like things.
+$SMALL-SIZE: .7rem;
+.roundButton{
+  $s:$SMALL-SIZE;
+  @extend .whiteButton;
+  height: $s;
+  font-size: $s;
+  line-height: $s;
+  border-radius: $s;
+  vertical-align: middle;
+}
+//Circular buttons for icons
+$MEDIUM-SIZE: 2rem;
+
+.actionButton{
+  $s:$MEDIUM-SIZE;
+  @extend .whiteButton;
+  min-width:$s;
+  min-height:$s;
+  border-radius:$s/2 !important;
+  font-size:$s/2;
+  display: flex;
+  transition: all .4s !important;
+  color: $BLACK-LOW;
+  &:hover{
+    .description{
+      visibility: visible;
+      font-size: 2*$s/5;
+      margin: .4rem;
+      margin-left: .2rem;
+      margin-right: .6rem;
+    }
+  }
+  i{
+    width: $s/2;
+    height: $s/2;
+    margin-top: $s/4;
+    margin-left: $s/4;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .description{
+    transition: all .2s ease;
+    text-decoration: none !important;
+    font-size: 0;
+    justify-content: center;
+    align-self: center;
+    margin: 0;
+  }
+}
+.circleButton{
+  $s:$MEDIUM-SIZE;
+  @extend .whiteButton;
+  font-size:$s/2;
+  height:$s;
+  width:$s;
+  border-radius:$s/2;
+  *{
+    opacity: $PRIORITY-MED;
+    width: $s/2;
+    height: $s/2;
+    margin-top: $s/4;
+    margin-left: $s/4;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+.sideButton{
+  text-align: center;
+  width: 2rem;
+  display: flex;
+  flex-direction: column;
+  &:hover{
+    background-color: $BLACK-LOWEST;
+  }
+  &>div{
+    flex-grow: 1;
+  }
+  &>i{
+    flex-grow: 0;
+  }
+}
+
+.infoButton {
+  text-align: center;
+  // color: rgba(54, 187, 51, 1);
+  padding: .2em .4em .2em;
+}
+.doButton {
+  text-align: center;
+  // background: rgba(82, 172, 222, 1);
+  padding: .6em;
+  border-radius: .4em;
+  text-decoration: none;
+  // color: white;
+  //box-shadow: 0 0 .2em .2em rgba(167, 165, 165, 0.45);
+
+}
+.doButton:hover {
+  // color: grey;
+  // background: darken(rgba(50, 140, 191, 0.46), 20%);
+  transition: 100ms;
+}
+.lightEmphasisButton {
+  border-bottom: .5px solid lightgrey;
+}
+.plainBoarderedButton {
+  border: .5px solid black;
+}
+.editButton {
+  // background: rgba(255, 0, 0, 0.62);
+  // border-radius: 1em;
+  padding: .2em;
+  margin: 0 .5em;
+  text-decoration: none;
+  // color: black;
+}
+.editButton {
+  @extend .whiteButton;
+  display: table;
+}
