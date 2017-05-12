@@ -784,7 +784,12 @@ header .site-nav ul li a:hover {
 }
 
 .questionStream ul {
+  margin: 0;
+  padding: 0;
   list-style-type: none;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
 }
 .questionStream ul .selected, .questionStream ul li .button-edit:hover {
   background-color: rgba(191, 191, 191, 0.5);
@@ -832,6 +837,7 @@ header .site-nav ul li a:hover {
   color: rgba(0, 0, 0, 0.5);
 }
 .questionStream ul li .container-question .text-title {
+  padding-left: .2rem;
   font-size: 1rem;
 }
 
@@ -924,6 +930,12 @@ header .site-nav ul li a:hover {
   background: white;
   padding: .4em;
   flex-grow: 2;
+}
+.discover .pagerContainer {
+  margin-top: .2rem;
+}
+.discover .pagerContainer a {
+  padding: .5rem;
 }
 
 body {

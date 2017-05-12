@@ -8,7 +8,12 @@ $HUE: $BLACK-MED;
 $LIGHT-HUE: $BLACK-LOW;
 .questionStream {
     ul{
+      margin: 0;
+      padding: 0;
       list-style-type: none;
+      border-bottom-style: $BUTTON-BORDER-STYLE;
+      border-bottom-width: $BUTTON-BORDER-SIZE;
+      border-bottom-color: $BUTTON-BORDER-COLOR;
       .selected {
         background-color: lighten($LIGHT-HUE, 75%);
       }
@@ -56,6 +61,7 @@ $LIGHT-HUE: $BLACK-LOW;
             color: $LIGHT-HUE;
           }
           .text-title{
+            padding-left: .2rem;
             font-size: 1rem;
           }
         }
