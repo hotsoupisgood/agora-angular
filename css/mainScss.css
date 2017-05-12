@@ -1116,15 +1116,15 @@ p {
 }
 
 input {
-  padding-left: .4em;
-  font-size: 1em;
+  padding-left: .4rem;
+  font-size: 1rem;
   border-radius: 0.1rem;
   border: .5px solid grey;
   font-family: 'open sans', sans-serif;
 }
 
 textarea {
-  margin: 20px;
+  margin: 1rem;
   border-radius: 0.1rem;
   resize: vertical;
   font-size: 1em;
@@ -1135,11 +1135,11 @@ textarea {
 button {
   border: none;
   margin: none;
-  font-size: .8em;
+  font-size: .8rem;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0);
   display: block;
-  padding: .6em;
+  padding: .6rem;
   color: black;
   text-align: center;
   justify-content: center;
