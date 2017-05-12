@@ -1,7 +1,7 @@
 module.exports =  function($scope, $rootScope, $route,
     $routeParams, $location, $cookies) {
     $scope.name = 'mainController';
-    $rootScope.minBanner = false;
+    $scope.minBanner = true;//force min banner for development
     $scope.questions = {};
 //
     $rootScope.rememberLogin = true;

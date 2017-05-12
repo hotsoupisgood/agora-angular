@@ -195,7 +195,8 @@ module.exports =  function($scope, loginService) {
 module.exports =  function($scope, $rootScope, $route,
     $routeParams, $location, $cookies) {
     $scope.name = 'mainController';
-    $rootScope.minBanner = false;
+    $scope.minBanner = true;//force min banner for development
+    // $scope.smallHead = true
     $scope.questions = {};
 //
     $rootScope.rememberLogin = true;
