@@ -18,7 +18,9 @@
     }
     .centeredPouch {
       display: flex;
-      align-items: center;
+      .row{
+        align-items: center;
+      }
       justify-content: center;
       font-family: 'Amatic SC', sans-serif;
     }

@@ -265,9 +265,11 @@
 }
 .banner .centeredPouch {
   display: flex;
-  align-items: center;
   justify-content: center;
   font-family: 'Amatic SC', sans-serif;
+}
+.banner .centeredPouch .row {
+  align-items: center;
 }
 .banner .pouch {
   display: flex;
@@ -781,100 +783,56 @@ header .site-nav ul li a:hover {
   color: red;
 }
 
-.questionSubHeader {
-  width: 100%;
-}
-
-.orderContainer {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-}
-.orderContainer button {
-  margin-left: 5px;
-}
-
-.questionStream {
-  flex-grow: 10;
-}
 .questionStream ul {
-  margin: 0;
+  list-style-type: none;
+}
+.questionStream ul .selected, .questionStream ul li .button-edit:hover {
+  background-color: rgba(191, 191, 191, 0.5);
 }
 .questionStream ul li {
-  transition: background-color, 0.1s;
-  border-top: .1em solid lightgrey;
+  transition: all 0.1s;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.7);
+  padding-right: 2rem;
 }
-.questionStream .darkenQuestion {
-  background-color: #e6e6e6 !important;
+.questionStream ul li .unOwned {
+  padding-left: 2rem;
 }
-.questionStream .questionContainer {
-  padding-top: .4em;
-  margin-left: .75rem;
-  margin-right: 1rem;
-  margin-bottom: .4em;
+.questionStream ul li a {
+  color: inherit;
+  text-decoration: inherit;
+}
+.questionStream ul li .button-edit {
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  min-height: 3rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  font-size: .9em;
+  color: rgba(0, 0, 0, 0.5);
+  transition: all 0.1s;
 }
-.questionStream .questionContainer .d-time {
-  opacity: .6;
+.questionStream ul li .button-edit > div {
+  flex-grow: 1;
 }
-.questionStream .questionContainer .d-time a {
-  color: black;
-}
-.questionStream .questionContainer .tags {
-  margin-bottom: .2em;
+.questionStream ul li .container-question {
+  flex-grow: 1;
   display: flex;
-}
-.questionStream .questionContainer .header {
-  margin-top: .3em;
-  display: flex;
-  justify-content: space-between;
-}
-.questionStream .questionContainer .header .text {
-  color: black;
-  text-decoration: none;
-  font-size: 1.2em;
-}
-.questionStream .questionContainer .header .title {
-  padding-left: 1rem;
-}
-.questionStream .questionContainer .header .text:hover .title {
-  color: rgba(0, 0, 0, 0.8);
-  transition: color 0.1s;
-}
-.questionStream .questionContainer .header .text:hover .title:hover {
-  color: black;
-}
-.questionStream .questionContainer .header .d-time {
-  margin-left: 1em;
-}
-.questionStream .questionContainer .header .belowTitle {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.questionStream .questionContainer .header .belowTitle a {
-  margin: 0;
-  border-radius: .1em;
+.questionStream ul li .container-question .text-detail {
+  font-size: .75rem;
+  color: rgba(0, 0, 0, 0.5);
 }
-.questionStream ul {
-  margin-top: 0;
-  padding-left: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-}
-.questionStream .pagerContainer {
-  margin-top: 1em;
-}
-.questionStream .pagerContainer a {
-  margin-left: 10px;
-  text-decoration: none;
-  color: black;
-  padding: 10px;
-  opacity: .75;
+.questionStream ul li .container-question .text-title {
+  font-size: 1rem;
 }
 
 .loginPage {
@@ -1142,7 +1100,7 @@ form {
   background-color: #cccccc;
 }
 
-BUTTON-BORDER, .search .searchResults .responses .results .response, .single-question #question-outer-container .selected, .addResponse .bigTitle input, .addResponse .modules .moduleTitles input, .addResponse .modules .moduleResponses textarea, header form input {
+BUTTON-BORDER, .search .searchResults .responses .results .response, .single-question #question-outer-container .selected, .single-question #question-outer-container .questionStream ul li .button-edit:hover, .questionStream ul li .single-question #question-outer-container .button-edit:hover, .addResponse .bigTitle input, .addResponse .modules .moduleTitles input, .addResponse .modules .moduleResponses textarea, header form input {
   border-color: rgba(0, 0, 0, 0.1);
   border-width: 1px;
   border-style: solid;

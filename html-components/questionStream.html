@@ -1,42 +1,9 @@
-  <div class="col">
-    <ul class="questionList">
-        <li ng-repeat="q in questions" ng-class="{darkenQuestion: textHover}">
-            <div class="questionContainer">
-                <!-- <div class="row">
-                    <div class="tags">
-                        <a class="tag" ng-click="tagSearch(tag.name)" ng-repeat="tag in q.tags">
-                    {{tag.name}}
-                        </a>
-                    </div>
-                    <div class="fill-space"></div>
-                    <div class="belowTitle d-time">
-                        Asked {{q.dtime}} ago by <a ng-href="#/user/{{q.username}}">{{q.username}}</a>.
-                    </div>
-                </div> -->
-                <div class="header row">
-                  <div class="belowTitle">
-                        <a class="actionButton" ng-href="#answer/{{q.id}}" ng-show="isLoggedIn">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <span class="description">Respond</span>
-                        </a>
-                        <a class="actionButton" ng-href="#login" ng-hide="isLoggedIn">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <span class="description">Login to respond</span>
-                        </a>
-                      <a class="text" ng-href="#/question/{{q.id}}">
-                          <div class="title row" ng-mouseenter="textHover = true" ng-mouseleave="textHover = false">
-                              {{q.text}}
-                          </div>
-                      </a>
-                      <a class="editButton" ng-href="#edit/question/{{q.id}}" ng-show="q.username == accountInfo.username">edit</a>
-                  </div>
-                    <div class="row">
-                      <div class="belowTitle d-time">
-                          Asked {{q.dtime}} ago by&nbsp;<a ng-href="#/user/{{q.username}}">{{q.username}}</a>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
+<ul class="col">
+  <li ng-repeat="q in questions" ng-class="{selected: mouseIsOnTitle}">
+    <a class="button-edit" ng-href="#edit/question/{{q.id}}" ng-show="q.username==accountInfo.username"><div></div><i class="fa fa-pencil-square-o" aria-hidden="true"></i><div></div></a>
+    <div class="container-question" ng-class="{unOwned: q.username!=accountInfo.username}">
+      <a ng-href="#/question/{{q.id}}" class="text-title row" ng-mouseenter="mouseIsOnTitle=true" ng-mouseleave="mouseIsOnTitle=false">{{q.text}}</a>
+      <span class="text-detail">Asked {{q.dtime}} ago by&nbsp;<a ng-href="#/user/{{q.username}}">{{q.username}}</a></span>
+    </div>
+  </li>
+</ul>

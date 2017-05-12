@@ -1,105 +1,64 @@
 //re-used for account page, which is why this scss is not contained in Discover.scss
-
-$listBackgroundColor: rgb(255, 255, 255);
-$phoneButtonSize: 20vw;
-$phoneButtonHeight: 15vw;
 @media(pointer:coarse) {
-  //for mobile
+    //for mobile
 }
-.questionSubHeader {
-  width: 100%;
-}
-.orderContainer {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    button {
-        margin-left: 5px;
-    }
-}
+$QUESTION-HEIGHT: 3rem;
+$PADDING: 2rem;
+$HUE: $BLACK-MED;
+$LIGHT-HUE: $BLACK-LOW;
 .questionStream {
-  flex-grow: 10;
-  ul{
-    margin: 0;
-    li {
-      transition: background-color, $BUTTON-TIME;
-      border-top: .1em solid lightgrey;
-    }
-  }
-  .darkenQuestion{
-    background-color: darken($BUTTON-COLOR, 10%) !important;
-  }
-    .questionContainer {
-      padding-top: .4em;
-      margin-left: .75rem;
-      margin-right: 1rem;
-      margin-bottom: .4em;
-      display: flex;
-      flex-direction: column;
-      font-size: .9em;
-      .d-time{
-        opacity:.6;
+    ul{
+      list-style-type: none;
+      .selected {
+        background-color: lighten($LIGHT-HUE, 75%);
+      }
+      li{
+        transition: all $BUTTON-TIME;
+        border-top-style: $BUTTON-BORDER-STYLE;
+        border-top-width: $BUTTON-BORDER-SIZE;
+        border-top-color: $BUTTON-BORDER-COLOR;
+        display: flex;
+        min-height: $QUESTION-HEIGHT;
+        align-items: center;
+        color: $HUE;
+        padding-right: $PADDING;
+        .unOwned{
+          padding-left: $PADDING;
+        }
         a{
-          color: black;
+          color: inherit;
+          text-decoration: inherit;
         }
-      }
-      .tags {
-        margin-bottom: .2em;
-        display: flex;
-      }
-      .header {
-        margin-top: .3em;
-        display: flex;
-        justify-content: space-between;
-        .text {
-          color: black;
-          text-decoration: none;
-          font-size: 1.2em;
-        }
-        .title{
-            padding-left: 1rem;
-        }
-        .text:hover {
-          .title {
-            color: $BLACK-HIGH;
-            transition: color $BUTTON-TIME;
-            &:hover{
-              color: $BLACK-HIGHEST;
-            }
-          }
-
-        }
-        .d-time {
-          margin-left: 1em; // I think this line is beging ignored. - William
-        }
-        .belowTitle {
+        .button-edit{
+          justify-content: center;
+          align-items: center;
+          width: $PADDING;
+          min-height: $QUESTION-HEIGHT;
+          height: 100%;
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
+          color: $LIGHT-HUE;
+          transition: all $BUTTON-TIME;
+          &:hover{
+            @extend .selected;
+          }
+          &>div{
+            flex-grow: 1;
+          }
+        }
+        .container-question{
+          flex-grow: 1;
+          display: flex;
           justify-content: space-between;
           align-items: center;
-          a {
-            margin: 0;
-            border-radius: .1em;
+          .text-detail{
+            font-size: .75rem;
+            color: $LIGHT-HUE;
+          }
+          .text-title{
+            font-size: 1rem;
           }
         }
       }
     }
-    ul {
-        margin-top: 0;
-        padding-left: 0;
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-    }
-    .pagerContainer {
-      margin-top: 1em;
-        a {
-            margin-left: 10px;
-            text-decoration: none;
-            color: black;
-            padding: 10px;
-            opacity: .75;
-        }
-    }
-
 }
