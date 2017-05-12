@@ -196,7 +196,6 @@ module.exports =  function($scope, $rootScope, $route,
     $routeParams, $location, $cookies) {
     $scope.name = 'mainController';
     $scope.minBanner = true;//force min banner for development
-    // $scope.smallHead = true
     $scope.questions = {};
 //
     $rootScope.rememberLogin = true;
@@ -906,7 +905,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             }else {
               $rootScope.rememberLogin = false;
             }
-            $location.url('user/'+$cookies.get('username'));
+            $location.url('user/'+inputUsername);
             return true;
           //debug response callback logs
       }, function errorCallback(response) {

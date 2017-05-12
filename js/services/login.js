@@ -24,7 +24,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             }else {
               $rootScope.rememberLogin = false;
             }
-            $location.url('user/'+$cookies.get('username'));
+            $location.url('user/'+inputUsername);
             return true;
           //debug response callback logs
       }, function errorCallback(response) {
