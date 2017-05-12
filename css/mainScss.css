@@ -588,8 +588,8 @@
   display: flex;
   flex-direction: column;
   transition: 100ms;
-  padding: 0.6em;
-  margin: 0.4em;
+  margin: 1rem;
+  margin-top: 0;
 }
 .sidebar .sortContainer .sortTitle {
   opacity: .7;
@@ -634,7 +634,7 @@
   flex-shrink: 1;
   padding: 0.6em;
   margin-bottom: 0.4em;
-  border-bottom: 0.2em solid lightgrey;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   max-width: 13em;
 }
 .sidebar .catagory #category-prompt {
@@ -787,18 +787,14 @@ header .site-nav ul li a:hover {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .questionStream ul .selected, .questionStream ul li .button-edit:hover {
   background-color: rgba(191, 191, 191, 0.5);
 }
 .questionStream ul li {
   transition: all 0.1s;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   min-height: 3rem;
   align-items: center;

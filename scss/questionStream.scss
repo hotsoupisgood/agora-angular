@@ -11,17 +11,13 @@ $LIGHT-HUE: $BLACK-LOW;
       margin: 0;
       padding: 0;
       list-style-type: none;
-      border-bottom-style: $BUTTON-BORDER-STYLE;
-      border-bottom-width: $BUTTON-BORDER-SIZE;
-      border-bottom-color: $BUTTON-BORDER-COLOR;
+      border-bottom: $BUTTON-BORDER-SIZE $BUTTON-BORDER-STYLE $BUTTON-BORDER-COLOR;
       .selected {
         background-color: lighten($LIGHT-HUE, 75%);
       }
       li{
         transition: all $BUTTON-TIME;
-        border-top-style: $BUTTON-BORDER-STYLE;
-        border-top-width: $BUTTON-BORDER-SIZE;
-        border-top-color: $BUTTON-BORDER-COLOR;
+        border-top: $BUTTON-BORDER-SIZE $BUTTON-BORDER-STYLE $BUTTON-BORDER-COLOR;
         display: flex;
         min-height: $QUESTION-HEIGHT;
         align-items: center;

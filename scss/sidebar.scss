@@ -4,8 +4,8 @@ $toggleRadius: 5px;
     display: flex;
     flex-direction: column;
     transition: 100ms;
-    padding: 0.6em;
-    margin: 0.4em;
+    margin:1rem;
+    margin-top:0;
     .sortContainer{
       .sortTitle{
         opacity: .7;
@@ -58,7 +58,7 @@ $toggleRadius: 5px;
         flex-shrink: 1;
         padding: 0.6em;
         margin-bottom: 0.4em;
-        border-bottom: 0.2em solid lightgrey;
+        border-bottom: $BUTTON-BORDER-SIZE $BUTTON-BORDER-STYLE $BUTTON-BORDER-COLOR;
         max-width: 13em;
         #category-prompt{
           opacity: .6;
