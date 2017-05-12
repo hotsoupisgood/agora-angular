@@ -30,23 +30,6 @@ $LIGHT-HUE: $BLACK-LOW;
           color: inherit;
           text-decoration: inherit;
         }
-        .button-edit{
-          justify-content: center;
-          align-items: center;
-          width: $PADDING;
-          min-height: $QUESTION-HEIGHT;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          color: $LIGHT-HUE;
-          transition: all $BUTTON-TIME;
-          &:hover{
-            @extend .selected;
-          }
-          &>div{
-            flex-grow: 1;
-          }
-        }
         .container-question{
           flex-grow: 1;
           display: flex;

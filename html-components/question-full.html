@@ -9,11 +9,17 @@
             <a class="roundButton tag" title="Tag: {{tag.name}}" ng-click="tagSearch(tag.name)" ng-repeat="tag in question.tags">{{tag.name}}</a>
         </div>
         <div id="question-outer-container" class="col">
-            <a class="edit" ng-click="editQuestion=true" ng-hide="editQuestion" ng-mouseenter="editHovered=true" ng-mouseleave="editHovered=false" ng-show="question.creator.username == accountInfo.username" title="Edit the text of the question."><div></div><i class="fa-pencil-square-o fa" aria-hidden="true"></i><div></div></a>
-            <a class="edit" ng-click="saveText(question)" ng-show="editQuestion" title="Save the text of this question."><div></div><i class="fa-floppy-o fa" aria-hidden="true"></i><div></div></a>
+            <!-- <a class="edit" ng-click="editQuestion=true" ng-hide="editQuestion" ng-mouseenter="editHovered=true" ng-mouseleave="editHovered=false" ng-show="question.creator.username == accountInfo.username" title="Edit the text of the question."><div></div><i class="fa-pencil-square-o fa" aria-hidden="true"></i><div></div></a> -->
+            <a class="button-edit" ng-click="editQuestion=true" ng-hide="editQuestion" ng-mouseenter="editHovered=true" ng-mouseleave="editHovered=false" ng-show="question.username == accountInfo.username">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <div class="description">
+                Edit
+              </div>
+            </a>
+            <!-- <a class="edit" ng-click="saveText(question)" ng-show="editQuestion" title="Save the text of this question."><div></div><i class="fa-floppy-o fa" aria-hidden="true"></i><div></div></a> -->
             <div id="question-title-container">
                 <div class="row">
-                    <div ng-class="{selected: editHovered, unselected: !editHovered}" ng-hide="editQuestion" class="title">{{question.text}}</div>
+                    <div ng-class="{selectedEdits: editHovered, unselected: !editHovered}" ng-hide="editQuestion" class="title">{{question.text}}</div>
                     <input ng-model="question.text" class="expand title BUTTON-BORDER" type="text" ng-show="editQuestion"></input>
                     <div class="fill-space"></div>
                 </div>
