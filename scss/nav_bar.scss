@@ -14,7 +14,6 @@ header {
   transition: height 0.3s;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   height: 2.8rem;
   overflow: hidden;
   justify-content: space-between;
@@ -24,6 +23,7 @@ header {
     display: flex;
     flex-direction: column;
     min-height: 2rem;
+    justify-content: center;
     input{
       border-radius: $SBR 0px 0px $SBR;
       min-height: 2em;
@@ -31,11 +31,11 @@ header {
     }
     button {
       position: absolute;
+      right: .8rem;
       background: rgba(255, 255, 255, 0);
       color: black;
       z-index: 11;
-      bottom: .26em;
-      right: 1em;
+      padding: 0;
       border-radius: 0px $SBR $SBR 0px;
     }
   }

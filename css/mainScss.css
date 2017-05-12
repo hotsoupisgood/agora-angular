@@ -665,7 +665,6 @@ header {
   transition: height 0.3s;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   height: 2.8rem;
   overflow: hidden;
   justify-content: space-between;
@@ -676,6 +675,7 @@ header form {
   display: flex;
   flex-direction: column;
   min-height: 2rem;
+  justify-content: center;
 }
 header form input {
   border-radius: 0.1rem 0px 0px 0.1rem;
@@ -683,11 +683,11 @@ header form input {
 }
 header form button {
   position: absolute;
+  right: .8rem;
   background: rgba(255, 255, 255, 0);
   color: black;
   z-index: 11;
-  bottom: .26em;
-  right: 1em;
+  padding: 0;
   border-radius: 0px 0.1rem 0.1rem 0px;
 }
 header button {
