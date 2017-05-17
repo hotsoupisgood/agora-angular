@@ -93,12 +93,15 @@
   justify-content: space-between;
   color: rgba(0, 0, 0, 0.3);
 }
-.single-question #question-outer-container .edit {
-  width: 2rem;
+.single-question #question-outer-container .button-edit {
+  min-width: 2rem;
   color: rgba(0, 0, 0, 0.7);
 }
-.single-question #question-outer-container .edit:hover {
+.single-question #question-outer-container .button-edit:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+.single-question #question-outer-container .button-edit .description {
+  flex-grow: 0;
 }
 .single-question #question-outer-container .row {
   align-items: center;
@@ -952,11 +955,11 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
 }
 
 .button-edit {
-  padding: .2rem;
   min-height: 3rem;
+  min-width: 2rem;
   height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: rgba(0, 0, 0, 0.5);
@@ -971,12 +974,8 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   margin: 0;
 }
 .button-edit:hover .description {
-  font-size: 1rem;
-  margin: .4rem;
-  margin-left: .2rem;
-}
-.button-edit > div {
-  flex-grow: 1;
+  font-size: .8rem;
+  margin: 0.1rem;
 }
 
 .roundButton, .sidebar .catagory .tags .tag {
@@ -1036,19 +1035,19 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   vertical-align: middle;
 }
 
-.sideButton, .single-question #question-outer-container .edit, .single-question .responses .ownedResponse {
+.sideButton, .single-question #question-outer-container .button-edit, .single-question .responses .ownedResponse {
   text-align: center;
   width: 2rem;
   display: flex;
   flex-direction: column;
 }
-.sideButton:hover, .single-question #question-outer-container .edit:hover, .single-question .responses .ownedResponse:hover {
+.sideButton:hover, .single-question #question-outer-container .button-edit:hover, .single-question .responses .ownedResponse:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-.sideButton > div, .single-question #question-outer-container .edit > div, .single-question .responses .ownedResponse > div {
+.sideButton > div, .single-question #question-outer-container .button-edit > div, .single-question .responses .ownedResponse > div {
   flex-grow: 1;
 }
-.sideButton > i, .single-question #question-outer-container .edit > i, .single-question .responses .ownedResponse > i {
+.sideButton > i, .single-question #question-outer-container .button-edit > i, .single-question .responses .ownedResponse > i {
   flex-grow: 0;
 }
 

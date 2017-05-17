@@ -27,12 +27,15 @@
               color: $BLACK-LOWER;
           }
         }
-        .edit{
+        .button-edit{
           @extend .sideButton;
-          width: 2rem;
+          min-width: 2rem;
           color: $BLACK-MED;
           &:hover{
             background-color: $BLACK-LOWEST;
+          }
+          .description{
+            flex-grow:0;
           }
         }
         .row{

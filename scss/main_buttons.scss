@@ -34,11 +34,12 @@ BUTTON-BORDER{
   background-color: lighten($LIGHT-HUE, 75%);
 }
 .button-edit{
-  padding: .2rem;
+  $margin: .4rem;
   min-height: $QUESTION-HEIGHT;
+  min-width: 2rem;
   height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: $LIGHT-HUE;
@@ -54,13 +55,9 @@ BUTTON-BORDER{
   &:hover{
     @extend .selected;
     .description{
-      font-size: 1rem;
-      margin: .4rem;
-      margin-left: .2rem;
+      font-size: .8rem;
+      margin: $margin/4;
     }
-  }
-  &>div{
-    flex-grow: 1;
   }
 }
 //Round buttons for tag like things.
