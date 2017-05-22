@@ -31,6 +31,7 @@ $LIGHT-HUE: $BLACK-LOW;
           text-decoration: inherit;
         }
         .container-question{
+          min-height: $QUESTION-HEIGHT;
           flex-grow: 1;
           display: flex;
           justify-content: space-between;

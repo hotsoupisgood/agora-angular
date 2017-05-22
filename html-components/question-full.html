@@ -8,15 +8,13 @@
         <div class="tagContainer">
             <a class="roundButton tag" title="Tag: {{tag.name}}" ng-click="tagSearch(tag.name)" ng-repeat="tag in question.tags">{{tag.name}}</a>
         </div>
-        <div id="question-outer-container" class="col">
-            <!-- <a class="edit" ng-click="editQuestion=true" ng-hide="editQuestion" ng-mouseenter="editHovered=true" ng-mouseleave="editHovered=false" ng-show="question.creator.username == accountInfo.username" title="Edit the text of the question."><div></div><i class="fa-pencil-square-o fa" aria-hidden="true"></i><div></div></a> -->
-            <a class="button-edit" ng-click="editQuestion=true" ng-hide="editQuestion" ng-mouseenter="editHovered=true" ng-mouseleave="editHovered=false" ng-show="question.username == accountInfo.username">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <div id="question-outer-container" class="col" ng-class="{unOwnedQuestion: question.username != accountInfo.username}">
+            <a class="button-edit" ng-click="toggleEdit()" ng-mouseenter="editHovered=true" ng-mouseleave="editHovered=false" ng-show="question.username == accountInfo.username">
+              <i ng-class="{'fa-floppy-o': editQuestion, 'fa-pencil-square-o': !editQuestion}" class="fa" aria-hidden="true"></i>
               <div class="description">
-                Edit
+                {{editText}}
               </div>
             </a>
-            <!-- <a class="edit" ng-click="saveText(question)" ng-show="editQuestion" title="Save the text of this question."><div></div><i class="fa-floppy-o fa" aria-hidden="true"></i><div></div></a> -->
             <div id="question-title-container">
                 <div class="row">
                     <div ng-class="{selectedEdits: editHovered, unselected: !editHovered}" ng-hide="editQuestion" class="title">{{question.text}}</div>
@@ -30,7 +28,7 @@
             </div>
         </div>
         <div class="responses">
-            <div class="response-outer-container" ng-repeat="response in question.responses track by response.id" ng-controller="responseController">
+            <div class="response-outer-container" ng-repeat="response in question.responses" ng-controller="responseController">
                 <div ng-click="delete(response)" ng-hide="deleted" title="Delete this response." class="ownedResponse" ng-if="response.username == accountInfo.username">
                     <div></div><i class="fa fa-close" aria-hidden="true"></i>
                     <div></div>
@@ -102,14 +100,17 @@
                     <div></div>
                 </div>
             </div>
-            <div class="responseButton">
-                <a class="circleButton" title="Respond to the question." ng-href="#login" ng-hide="isLoggedIn">
+            <div class="responseButton floating">
+                <a class="actionButton" title="Respond to the question." ng-href="#login" ng-hide="isLoggedIn">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="description">Respond</span>
                 </a>
-                <a ng-class="{responseUI: openUI, circleButton: !openUI}" title="Respond to the question." class="" ng-show="isLoggedIn" ng-click="openUI=true">
-                    <i title="Respond to the question." ng-class="{fade: openUI}" class="fa fa-pencil" aria-hidden="true"></i>
+                <a ng-class="{responseUI: openUI, actionButton: !openUI}" title="Respond to the question." class="" ng-show="isLoggedIn" ng-click="openUI=true">
+                    <i ng-hide="openUI" title="Respond to the question." ng-class="{fade: openUI}" class="fa fa-pencil" aria-hidden="true"></i>
+                    <span ng-hide="openUI" class="description">Respond</span>
                     <div ng-show="openUI" ng-include src="'html-components/answer-question-page.html'"></div>
                 </a>
             </div>
+            <div id="bottom-buffer" ng-class="{enlargeScreen: openUI}"></div>
         </div>
     </div>

@@ -6,9 +6,11 @@
         Edit
       </div>
     </a>
-    <div class="container-question" ng-class="{unOwned: q.username!=accountInfo.username}">
-      <a ng-href="#/question/{{q.id}}" class="text-title row" ng-mouseenter="mouseIsOnTitle=true" ng-mouseleave="mouseIsOnTitle=false">{{q.text}}</a>
+    <a ng-href="#/question/{{q.id}}"
+        class="container-question" ng-class="{unOwned: q.username!=accountInfo.username}"
+        ng-mouseenter="mouseIsOnTitle=true" ng-mouseleave="mouseIsOnTitle=false">
+      <span class="text-title row">{{q.text}}</span>
       <span class="text-detail">Asked {{q.dtime}} ago by&nbsp;<a ng-href="#/user/{{q.username}}">{{q.username}}</a></span>
-    </div>
+    </a>
   </li>
 </ul>

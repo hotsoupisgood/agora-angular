@@ -8,11 +8,14 @@
       display: flex;
       justify-content: center;
     }
+    .unOwnedQuestion{
+      padding-left: $MARGIN-GENERAL;
+    }
     #question-outer-container {
         flex-direction: row;
         #question-title-container{
           padding: .4rem;
-          margin-right: 2rem;
+          margin-right: $MARGIN-GENERAL;
           @extend EXPAND;
           .title {
               color: $BLACK-HIGHER;
@@ -29,7 +32,7 @@
         }
         .button-edit{
           @extend .sideButton;
-          min-width: 2rem;
+          min-width: $MARGIN-GENERAL;
           color: $BLACK-MED;
           &:hover{
             background-color: $BLACK-LOWEST;
@@ -50,11 +53,20 @@
           padding: $BUTTON-BORDER-SIZE;
         }
     }
+    @media screen and (min-height: 400px){
+      .floating{
+        position: fixed;
+      }
+    }
+    .floating{
+      text-align: center;
+      width: 100%;
+    }
     .responseButton{
+      right-margin: $MARGIN-GENERAL !important;
+      bottom: .5rem;
       justify-content: center;
-      margin: 2rem;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      justify-content: center;
       display: flex;
       $t: .4s;
       *{
@@ -67,15 +79,21 @@
         width: 0;
         height: 0;
       }
-
+      .actionButton{
+        max-width: 8rem;
+      }
     }
     .responseUI{
+      margin: $MARGIN-GENERAL;
+      margin-top: 1rem;
+      margin-bottom: .5rem;
       text-align: center;
+      flex-grow: 1;
+      background-color: white;
       .fadeIn{
         transition: all .4s;
         opacity: 1;
       }
-      width:100%;
       border-radius: $BUTTON-BORDER-SIZE;
       border-style: $BUTTON-BORDER-STYLE;
       border-color: $BUTTON-BORDER-COLOR;
@@ -83,13 +101,20 @@
       cursor:default !important;
     }
     .responses {
+        .enlargeScreen{
+          height: 10rem;
+        }
+        .bottom-buffer{
+          margin:0;
+          padding:0;
+        }
         .response-outer-container{
           display: flex;
         }
         .ownedResponse{
           margin-top: 1rem;
           @extend .sideButton;
-          width: 2rem;
+          width: $MARGIN-GENERAL;
           color: $WHITE-TEXT;
           background-color: rgba(#fff,0);
           font-size: 200%;
@@ -99,8 +124,8 @@
         }
     }
     .unOwnedResponse{
-      margin-right: 2rem;
-      margin-left: 2rem;
+      margin-right: $MARGIN-GENERAL;
+      margin-left: $MARGIN-GENERAL;
     }
 }
 

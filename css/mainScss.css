@@ -74,6 +74,9 @@
   display: flex;
   justify-content: center;
 }
+.single-question .unOwnedQuestion {
+  padding-left: 2rem;
+}
 .single-question #question-outer-container {
   flex-direction: row;
 }
@@ -109,11 +112,20 @@
 .single-question #question-outer-container .unselected {
   padding: 1px;
 }
+@media screen and (min-height: 400px) {
+  .single-question .floating {
+    position: fixed;
+  }
+}
+.single-question .floating {
+  text-align: center;
+  width: 100%;
+}
 .single-question .responseButton {
+  right-margin: 2rem !important;
+  bottom: .5rem;
   justify-content: center;
-  margin: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  justify-content: center;
   display: flex;
 }
 .single-question .responseButton * {
@@ -126,9 +138,16 @@
   width: 0;
   height: 0;
 }
+.single-question .responseButton .actionButton {
+  max-width: 8rem;
+}
 .single-question .responseUI {
+  margin: 2rem;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
   text-align: center;
-  width: 100%;
+  flex-grow: 1;
+  background-color: white;
   border-radius: 1px;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.1);
@@ -138,6 +157,13 @@
 .single-question .responseUI .fadeIn {
   transition: all .4s;
   opacity: 1;
+}
+.single-question .responses .enlargeScreen {
+  height: 10rem;
+}
+.single-question .responses .bottom-buffer {
+  margin: 0;
+  padding: 0;
 }
 .single-question .responses .response-outer-container {
   display: flex;
@@ -313,7 +339,6 @@
 
 .addResponse {
   padding: 1rem;
-  padding-top: 0;
 }
 .addResponse .noInput {
   border: none !important;
@@ -812,6 +837,7 @@ header .site-nav ul li a:hover {
   text-decoration: inherit;
 }
 .questionStream ul li .container-question {
+  min-height: 3rem;
   flex-grow: 1;
   display: flex;
   justify-content: space-between;
@@ -1040,6 +1066,7 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   width: 2rem;
   display: flex;
   flex-direction: column;
+  transition: background-color, 0.1s;
 }
 .sideButton:hover, .single-question #question-outer-container .button-edit:hover, .single-question .responses .ownedResponse:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -1053,7 +1080,7 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
 
 .infoButton {
   text-align: center;
-  padding: .2em .4em .2em;
+  padding: .2rem .4rem .2rem;
 }
 
 .doButton {

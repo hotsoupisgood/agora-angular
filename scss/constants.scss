@@ -34,26 +34,29 @@ $BLACK-HIGHEST: rgba($BLACK-TEXT, $PRIORITY-HIGHEST);
 //For Not Text, there can only select from max 5 colors.
 //Seems like we are going to use Adobes website:
 //https://color.adobe.com/water-bright-color-theme-9504199/
-$COLOR-ERROR-BG-BEFORE: rgba(#f00, 1); //Background text for errors.
-$COLOR-ERROR-TEXT-BEFORE: rgba(#fff, 1); // Before the animation
-$COLOR-ERROR-BG-AFTER: rgba(#fff, 0); // After the animation.
-$COLOR-ERROR-TEXT-AFTER: rgba(#000, 1); //
+//Currently we am not using then and they are unset:
 //$COLOR-A;
 //$COLOR-B;
 //$COLOR-C;
 //$COLOR-D;
 //$COLOR-E;
+
+//Here are some misc colors that is being used.
+$COLOR-ERROR-BG-BEFORE: rgba(#f00, 1); //Background text for errors.
+$COLOR-ERROR-TEXT-BEFORE: rgba(#fff, 1); // Before the animation
+$COLOR-ERROR-BG-AFTER: rgba(#fff, 0); // After the animation.
+$COLOR-ERROR-TEXT-AFTER: rgba(#000, 1); //
 $COLOR-PRIMARY: #db3a3a; //Primary Color
 $COLOR-LIGHT: white; //Lighr Primary
 $COLOR-DARK: black; //Darker Primary
 $COLOR-AUX: rgb(152, 233, 89); //Seconary/Auxillary color
 
-//Other standards
+//Size standards (using in buttons)
 $SIZE-BIG: 3em;
 $SIZE-MED: 2em;
 $SIZE-SMALL: 1em;
 
-//Button constants
+//Button constants (They say button border, but this border relates to all borders)
 $BUTTON-COLOR: white;
 $BUTTON-BORDER-SIZE: 1px;
 $BUTTON-BORDER-STYLE: solid;
@@ -62,3 +65,7 @@ $BUTTON-TIME: .1s; //Transition time for all buttons
 
 //Standard border Radius, i know, not naming convention... Later
 $SBR: .1rem;
+
+//Margin and padding for a number of list items like questions and responses.
+//Try to change the margin by default not the padding.
+$MARGIN-GENERAL: 2rem;

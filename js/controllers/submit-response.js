@@ -46,9 +46,7 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
             $scope.openUI=false;
             console.log(responses);
             responses.push(response.data);
-            console.log(responses[0].id);
-            console.log(response.data.id);
-            console.log(response.data);
+            console.log(responses)
           }
         });
     };

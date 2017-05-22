@@ -129,9 +129,10 @@ $MEDIUM-SIZE: 2rem;
 }
 .sideButton{
   text-align: center;
-  width: 2rem;
+  width: $MARGIN-GENERAL;
   display: flex;
   flex-direction: column;
+  transition: background-color, $BUTTON-TIME;
   &:hover{
     background-color: $BLACK-LOWEST;
   }
@@ -146,7 +147,7 @@ $MEDIUM-SIZE: 2rem;
 .infoButton {
   text-align: center;
   // color: rgba(54, 187, 51, 1);
-  padding: .2em .4em .2em;
+  padding: .2rem .4rem .2rem;
 }
 .doButton {
   text-align: center;
