@@ -140,9 +140,6 @@
         display: flex;
         flex-direction: column;
         padding: 0.2em;
-        border-bottom-width: $BUTTON-BORDER-SIZE;
-        border-bottom-color: $BUTTON-BORDER-COLOR;
-        border-bottom-style: $BUTTON-BORDER-STYLE;
         .subHeader {
             display: flex;
             flex-direction: row;
@@ -154,10 +151,14 @@
         }
     }
     .sections {
-      display: flex;
-      flex-direction: row;
+        display: flex;
+        flex-direction: row;
         border-radius: 0.2em;
         padding: 0.4em;
+
+        border-top-width: $BUTTON-BORDER-SIZE;
+        border-top-color: $BUTTON-BORDER-COLOR;
+        border-top-style: $BUTTON-BORDER-STYLE;
 
         .section {
             .section-header {
