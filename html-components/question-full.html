@@ -30,12 +30,10 @@
         <div class="responses">
             <div class="response-outer-container" ng-repeat="response in question.responses" ng-controller="responseController">
                 <div ng-click="delete(response)" ng-hide="deleted" title="Delete this response." class="ownedResponse" ng-if="response.username == accountInfo.username">
-                    <div></div><i class="fa fa-close" aria-hidden="true"></i>
-                    <div></div>
+                    <i class="fa fa-close" aria-hidden="true"></i>
                 </div>
                 <div class="response" ng-hide="deleted" ng-class="{unOwnedResponse: {{response.username != accountInfo.username}}}">
                     <div class="header">
-                        <div class="subHeader">
                             <span>{{response.text}}</span>
                             <div class="vote col" ng-click="upVote(question.responses[$index].id)" ng-hide="upVoted">
                                 <div class="fill-space"></div>
@@ -52,62 +50,19 @@
                                 </label>
                                 <div class="fill-space"></div>
                             </div>
-                        </div>
                     </div>
                     <div class="sections" ng-repeat="section in response.modules" ng-show="response.modules.length">
-                        <div class="section col">
-                            <div class="section-header">
-                                <b>{{section.title}}</b>
-                                <form class="sectionHeader row" ng-submit="submit()" ng-show="isLoggedIn">
-                                    <div class="addComment">
-                                        <input type="text" ng-model="commentText" value="" placeholder="make a comment">
-                                        <button type="button" name="submit" class="submitButton" submit>submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row">
-                                <div class="section-body">
-                                    {{section.text}}
-                                </div>
-                                <div class="section-comments" ng-if="section.comments.length">
-                                    <div class="section-comment col" ng-controller="commentsController">
-                                        <div class="section-comment-header">
-                                            <label>Comments&nbsp;({{section.comments.length}})</label>
-                                        </div>
-                                        <button class="submitButton" ng-click="commentOpen = true" ng-hide="commentOpen">comment!</button>
-                                        <div class="row">
-                                            <div class="comment" ng-repeat="comment in section.comments">
-                                                <div class="row">
-                                                    {{comment.text}}
-                                                </div>
-                                                <button title="Edit the text of the comment." class="editButton" ng-click="">
-                                      edit
-                                    </button>
-                                                <div class="detailText">
-                                                    Writen by <a ng-href="#/user/{{comment.username}}">{{comment.username}}</a> {{comment.dtime}} ago
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <ng-include src="'html-components/section.html'"></ng-include>
                     </div>
                 </div>
                 <div ng-click="delete(response)" ng-hide="deleted" title="Delete this response." class="ownedResponse" ng-if="response.username == accountInfo.username">
-                    <div></div><i class="fa fa-close" aria-hidden="true"></i>
-                    <div></div>
+                    <i class="fa fa-close" aria-hidden="true"></i>
                 </div>
             </div>
             <div class="responseButton floating">
-                <a class="actionButton" title="Respond to the question." ng-href="#login" ng-hide="isLoggedIn">
+                <a class="buttonExpandHorizontal" title="Respond to the question." ng-href="#login" ng-hide="isLoggedIn">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     <span class="description">Respond</span>
-                </a>
-                <a ng-class="{responseUI: openUI, actionButton: !openUI}" title="Respond to the question." class="" ng-show="isLoggedIn" ng-click="openUI=true">
-                    <i ng-hide="openUI" title="Respond to the question." ng-class="{fade: openUI}" class="fa fa-pencil" aria-hidden="true"></i>
-                    <span ng-hide="openUI" class="description">Respond</span>
-                    <div ng-show="openUI" ng-include src="'html-components/answer-question-page.html'"></div>
                 </a>
             </div>
             <div id="bottom-buffer" ng-class="{enlargeScreen: openUI}"></div>

@@ -81,6 +81,7 @@ module.exports =  function($scope) {
 module.exports = function($scope, submitCommentService) {
     $scope.comments = {};
     $scope.commentOpen = true;
+    $scope.commentText=''
     $scope.getCommentsFull = function () {
       getSingleQuestionService.get($scope.section.id).then(function (response) {
         $scope.question = response;
@@ -91,6 +92,7 @@ module.exports = function($scope, submitCommentService) {
       $scope.loading = true;
       submitCommentService.submit($scope.section.id, $scope.commentText)
       .then(function (response) {
+        console.log('fuck');
         if (response) {
           $scope.success = response;
           $scope.loading = false;
@@ -452,6 +454,7 @@ module.exports =  function($scope, $routeParams, upVoteQuestionService,
 },{}],13:[function(require,module,exports){
 module.exports = function($scope, upVoteQuestionService, removeService) {
     $scope.name = 'responseController';
+    $scope.addCommentOpen=false
     $scope.deleted=false;
     $scope.upVoted = false;
     $scope.upVote = function (id) {

@@ -1,5 +1,6 @@
 module.exports = function($scope, upVoteQuestionService, removeService) {
     $scope.name = 'responseController';
+    $scope.addCommentOpen=false
     $scope.deleted=false;
     $scope.upVoted = false;
     $scope.upVote = function (id) {

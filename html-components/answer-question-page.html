@@ -1,28 +1,24 @@
-<div class="col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
-  <form class="col" ng-submit="submit(q.id)">
-      <div class="bigTitle row margin-b padding-b">
+  <form class="col" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
+      <div class="header">
         <input ng-class="{noInput: success, alertField: noTitle}" class="fill-space" type="text" placeholder="brief response/ summary of sections (required)" ng-model="response" required>
         <span ng-show="success" class="detailText">Written by {{accountInfo.username}} just now</span>
       </div>
-      <div class="modules" ng-repeat="m in modules">
-        <div class="moduleTitles">
-          <input class="" ng-class="{noInput: success}" type="text" placeholder="Section header (optional)" ng-model="m.title">
-          <button ng-hide="success" class="whiteButton" type="button" ng-click="removeModule($index)">Remove Section <i class="fa fa-times" aria-hidden="true"></i></button>
-        </div>
-        <div class="moduleResponses">
-          <textarea class="fill-space" rows="8" cols="50" placeholder="Section body" ng-model="m.text" required></textarea>
+      <div class="sections">
+        <div class="section" ng-repeat="m in modules">
+          <div class="section-header fill-inbetween">
+            <input class="" ng-class="{noInput: success}" type="text" placeholder="Section header (optional)" ng-model="m.title">
+            <button ng-hide="success" class="whiteButton" type="button" ng-click="removeModule($index)">Remove Section <i class="fa fa-times" aria-hidden="true"></i></button>
+          </div>
+          <div class="section-body">
+            <textarea class="fill-space" rows="8" cols="50" placeholder="Section body" ng-model="m.text" required></textarea>
+          </div>
         </div>
       </div>
-      <div class="submitResponse" ng-class="{fadeIn: openUI}">
-        <div class="fill-space"></div>
+      <div class="row fill-inbetween" ng-class="{fadeIn: openUI}">
         <button class="whiteButton submitButton" ng-hide="success" type="submit" ng-click="submit()">Submit Response</button>
-        <div class="fill-space"></div>
         <button ng-hide="success" class="whiteButton" type="button" ng-click="addModule()">Add Section</button>
       </div>
-      <div class="row" ng-show="failed">
-        <div class="fill-space"></div>
+      <div class="row fill-inbetween" ng-show="failed">
         <h4 style="color:green">failed... try refreshing the page</h4>
-        <div class="fill-space"></div>
       </div>
   </form>
-</div>

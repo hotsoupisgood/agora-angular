@@ -121,7 +121,6 @@
   right-margin: 2rem !important;
   bottom: .5rem;
   justify-content: center;
-  justify-content: center;
   display: flex;
 }
 .single-question .responseButton * {
@@ -189,12 +188,8 @@
 }
 .response .header {
   display: flex;
-  flex-direction: column;
-  padding: 0.2em;
-}
-.response .header .subHeader {
-  display: flex;
   flex-direction: row;
+  padding: 0.2em;
 }
 .response .header .vote {
   color: grey;
@@ -217,21 +212,6 @@
   justify-content: space-between;
   margin-bottom: 0.4em;
 }
-.response .sections .section .section-header .addComment {
-  display: flex;
-  flex-direction: row;
-  font-size: 0.8em;
-  flex-grow: 5;
-}
-.response .sections .section .section-header .addComment button {
-  padding: 0.2em .4em;
-  margin: 0.2em;
-}
-.response .sections .section .section-header .addComment input {
-  padding: 0.2em 1em;
-  margin: 0.2em;
-  flex-grow: 3;
-}
 .response .sections .section .section-body {
   margin-left: 1em;
   margin-right: 1em;
@@ -240,7 +220,6 @@
 .response .sections .section-comments {
   display: flex;
   flex-grow: 10;
-  margin-left: 1em;
   border-left: 0.1em solid lightgrey;
   padding-left: 1em;
 }
@@ -251,21 +230,37 @@
 }
 .response .sections .section-comments .section-comment {
   display: flex;
-  flex-wrap: nowrap;
 }
-.response .sections .section-comments .section-comment .comment {
+.response .sections .section-comments .section-comment .addComment {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+}
+.response .sections .section-comments .section-comment .addComment button {
+  flex: 1;
+}
+.response .sections .section-comments .section-comment .addComment textarea {
+  flex: 7;
+  padding: 0.2em 1em;
+}
+.response .sections .section-comments .section-comment .comments {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.response .sections .section-comments .section-comment .comments .comment {
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
   padding-top: 0.4em;
   flex-wrap: nowrap;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
-.response .sections .section-comments .section-comment .comment .username {
+.response .sections .section-comments .section-comment .comments .comment .username {
   margin-right: .4em;
   color: grey;
 }
-.response .sections .section-comments .section-comment .comment .detailText {
+.response .sections .section-comments .section-comment .comments .comment .detailText {
   white-space: nowrap;
   margin-left: 1em;
   align-self: center;
@@ -471,6 +466,11 @@
   align-self: center;
 }
 
+.center-all {
+  justify-content: center;
+  align-self: center;
+}
+
 .space-between {
   justify-content: space-between;
 }
@@ -504,6 +504,10 @@
 
 .flex-fill {
   flex-basis: fill;
+}
+
+.fill-inbetween {
+  justify-content: space-between;
 }
 
 .border-thin-black {
@@ -813,7 +817,7 @@ header .site-nav ul li a:hover {
   list-style-type: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.questionStream ul .selected, .questionStream ul .button-edit:hover {
+.questionStream ul .selected, .questionStream ul .buttonExpandDown:hover, .questionStream ul .buttonExpandHorizontal:hover {
   background-color: rgba(191, 191, 191, 0.5);
 }
 .questionStream ul li {
@@ -945,24 +949,24 @@ header .site-nav ul li a:hover {
   padding: .5rem;
 }
 
-.whiteButton.pressed, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .pressed.actionButton, .pressed.circleButton, .pressed.editButton {
+.whiteButton.pressed, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.buttonExpandHorizontal, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .pressed.circleButton, .pressed.editButton {
   background-color: #cccccc;
 }
 
-.whiteButton, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .roundButton, .sidebar .catagory .tags .tag, .actionButton, .circleButton, .editButton {
+.whiteButton, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .buttonExpandHorizontal, .roundButton, .sidebar .catagory .tags .tag, .circleButton, .editButton {
   color: rgba(0, 0, 0, 0.7);
   transition: background-color 0.1s ease;
   background-color: white;
-  border-radius: 2px;
+  border-radius: .1rem;
   border-color: rgba(0, 0, 0, 0.1);
   border-width: 1px;
   border-style: solid;
   text-decoration: none;
 }
-.whiteButton:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .actionButton:hover, .circleButton:hover, .editButton:hover {
+.whiteButton:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .buttonExpandHorizontal:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .circleButton:hover, .editButton:hover {
   background-color: #e6e6e6;
 }
-.whiteButton:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .actionButton:active, .circleButton:active, .editButton:active {
+.whiteButton:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .buttonExpandHorizontal:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .circleButton:active, .editButton:active {
   background-color: #cccccc;
 }
 
@@ -972,32 +976,52 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   border-style: solid;
 }
 
-.selected, .button-edit:hover {
-  background-color: rgba(191, 191, 191, 0.5);
+.selected, .buttonExpandDown:hover, .buttonExpandHorizontal:hover {
+  background-color: rgba(217, 217, 217, 0.5);
 }
 
-.button-edit {
-  min-height: 3rem;
-  min-width: 2rem;
-  height: 100%;
+.buttonExpandDown, .buttonExpandHorizontal {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: .2rem;
+  min-height: 3rem;
+  min-width: 2rem;
+  height: 100%;
   color: rgba(0, 0, 0, 0.5);
   transition: all 0.1s;
+  border-radius: .1rem;
 }
-.button-edit .description {
+.buttonExpandDown .description, .buttonExpandHorizontal .description {
+  justify-content: center;
+  align-self: center;
   transition: all .2s ease;
   text-decoration: none !important;
   font-size: 0;
-  justify-content: center;
-  align-self: center;
   margin: 0;
+  white-space: nowrap;
 }
-.button-edit:hover .description {
+.buttonExpandDown i, .buttonExpandHorizontal i {
+  font-size: 1.4rem;
+  margin-left: .2rem;
+  margin-right: .2rem;
+}
+.buttonExpandDown:hover, .buttonExpandHorizontal:hover {
+  padding-left: 1em;
+}
+.buttonExpandDown:hover .description, .buttonExpandHorizontal:hover .description {
   font-size: .8rem;
-  margin: 0.1rem;
+  margin: 0.05rem;
+}
+
+.buttonExpandHorizontal {
+  border-radius: 4rem;
+  flex-direction: row;
+  min-height: 2rem !important;
+  min-width: 2rem !important;
+  padding-left: .2rem;
+  padding-right: .2rem;
 }
 
 .roundButton, .sidebar .catagory .tags .tag {
@@ -1006,39 +1030,6 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   line-height: 0.7rem;
   border-radius: 0.7rem;
   vertical-align: middle;
-}
-
-.actionButton {
-  min-width: 2rem;
-  min-height: 2rem;
-  border-radius: 1rem !important;
-  font-size: 1rem;
-  display: flex;
-  transition: all .4s !important;
-  color: rgba(0, 0, 0, 0.5);
-}
-.actionButton:hover .description {
-  visibility: visible;
-  font-size: 0.8rem;
-  margin: .4rem;
-  margin-left: .2rem;
-  margin-right: .6rem;
-}
-.actionButton i {
-  width: 1rem;
-  height: 1rem;
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
-  text-align: center;
-  vertical-align: middle;
-}
-.actionButton .description {
-  transition: all .2s ease;
-  text-decoration: none !important;
-  font-size: 0;
-  justify-content: center;
-  align-self: center;
-  margin: 0;
 }
 
 .circleButton {
@@ -1072,36 +1063,6 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
 }
 .sideButton > i, .single-question #question-outer-container .button-edit > i, .single-question .responses .ownedResponse > i {
   flex-grow: 0;
-}
-
-.infoButton {
-  text-align: center;
-  padding: .2rem .4rem .2rem;
-}
-
-.doButton {
-  text-align: center;
-  padding: .6em;
-  border-radius: .4em;
-  text-decoration: none;
-}
-
-.doButton:hover {
-  transition: 100ms;
-}
-
-.lightEmphasisButton {
-  border-bottom: .5px solid lightgrey;
-}
-
-.plainBoarderedButton {
-  border: .5px solid black;
-}
-
-.editButton {
-  padding: .2em;
-  margin: 0 .5em;
-  text-decoration: none;
 }
 
 .editButton {
@@ -1146,7 +1107,6 @@ input {
 }
 
 textarea {
-  margin: 1rem;
   border-radius: 0.1rem;
   resize: vertical;
   font-size: 1em;

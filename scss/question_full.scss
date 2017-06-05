@@ -67,7 +67,6 @@
       right-margin: $MARGIN-GENERAL !important;
       bottom: .5rem;
       justify-content: center;
-      justify-content: center;
       display: flex;
       $t: .4s;
       *{
@@ -138,13 +137,9 @@
     border-width: $BUTTON-BORDER-SIZE;
     flex-grow: 1;
     .header {
-        display: flex;
-        flex-direction: column;
+      display: flex;
+      flex-direction: row;
         padding: 0.2em;
-        .subHeader {
-            display: flex;
-            flex-direction: row;
-        }
         .vote {
             color: grey;
             cursor: pointer;
@@ -168,27 +163,9 @@
                 align-items: center;
                 justify-content: space-between;
                 margin-bottom: 0.4em;
-                .addComment {
-                    display: flex;
-                    flex-direction: row;
-                    font-size: 0.8em;
-                    flex-grow: 5;
-
-                    button {
-                        padding: 0.2em .4em;
-                        margin: 0.2em;
-                    }
-
-                    input {
-                        padding: 0.2em 1em;
-                        margin: 0.2em;
-                        flex-grow: 3;
-                    }
-                }
             }
 
             .section-body {
-                // font-size: 0.8em;
                 margin-left: 1em;
                 margin-right: 1em;
                 flex-shrink: 1;
@@ -198,7 +175,6 @@
         .section-comments {
             display: flex;
             flex-grow: 10;
-            margin-left: 1em;
             border-left: 0.1em solid lightgrey;
             padding-left: 1em;
             .section-comment-header {
@@ -209,24 +185,40 @@
             }
             .section-comment {
                 display: flex;
-                flex-wrap: nowrap;
-                .comment {
+                .addComment {
                     display: flex;
-                    flex-direction: row;
-                    flex-grow: 1;
-                    padding-top: 0.4em;
-                    flex-wrap: nowrap;
-                    white-space:nowrap;
-                    .username {
-                      margin-right: .4em;
-                      color: grey;
+                    flex-direction: column;
+                    font-size: 0.8em;
+                    button {
+                      flex: 1;
                     }
-                    .detailText {
-                      white-space: nowrap;
-                        margin-left: 1em;
-                        align-self: center;
-                        justify-content: center;
+                    textarea {
+                        flex: 7;
+                        padding: 0.2em 1em;
                     }
+                }
+                .comments{
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-end;
+                  .comment {
+                      display: flex;
+                      flex-direction: row;
+                      padding-top: 0.4em;
+                      flex-wrap: nowrap;
+                      white-space:nowrap;
+                      text-overflow: ellipsis;
+                      .username {
+                        margin-right: .4em;
+                        color: grey;
+                      }
+                      .detailText {
+                        white-space: nowrap;
+                          margin-left: 1em;
+                          align-self: center;
+                          justify-content: center;
+                      }
+                  }
                 }
             }
         }

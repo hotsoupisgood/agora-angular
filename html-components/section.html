@@ -1,0 +1,46 @@
+<!-- requires a object called "section" in parent element to populate title/body/comment components -->
+<div class="section col">
+    <div class="section-header">
+        <b>{{section.title}}</b>
+        <div class="center-vertical" ng-show="section.comments.length">
+          <label>Comments&nbsp;({{section.comments.length}})</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="section-body">
+            {{section.text}}
+        </div>
+        <div class="section-comments">
+            <div class="section-comment col" ng-controller="commentsController">
+                <div class="col">
+                    <a class="buttonExpandHorizontal" ng-hide="addCommentOpen" ng-click="addCommentOpen=true">
+                      <div class="description">
+                        Comment on this
+                      </div>
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                    <form class="addComment" ng-submit="submit()" ng-show="isLoggedIn && addCommentOpen">
+                      Make a comment:
+                          <textarea type="text" ng-model="commentText" value="" placeholder="La La La"></textarea>
+                          <button type="button" name="submit" class="whiteButton" ng-click="submit()">submit comment</button>
+                    </form>
+
+                </div>
+                <!-- <button class="submitButton" ng-click="commentOpen = true" ng-hide="commentOpen">comment!</button> -->
+                <div class="comments">
+                    <div class="comment" ng-repeat="comment in section.comments">
+                        <div class="row">
+                            {{comment.text}}
+                        </div>
+                        <!-- <button title="Edit the text of the comment." class="editButton" ng-click="">
+                          edit
+                        </button> -->
+                        <!-- <div class="detailText">
+                            Writen by <a ng-href="#/user/{{comment.username}}">{{comment.username}}</a> {{comment.dtime}} ago
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

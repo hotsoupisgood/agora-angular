@@ -1,6 +1,6 @@
 <ul class="col">
   <li ng-repeat="q in questions" ng-class="{selected: mouseIsOnTitle}">
-    <a class="button-edit" ng-href="#edit/question/{{q.id}}" ng-show="q.username==accountInfo.username">
+    <a class="buttonExpandDown" ng-href="#edit/question/{{q.id}}" ng-show="q.username==accountInfo.username">
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       <div class="description">
         Edit

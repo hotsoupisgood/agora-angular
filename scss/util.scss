@@ -57,6 +57,11 @@ $transparentColor: rgba(255, 255, 255, 0);
 .center-vertical {
   align-self: center;
 }
+.center-all{
+  justify-content: center;
+  align-self: center;
+  
+}
 .space-between {
   justify-content: space-between;
 }
@@ -83,6 +88,9 @@ $transparentColor: rgba(255, 255, 255, 0);
 }
 .flex-fill {
   flex-basis: fill;
+}
+.fill-inbetween {
+  justify-content: space-between;
 }
 .border-thin-black {
   border: .5px solid grey;
