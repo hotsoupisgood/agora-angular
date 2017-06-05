@@ -248,6 +248,10 @@
   flex-direction: column;
   align-items: flex-end;
 }
+.response .sections .section-comments .section-comment .comments .moreComments {
+  align-self: center;
+  color: grey;
+}
 .response .sections .section-comments .section-comment .comments .comment {
   display: flex;
   flex-direction: row;
@@ -949,11 +953,11 @@ header .site-nav ul li a:hover {
   padding: .5rem;
 }
 
-.whiteButton.pressed, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.buttonExpandHorizontal, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .pressed.circleButton, .pressed.editButton {
+.whiteButton.pressed, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .pressed.circleButton, .pressed.editButton {
   background-color: #cccccc;
 }
 
-.whiteButton, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .buttonExpandHorizontal, .roundButton, .sidebar .catagory .tags .tag, .circleButton, .editButton {
+.whiteButton, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .roundButton, .sidebar .catagory .tags .tag, .circleButton, .editButton {
   color: rgba(0, 0, 0, 0.7);
   transition: background-color 0.1s ease;
   background-color: white;
@@ -963,10 +967,10 @@ header .site-nav ul li a:hover {
   border-style: solid;
   text-decoration: none;
 }
-.whiteButton:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .buttonExpandHorizontal:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .circleButton:hover, .editButton:hover {
+.whiteButton:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .circleButton:hover, .editButton:hover {
   background-color: #e6e6e6;
 }
-.whiteButton:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .buttonExpandHorizontal:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .circleButton:active, .editButton:active {
+.whiteButton:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .circleButton:active, .editButton:active {
   background-color: #cccccc;
 }
 

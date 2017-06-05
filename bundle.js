@@ -80,13 +80,19 @@ module.exports =  function($scope) {
 },{}],4:[function(require,module,exports){
 module.exports = function($scope, submitCommentService) {
     $scope.comments = {};
-    $scope.commentOpen = true;
+    // $scope.commentOpen = true;
+    $scope.commentText='';
+    $scope.loading=false;
+    $scope.currentLoadLimit=5;
+
+    $scope.increaseLoadLimit=function () {
+      $scope.currentLoadLimit+=5;
+    };
     $scope.getCommentsFull = function () {
       getSingleQuestionService.get($scope.section.id).then(function (response) {
         $scope.question = response;
       });
     }
-    // $scope.getCommentsFull();
     $scope.submit = function() {
       $scope.loading = true;
       submitCommentService.submit($scope.section.id, $scope.commentText)
@@ -94,9 +100,13 @@ module.exports = function($scope, submitCommentService) {
         if (response) {
           $scope.success = response;
           $scope.loading = false;
+          $scope.addCommentOpen=false;
+          $scope.section.comments.push(response)
+          $scope.commentText=''
         }
       });
     };
+
 };
 
 },{}],5:[function(require,module,exports){
@@ -465,6 +475,7 @@ module.exports = function($scope, upVoteQuestionService, removeService) {
         }
       })
     };
+    
     $scope.delete = function(_response){
       if(removeService.removeResponse(_response.id)){
         $scope.deleted=true;
@@ -1194,7 +1205,7 @@ module.exports = function($http, $cookies, $rootScope) {
                 // when the response is available
                 console.log('successCallback, response: ');
                 console.log(response.data);
-                return true;
+                return response.data;
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.

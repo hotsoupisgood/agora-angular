@@ -71,7 +71,7 @@ BUTTON-BORDER{
 }
 .buttonExpandHorizontal{
   @extend .buttonExpandDown;
-  @extend .whiteButton;
+  // @extend .whiteButton;
   border-radius: 4rem;
   flex-direction: row;
   flex-shrink: 1;

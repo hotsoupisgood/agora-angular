@@ -2,8 +2,16 @@
 <div class="section col">
     <div class="section-header">
         <b>{{section.title}}</b>
-        <div class="center-vertical" ng-show="section.comments.length">
-          <label>Comments&nbsp;({{section.comments.length}})</label>
+        <div class="row">
+          <a class="buttonExpandHorizontal" ng-hide="addCommentOpen" ng-click="addCommentOpen=true">
+            <div class="description">
+              Comment on this
+            </div>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </a>
+          <div class="center-vertical" ng-show="section.comments.length">
+            <label>Comments&nbsp;({{section.comments.length}})</label>
+          </div>
         </div>
     </div>
     <div class="row">
@@ -13,12 +21,6 @@
         <div class="section-comments">
             <div class="section-comment col" ng-controller="commentsController">
                 <div class="col">
-                    <a class="buttonExpandHorizontal" ng-hide="addCommentOpen" ng-click="addCommentOpen=true">
-                      <div class="description">
-                        Comment on this
-                      </div>
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </a>
                     <div ng-show="isLoggedIn && addCommentOpen">
                       Make a comment:
                       <form class="addComment" ng-submit="submit()">
@@ -28,19 +30,21 @@
                     </div>
 
                 </div>
-                <!-- <button class="submitButton" ng-click="commentOpen = true" ng-hide="commentOpen">comment!</button> -->
                 <div class="comments">
-                    <div class="comment" ng-repeat="comment in section.comments">
+                    <div class="comment" ng-repeat="comment in section.comments | limitTo:currentLoadLimit">
                         <div class="row">
                             {{comment.text}}
                         </div>
-                        <!-- <button title="Edit the text of the comment." class="editButton" ng-click="">
-                          edit
-                        </button> -->
-                        <!-- <div class="detailText">
-                            Writen by <a ng-href="#/user/{{comment.username}}">{{comment.username}}</a> {{comment.dtime}} ago
-                        </div> -->
                     </div>
+                    <img ng-if="loading" src="media/animal.gif">
+                    <div class="comment" ng-show="commentText.length" ng-hide="loading">
+                        <div class="row">
+                            {{commentText}}
+                        </div>
+                    </div>
+                    <button class="moreComments" ng-click="increaseLoadLimit()" ng-show="section.comments.length>currentLoadLimit">
+                      load more...
+                    </button>
                 </div>
             </div>
         </div>

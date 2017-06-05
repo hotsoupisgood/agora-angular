@@ -201,6 +201,10 @@
                   display: flex;
                   flex-direction: column;
                   align-items: flex-end;
+                  .moreComments{
+                    align-self: center;
+                    color: grey;
+                  }
                   .comment {
                       display: flex;
                       flex-direction: row;

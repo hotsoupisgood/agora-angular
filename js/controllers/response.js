@@ -13,6 +13,7 @@ module.exports = function($scope, upVoteQuestionService, removeService) {
         }
       })
     };
+    
     $scope.delete = function(_response){
       if(removeService.removeResponse(_response.id)){
         $scope.deleted=true;

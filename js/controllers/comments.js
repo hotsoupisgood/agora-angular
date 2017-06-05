@@ -1,12 +1,18 @@
 module.exports = function($scope, submitCommentService) {
     $scope.comments = {};
-    $scope.commentOpen = true;
+    // $scope.commentOpen = true;
+    $scope.commentText='';
+    $scope.loading=false;
+    $scope.currentLoadLimit=5;
+
+    $scope.increaseLoadLimit=function () {
+      $scope.currentLoadLimit+=5;
+    };
     $scope.getCommentsFull = function () {
       getSingleQuestionService.get($scope.section.id).then(function (response) {
         $scope.question = response;
       });
     }
-    // $scope.getCommentsFull();
     $scope.submit = function() {
       $scope.loading = true;
       submitCommentService.submit($scope.section.id, $scope.commentText)
@@ -14,7 +20,11 @@ module.exports = function($scope, submitCommentService) {
         if (response) {
           $scope.success = response;
           $scope.loading = false;
+          $scope.addCommentOpen=false;
+          $scope.section.comments.push(response)
+          $scope.commentText=''
         }
       });
     };
+
 };
