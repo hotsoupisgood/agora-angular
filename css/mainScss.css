@@ -233,7 +233,7 @@
 }
 .response .sections .section-comments .section-comment .addComment {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   font-size: 0.8em;
 }
 .response .sections .section-comments .section-comment .addComment button {
@@ -1018,10 +1018,9 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
 .buttonExpandHorizontal {
   border-radius: 4rem;
   flex-direction: row;
-  min-height: 2rem !important;
-  min-width: 2rem !important;
-  padding-left: .2rem;
-  padding-right: .2rem;
+  flex-shrink: 1;
+  min-height: 1.4rem !important;
+  min-width: 1.4rem !important;
 }
 
 .roundButton, .sidebar .catagory .tags .tag {

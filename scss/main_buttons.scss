@@ -74,11 +74,9 @@ BUTTON-BORDER{
   @extend .whiteButton;
   border-radius: 4rem;
   flex-direction: row;
-  min-height: 2rem !important;
-  min-width: 2rem !important;
-  padding-left: .2rem;
-  padding-right: .2rem;
-
+  flex-shrink: 1;
+  min-height: 1.4rem !important;
+  min-width: 1.4rem !important;
 }
 
 //Round buttons for tag like things.

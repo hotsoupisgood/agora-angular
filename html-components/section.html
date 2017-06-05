@@ -19,11 +19,13 @@
                       </div>
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
-                    <form class="addComment" ng-submit="submit()" ng-show="isLoggedIn && addCommentOpen">
+                    <div ng-show="isLoggedIn && addCommentOpen">
                       Make a comment:
-                          <textarea type="text" ng-model="commentText" value="" placeholder="La La La"></textarea>
-                          <button type="button" name="submit" class="whiteButton" ng-click="submit()">submit comment</button>
-                    </form>
+                      <form class="addComment" ng-submit="submit()">
+                            <textarea type="text" ng-model="commentText" value="" placeholder="La La La"></textarea>
+                            <button type="button" name="submit" class="whiteButton" ng-click="submit()">submit comment</button>
+                      </form>
+                    </div>
 
                 </div>
                 <!-- <button class="submitButton" ng-click="commentOpen = true" ng-hide="commentOpen">comment!</button> -->
