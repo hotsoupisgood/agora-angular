@@ -112,12 +112,8 @@
 .single-question #question-outer-container .unselected {
   padding: 1px;
 }
-@media screen and (min-height: 400px) {
-  .single-question .floating {
-    position: fixed;
-  }
-}
 .single-question .floating {
+  margin-top: 1rem;
   text-align: center;
   width: 100%;
 }
@@ -143,7 +139,7 @@
 }
 .single-question .responseUI {
   margin: 2rem;
-  margin-top: 1rem;
+  margin-top: 0;
   margin-bottom: .5rem;
   text-align: center;
   flex-grow: 1;

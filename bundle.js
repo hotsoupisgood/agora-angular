@@ -281,6 +281,7 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
     $scope.name = 'questions';
     //manage questions
     $scope.currentPage = $routeParams.page;
+    $scope.lastPage = 0;
     $scope.startQuestion;
     $scope.currentSearchTerm = '';
     $scope.isCurrentSearchTermEmpty = true;
@@ -312,6 +313,7 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
         questionsTopService.get($scope.currentPage, $scope.order, 'min').then(function(response) {
             if (response) {
               $scope.questions = response.objects;
+              // $scope.lastPage = 'lets fucking implement this'
                 if ($scope.questions.length) {
                   console.log(response);
                   $scope.isQueryEmpty = false;
@@ -659,6 +661,7 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
         submitResponseService.submit($scope.questionId, $scope.response, $scope.modules)
         .then(function(response) {
           $scope.success=response.success;
+          print($scope.success)
           if ($scope.success) {
             var responses = $scope.$parent.question.responses;
             $scope.openUI=false;
