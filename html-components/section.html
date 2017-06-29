@@ -3,15 +3,12 @@
     <div class="section-header">
         <b>{{section.title}}</b>
         <div class="row">
-          <a class="buttonExpandHorizontal" ng-hide="addCommentOpen" ng-click="addCommentOpen=true">
+          <a class="commentButton" ng-hide="addCommentOpen" ng-click="addCommentOpen=true">
             <div class="description">
-              Comment on this
+              Comment
             </div>
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
           </a>
-          <div class="center-vertical" ng-show="section.comments.length">
-            <label>Comments&nbsp;({{section.comments.length}})</label>
-          </div>
         </div>
     </div>
     <div class="row">
@@ -22,10 +19,13 @@
             <div class="section-comment col" ng-controller="commentsController">
                 <div class="col">
                     <div ng-show="isLoggedIn && addCommentOpen">
-                      Make a comment:
                       <form class="addComment" ng-submit="submit()">
-                            <textarea type="text" ng-model="commentText" value="" placeholder="La La La"></textarea>
-                            <button type="button" name="submit" class="whiteButton" ng-click="submit()">submit comment</button>
+                            <textarea msd-elastic type="text" ng-model="commentText" value="" placeholder="Write a comment."></textarea>
+                            <button type="button" name="submit" class="add-comment-button" ng-click="submit()">
+                              <i class="fa fa-plus" aria-hidden="true"></i>
+                              <div class="description">add</div>
+                            </button>
+</button>
                       </form>
                     </div>
 
@@ -38,13 +38,16 @@
                     </div>
                     <img ng-if="loading" src="media/animal.gif">
                     <div class="comment" ng-show="commentText.length" ng-hide="loading">
-                        <div class="row">
+                        <div class="row comment-text">
                             {{commentText}}
                         </div>
                     </div>
-                    <button class="moreComments" ng-click="increaseLoadLimit()" ng-show="section.comments.length>currentLoadLimit">
-                      load more...
+                    <button class="whiteButton moreComments" ng-click="increaseLoadLimit()" ng-show="section.comments.length>currentLoadLimit">
+                      {{section.comments.length-currentLoadLimit}} more
                     </button>
+                    <div class="comment-count center-vertical" ng-show="section.comments.length">
+                      <label>{{section.comments.length}} Comments</label>
+                    </div>
                 </div>
             </div>
         </div>

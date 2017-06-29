@@ -4,8 +4,9 @@ require('angular-cookies');
 require('angular-toArrayFilter');
 require('angular-animate');
 require('angular-sanitize');
+require('angular-elastic');
 //app decrelation
-var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'angular-toArrayFilter', 'ngCookies', 'ngSanitize']);
+var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'angular-toArrayFilter', 'ngCookies', 'ngSanitize','monospaced.elastic']);
 
 //config
 agoraApp.config(['$routeProvider', '$locationProvider', require('./config/routing.js')]);

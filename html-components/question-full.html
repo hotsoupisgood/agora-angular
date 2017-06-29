@@ -18,11 +18,11 @@
             <div id="question-title-container">
                 <div class="row">
                     <div ng-class="{selectedEdits: editHovered, unselected: !editHovered}" ng-hide="editQuestion" class="title">{{question.text}}</div>
-                    <input ng-model="question.text" class="expand title BUTTON-BORDER" type="text" ng-show="editQuestion"></input>
-                    <div class="fill-space"></div>
+                    <textarea msd-elastic ng-model="question.text" class="EXPAND title BUTTON-BORDER" type="text" ng-show="editQuestion"></textarea>
+
                 </div>
                 <div class="row subHeader">
-                    <span id="question-timestamp">Writen {{question.dtime}} ago by {{question.username}}.</span>
+                    <span id="question-timestamp">Written {{question.dtime}} ago by {{question.username}}.</span>
                     <span id="response-counter">Number of responses: {{question.total_responses}}</span>
                 </div>
             </div>
@@ -30,7 +30,7 @@
         <div class="responses">
             <div class="response-outer-container" ng-repeat="response in question.responses" ng-controller="responseController">
                 <div ng-click="delete(response)" ng-hide="deleted" title="Delete this response." class="ownedResponse" ng-if="response.username == accountInfo.username">
-                    <i class="fa fa-close" aria-hidden="true"></i>
+                    <div></div><i class="fa fa-close" aria-hidden="true"></i><div></div>
                 </div>
                 <div class="response" ng-hide="deleted" ng-class="{unOwnedResponse: {{response.username != accountInfo.username}}}">
                     <div class="header">
@@ -46,7 +46,7 @@
                             <div class="detailText col">
                                 <div class="fill-space"></div>
                                 <label>
-                                  Writen by <a ng-href="#/user/{{response.username}}">{{response.username}}</a> {{response.dtime}} ago
+                                  Written by <a ng-href="#/user/{{response.username}}">{{response.username}}</a> {{response.dtime}} ago. 
                                 </label>
                                 <div class="fill-space"></div>
                             </div>
@@ -56,11 +56,15 @@
                     </div>
                 </div>
                 <div ng-click="delete(response)" ng-hide="deleted" title="Delete this response." class="ownedResponse" ng-if="response.username == accountInfo.username">
-                    <i class="fa fa-close" aria-hidden="true"></i>
+                    <div></div><i class="fa fa-close" aria-hidden="true"></i><div></div>
                 </div>
             </div>
             <div class="responseButton floating">
                 <a class="buttonExpandHorizontal" title="Respond to the question." ng-href="#login" ng-hide="isLoggedIn">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="description">Respond</span>
+                </a>
+                <a class="buttonExpandHorizontal" title="Respond to the question." ng-href="#login" ng-show ="isLoggedIn">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     <span class="description">Respond</span>
                 </a>

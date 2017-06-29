@@ -66,7 +66,6 @@ BUTTON-BORDER{
       font-size: .8rem;
       margin: $margin/4;
     }
-    padding-left: 1em;
   }
 }
 .buttonExpandHorizontal{
@@ -77,6 +76,8 @@ BUTTON-BORDER{
   flex-shrink: 1;
   min-height: 1.4rem !important;
   min-width: 1.4rem !important;
+  text-decoration: none;
+  padding: .8rem;
 }
 
 //Round buttons for tag like things.
@@ -127,5 +128,6 @@ $MEDIUM-SIZE: 2rem;
 }
 .editButton {
   @extend .whiteButton;
+  @extend .buttonExpandDown;
   display: table;
 }

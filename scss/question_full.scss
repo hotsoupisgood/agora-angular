@@ -16,10 +16,11 @@
         #question-title-container{
           padding: .4rem;
           margin-right: $MARGIN-GENERAL;
-          @extend EXPAND;
+          @extend .EXPAND;
           .title {
               color: $BLACK-HIGHER;
               font-size: 1.2rem;
+              resize: none;
           }
           .subHeader {
               padding: .2rem;
@@ -31,6 +32,7 @@
           }
         }
         .button-edit{
+          @extend .buttonExpandDown;
           @extend .sideButton;
           min-width: $MARGIN-GENERAL;
           color: $BLACK-MED;
@@ -115,11 +117,12 @@
           margin-top: 1rem;
           @extend .sideButton;
           width: $MARGIN-GENERAL;
-          color: $WHITE-TEXT;
+          color: $BLACK-LOWEST;
           background-color: rgba(#fff,0);
           font-size: 200%;
           &:hover{
             background-color: $COLOR-ERROR-BG-BEFORE !important;
+            color: white;
           }
         }
     }
@@ -163,6 +166,13 @@
                 align-items: center;
                 justify-content: space-between;
                 margin-bottom: 0.4em;
+                .row{
+                  text-align: center;
+                }
+                .commentButton{
+                  padding: .6rem !important;
+                  @extend .buttonExpandHorizontal;
+                }
             }
 
             .section-body {
@@ -181,7 +191,6 @@
               font-size: .8em;
               color: grey;
               padding-bottom: 0.6em;
-
             }
             .section-comment {
                 display: flex;
@@ -189,6 +198,11 @@
                     display: flex;
                     flex-direction: row;
                     font-size: 0.8em;
+                    .add-comment-button{
+                        @extend .whiteButton;
+                        @extend .buttonExpandDown;
+                        padding: 5rem;
+                    }
                     button {
                       flex: 1;
                     }
@@ -204,6 +218,13 @@
                   .moreComments{
                     align-self: center;
                     color: grey;
+                    padding: .25rem;
+                    margin: .25rem;
+                  }
+                  .comment-count{
+                    margin-top: .25rem;
+                    color: $BLACK-LOW;
+                    font-size: .8rem;
                   }
                   .comment {
                       display: flex;
@@ -212,6 +233,7 @@
                       flex-wrap: nowrap;
                       white-space:nowrap;
                       text-overflow: ellipsis;
+                      color: $BLACK-MED !important;
                       .username {
                         margin-right: .4em;
                         color: grey;

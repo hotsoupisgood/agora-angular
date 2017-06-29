@@ -87,6 +87,7 @@
 .single-question #question-outer-container #question-title-container .title {
   color: rgba(0, 0, 0, 0.9);
   font-size: 1.2rem;
+  resize: none;
 }
 .single-question #question-outer-container #question-title-container .subHeader {
   padding: .2rem;
@@ -166,12 +167,13 @@
 .single-question .responses .ownedResponse {
   margin-top: 1rem;
   width: 2rem;
-  color: white;
+  color: rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0);
   font-size: 200%;
 }
 .single-question .responses .ownedResponse:hover {
   background-color: red !important;
+  color: white;
 }
 .single-question .unOwnedResponse {
   margin-right: 2rem;
@@ -212,6 +214,12 @@
   justify-content: space-between;
   margin-bottom: 0.4em;
 }
+.response .sections .section .section-header .row {
+  text-align: center;
+}
+.response .sections .section .section-header .commentButton {
+  padding: .6rem !important;
+}
 .response .sections .section .section-body {
   margin-left: 1em;
   margin-right: 1em;
@@ -236,6 +244,9 @@
   flex-direction: row;
   font-size: 0.8em;
 }
+.response .sections .section-comments .section-comment .addComment .add-comment-button {
+  padding: 5rem;
+}
 .response .sections .section-comments .section-comment .addComment button {
   flex: 1;
 }
@@ -251,6 +262,13 @@
 .response .sections .section-comments .section-comment .comments .moreComments {
   align-self: center;
   color: grey;
+  padding: .25rem;
+  margin: .25rem;
+}
+.response .sections .section-comments .section-comment .comments .comment-count {
+  margin-top: .25rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: .8rem;
 }
 .response .sections .section-comments .section-comment .comments .comment {
   display: flex;
@@ -259,6 +277,7 @@
   flex-wrap: nowrap;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: rgba(0, 0, 0, 0.7) !important;
 }
 .response .sections .section-comments .section-comment .comments .comment .username {
   margin-right: .4em;
@@ -821,7 +840,7 @@ header .site-nav ul li a:hover {
   list-style-type: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.questionStream ul .selected, .questionStream ul .buttonExpandDown:hover, .questionStream ul .buttonExpandHorizontal:hover {
+.questionStream ul .selected, .questionStream ul .buttonExpandDown:hover, .questionStream ul .single-question #question-outer-container .button-edit:hover, .single-question #question-outer-container .questionStream ul .button-edit:hover, .questionStream ul .response .sections .section-comments .section-comment .addComment .add-comment-button:hover, .response .sections .section-comments .section-comment .addComment .questionStream ul .add-comment-button:hover, .questionStream ul .buttonExpandHorizontal:hover, .questionStream ul .response .sections .section .section-header .commentButton:hover, .response .sections .section .section-header .questionStream ul .commentButton:hover, .questionStream ul .editButton:hover {
   background-color: rgba(191, 191, 191, 0.5);
 }
 .questionStream ul li {
@@ -953,11 +972,11 @@ header .site-nav ul li a:hover {
   padding: .5rem;
 }
 
-.whiteButton.pressed, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .pressed.circleButton, .pressed.editButton {
+.whiteButton.pressed, .response .sections .section-comments .section-comment .addComment .pressed.add-comment-button, .sidebar .sortContainer .optionsBoxContainer .optionsBox a.pressed, .pressed.roundButton, .sidebar .catagory .tags .pressed.tag, .pressed.circleButton, .pressed.editButton {
   background-color: #cccccc;
 }
 
-.whiteButton, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .roundButton, .sidebar .catagory .tags .tag, .circleButton, .editButton {
+.whiteButton, .response .sections .section-comments .section-comment .addComment .add-comment-button, .sidebar .sortContainer .optionsBoxContainer .optionsBox a, .roundButton, .sidebar .catagory .tags .tag, .circleButton, .editButton {
   color: rgba(0, 0, 0, 0.7);
   transition: background-color 0.1s ease;
   background-color: white;
@@ -967,10 +986,10 @@ header .site-nav ul li a:hover {
   border-style: solid;
   text-decoration: none;
 }
-.whiteButton:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .circleButton:hover, .editButton:hover {
+.whiteButton:hover, .response .sections .section-comments .section-comment .addComment .add-comment-button:hover, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:hover, .roundButton:hover, .sidebar .catagory .tags .tag:hover, .circleButton:hover, .editButton:hover {
   background-color: #e6e6e6;
 }
-.whiteButton:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .circleButton:active, .editButton:active {
+.whiteButton:active, .response .sections .section-comments .section-comment .addComment .add-comment-button:active, .sidebar .sortContainer .optionsBoxContainer .optionsBox a:active, .roundButton:active, .sidebar .catagory .tags .tag:active, .circleButton:active, .editButton:active {
   background-color: #cccccc;
 }
 
@@ -980,11 +999,11 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   border-style: solid;
 }
 
-.selected, .buttonExpandDown:hover, .buttonExpandHorizontal:hover {
+.selected, .buttonExpandDown:hover, .single-question #question-outer-container .button-edit:hover, .response .sections .section-comments .section-comment .addComment .add-comment-button:hover, .buttonExpandHorizontal:hover, .response .sections .section .section-header .commentButton:hover, .editButton:hover {
   background-color: rgba(217, 217, 217, 0.5);
 }
 
-.buttonExpandDown, .buttonExpandHorizontal {
+.buttonExpandDown, .single-question #question-outer-container .button-edit, .response .sections .section-comments .section-comment .addComment .add-comment-button, .buttonExpandHorizontal, .response .sections .section .section-header .commentButton, .editButton {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -997,7 +1016,7 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   transition: all 0.1s;
   border-radius: .1rem;
 }
-.buttonExpandDown .description, .buttonExpandHorizontal .description {
+.buttonExpandDown .description, .single-question #question-outer-container .button-edit .description, .response .sections .section-comments .section-comment .addComment .add-comment-button .description, .buttonExpandHorizontal .description, .response .sections .section .section-header .commentButton .description, .editButton .description {
   justify-content: center;
   align-self: center;
   transition: all .2s ease;
@@ -1006,25 +1025,24 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   margin: 0;
   white-space: nowrap;
 }
-.buttonExpandDown i, .buttonExpandHorizontal i {
+.buttonExpandDown i, .single-question #question-outer-container .button-edit i, .response .sections .section-comments .section-comment .addComment .add-comment-button i, .buttonExpandHorizontal i, .response .sections .section .section-header .commentButton i, .editButton i {
   font-size: 1.4rem;
   margin-left: .2rem;
   margin-right: .2rem;
 }
-.buttonExpandDown:hover, .buttonExpandHorizontal:hover {
-  padding-left: 1em;
-}
-.buttonExpandDown:hover .description, .buttonExpandHorizontal:hover .description {
+.buttonExpandDown:hover .description, .single-question #question-outer-container .button-edit:hover .description, .response .sections .section-comments .section-comment .addComment .add-comment-button:hover .description, .buttonExpandHorizontal:hover .description, .response .sections .section .section-header .commentButton:hover .description, .editButton:hover .description {
   font-size: .8rem;
   margin: 0.05rem;
 }
 
-.buttonExpandHorizontal {
+.buttonExpandHorizontal, .response .sections .section .section-header .commentButton {
   border-radius: 4rem;
   flex-direction: row;
   flex-shrink: 1;
   min-height: 1.4rem !important;
   min-width: 1.4rem !important;
+  text-decoration: none;
+  padding: .8rem;
 }
 
 .roundButton, .sidebar .catagory .tags .tag {
@@ -1190,11 +1208,11 @@ form {
   color: white;
 }
 
-EXPAND, .single-question #question-outer-container #question-title-container {
+.EXPAND, .single-question #question-outer-container #question-title-container {
   width: 100% !important;
 }
 
-CONTRACT {
+.CONTRACT {
   width: auto !important;
 }
 
