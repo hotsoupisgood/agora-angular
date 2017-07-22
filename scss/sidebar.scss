@@ -26,6 +26,12 @@ $toggleRadius: 5px;
             padding: 5px;
             @extend .whiteButton;
             border-radius: 0;
+            transition: all .2s;
+          }
+          .compress{
+            background-color: $BLACK-MED;
+            color: white;
+
           }
           .left{
             //Acting as if this one is selected.

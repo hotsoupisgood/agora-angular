@@ -31,7 +31,7 @@
 
                 </div>
                 <div class="comments">
-                    <div class="comment" ng-repeat="comment in section.comments | limitTo:currentLoadLimit">
+                    <div class="comment" ng-repeat="comment in section.comments">
                         <div class="row">
                             {{comment.text}}
                         </div>
@@ -42,12 +42,9 @@
                             {{commentText}}
                         </div>
                     </div>
-                    <button class="whiteButton moreComments" ng-click="increaseLoadLimit()" ng-show="section.comments.length>currentLoadLimit">
-                      {{section.comments.length-currentLoadLimit}} more
-                    </button>
-                    <div class="comment-count center-vertical" ng-show="section.comments.length">
-                      <label>{{section.comments.length}} Comments</label>
-                    </div>
+                </div>
+                <div class="comment-count center-vertical" ng-show="section.comments.length">
+                  <label>{{section.comments.length}} Comments</label>
                 </div>
             </div>
         </div>

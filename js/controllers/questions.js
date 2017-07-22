@@ -1,4 +1,4 @@
-module.exports = function($scope, $routeParams, $route, $location, userService, questionsTopService, upVoteQuestionService, searchService, getSingleQuestionService) {
+module.exports = function($scope, $rootScope, $routeParams, $route, $location, userService, questionsTopService, upVoteQuestionService, searchService, getSingleQuestionService) {
     // routing goodies
     $scope.name = 'questions';
     //manage questions
@@ -18,9 +18,16 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
             $scope.currentSearchTerm = $routeParams.query;
             $scope.isCurrentSearchTermEmpty = true;
             $scope.getSearchQuery();
-        } else {
+        }else {
             $scope.getTopQuestions();
         }
+    });
+    $rootScope.$on('discover_popular', function(e){
+      $scope.orderByPopular();
+      console.log("wr");
+    });
+    $rootScope.$on('discover_recent', function(e){
+      $scope.orderByRecent();
     });
     // get request questions
     $scope.getSearchQuery = function() {
@@ -60,14 +67,24 @@ module.exports = function($scope, $routeParams, $route, $location, userService, 
       });
     }
     $scope.populateRandomTags();
-    $scope.orderDate = function() {
-        $scope.order = 'date';
-        $scope.getTopQuestions();
+
+    $scope.orderByRecent = function() {
+      $scope.order = 'date';
+      $scope.getTopQuestions();
     };
+    $scope.orderDate=$scope.orderByRecent;
+
     $scope.orderAlphabet = function() {
-        $scope.order = 'text';
+        $scope.order = '-text';
         $scope.getTopQuestions();
     };
+
+    $scope.orderByResponses = function(){
+      $scope.order='-total_responses';
+      $scope.getTopQuestions();
+    }
+    $scope.orderByPopular=$scope.orderByResponses;
+
     //go forward a page
     $scope.goForwardOne = function() {
         $scope.currentPage = 1 + parseInt($routeParams.page, 10);

@@ -41,13 +41,10 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
         submitResponseService.submit($scope.questionId, $scope.response, $scope.modules)
         .then(function(response) {
           $scope.success=response.success;
-          print($scope.success)
           if ($scope.success) {
             var responses = $scope.$parent.question.responses;
             $scope.openUI=false;
-            console.log(responses);
             responses.push(response.data);
-            console.log(responses)
           }
         });
     };

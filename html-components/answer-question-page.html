@@ -1,6 +1,6 @@
   <form class="col" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
       <div class="header">
-        <input ng-class="{noInput: success, alertField: noTitle}" class="fill-space" type="text" placeholder="brief response/ summary of sections (required)" ng-model="response" required>
+        <textarea msd-elastic ng-class="{noInput: success, alertField: noTitle}" class="fill-space" type="text" placeholder="brief response/ summary of sections (required)" ng-model="response" required>
         <span ng-show="success" class="detailText">Written by {{accountInfo.username}} just now</span>
       </div>
       <div class="sections">

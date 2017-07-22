@@ -13,8 +13,8 @@
     </div>
     <div class="row optionsBoxContainer">
       <div class="optionsBox">
-        <a class="left" ng-href="#discover">recent </a>
-        <a class="right" ng-href="#discover">popular </a>
+        <a class="left" ng-class="{ compress: $scope.sorting==1 }"ng-click="$emit('discover_recent'); $scope.sorting=1;">recent </a>
+        <a class="right" ng-class="{ compress: $scope.sorting==2 }" ng-click="$emit('discover_popular'); $scope.sorting=2;">popular </a>
       </div>
     </div>
   </div>

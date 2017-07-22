@@ -121,6 +121,7 @@
 .single-question .responseButton {
   right-margin: 2rem !important;
   bottom: .5rem;
+  margin-top: 1rem;
   justify-content: center;
   display: flex;
 }
@@ -134,12 +135,9 @@
   width: 0;
   height: 0;
 }
-.single-question .responseButton .actionButton {
-  max-width: 8rem;
-}
 .single-question .responseUI {
   margin: 2rem;
-  margin-top: 0;
+  margin-top: 0rem;
   margin-bottom: .5rem;
   text-align: center;
   flex-grow: 1;
@@ -167,7 +165,7 @@
 .single-question .responses .ownedResponse {
   margin-top: 1rem;
   width: 2rem;
-  color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.05);
   background-color: rgba(255, 255, 255, 0);
   font-size: 200%;
 }
@@ -207,7 +205,17 @@
   border-top-color: rgba(0, 0, 0, 0.1);
   border-top-style: solid;
 }
+.response .sections > * {
+  flex-grow: 1;
+}
+.response .sections .section b {
+  color: rgba(0, 0, 0, 0.8);
+}
+.response .sections .section .row {
+  justify-content: space-between;
+}
 .response .sections .section .section-header {
+  flex-grow: 10;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -223,11 +231,14 @@
 .response .sections .section .section-body {
   margin-left: 1em;
   margin-right: 1em;
-  flex-shrink: 1;
+  flex-grow: 10;
+  color: rgba(0, 0, 0, 0.7);
 }
 .response .sections .section-comments {
   display: flex;
-  flex-grow: 10;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 14rem;
   border-left: 0.1em solid lightgrey;
   padding-left: 1em;
 }
@@ -238,6 +249,7 @@
 }
 .response .sections .section-comments .section-comment {
   display: flex;
+  width: 100%;
 }
 .response .sections .section-comments .section-comment .addComment {
   display: flex;
@@ -245,6 +257,7 @@
   font-size: 0.8em;
 }
 .response .sections .section-comments .section-comment .addComment .add-comment-button {
+  max-height: 1rem;
   padding: 5rem;
 }
 .response .sections .section-comments .section-comment .addComment button {
@@ -254,21 +267,23 @@
   flex: 7;
   padding: 0.2em 1em;
 }
+.response .sections .section-comments .section-comment .comment-count {
+  margin-top: .25rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: .8rem;
+}
 .response .sections .section-comments .section-comment .comments {
   display: flex;
+  max-height: 14rem;
+  overflow-y: scroll;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: left;
 }
 .response .sections .section-comments .section-comment .comments .moreComments {
   align-self: center;
   color: grey;
   padding: .25rem;
   margin: .25rem;
-}
-.response .sections .section-comments .section-comment .comments .comment-count {
-  margin-top: .25rem;
-  color: rgba(0, 0, 0, 0.5);
-  font-size: .8rem;
 }
 .response .sections .section-comments .section-comment .comments .comment {
   display: flex;
@@ -277,7 +292,10 @@
   flex-wrap: nowrap;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: rgba(0, 0, 0, 0.7) !important;
+  color: rgba(0, 0, 0, 0.3) !important;
+}
+.response .sections .section-comments .section-comment .comments .comment .row {
+  white-space: normal;
 }
 .response .sections .section-comments .section-comment .comments .comment .username {
   margin-right: .4em;
@@ -660,6 +678,11 @@
   padding: 0;
   padding: 5px;
   border-radius: 0;
+  transition: all .2s;
+}
+.sidebar .sortContainer .optionsBoxContainer .optionsBox .compress {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox .left {
   border-bottom-left-radius: 5px;
@@ -1024,6 +1047,7 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
   font-size: 0;
   margin: 0;
   white-space: nowrap;
+  max-width: 0;
 }
 .buttonExpandDown i, .single-question #question-outer-container .button-edit i, .response .sections .section-comments .section-comment .addComment .add-comment-button i, .buttonExpandHorizontal i, .response .sections .section .section-header .commentButton i, .editButton i {
   font-size: 1.4rem;
@@ -1033,6 +1057,7 @@ BUTTON-BORDER, .search .searchResults .responses .results .response, .single-que
 .buttonExpandDown:hover .description, .single-question #question-outer-container .button-edit:hover .description, .response .sections .section-comments .section-comment .addComment .add-comment-button:hover .description, .buttonExpandHorizontal:hover .description, .response .sections .section .section-header .commentButton:hover .description, .editButton:hover .description {
   font-size: .8rem;
   margin: 0.05rem;
+  max-width: 100%;
 }
 
 .buttonExpandHorizontal, .response .sections .section .section-header .commentButton {
