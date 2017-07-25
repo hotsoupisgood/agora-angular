@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" ng-init="$scope.sorting=1;">
   <div class="catagory" ng-if="!isLoggedIn">
     <a class="row buttonCard whiteButton" href="#/ask">Ask a Question</a>
   </div>
@@ -13,15 +13,23 @@
     </div>
     <div class="row optionsBoxContainer">
       <div class="optionsBox">
-        <a class="left" ng-class="{ compress: $scope.sorting==1 }"ng-click="$emit('discover_recent'); $scope.sorting=1;">recent </a>
-        <a class="right" ng-class="{ compress: $scope.sorting==2 }" ng-click="$emit('discover_popular'); $scope.sorting=2;">popular </a>
+        <a class="left" ng-class="{ compress: $scope.sorting==1 }"ng-click="$emit('discover_recent'); $scope.sorting=1;">recent</a>
+        <a class="middle" ng-class="{ compress: $scope.sorting==2 }" ng-click="$emit('discover_alphabet'); $scope.sorting=2;">A to Z</a>
+        <a class="right" ng-class="{ compress: $scope.sorting==3 }" ng-click="$emit('discover_popular'); $scope.sorting=3;">&nbsp;popular&nbsp;</a>
+      </div>
+    </div>
+      <div class="row optionsBoxContainer">
+      <div class="optionsBox">
+        <a class="left" ng-class="{ compress: $scope.sorting==4 }"ng-click="$emit('discover_oldest'); $scope.sorting=4;">oldest</a>
+        <a class="middle" ng-class="{ compress: $scope.sorting==5 }" ng-click="$emit('discover_unalphabet'); $scope.sorting=5;">Z to A</a>
+        <a class="right" ng-class="{ compress: $scope.sorting==6 }" ng-click="$emit('discover_unpopular'); $scope.sorting=6;">unpopular</a>
       </div>
     </div>
   </div>
   <div class="catagory">
     <span id="category-prompt">Categories</span>
     <div class="tags">
-      <a ng-href="#/search?query={{tag.slug}}&doQ=false&doR=false&doU=false&doT" class="tag" ng-repeat="tag in randomTags">
+      <a ng-href="#/discover/0?tag={{tag.slug}}" class="tag" ng-repeat="tag in randomTags">
         {{tag.slug}}
       </a>
     </div>

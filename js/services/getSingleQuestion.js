@@ -1,12 +1,16 @@
-module.exports = function($http) {
+module.exports = function($http, $rootScope, userService) {
     this.get = function(id) {
         //multiply page number for first question desired
         //request
-        var returnData = $http({
+        var req={
             method: 'GET',
             url: 'https://api.iex.ist/full/question/' + id
-
-        }).then(function successCallback(response) {
+        }
+        if($rootScope.isLoggedIn){
+          req.params={}
+          req.params.username=$rootScope.accountInfo.username
+        }
+        var returnData = $http(req).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
             console.log(response.data);

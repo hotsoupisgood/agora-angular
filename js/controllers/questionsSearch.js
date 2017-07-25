@@ -1,5 +1,5 @@
 
-module.exports =  function($scope, $routeParams, upVoteQuestionService,
+module.exports =  function($scope, $routeParams, voteService,
                             userService, questionsTopService, searchService) {
     // routing goodies
     $scope.name = 'questionSearchController';
@@ -27,7 +27,7 @@ module.exports =  function($scope, $routeParams, upVoteQuestionService,
     //   console.log('unfinished');
     // });
     $scope.agree = function(responseId) {
-      upVoteQuestionService.submit(responseId);
+      voteService.submit(responseId);
     };
     // get request questions
     $scope.getSearchedQuestions = function() {

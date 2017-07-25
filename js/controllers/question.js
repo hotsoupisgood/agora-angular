@@ -1,4 +1,4 @@
-module.exports = function($scope, $routeParams, getSingleQuestionService, upVoteQuestionService, editService) {
+module.exports = function($scope, $routeParams, getSingleQuestionService, voteService, editService) {
     $scope.name = 'questionController';
     $scope.question = {};
     $scope.responses = {};
@@ -8,7 +8,7 @@ module.exports = function($scope, $routeParams, getSingleQuestionService, upVote
     $scope.getQuestionFull = function () {
       getSingleQuestionService.get($scope.questionId).then(function (response) {
         $scope.question = response;
-        console.log($scope.question.responses)
+        console.log($scope.question.responses);
       });
     };
     $scope.toggleEdit=function(){

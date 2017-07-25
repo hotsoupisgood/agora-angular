@@ -286,9 +286,8 @@
   margin: .25rem;
 }
 .response .sections .section-comments .section-comment .comments .comment {
-  display: flex;
+  padding-top: .4rem;
   flex-direction: row;
-  padding-top: 0.4em;
   flex-wrap: nowrap;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -665,6 +664,9 @@
 }
 .sidebar .sortContainer .optionsBoxContainer {
   justify-content: center;
+  font-family: Inconsolata;
+  font-size: 0.7rem;
+  margin: .1rem;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox {
   margin: 0;
@@ -681,7 +683,7 @@
   transition: all .2s;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox .compress {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox .left {
@@ -689,6 +691,14 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+.sidebar .sortContainer .optionsBoxContainer .optionsBox .middle {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-left: none;
+  border-right: none;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox .right {
   border-top-right-radius: 5px;

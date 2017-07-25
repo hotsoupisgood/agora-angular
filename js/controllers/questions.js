@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $routeParams, $route, $location, userService, questionsTopService, upVoteQuestionService, searchService, getSingleQuestionService) {
+module.exports = function($scope, $rootScope, $routeParams, $route, $location, userService, questionsTopService, voteService, searchService, getSingleQuestionService) {
     // routing goodies
     $scope.name = 'questions';
     //manage questions
@@ -22,12 +22,27 @@ module.exports = function($scope, $rootScope, $routeParams, $route, $location, u
             $scope.getTopQuestions();
         }
     });
+
+    $rootScope.$on('discover_tag', function(e){
+      $getQuestions();
+    });
     $rootScope.$on('discover_popular', function(e){
-      $scope.orderByPopular();
-      console.log("wr");
+      $scope.orderByMostResponses();
     });
     $rootScope.$on('discover_recent', function(e){
       $scope.orderByRecent();
+    });
+    $rootScope.$on('discover_alphabet', function(e){
+      $scope.orderByAtoZ();
+    });
+    $rootScope.$on('discover_unalphabet', function(e){
+      $scope.orderByZtoA();
+    });
+    $rootScope.$on('discover_unpopular', function(e){
+      $scope.orderByLeastResponses();
+    });
+    $rootScope.$on('discover_oldest', function(e){
+      $scope.orderByOldest();
     });
     // get request questions
     $scope.getSearchQuery = function() {
@@ -68,22 +83,16 @@ module.exports = function($scope, $rootScope, $routeParams, $route, $location, u
     }
     $scope.populateRandomTags();
 
-    $scope.orderByRecent = function() {
-      $scope.order = 'date';
-      $scope.getTopQuestions();
-    };
-    $scope.orderDate=$scope.orderByRecent;
-
-    $scope.orderAlphabet = function() {
-        $scope.order = '-text';
-        $scope.getTopQuestions();
-    };
-
-    $scope.orderByResponses = function(){
-      $scope.order='-total_responses';
+    $scope.orderBy=function(order){
+      $scope.order=order;
       $scope.getTopQuestions();
     }
-    $scope.orderByPopular=$scope.orderByResponses;
+    $scope.orderByRecent=function(){$scope.orderBy('date');}
+    $scope.orderByOldest=function(){$scope.orderBy('-date');}
+    $scope.orderByAtoZ=function(){$scope.orderBy('text');}
+    $scope.orderByZtoA=function(){$scope.orderBy('-text');}
+    $scope.orderByMostResponses=function(){$scope.orderBy('-total_responses');}
+    $scope.orderByLeastResponses=function(){$scope.orderBy('total_responses');}
 
     //go forward a page
     $scope.goForwardOne = function() {

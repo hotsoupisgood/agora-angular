@@ -5,6 +5,7 @@ require('angular-toArrayFilter');
 require('angular-animate');
 require('angular-sanitize');
 require('angular-elastic');
+var d3 = require("d3");
 //app decrelation
 var agoraApp = angular.module('agoraApp', ['ngRoute', 'ngAnimate', 'angular-toArrayFilter', 'ngCookies', 'ngSanitize','monospaced.elastic']);
 
@@ -19,7 +20,7 @@ agoraApp.service('submitCommentService',            require('./services/submitCo
 agoraApp.service('questionsTopService',             require('./services/questionsTop.js'));
 agoraApp.service('searchService',                   require('./services/search.js'));
 agoraApp.service('userService',                     require('./services/user.js'));
-agoraApp.service('upVoteQuestionService',           require('./services/upVoteQuestion.js'));
+agoraApp.service('voteService',                     require('./services/vote.js'));
 agoraApp.service('loginService',                    require('./services/login.js'));
 agoraApp.service('logoutService',                   require('./services/logout.js'));
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));

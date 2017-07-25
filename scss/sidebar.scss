@@ -12,6 +12,9 @@ $toggleRadius: 5px;
       }
       .optionsBoxContainer{
         justify-content: center;
+        font-family: Inconsolata;
+        font-size: 0.7rem;
+        margin: .1rem;
         .optionsBox{
           margin: 0;
           padding: 0;
@@ -29,7 +32,7 @@ $toggleRadius: 5px;
             transition: all .2s;
           }
           .compress{
-            background-color: $BLACK-MED;
+            background-color: $BLACK-LOWER;
             color: white;
 
           }
@@ -40,6 +43,14 @@ $toggleRadius: 5px;
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
             //border-right-style: none;
+          }
+          .middle{
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            border-left: none;
+            border-right: none;
           }
           .right{
             border-top-right-radius: $toggleRadius;

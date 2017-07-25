@@ -234,6 +234,7 @@
                   overflow-y: scroll;
                   flex-direction: column;
                   align-items: left;
+
                   .moreComments{
                     align-self: center;
                     color: grey;
@@ -242,11 +243,10 @@
                   }
 
                   .comment {
-                      display: flex;
+                      padding-top: .4rem;
                       flex-direction: row;
-                      padding-top: 0.4em;
                       flex-wrap: nowrap;
-                      white-space:nowrap;
+                      white-space: nowrap;
                       text-overflow: ellipsis;
                       color: $BLACK-LOWER !important;
                       .row{

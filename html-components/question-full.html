@@ -38,7 +38,8 @@
                             <div class="vote col" ng-click="upVote(question.responses[$index].id)" ng-hide="upVoted">
                                 <div class="fill-space"></div>
                                 <div class="row">
-                                    <i title="UP VOTE" class="fa fa-spin fa-grav" aria-hidden="true"></i>
+                                  <i ng-show="(isLoggedIn&&!response.voted)" title="UP VOTE" class="fa fa-square-o" aria-hidden="true"></i>
+                                  <i ng-show="(isLoggedIn&&response.voted)" title="UP VOTE" class="fa fa-check-square-o" aria-hidden="true"></i>
                                 </div>
                                 <div class="fill-space"></div>
                             </div>
