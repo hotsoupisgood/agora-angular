@@ -164,6 +164,7 @@ module.exports =  function($scope, $routeParams, getSingleQuestionService, editS
 module.exports = function($scope, $cookies, $route, $location, logoutService, cookieService) {
     $scope.name = 'headerController';
     $scope.searchQuery = '';
+    cookieService.all();
     $scope.logout = function () {
         logoutService.submit();
     };
@@ -175,7 +176,6 @@ module.exports = function($scope, $cookies, $route, $location, logoutService, co
         doU: true,
         doT: false});
     }
-    cookieService.all();
 };
 
 },{}],8:[function(require,module,exports){
@@ -203,11 +203,10 @@ module.exports =  function($scope, loginService) {
 
 },{}],9:[function(require,module,exports){
 module.exports =  function($scope, $rootScope, $route,
-    $routeParams, $location, $cookies) {
+    $routeParams, $location, $cookies, cookieService) {
     $scope.name = 'mainController';
     $scope.minBanner = true;//force min banner for development
     $scope.questions = {};
-//
     $rootScope.rememberLogin = true;
     var reader = new commonmark.Parser();
     var writer = new commonmark.HtmlRenderer();
@@ -254,7 +253,7 @@ module.exports =  function($scope, $rootScope, $route,
 };
 
 },{}],10:[function(require,module,exports){
-module.exports = function($scope, $routeParams, getSingleQuestionService, voteService, editService) {
+module.exports = function($rootScope, $scope, $routeParams, getSingleQuestionService, voteService, editService) {
     $scope.name = 'questionController';
     $scope.question = {};
     $scope.responses = {};
@@ -276,7 +275,14 @@ module.exports = function($scope, $routeParams, getSingleQuestionService, voteSe
         $scope.editQuestion=false;
       }
     }
-    $scope.getQuestionFull();
+    if($rootScope.loggingIn){
+      console.log("Im gunna wait for the login before loading this page.");
+      $rootScope.$on("loggedIn", function(){
+        $scope.getQuestionFull();
+      });
+    }else{
+      $scope.getQuestionFull();
+    }
     $scope.saveText=function(question){
       if(!editService.editQuestion(question.id, question.text)){
         alert("Failed to update the question. Check your connection.");
@@ -791,6 +797,7 @@ agoraApp.controller('headerController',             require('./controllers/heade
 },{"./config/routing.js":1,"./controllers/about.js":2,"./controllers/checkUsername.js":3,"./controllers/comments.js":4,"./controllers/createAccount.js":5,"./controllers/edit-question.js":6,"./controllers/header.js":7,"./controllers/loginForm.js":8,"./controllers/main.js":9,"./controllers/question.js":10,"./controllers/questions.js":11,"./controllers/questionsSearch.js":12,"./controllers/response.js":13,"./controllers/search.js":14,"./controllers/submit-comment.js":15,"./controllers/submit-question.js":16,"./controllers/submit-response.js":17,"./controllers/user.js":18,"./services/cookieUtil.js":20,"./services/createAccount.js":21,"./services/edit.js":22,"./services/getSingleQuestion.js":23,"./services/login.js":24,"./services/logout.js":25,"./services/questionsTop.js":26,"./services/remove.js":27,"./services/search.js":28,"./services/submitComment.js":29,"./services/submitQuestion.js":30,"./services/submitResponse.js":31,"./services/user.js":32,"./services/vote.js":33,"angular":45,"angular-animate":35,"angular-cookies":37,"angular-elastic":38,"angular-route":40,"angular-sanitize":42,"angular-toArrayFilter":43,"d3":46}],20:[function(require,module,exports){
 module.exports = function ($http, $cookies, $rootScope, loginService) {
   this.all = function () {
+    $rootScope.loggingIn=true;
     loginService.cookieLogin();
     $rootScope.minBanner = $cookies.get('minBanner');
     $rootScope.lastTab = $cookies.get('lastTab');
@@ -904,7 +911,7 @@ module.exports = function($rootScope, $http, userService) {
 }
 
 },{}],23:[function(require,module,exports){
-module.exports = function($http, $rootScope, userService) {
+module.exports = function($rootScope, $http, userService) {
     this.get = function(id) {
         //multiply page number for first question desired
         //request
@@ -917,15 +924,8 @@ module.exports = function($http, $rootScope, userService) {
           req.params.username=$rootScope.accountInfo.username
         }
         var returnData = $http(req).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log(response.data);
-
             return response.data;
         }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            //show response for debug
             return false;
         });
         return returnData;
@@ -951,6 +951,8 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
           // when the response is available
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
+            $rootScope.loggingIn=false;
+            $rootScope.$emit("loggedIn");
             // set cookie
             if (remember) {
               $cookies.put('username', inputUsername);
@@ -968,6 +970,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
           // or server returns response with an error status.
           console.log('successCallback, response: ')
           console.log(response)
+          $rootScope.loggingIn=false;
           return false;
       });
       return returnData;
@@ -989,13 +992,12 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
               'Content-type': 'application/json'
             }
         }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            // userService.setAccountInfo(response.data);
-
-
+            console.log("Accound info: ");
+            console.log(response.data);
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
+            $rootScope.loggingIn=false;
+            $rootScope.$emit("loggedIn");
             // set cookie
             // $cookies.put('username', inputUsername);
             // $cookies.put('password', inputPassword);
@@ -1006,6 +1008,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
+            $rootScope.loggingIn=false;
             console.log('errorCallback, response: ');
             console.log(response.data);
         });

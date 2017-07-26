@@ -16,6 +16,8 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
           // when the response is available
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
+            $rootScope.loggingIn=false;
+            $rootScope.$emit("loggedIn");
             // set cookie
             if (remember) {
               $cookies.put('username', inputUsername);
@@ -33,6 +35,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
           // or server returns response with an error status.
           console.log('successCallback, response: ')
           console.log(response)
+          $rootScope.loggingIn=false;
           return false;
       });
       return returnData;
@@ -54,13 +57,12 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
               'Content-type': 'application/json'
             }
         }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            // userService.setAccountInfo(response.data);
-
-
+            console.log("Accound info: ");
+            console.log(response.data);
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
+            $rootScope.loggingIn=false;
+            $rootScope.$emit("loggedIn");
             // set cookie
             // $cookies.put('username', inputUsername);
             // $cookies.put('password', inputPassword);
@@ -71,6 +73,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
+            $rootScope.loggingIn=false;
             console.log('errorCallback, response: ');
             console.log(response.data);
         });

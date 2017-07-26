@@ -35,11 +35,11 @@
                 <div class="response" ng-hide="deleted" ng-class="{unOwnedResponse: {{response.username != accountInfo.username}}}">
                     <div class="header">
                             <span>{{response.text}}</span>
-                            <div class="vote col" ng-click="upVote(question.responses[$index].id)" ng-hide="upVoted">
+                            <div class="vote col" ng-click="upVote(response.id)">
                                 <div class="fill-space"></div>
                                 <div class="row">
-                                  <i ng-show="(isLoggedIn&&!response.voted)" title="UP VOTE" class="fa fa-square-o" aria-hidden="true"></i>
-                                  <i ng-show="(isLoggedIn&&response.voted)" title="UP VOTE" class="fa fa-check-square-o" aria-hidden="true"></i>
+                                  <i title="VOTE" ng-show="isLoggedIn"  ng-class="{'fa-square-o': !response.voted, 'fa-check-square-o': response.voted}"
+                                    ng-click="response.voted=!response.voted;" class="fa" aria-hidden="true"></i>
                                 </div>
                                 <div class="fill-space"></div>
                             </div>

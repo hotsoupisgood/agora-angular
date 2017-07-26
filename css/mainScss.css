@@ -355,6 +355,20 @@
 .banner .about {
   font-size: 1.8em;
 }
+.banner #overlay {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.banner #overlay #pow {
+  opacity: 0;
+  transition: all .25s;
+}
 
 .smallHead {
   max-height: 3em;

@@ -1,4 +1,4 @@
-module.exports = function($scope, $routeParams, getSingleQuestionService, voteService, editService) {
+module.exports = function($rootScope, $scope, $routeParams, getSingleQuestionService, voteService, editService) {
     $scope.name = 'questionController';
     $scope.question = {};
     $scope.responses = {};
@@ -20,7 +20,14 @@ module.exports = function($scope, $routeParams, getSingleQuestionService, voteSe
         $scope.editQuestion=false;
       }
     }
-    $scope.getQuestionFull();
+    if($rootScope.loggingIn){
+      console.log("Im gunna wait for the login before loading this page.");
+      $rootScope.$on("loggedIn", function(){
+        $scope.getQuestionFull();
+      });
+    }else{
+      $scope.getQuestionFull();
+    }
     $scope.saveText=function(question){
       if(!editService.editQuestion(question.id, question.text)){
         alert("Failed to update the question. Check your connection.");

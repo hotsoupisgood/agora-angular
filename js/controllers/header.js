@@ -1,6 +1,7 @@
 module.exports = function($scope, $cookies, $route, $location, logoutService, cookieService) {
     $scope.name = 'headerController';
     $scope.searchQuery = '';
+    cookieService.all();
     $scope.logout = function () {
         logoutService.submit();
     };
@@ -12,5 +13,4 @@ module.exports = function($scope, $cookies, $route, $location, logoutService, co
         doU: true,
         doT: false});
     }
-    cookieService.all();
 };

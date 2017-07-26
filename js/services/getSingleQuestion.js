@@ -1,4 +1,4 @@
-module.exports = function($http, $rootScope, userService) {
+module.exports = function($rootScope, $http, userService) {
     this.get = function(id) {
         //multiply page number for first question desired
         //request
@@ -11,15 +11,8 @@ module.exports = function($http, $rootScope, userService) {
           req.params.username=$rootScope.accountInfo.username
         }
         var returnData = $http(req).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log(response.data);
-
             return response.data;
         }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            //show response for debug
             return false;
         });
         return returnData;
