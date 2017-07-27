@@ -26,6 +26,8 @@ agoraApp.service('logoutService',                   require('./services/logout.j
 agoraApp.service('createAccountService',            require('./services/createAccount.js'));
 agoraApp.service('editService',                     require('./services/edit.js'));
 agoraApp.service('removeService',                   require('./services/remove.js'));
+agoraApp.service('animationService',                require('./services/animations.js'));
+agoraApp.service('util',                            require('./services/util.js'));
 
 //controllers
 agoraApp.controller('editQuestionController',       require('./controllers/edit-question.js'));
@@ -45,3 +47,4 @@ agoraApp.controller('submitQuestionFormController', require('./controllers/submi
 agoraApp.controller('submitResponseFormController', require('./controllers/submit-response.js'));
 agoraApp.controller('questionSearchController',     require('./controllers/questionsSearch.js'));
 agoraApp.controller('headerController',             require('./controllers/header.js'));
+agoraApp.controller('overlayController',            require('./controllers/overlay.js'));

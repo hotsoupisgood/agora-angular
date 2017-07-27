@@ -20,7 +20,6 @@ module.exports = function($rootScope, $location,$scope, $routeParams, getSingleQ
         $scope.editQuestion=false;
       }
     }
-
     if($rootScope.loggingIn){
       $rootScope.$on("login-done", function(){
         console.log("login-done, so im loading question page.")

@@ -1,0 +1,18 @@
+.overlay{
+  position: fixed;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  *{
+    opacity: 0;
+    position: absolute;
+  }
+  .fa{
+    font-size: 10rem;
+  }
+}

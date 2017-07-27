@@ -12,9 +12,9 @@ module.exports = function ($rootScope, $http, userService) {
                   'Authorization': 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
               }
           }).then(function successCallback(response) {
-              return true;
+              return response;
           }, function errorCallback(response) {
-              return false;
+              return response;
           });
         }
     }

@@ -1,6 +1,5 @@
-//Constants, Put reusable vars in there.
-@import "constants";
-
+@import "constants";//Constants, Put reusable vars in there.
+@import "animations";
 @import "search";
 @import "question_full";
 @import "tags";
@@ -16,6 +15,7 @@
 @import "about";
 @import "discover";
 @import "main_buttons";
+@import "overlay";
 
 //Global things go here
 

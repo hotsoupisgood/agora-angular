@@ -1,0 +1,31 @@
+@keyframes pop {
+    0%   {opacity: 0;}
+    30%  {opacity: 1;}
+    60%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+$deg:3deg;
+@keyframes pop-shake {
+    0%   {opacity: 0;}
+    30%  {opacity: 1; transform: rotate($deg);}
+    50%  { transform: rotate(-2*$deg);}
+    60%  {opacity: 1; transform: rotate($deg);}
+    100% {opacity: 0;}
+}
+$width:20rem;
+$rot:30deg;
+@keyframes fly {
+    0%   {opacity: 0; transform: rotate($rot) translate(-$width/2,$width/2)}
+    30%  {opacity: 1; transform: rotate($rot) translate(-$width/2,$width/2) scale(1);}
+    60%  {opacity: 1; transform: rotate(-$rot) translate($width/2, -$width/2) scale(.05);}
+    100% {opacity: 0; transform: rotate(-$rot) translate($width/2, -$width/2) scale(0);}
+}
+.pop{
+  animation: pop .35s !important;
+}
+.pop-shake{
+  animation: pop-shake .35s !important;
+}
+.fly{
+  animation: fly .7s !important;
+}

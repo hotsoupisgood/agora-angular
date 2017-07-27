@@ -26,8 +26,12 @@
     display: flex;
     flex-flow: column;
     .subheader {
+      border-radius: 0;
+      border-bottom: $BUTTON-BORDER-COLOR $BUTTON-BORDER-SIZE $BUTTON-BORDER-STYLE;
       .contentTitle {
-        // font-size: 2em;
+        font-size: 1.5rem;
+        color: $BLACK-LOWER;
+        text-transform: capitalize;
       }
       .details {
         display: flex;
@@ -38,6 +42,7 @@
     }
     .empty-text {
       align-self: center;
+      color: $BLACK-LOW;
     }
     .row {
       p {

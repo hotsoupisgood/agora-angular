@@ -1,5 +1,6 @@
 module.exports = function($http, $cookies, $rootScope) {
     this.submit = function (moduleId, commentText) {
+      $rootScope.$emit("overlay-submit");
       console.log(moduleId + ": " + commentText)
             return $http({
                 method: 'POST',
