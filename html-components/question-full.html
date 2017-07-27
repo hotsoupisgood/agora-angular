@@ -60,14 +60,10 @@
                     <div></div><i class="fa fa-close" aria-hidden="true"></i><div></div>
                 </div>
             </div>
-            <div class="responseButton">
-              <a class="buttonExpandHorizontal" title="Respond to the question." ng-href="#login" ng-hide="isLoggedIn">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                  <div class="description">Respond</div>
-              </a>
-              <a ng-class="{responseUI: openUI, buttonExpandHorizontal: !openUI}" title="Respond to the question." class="" ng-show="isLoggedIn" ng-click="openUI=true">
-                  <i title="Respond to the question." ng-class="{fade: openUI}" class="fa fa-pencil" aria-hidden="true"></i>
-                  <div class="description" ng-class="{fade: openUI}" >Respond</div>
+            <div class="responseButton" ng-class="{hideThis: noMoreResponse}">
+              <a ng-class="{responseUI: openUI, buttonExpandHorizontal: !openUI}" title="Respond to the question." class="" ng-click="isLoggedIn?openUI=true:goToLogin()">
+                  <i ng-class="{fade: openUI}" class="fa fa-pencil" aria-hidden="true"></i>
+                  <div class="description" ng-class="{fade: openUI}">Respond</div>
                   <div ng-show="openUI" ng-include src="'html-components/answer-question-page.html'"></div>
               </a>
             </div>

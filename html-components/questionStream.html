@@ -1,13 +1,7 @@
 <ul class="col">
   <li ng-repeat="q in questions" ng-class="{selected: mouseIsOnTitle}">
-    <a class="buttonExpandDown" ng-href="#edit/question/{{q.id}}" ng-show="q.username==accountInfo.username">
-      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-      <div class="description">
-        Edit
-      </div>
-    </a>
     <a ng-href="#/question/{{q.id}}"
-        class="container-question" ng-class="{unOwned: q.username!=accountInfo.username}"
+        class="container-question unOwned"
         ng-mouseenter="mouseIsOnTitle=true" ng-mouseleave="mouseIsOnTitle=false">
       <span class="text-title row">{{q.text}}</span>
       <span class="text-detail">Asked {{q.dtime}} ago by&nbsp;<a ng-href="#/user/{{q.username}}">{{q.username}}</a></span>

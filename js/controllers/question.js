@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $scope, $routeParams, getSingleQuestionService, voteService, editService) {
+module.exports = function($rootScope, $location,$scope, $routeParams, getSingleQuestionService, voteService, editService) {
     $scope.name = 'questionController';
     $scope.question = {};
     $scope.responses = {};
@@ -20,11 +20,13 @@ module.exports = function($rootScope, $scope, $routeParams, getSingleQuestionSer
         $scope.editQuestion=false;
       }
     }
+
     if($rootScope.loggingIn){
-      console.log("Im gunna wait for the login before loading this page.");
-      $rootScope.$on("loggedIn", function(){
+      $rootScope.$on("login-done", function(){
+        console.log("login-done, so im loading question page.")
         $scope.getQuestionFull();
       });
+      console.log("Im gunna wait for the login before loading this page.");
     }else{
       $scope.getQuestionFull();
     }
@@ -34,4 +36,12 @@ module.exports = function($rootScope, $scope, $routeParams, getSingleQuestionSer
       }
       $scope.editQuestion=false;
     };
+    $scope.goToLogin=function(){
+        console.log('activated');
+        $location.url('login');
+    }
+    $scope.responseSuccess=function(){
+      $scope.openUI=false;
+      $scope.noMoreResponse=true;
+    }
 };

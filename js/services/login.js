@@ -17,7 +17,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             $rootScope.loggingIn=false;
-            $rootScope.$emit("loggedIn");
+            $rootScope.$emit("login-done");
             // set cookie
             if (remember) {
               $cookies.put('username', inputUsername);
@@ -33,8 +33,9 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
         $cookies.put('password', null);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
-          console.log('successCallback, response: ')
+          console.log('successCallback, response: ');
           console.log(response)
+          $rootScope.$emit("login-done");
           $rootScope.loggingIn=false;
           return false;
       });
@@ -42,7 +43,9 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
   }
   this.cookieLogin = function() {
     if ($cookies.get('username') == null || $cookies.get('password') == null) {
-      console.log('cookie login failed');
+      $rootScope.$broadcast("login-done");
+      $rootScope.loggingIn=false;
+      console.log('cookie login failed, well I did not try.');
     } else {
       this.username = $cookies.get('username');
       this.password = $cookies.get('password');
@@ -62,7 +65,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             $rootScope.loggingIn=false;
-            $rootScope.$emit("loggedIn");
+            $rootScope.$emit("login-done");
             // set cookie
             // $cookies.put('username', inputUsername);
             // $cookies.put('password', inputPassword);
@@ -74,6 +77,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             // called asynchronously if an error occurs
             // or server returns response with an error status.
             $rootScope.loggingIn=false;
+            $rootScope.$emit("login-done");
             console.log('errorCallback, response: ');
             console.log(response.data);
         });

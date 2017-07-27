@@ -253,7 +253,7 @@ module.exports =  function($scope, $rootScope, $route,
 };
 
 },{}],10:[function(require,module,exports){
-module.exports = function($rootScope, $scope, $routeParams, getSingleQuestionService, voteService, editService) {
+module.exports = function($rootScope, $location,$scope, $routeParams, getSingleQuestionService, voteService, editService) {
     $scope.name = 'questionController';
     $scope.question = {};
     $scope.responses = {};
@@ -275,11 +275,13 @@ module.exports = function($rootScope, $scope, $routeParams, getSingleQuestionSer
         $scope.editQuestion=false;
       }
     }
+
     if($rootScope.loggingIn){
-      console.log("Im gunna wait for the login before loading this page.");
-      $rootScope.$on("loggedIn", function(){
+      $rootScope.$on("login-done", function(){
+        console.log("login-done, so im loading question page.")
         $scope.getQuestionFull();
       });
+      console.log("Im gunna wait for the login before loading this page.");
     }else{
       $scope.getQuestionFull();
     }
@@ -289,6 +291,14 @@ module.exports = function($rootScope, $scope, $routeParams, getSingleQuestionSer
       }
       $scope.editQuestion=false;
     };
+    $scope.goToLogin=function(){
+        console.log('activated');
+        $location.url('login');
+    }
+    $scope.responseSuccess=function(){
+      $scope.openUI=false;
+      $scope.noMoreResponse=true;
+    }
 };
 
 },{}],11:[function(require,module,exports){
@@ -708,7 +718,7 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
           $scope.success=response.success;
           if ($scope.success) {
             var responses = $scope.$parent.question.responses;
-            $scope.openUI=false;
+            $scope.$parent.responseSuccess();
             responses.push(response.data);
           }
         });
@@ -952,7 +962,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             $rootScope.loggingIn=false;
-            $rootScope.$emit("loggedIn");
+            $rootScope.$emit("login-done");
             // set cookie
             if (remember) {
               $cookies.put('username', inputUsername);
@@ -968,8 +978,9 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
         $cookies.put('password', null);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
-          console.log('successCallback, response: ')
+          console.log('successCallback, response: ');
           console.log(response)
+          $rootScope.$emit("login-done");
           $rootScope.loggingIn=false;
           return false;
       });
@@ -977,7 +988,9 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
   }
   this.cookieLogin = function() {
     if ($cookies.get('username') == null || $cookies.get('password') == null) {
-      console.log('cookie login failed');
+      $rootScope.$broadcast("login-done");
+      $rootScope.loggingIn=false;
+      console.log('cookie login failed, well I did not try.');
     } else {
       this.username = $cookies.get('username');
       this.password = $cookies.get('password');
@@ -997,7 +1010,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             $rootScope.accountInfo = response.data;
             $rootScope.isLoggedIn = true;
             $rootScope.loggingIn=false;
-            $rootScope.$emit("loggedIn");
+            $rootScope.$emit("login-done");
             // set cookie
             // $cookies.put('username', inputUsername);
             // $cookies.put('password', inputPassword);
@@ -1009,6 +1022,7 @@ module.exports = function ($cookies, $rootScope, $location, $http, userService) 
             // called asynchronously if an error occurs
             // or server returns response with an error status.
             $rootScope.loggingIn=false;
+            $rootScope.$emit("login-done");
             console.log('errorCallback, response: ');
             console.log(response.data);
         });

@@ -43,7 +43,7 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
           $scope.success=response.success;
           if ($scope.success) {
             var responses = $scope.$parent.question.responses;
-            $scope.openUI=false;
+            $scope.$parent.responseSuccess();
             responses.push(response.data);
           }
         });

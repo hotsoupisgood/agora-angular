@@ -1,24 +1,34 @@
-  <form class="col" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
-      <div class="header">
-        <textarea msd-elastic ng-class="{noInput: success, alertField: noTitle}" class="fill-space" type="text" placeholder="brief response/ summary of sections (required)" ng-model="response" required>
-        <span ng-show="success" class="detailText">Written by {{accountInfo.username}} just now</span>
-      </div>
-      <div class="sections">
+<div class="col addResponse" ng-controller="submitResponseFormController" ng-submit="submit(q.id)">
+    <div class="header">
+        <textarea id="title" msd-elastic ng-class="{noInput: success, alertField: noTitle}" type="text" placeholder="Title, summary or tldr" ng-model="response"></textarea>
+        <!--<span ng-show="success" class="detailText">Written by {{accountInfo.username}} just now</span>-->
+    </div>
+    <div class="sections">
         <div class="section" ng-repeat="m in modules">
-          <div class="section-header fill-inbetween">
-            <input class="" ng-class="{noInput: success}" type="text" placeholder="Section header (optional)" ng-model="m.title">
-            <button ng-hide="success" class="whiteButton" type="button" ng-click="removeModule($index)">Remove Section <i class="fa fa-times" aria-hidden="true"></i></button>
-          </div>
-          <div class="section-body">
-            <textarea class="fill-space" rows="8" cols="50" placeholder="Section body" ng-model="m.text" required></textarea>
-          </div>
+            <div class="background" ng-class="{highlight: m.selected}"></div>
+            <div class="foreground">
+                <div class="section-header fill-inbetween">
+                    <textarea msd-elastic class="" ng-class="{noInput: success}" type="text" placeholder="Subject" ng-model="m.title"></textarea>
+                    <button ng-hide="success" title="Delete this section." class="removeButton" type="button" ng-mouseenter="m.selected=true" ng-mouseleave="m.selected=false" ng-click="removeModule($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+                <div class="section-body">
+                    <textarea msd-elastic class="fill-space" rows="8" cols="50" placeholder="Body" ng-model="m.text"></textarea>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="row fill-inbetween" ng-class="{fadeIn: openUI}">
-        <button class="whiteButton submitButton" ng-hide="success" type="submit" ng-click="submit()">Submit Response</button>
-        <button ng-hide="success" class="whiteButton" type="button" ng-click="addModule()">Add Section</button>
-      </div>
-      <div class="row fill-inbetween" ng-show="failed">
+    </div>
+    <div id="bottom-row" class="row fill-inbetween" ng-class="{fadeIn: openUI}">
+        <div></div>
+        <button id="send" class="buttonExpandDown submitButton" ng-hide="success" type="submit" ng-click="submit()">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          <div class="description">save</div>
+        </button>
+        <button id="add" ng-hide="success" class="buttonExpandDown" type="button" ng-click="addModule()">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <div class="description">add</div>
+        </button>
+    </div>
+    <div class="row fill-inbetween" ng-show="failed">
         <h4 style="color:green">failed... try refreshing the page</h4>
-      </div>
-  </form>
+    </div>
+</div>
