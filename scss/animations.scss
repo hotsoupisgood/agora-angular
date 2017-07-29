@@ -1,31 +1,45 @@
+
+//Pop fades in and out.
+$max-opacity:.75;
 @keyframes pop {
     0%   {opacity: 0;}
-    30%  {opacity: 1;}
-    60%  {opacity: 1;}
+    30%  {opacity:$max-opacity;}
+    60%  {opacity:$max-opacity;}
     100% {opacity: 0;}
 }
+
+//This fades the image in and shakes it a bit, then fades out.
 $deg:3deg;
 @keyframes pop-shake {
     0%   {opacity: 0;}
-    30%  {opacity: 1; transform: rotate($deg);}
+    30%  {opacity:$max-opacity; transform: rotate($deg);}
     50%  { transform: rotate(-2*$deg);}
-    60%  {opacity: 1; transform: rotate($deg);}
+    60%  {opacity:$max-opacity; transform: rotate($deg);}
     100% {opacity: 0;}
 }
+
+//Fly animation is for the paper airplane.
+//Start left and down, move right and up, shink and fade.
 $width:20rem;
 $rot:30deg;
 @keyframes fly {
     0%   {opacity: 0; transform: rotate($rot) translate(-$width/2,$width/2)}
-    30%  {opacity: 1; transform: rotate($rot) translate(-$width/2,$width/2) scale(1);}
-    60%  {opacity: 1; transform: rotate(-$rot) translate($width/2, -$width/2) scale(.05);}
+    30%  {opacity:$max-opacity; transform: rotate($rot) translate(-$width/2,$width/2) scale(1);}
+    60%  {opacity:$max-opacity; transform: rotate(-$rot) translate($width/2, -$width/2) scale(.05);}
     100% {opacity: 0; transform: rotate(-$rot) translate($width/2, -$width/2) scale(0);}
 }
+
+//Quickly does the fade in fade out for mild disclaimers.
 .pop{
   animation: pop .35s !important;
 }
+
+//Quickly fades in and wiggles for  mild disclaimers.
 .pop-shake{
   animation: pop-shake .35s !important;
 }
+
+//Paper flying away, letting the user know something was send. medium disclaimer.
 .fly{
   animation: fly .7s !important;
 }
