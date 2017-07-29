@@ -10,6 +10,7 @@
       }
     }
 }
+// 
 .askQuestionPage {
   display: flex;
   justify-content: center;
@@ -18,7 +19,6 @@
   background: white;
   .header {
     margin: .5em;
-    // background: rgb(246, 246, 246);
     padding: .5em;
     // font-family: 'Lato', sans-serif;
     font-size: 1.4em;
@@ -33,12 +33,13 @@
     input {
       padding: 1em;
       flex-grow: 1;
-      min-width: 30em;
+      width: 100%;
     }
     textarea {
+      margin-bottom: 1em;
       padding: 1em;
       flex-grow: 1;
-      min-width: 30em;
+      width: 100%;
     }
     button {
       margin-top: 1em;

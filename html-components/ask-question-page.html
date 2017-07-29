@@ -4,12 +4,8 @@
     </div>
     <div class="row">
         <form class="askQuestion" ng-submit="submit()" role="form">
-            <div class="row fill-space">
                 <textarea type="text" class="" placeholder="Ask a question; eg. (Can kowalas survive biscuts and gravy?)" required ng-model="question"></textarea>
-            </div>
-            <div class="row fill-space">
                 <input class="" ng-model="questionTags" type="text" placeholder="Tag your question; eg. (cute cats, derivitives)">
-            </div>
             <button type="submit" class="submitButton whiteButton" ng-hide="success; loading">
                   Submit
               </button>

@@ -2,7 +2,7 @@
     <!-- <ng-include src="'html-components/banner.html'"></ng-include> -->
     <header class="site-header" ng-init="selectedTab = 'discover'">
       <link href="https://fonts.googleapis.com/css?family=Inconsolata|Arvo|Josefin+Slab|Lato|PT+Sans|PT+Serif|Prociono|Prompt|Ubuntu" rel="stylesheet">
-        <nav class="site-nav">
+        <nav class="site-nav row">
             <ul>
                 <li ng-class="{'active':selectedTab === 'discover'}">
                     <a ng-href="#discover" ng-click="selectedTab = 'discover'" class="whiteButton">Discover</a>
@@ -15,8 +15,8 @@
                 </li>
             </ul>
         </nav>
-        <ng-include src="'html-components/banner.html'"></ng-include>
-        <form class="searchForm" ng-submit="search()">
+        <ng-include class="row" src="'html-components/banner.html'"></ng-include>
+        <form class="searchForm row" ng-submit="search()">
             <input class="searchFormInput" ng-model="searchQuery" type="text" placeholder="Search This Agora">
             <button><i class="fa fa-search" aria-hidden="true"></i></button>
         </form>

@@ -1,93 +1,76 @@
 $navbarHeight: 30px;
 $navbarHeightMobile: 20vh;
 @import 'https://fonts.googleapis.com/css?family=Amatic+SC:700';
-@media(pointer:coarse) {
-}
 .management {
   position: fixed;
   width: 100%;
   top: 0;
   box-shadow: 3px 3px 3px 2px rgba(#b6b6b6, 0.45);
   z-index: 10;
-}
-header {
-  transition: height 0.3s;
-  display: flex;
-  flex-direction: row;
-  height: 2.8rem;
-  overflow: hidden;
-  justify-content: space-between;
-  form {
-    width: 20rem;
-    padding: .2rem;
-    display: flex;
-    flex-direction: column;
-    min-height: 2rem;
-    justify-content: center;
-    input{
-      border-radius: $SBR 0px 0px $SBR;
-      min-height: 2em;
-      @extend BUTTON-BORDER;
-    }
-    button {
-      position: absolute;
-      right: .8rem;
-      background: rgba(255, 255, 255, 0);
-      color: black;
-      z-index: 11;
-      padding: 0;
-      border-radius: 0px $SBR $SBR 0px;
-    }
-  }
-  button {
-    font-size: 1em;
-  }
-  .active {
-      a {
-        // color: rgb(34, 142, 230) !important;
-      }
-  }
-
-  .site-nav {
-    ul {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin: 0;
-        padding: 0;
-        li {
-          display: flex;
-          flex-direction: row;
-          a {
-              flex-grow: 5;
-              text-decoration: none;
-              color: black !important;
-              padding: .5em;
-              padding-top: .5em;
-              justify-content: center;
-              height: calc($navbarHeight - 20px);
-              display: inline;
-              margin-left: .2em;
-          }
-          a:hover {
-            background: rgb(224, 224, 224)!important;
-            border-radius: .2em;
-          }
-        }
-    }
-  }
-}
-.site-header {
-    min-height: $navbarHeight;
+  .site-header {
     background: white;
     color: black;
     display: flex;
-    align-items: center;
-}
-.account-actions {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    margin-right: 1em;
+    justify-content: space-between;
+    transition: height 0.3s;
+    flex-direction: row;
+    overflow: visible;
+    flex-wrap:wrap;
+    button {
+      font-size: 1em;
+    }
+    .active {
+        a {
+          // color: rgb(34, 142, 230) !important;
+        }
+    }
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: .2em;
+      input{
+        border-radius: $SBR 0px 0px $SBR;
+        @extend BUTTON-BORDER;
+        border-right-style: none !important;
+      }
+      button {
+        margin-left: 0;
+        background: white;
+        color: black;
+        border-radius: 0px $SBR $SBR 0px;
+        @extend BUTTON-BORDER;
+      }
+    }
+    .site-nav {
+      ul {
+          list-style: none;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          margin: .2em;
+          padding: 0;
+          li {
+            display: flex;
+            flex-direction: row;
+            a {
+                flex-grow: 5;
+                text-decoration: none;
+                color: black !important;
+                padding: .5em;
+                padding-top: .5em;
+                justify-content: center;
+                align-self: center;
+                height: calc($navbarHeight - 20px);
+                display: inline;
+                margin-left: .2em;
+            }
+            a:hover {
+              background: rgb(224, 224, 224)!important;
+              border-radius: .2em;
+            }
+          }
+      }
+    }
+  }
 }

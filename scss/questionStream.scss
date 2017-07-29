@@ -12,35 +12,58 @@ $LIGHT-HUE: $BLACK-LOW;
       padding: 0;
       list-style-type: none;
       border-bottom: $BUTTON-BORDER-SIZE $BUTTON-BORDER-STYLE $BUTTON-BORDER-COLOR;
-      .selected {
-        background-color: lighten($LIGHT-HUE, 75%);
-      }
+      // .selected {
+      //   background-color: lighten($LIGHT-HUE, 75%);
+      // }
       li{
         transition: all $BUTTON-TIME;
         border-top: $BUTTON-BORDER-SIZE $BUTTON-BORDER-STYLE $BUTTON-BORDER-COLOR;
         display: flex;
+        flex-direction: column;
         min-height: $QUESTION-HEIGHT;
-        align-items: center;
+        cursor: pointer;
         color: $HUE;
         padding-right: $PADDING;
-        .unOwned{
-          padding-left: $PADDING;
+        &:hover {
+          background-color: lighten($LIGHT-HUE, 75%);
+          .container_question{
+            .bottom_line{
+              font-size: .8rem;
+              color: $LIGHT-HUE;
+            }
+          }
         }
-        a{
-          color: inherit;
-          text-decoration: inherit;
-        }
-        .container-question{
+        .container_question{
           min-height: $QUESTION-HEIGHT;
           flex-grow: 1;
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-          .text-detail{
+          flex-direction: column;
+          justify-content: center;
+          padding-left: $PADDING;
+          .top_line{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            a{
+              color: grey;
+              text-decoration: inherit;
+            }
+          }
+          .bottom_line{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            transition: all .2s;
+            font-size: 0px;
+            border-top: .1rem lightgrey;
+            align-items: center;
+            margin-top: .2rem;
+          }
+          .text_detail{
             font-size: .75rem;
             color: $LIGHT-HUE;
           }
-          .text-title{
+          .text_title{
             padding-left: .2rem;
             font-size: 1rem;
           }

@@ -30,6 +30,7 @@ $toggleRadius: 5px;
             @extend .whiteButton;
             border-radius: 0;
             transition: all .2s;
+            white-space: nowrap;
           }
           .compress{
             background-color: $BLACK-LOWER;
