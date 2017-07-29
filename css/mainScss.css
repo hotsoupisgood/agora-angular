@@ -952,7 +952,7 @@
   padding-right: 2rem;
 }
 .questionStream ul li:hover {
-  background-color: rgba(191, 191, 191, 0.5);
+  background-color: rgba(217, 217, 217, 0.5);
 }
 .questionStream ul li:hover .container_question .bottom_line {
   font-size: .8rem;

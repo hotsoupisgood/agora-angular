@@ -22,7 +22,7 @@ $LIGHT-HUE: $BLACK-LOW;
         color: $HUE;
         padding-right: $PADDING;
         &:hover {
-          background-color: lighten($LIGHT-HUE, 75%);
+          background-color: lighten($LIGHT-HUE, 85%);
           .container_question{
             .bottom_line{
               font-size: .8rem;
