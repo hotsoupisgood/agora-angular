@@ -1,7 +1,4 @@
-<div class="sidebar" ng-init="$scope.sorting=1;">
-  <div class="catagory" ng-if="!isLoggedIn">
-    <a class="row buttonCard whiteButton" href="#/ask">Ask a Question</a>
-  </div>
+<div class="sidebar" ng-init="sorting=1;">
   <div class="catagory">
     <a href="#/question/5" class="row buttonCard whiteButton">
         Random Question!
@@ -13,16 +10,16 @@
     </div>
     <div class="row optionsBoxContainer">
       <div class="optionsBox">
-        <a class="left" ng-class="{ compress: $scope.sorting==1 }"ng-click="$emit('discover_recent'); $scope.sorting=1;">recent</a>
-        <a class="middle" ng-class="{ compress: $scope.sorting==2 }" ng-click="$emit('discover_alphabet'); $scope.sorting=2;">A to Z</a>
-        <a class="right" ng-class="{ compress: $scope.sorting==3 }" ng-click="$emit('discover_popular'); $scope.sorting=3;">&nbsp;popular&nbsp;</a>
+        <a class="left" ng-class="{ compress: sorting==1 }"ng-click="orderByRecent(); sorting=1;">recent</a>
+        <a class="middle" ng-class="{ compress: sorting==2 }" ng-click="orderByAtoZ(); sorting=2;">A to Z</a>
+        <a class="right" ng-class="{ compress: sorting==3 }" ng-click="orderByMostResponses(); sorting=3;">&nbsp;popular&nbsp;</a>
       </div>
     </div>
       <div class="row optionsBoxContainer">
       <div class="optionsBox">
-        <a class="left" ng-class="{ compress: $scope.sorting==4 }"ng-click="$emit('discover_oldest'); $scope.sorting=4;">oldest</a>
-        <a class="middle" ng-class="{ compress: $scope.sorting==5 }" ng-click="$emit('discover_unalphabet'); $scope.sorting=5;">Z to A</a>
-        <a class="right" ng-class="{ compress: $scope.sorting==6 }" ng-click="$emit('discover_unpopular'); $scope.sorting=6;">unpopular</a>
+        <a class="left" ng-class="{ compress: sorting==4 }"ng-click="orderByOldest(); sorting=4;">oldest</a>
+        <a class="middle" ng-class="{ compress: sorting==5 }" ng-click="orderByZtoA(); sorting=5;">Z to A</a>
+        <a class="right" ng-class="{ compress: sorting==6 }" ng-click="orderByLeastResponses(); sorting=6;">unpopular</a>
       </div>
     </div>
   </div>

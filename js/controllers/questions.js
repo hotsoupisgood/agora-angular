@@ -26,24 +26,6 @@ module.exports = function($scope, $rootScope, $routeParams, $route, $location, u
     $rootScope.$on('discover_tag', function(e){
       $getQuestions();
     });
-    $rootScope.$on('discover_popular', function(e){
-      $scope.orderByMostResponses();
-    });
-    $rootScope.$on('discover_recent', function(e){
-      $scope.orderByRecent();
-    });
-    $rootScope.$on('discover_alphabet', function(e){
-      $scope.orderByAtoZ();
-    });
-    $rootScope.$on('discover_unalphabet', function(e){
-      $scope.orderByZtoA();
-    });
-    $rootScope.$on('discover_unpopular', function(e){
-      $scope.orderByLeastResponses();
-    });
-    $rootScope.$on('discover_oldest', function(e){
-      $scope.orderByOldest();
-    });
     // get request questions
     $scope.getSearchQuery = function() {
         searchService.get($scope.currentSearchTerm, $scope.currentPage).then(function(response) {
