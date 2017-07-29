@@ -4,10 +4,10 @@
     opacity: 0;
   }
   30% {
-    opacity: 1;
+    opacity: 0.75;
   }
   60% {
-    opacity: 1;
+    opacity: 0.75;
   }
   100% {
     opacity: 0;
@@ -18,14 +18,14 @@
     opacity: 0;
   }
   30% {
-    opacity: 1;
+    opacity: 0.75;
     transform: rotate(3deg);
   }
   50% {
     transform: rotate(-6deg);
   }
   60% {
-    opacity: 1;
+    opacity: 0.75;
     transform: rotate(3deg);
   }
   100% {
@@ -38,11 +38,11 @@
     transform: rotate(30deg) translate(-10rem, 10rem);
   }
   30% {
-    opacity: 1;
+    opacity: 0.75;
     transform: rotate(30deg) translate(-10rem, 10rem) scale(1);
   }
   60% {
-    opacity: 1;
+    opacity: 0.75;
     transform: rotate(-30deg) translate(10rem, -10rem) scale(0.05);
   }
   100% {
@@ -472,10 +472,9 @@
 }
 .addResponse .sections .removeButton {
   padding: 0;
+  margin: .5rem;
+  margin-top: 0;
   font-size: 1.5rem;
-}
-.addResponse .sections .section-header {
-  margin-bottom: 1rem;
 }
 .addResponse .sections .section-header textarea {
   height: 1.5rem;
