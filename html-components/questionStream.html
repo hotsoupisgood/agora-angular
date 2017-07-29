@@ -1,8 +1,6 @@
 <ul class="col">
-  <li ng-repeat="q in questions" ng-class="{selected: mouseIsOnTitle}">
-    <div ng-href="#/question/{{q.id}}"
-        class="container_question"
-        ng-mouseenter="mouseIsOnTitle=true" ng-mouseleave="mouseIsOnTitle=false">
+  <li ng-repeat="q in questions">
+    <div ng-click="goToQuestion(q.id)" class="container_question">
       <div class="top_line">
         <span class="text_title">{{q.text}}</span>
         <span class="text_detail">

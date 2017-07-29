@@ -12,9 +12,6 @@ $LIGHT-HUE: $BLACK-LOW;
       padding: 0;
       list-style-type: none;
       border-bottom: $BUTTON-BORDER-SIZE $BUTTON-BORDER-STYLE $BUTTON-BORDER-COLOR;
-      // .selected {
-      //   background-color: lighten($LIGHT-HUE, 75%);
-      // }
       li{
         transition: all $BUTTON-TIME;
         border-top: $BUTTON-BORDER-SIZE $BUTTON-BORDER-STYLE $BUTTON-BORDER-COLOR;
@@ -33,10 +30,14 @@ $LIGHT-HUE: $BLACK-LOW;
             }
           }
         }
+        a{
+          color: inherit;
+          text-decoration: inherit;
+        }
         .container_question{
           min-height: $QUESTION-HEIGHT;
           flex-grow: 1;
-          display: flex;
+          display: flex !important;
           flex-direction: column;
           justify-content: center;
           padding-left: $PADDING;

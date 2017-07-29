@@ -384,7 +384,7 @@
   color: black;
   transition: max-height 1s;
   overflow: hidden;
-  margin: 0 2rem;
+  margin: 0 .4rem;
 }
 .banner .agoraDude {
   top: 1rem;
@@ -765,6 +765,7 @@
   padding: 5px;
   border-radius: 0;
   transition: all .2s;
+  white-space: nowrap;
 }
 .sidebar .sortContainer .optionsBoxContainer .optionsBox .compress {
   background-color: rgba(0, 0, 0, 0.3);
@@ -830,80 +831,62 @@
   box-shadow: 3px 3px 3px 2px rgba(182, 182, 182, 0.45);
   z-index: 10;
 }
-
-header {
-  transition: height 0.3s;
-  display: flex;
-  flex-direction: row;
-  height: 2.8rem;
-  overflow: hidden;
-  justify-content: space-between;
-}
-header form {
-  width: 20rem;
-  padding: .2rem;
-  display: flex;
-  flex-direction: column;
-  min-height: 2rem;
-  justify-content: center;
-}
-header form input {
-  border-radius: 0.1rem 0px 0px 0.1rem;
-  min-height: 2em;
-}
-header form button {
-  position: absolute;
-  right: .8rem;
-  background: rgba(255, 255, 255, 0);
+.management .site-header {
+  background: white;
   color: black;
-  z-index: 11;
-  padding: 0;
-  border-radius: 0px 0.1rem 0.1rem 0px;
+  display: flex;
+  justify-content: space-between;
+  transition: height 0.3s;
+  flex-direction: row;
+  overflow: visible;
+  flex-wrap: wrap;
 }
-header button {
+.management .site-header button {
   font-size: 1em;
 }
-header .site-nav ul {
+.management .site-header form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: .2em;
+}
+.management .site-header form input {
+  border-radius: 0.1rem 0px 0px 0.1rem;
+  border-right-style: none !important;
+}
+.management .site-header form button {
+  margin-left: 0;
+  background: white;
+  color: black;
+  border-radius: 0px 0.1rem 0.1rem 0px;
+}
+.management .site-header .site-nav ul {
   list-style: none;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0;
+  flex-wrap: nowrap;
+  margin: .2em;
   padding: 0;
 }
-header .site-nav ul li {
+.management .site-header .site-nav ul li {
   display: flex;
   flex-direction: row;
 }
-header .site-nav ul li a {
+.management .site-header .site-nav ul li a {
   flex-grow: 5;
   text-decoration: none;
   color: black !important;
   padding: .5em;
   padding-top: .5em;
   justify-content: center;
+  align-self: center;
   height: calc($navbarHeight - 20px);
   display: inline;
   margin-left: .2em;
 }
-header .site-nav ul li a:hover {
+.management .site-header .site-nav ul li a:hover {
   background: #e0e0e0 !important;
   border-radius: .2em;
-}
-
-.site-header {
-  min-height: 30px;
-  background: white;
-  color: black;
-  display: flex;
-  align-items: center;
-}
-
-.account-actions {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  margin-right: 1em;
 }
 
 @media (pointer: coarse) {
@@ -937,12 +920,13 @@ header .site-nav ul li a:hover {
 .askQuestionPage .askQuestion input {
   padding: 1em;
   flex-grow: 1;
-  min-width: 30em;
+  width: 100%;
 }
 .askQuestionPage .askQuestion textarea {
+  margin-bottom: 1em;
   padding: 1em;
   flex-grow: 1;
-  min-width: 30em;
+  width: 100%;
 }
 .askQuestionPage .askQuestion button {
   margin-top: 1em;
@@ -957,37 +941,59 @@ header .site-nav ul li a:hover {
   list-style-type: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.questionStream ul .selected, .questionStream ul .buttonExpandDown:hover, .questionStream ul .single-question #question-outer-container .button-edit:hover, .single-question #question-outer-container .questionStream ul .button-edit:hover, .questionStream ul .response .sections .section-comments .section-comment .addComment .add-comment-button:hover, .response .sections .section-comments .section-comment .addComment .questionStream ul .add-comment-button:hover, .questionStream ul .buttonExpandHorizontal:hover, .questionStream ul .response .sections .section .section-header .commentButton:hover, .response .sections .section .section-header .questionStream ul .commentButton:hover, .questionStream ul .editButton:hover {
-  background-color: rgba(191, 191, 191, 0.5);
-}
 .questionStream ul li {
   transition: all 0.1s;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
   min-height: 3rem;
-  align-items: center;
+  cursor: pointer;
   color: rgba(0, 0, 0, 0.7);
   padding-right: 2rem;
 }
-.questionStream ul li .unOwned {
-  padding-left: 2rem;
+.questionStream ul li:hover {
+  background-color: rgba(191, 191, 191, 0.5);
+}
+.questionStream ul li:hover .container_question .bottom_line {
+  font-size: .8rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 .questionStream ul li a {
   color: inherit;
   text-decoration: inherit;
 }
-.questionStream ul li .container-question {
+.questionStream ul li .container_question {
   min-height: 3rem;
   flex-grow: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
 }
-.questionStream ul li .container-question .text-detail {
+.questionStream ul li .container_question .top_line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.questionStream ul li .container_question .top_line a {
+  color: grey;
+  text-decoration: inherit;
+}
+.questionStream ul li .container_question .bottom_line {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  transition: all .2s;
+  font-size: 0px;
+  border-top: .1rem lightgrey;
+  align-items: center;
+  margin-top: .2rem;
+}
+.questionStream ul li .container_question .text_detail {
   font-size: .75rem;
   color: rgba(0, 0, 0, 0.5);
 }
-.questionStream ul li .container-question .text-title {
+.questionStream ul li .container_question .text_title {
   padding-left: .2rem;
   font-size: 1rem;
 }
@@ -1110,7 +1116,7 @@ header .site-nav ul li a:hover {
   background-color: #cccccc;
 }
 
-BUTTON-BORDER, .search .searchResults .responses .results .response, .single-question #question-outer-container .selectedEdits, header form input {
+BUTTON-BORDER, .search .searchResults .responses .results .response, .single-question #question-outer-container .selectedEdits, .management .site-header form input, .management .site-header form button {
   border-color: rgba(0, 0, 0, 0.1);
   border-width: 1px;
   border-style: solid;

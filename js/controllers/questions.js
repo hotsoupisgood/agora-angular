@@ -92,4 +92,8 @@ module.exports = function($scope, $rootScope, $routeParams, $route, $location, u
           //do nothing
         }
     };
+    //regret having to not use anchor
+    $scope.goToQuestion = function(clickedQuestionId) {
+      $location.path('/question/' + clickedQuestionId);
+    };
 };

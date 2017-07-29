@@ -28,6 +28,8 @@ agoraApp.service('editService',                     require('./services/edit.js'
 agoraApp.service('removeService',                   require('./services/remove.js'));
 agoraApp.service('animationService',                require('./services/animations.js'));
 agoraApp.service('util',                            require('./services/util.js'));
+//dicrectives
+// agoraApp.directive('suchHref',                      require('./directives/navigation.js'));
 
 //controllers
 agoraApp.controller('editQuestionController',       require('./controllers/edit-question.js'));
