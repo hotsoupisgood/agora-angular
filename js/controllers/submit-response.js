@@ -1,4 +1,4 @@
-module.exports = function($scope, $routeParams, submitResponseService, getSingleQuestionService) {
+module.exports = function($scope, $routeParams, submitResponseService, getSingleQuestionService, animationService) {
     $scope.name = 'submitResponseFormController';
     $scope.response = '';
     $scope.moduleTitle = [];
@@ -33,6 +33,7 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
     }
     $scope.submit = function() {
       console.log("Testing if responses were passed: " + $scope.$parent.question.responses);
+      animationService.fly();
       if($scope.response == ""){
         console.log("Nothing in the response.");
         $scope.noTitle=true;

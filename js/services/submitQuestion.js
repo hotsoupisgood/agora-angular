@@ -1,7 +1,6 @@
-module.exports = function($http, $rootScope, userService) {
+module.exports = function($http, userService) {
     this.submit = function(askedQuestion, questionsTags) {
         //logged/not
-        $rootScope.$emit("overlay-submit");
         return $http({
             method: 'POST',
             url: 'https://api.iex.ist/full/question/',

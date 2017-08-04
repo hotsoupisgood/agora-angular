@@ -1,4 +1,4 @@
-module.exports = function($scope, $location, submitQuestionService) {
+module.exports = function($scope, $location, submitQuestionService, animationService) {
     $scope.name = 'submitQuestionFormController';
     $scope.question = '';
     $scope.questionTags = '';
@@ -7,6 +7,7 @@ module.exports = function($scope, $location, submitQuestionService) {
     $scope.loading = false;
     $scope.submit = function() {
       $scope.loading = true;
+      animationService.fly();
       submitQuestionService.submit($scope.question, $scope.questionTags)
       .then(function (response) {
         if (response) {

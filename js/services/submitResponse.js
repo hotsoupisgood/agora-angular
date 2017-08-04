@@ -1,6 +1,5 @@
-module.exports = function($http, $cookies, $rootScope, userService) {
+module.exports = function($http, $cookies, userService) {
     this.submit = function (questionId, inputResponse, modules) {
-            $rootScope.$emit("overlay-submit");
             return $http({
                 method: 'POST',
                 url: 'https://api.iex.ist/full/response/',

@@ -39,8 +39,10 @@
   <body class="padding-b" ng-controller="mainController">
     <!-- for testing -->
   <!-- <body> -->
+
       <!-- header -->
     <div ng-include = "'html-components/header.html'"></div>
+    <div ng-include = "'html-components/overlay.html'"></div>
     <!-- page content -->
     <main class="content" ng-view ng-class="{'contentBigHead':!minBanner}"></main>
     <!-- footer -->
