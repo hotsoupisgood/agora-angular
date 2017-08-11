@@ -1,4 +1,4 @@
-module.exports = function ($cookies, $rootScope, $location, $http, userService) {
+module.exports = function ($cookies, $rootScope, $location, $http) {
   this.login = function(inputUsername, inputPassword, remember) {
       var returnData = $http({
           method: 'GET',

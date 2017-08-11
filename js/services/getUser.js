@@ -14,7 +14,6 @@ module.exports = function($cookies, $http, $rootScope) {
       this.getApiKey = function () {
         return 'ApiKey ' + $rootScope.accountInfo.username + ':' + $rootScope.accountInfo.key
       };
-
       this.get = function(inputUsername) {
         console.log(inputUsername);
           //request

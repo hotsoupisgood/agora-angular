@@ -1,4 +1,4 @@
-module.exports = function($scope, submitCommentService) {
+module.exports = function($scope, submitCommentService, getQuestionService) {
     $scope.comments = {};
     // $scope.commentOpen = true;
     $scope.commentText='';
@@ -9,7 +9,7 @@ module.exports = function($scope, submitCommentService) {
       $scope.currentLoadLimit+=5;
     };
     $scope.getCommentsFull = function () {
-      getSingleQuestionService.get($scope.section.id).then(function (response) {
+      getQuestionService.getDetail($scope.section.id).then(function (response) {
         $scope.question = response;
       });
     }

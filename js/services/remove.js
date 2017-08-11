@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, userService) {
+module.exports = function($rootScope, $http) {
     this.remove = function(type, id) {
         if (!confirm('Are you sure you want to delete this '+ type +'?\nIt will be gone FOREVER!')) {
           return false;

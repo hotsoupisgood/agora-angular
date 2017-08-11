@@ -1,13 +1,31 @@
-module.exports = function(userService, $http) {
-    this.get = function(currentPage, order, size) {
+module.exports = function(getUserService, $http, $rootScope) {
+    this.getDetail = function(id) {
         //multiply page number for first question desired
-        var startQuestion = currentPage * userService.questionsAPage;
+        //request
+        var req={
+            method: 'GET',
+            url: 'https://api.iex.ist/full/question/' + id
+        }
+        if($rootScope.isLoggedIn){
+          req.params={}
+          req.params.username=$rootScope.accountInfo.username
+        }
+        var returnData = $http(req).then(function successCallback(response) {
+            return response.data;
+        }, function errorCallback(response) {
+            return false;
+        });
+        return returnData;
+    };
+    this.getList = function(currentPage, order, size) {
+        //multiply page number for first question desired
+        var startQuestion = currentPage * getUserService.questionsAPage;
         //request
         var returnData = $http({
             method: 'GET',
             url: 'https://api.iex.ist/' + size + '/question/',
             params: {
-                limit: userService.numIteratedPerPage,
+                limit: getUserService.numIteratedPerPage,
                 offset: startQuestion,
                 order_by: order
             },

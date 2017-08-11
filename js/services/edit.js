@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $http, userService) {
+module.exports = function($rootScope, $http) {
     this.edit = function(type, id, _text) {
         return $http({
             method: 'PATCH',

@@ -1,4 +1,4 @@
-module.exports = function ($http, userService) {
+module.exports = function ($http) {
     this.questions = function (currentSearchTerm) {
       var returnData = $http({
           method: 'GET',

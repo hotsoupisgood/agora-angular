@@ -1,4 +1,4 @@
-module.exports =  function($scope, $routeParams, $location, createAccountService) {
+module.exports =  function($scope, $routeParams, $location, submitUserService) {
     $scope.$params = $routeParams;
     $scope.username;
     $scope.password;
@@ -6,7 +6,7 @@ module.exports =  function($scope, $routeParams, $location, createAccountService
     $scope.createdAccount;
     $scope.success = false;
     $scope.createAccount = function(inputUsername, inputPassword) {
-      createAccountService.submit($scope.username, $scope.password, $scope.remember)
+      submitUserService.submit($scope.username, $scope.password, $scope.remember)
       .then(function (response) {
         $scope.success = response;
         if (response) {

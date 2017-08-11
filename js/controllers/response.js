@@ -1,10 +1,10 @@
-module.exports = function($scope, voteService, removeService, animationService) {
+module.exports = function($scope, submitVoteService, removeService, animationService) {
     $scope.name = 'responseController';
     $scope.addCommentOpen = false
     $scope.deleted = false;
     $scope.upVoted = false;
     $scope.upVote = function(id) {
-        voteService.response(id).then(function(response) {
+        submitVoteService.submit(id).then(function(response) {
             if (response.status == 201) {
                 animationService.thumbsUp();
             } else if (response.status = 204) {

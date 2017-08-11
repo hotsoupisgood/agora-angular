@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $routeParams, $route, $location, userService, questionsTopService, voteService, searchService, getSingleQuestionService) {
+module.exports = function($scope, $rootScope, $routeParams, $route, $location, getQuestionService, searchService) {
     // routing goodies
     $scope.name = 'questions';
     //manage questions
@@ -36,7 +36,7 @@ module.exports = function($scope, $rootScope, $routeParams, $route, $location, u
     };
     $scope.getTopQuestions = function() {
         $scope.couldNotConnect=false;
-        questionsTopService.get($scope.currentPage, $scope.order, 'min').then(function(response) {
+        getQuestionService.getList($scope.currentPage, $scope.order, 'min').then(function(response) {
             if (response) {
               $scope.questions = response.objects;
               // $scope.lastPage = 'lets fucking implement this'
@@ -57,7 +57,7 @@ module.exports = function($scope, $rootScope, $routeParams, $route, $location, u
         });
     };
     $scope.populateRandomTags = function() {
-      questionsTopService.getRandomTags().then(function(response) {
+      getQuestionService.getRandomTags().then(function(response) {
           if (response) {
             $scope.randomTags = response;
           }

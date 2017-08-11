@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, $route, $routeParams, userService) {
+module.exports = function($scope, $rootScope, $route, $routeParams, getUserService) {
     $scope.name = 'userController';
     $scope.$params = $routeParams;
     $scope.info = {};
@@ -7,7 +7,7 @@ module.exports = function($scope, $rootScope, $route, $routeParams, userService)
     $scope.showQuestions = true;
     $scope.showResponses = true;
     $scope.populateSubmitedQuestions = function () {
-      userService.get($routeParams.username).then(function(response) {
+      getUserService.get($routeParams.username).then(function(response) {
         if (response) {
           $scope.info = response;
           $scope.questions = $scope.info.questions;

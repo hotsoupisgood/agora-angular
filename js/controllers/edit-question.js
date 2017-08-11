@@ -1,11 +1,11 @@
-module.exports =  function($scope, $routeParams, getSingleQuestionService, editService) {
+module.exports =  function($scope, $routeParams, getQuestionService, editService) {
     $scope.failed = false
     $scope.text = ''
     $scope.tags = ''
     $scope.qId = ''
 
     $scope.getQuestionFull = function () {
-      getSingleQuestionService.get($routeParams.id).then(function (response) {
+      getQuestionService.getDetail($routeParams.id).then(function (response) {
         $scope.question = response
         $scope.text = response.text
         $scope.qId = response.id

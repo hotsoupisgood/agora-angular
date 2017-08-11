@@ -1,5 +1,5 @@
-module.exports = function ($rootScope, $http, userService) {
-    this.response = function (id) {
+module.exports = function ($rootScope, $http) {
+    this.submit = function (id) {
       if ($rootScope.isLoggedIn) {
           return $http({
               method: 'POST',

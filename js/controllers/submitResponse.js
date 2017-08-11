@@ -1,4 +1,4 @@
-module.exports = function($scope, $routeParams, submitResponseService, getSingleQuestionService, animationService) {
+module.exports = function($scope, $routeParams, submitResponseService, getQuestionService, animationService) {
     $scope.name = 'submitResponseFormController';
     $scope.response = '';
     $scope.moduleTitle = [];
@@ -10,7 +10,7 @@ module.exports = function($scope, $routeParams, submitResponseService, getSingle
     $scope.questionId = $routeParams.questionId;
     $scope.question = {}
     $scope.getQuestion = function () {
-      getSingleQuestionService.get($scope.questionId).then(function (response) {
+      getQuestionService.getDetail($scope.questionId).then(function (response) {
         console.log("I went and got a question. " + response);
         $scope.question = response;
       });
